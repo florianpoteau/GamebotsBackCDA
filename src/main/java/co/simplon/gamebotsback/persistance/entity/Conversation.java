@@ -4,6 +4,10 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 
+/**
+ * Represents a Conversation entity in the persistence layer.
+ * This class is mapped to the "conversations" table in the database.
+ */
 @Entity
 @Table(name = "conversations")
 public class Conversation {
@@ -25,34 +29,66 @@ public class Conversation {
     @Column(name = "modification_date")
     private Date modificationDate;
 
-    public int getIdConversations() {
+    /**
+     * Retrieves the ID of the Conversation.
+     * @return The ID of the Conversation.
+     */
+    public int getIdConversation() {
         return idConversation;
     }
 
-    public void setIdConversations(int idConversation) {
+    /**
+     * Sets the ID of the Conversation.
+     * @param idConversation The ID of the Conversation to set.
+     */
+    public void setIdConversation(int idConversation) {
         this.idConversation = idConversation;
     }
 
+    /**
+     * Retrieves the name of the Conversation.
+     * @return The name of the Conversation.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Sets the name of the Conversation.
+     * @param name The name of the Conversation to set.
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Retrieves the creation date of the Conversation.
+     * @return The creation date of the Conversation.
+     */
     public Date getCreationDate() {
         return creationDate;
     }
 
+    /**
+     * Sets the creation date of the Conversation.
+     * @param creationDate The creation date of the Conversation to set.
+     */
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
 
+    /**
+     * Retrieves the modification date of the Conversation.
+     * @return The modification date of the Conversation.
+     */
     public Date getModificationDate() {
         return modificationDate;
     }
 
+    /**
+     * Sets the modification date of the Conversation.
+     * @param modificationDate The modification date of the Conversation to set.
+     */
     public void setModificationDate(Date modificationDate) {
         this.modificationDate = modificationDate;
     }
