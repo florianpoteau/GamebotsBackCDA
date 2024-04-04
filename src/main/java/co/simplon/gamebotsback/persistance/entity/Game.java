@@ -11,7 +11,7 @@ public class Game {
     @Id
     @Column(name = "id_games")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idGames;
+    private int idGame;
 
     @Basic
     @Column(name = "title")
@@ -48,11 +48,11 @@ public class Game {
     private Date modificationDate;
 
     public int getIdGames() {
-        return idGames;
+        return idGame;
     }
 
-    public void setIdGames(int idGames) {
-        this.idGames = idGames;
+    public void setIdGames(int idGame) {
+        this.idGame = idGame;
     }
 
     public String getTitle() {

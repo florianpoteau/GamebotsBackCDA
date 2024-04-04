@@ -11,7 +11,7 @@ public class User {
     @Id
     @Column(name = "id_users")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUsers;
+    private int idUser;
 
     @Basic
     @Column(name = "username")
@@ -41,11 +41,11 @@ public class User {
     private Image image;
 
     public int getIdUsers() {
-        return idUsers;
+        return idUser;
     }
 
-    public void setIdUsers(int idUsers) {
-        this.idUsers = idUsers;
+    public void setIdUsers(int idUser) {
+        this.idUser = idUser;
     }
 
     public String getUsername() {

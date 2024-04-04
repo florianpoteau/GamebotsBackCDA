@@ -11,7 +11,7 @@ public class Image {
         @Id
         @Column(name = "id_images")
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private int idImages;
+        private int idImage;
 
         @Basic
         @Column(name = "name")
@@ -34,11 +34,11 @@ public class Image {
         private Game game;
 
     public int getIdImages() {
-        return idImages;
+        return idImage;
     }
 
-    public void setIdImages(int idImages) {
-        this.idImages = idImages;
+    public void setIdImages(int idImage) {
+        this.idImage = idImage;
     }
 
     public String getName() {

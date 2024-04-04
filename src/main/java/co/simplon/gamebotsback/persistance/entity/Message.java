@@ -11,7 +11,7 @@ public class Message {
     @Id
     @Column(name = "id_messages")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idMessages;
+    private int idMessage;
 
     @Basic
     @Column(name = "content")
@@ -30,11 +30,11 @@ public class Message {
     private Conversation conversation;
 
     public int getIdMessages() {
-        return idMessages;
+        return idMessage;
     }
 
-    public void setIdMessages(int idMessages) {
-        this.idMessages = idMessages;
+    public void setIdMessages(int idMessage) {
+        this.idMessage = idMessage;
     }
 
     public String getContent() {

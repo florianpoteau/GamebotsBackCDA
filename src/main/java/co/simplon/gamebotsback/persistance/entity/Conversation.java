@@ -11,7 +11,7 @@ public class Conversation {
     @Id
     @Column(name = "id_conversations")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idConversations;
+    private int idConversation;
 
     @Basic
     @Column(name = "name")
@@ -26,11 +26,11 @@ public class Conversation {
     private Date modificationDate;
 
     public int getIdConversations() {
-        return idConversations;
+        return idConversation;
     }
 
-    public void setIdConversations(int idConversations) {
-        this.idConversations = idConversations;
+    public void setIdConversations(int idConversation) {
+        this.idConversation = idConversation;
     }
 
     public String getName() {
