@@ -33,6 +33,10 @@ public class Image {
         @JoinColumn(name = "id_games")
         private Game game;
 
+        @ManyToOne
+        @JoinColumn(name = "id_type_images")
+        private TypeImage typeImage;
+
     public int getIdImages() {
         return idImage;
     }
