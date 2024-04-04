@@ -37,8 +37,8 @@ public class User {
     private Date modificationDate;
 
     @ManyToOne
-    @JoinColumn(name = "id_games")
-    private Game games;
+    @JoinColumn(name = "id_images")
+    private Image image;
 
     public int getIdUsers() {
         return idUsers;
@@ -96,11 +96,11 @@ public class User {
         this.modificationDate = modificationDate;
     }
 
-    public Game getGames() {
-        return games;
+    public Image getImage() {
+        return image;
     }
 
-    public void setGames(Game games) {
-        this.games = games;
+    public void setImage(Image image) {
+        this.image = image;
     }
 }
