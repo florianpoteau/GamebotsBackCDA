@@ -1,5 +1,7 @@
 package co.simplon.gamebotsback.business.dto;
 
+import co.simplon.gamebotsback.persistance.entity.Conversation;
+
 import java.util.Date;
 
 /**
@@ -20,7 +22,7 @@ public class MessageDTO {
     private Date modificationDate;
 
     /** The conversation associated with the message. */
-    private ConversationDTO conversationDTO;
+    private Conversation conversation;
 
     /**
      * Returns the identifier of the message.
@@ -90,15 +92,15 @@ public class MessageDTO {
      * Returns the conversation associated with the message.
      * @return The conversation associated with the message.
      */
-    public ConversationDTO getConversationDTO() {
-        return conversationDTO;
+    public Conversation getConversation() {
+        return conversation;
     }
 
     /**
      * Sets the conversation associated with the message.
-     * @param conversationDTO The conversation associated with the message.
+     * @param conversation The conversation associated with the message.
      */
-    public void setConversationDTO(ConversationDTO conversationDTO) {
-        this.conversationDTO = conversationDTO;
+    public void setConversation(Conversation conversation) {
+        this.conversation = conversation;
     }
 }

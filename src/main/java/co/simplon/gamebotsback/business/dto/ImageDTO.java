@@ -1,5 +1,8 @@
 package co.simplon.gamebotsback.business.dto;
 
+import co.simplon.gamebotsback.persistance.entity.Game;
+import co.simplon.gamebotsback.persistance.entity.TypeImage;
+
 import java.util.Date;
 
 /**
@@ -23,10 +26,10 @@ public class ImageDTO {
     private Date modificationDate;
 
     /** The game of the image. */
-    private GameDTO gameDTO;
+    private Game game;
 
     /** The type of the image. */
-    private TypeImageDTO typeImageDTO;
+    private TypeImage typeImage;
 
     /**
      * Returns the identifier of the image.
@@ -112,31 +115,31 @@ public class ImageDTO {
      * Returns the game of the image.
      * @return The game of the image.
      */
-    public GameDTO getGameDTO() {
-        return gameDTO;
+    public Game getGame() {
+        return game;
     }
 
     /**
      * Sets the game of the image.
-     * @param gameDTO The game of the image.
+     * @param game The game of the image.
      */
-    public void setGameDTO(GameDTO gameDTO) {
-        this.gameDTO = gameDTO;
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     /**
      * Returns the type of the image.
      * @return The type of the image.
      */
-    public TypeImageDTO getTypeImageDTO() {
-        return typeImageDTO;
+    public TypeImage getTypeImage() {
+        return typeImage;
     }
 
     /**
      * Sets the type of the image.
-     * @param typeImageDTO The type of the image.
+     * @param typeImage The type of the image.
      */
-    public void setTypeImageDTO(TypeImageDTO typeImageDTO) {
-        this.typeImageDTO = typeImageDTO;
+    public void setTypeImage(TypeImage typeImage) {
+        this.typeImage = typeImage;
     }
 }
