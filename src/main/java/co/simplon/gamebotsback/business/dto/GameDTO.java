@@ -189,10 +189,6 @@ public class GameDTO {
         return modificationDate;
     }
 
-
-
-
-
     /**
      * Sets the modification date of the game.
      * @param modificationDate The modification date of the game.

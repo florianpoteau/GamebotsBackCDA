@@ -101,7 +101,7 @@ public class ConversationDTO {
      * Sets the user associated with the conversation.
      * @param userDTO The user associated with the conversation to set.
      */
-    public void setUser(UserDTO userDTO) {
+    public void setUserDTO(UserDTO userDTO) {
         this.userDTO = userDTO;
     }
 
@@ -109,7 +109,7 @@ public class ConversationDTO {
      * Retrieves the game associated with the conversation.
      * @return The game associated with the conversation.
      */
-    public GameDTO getGame() {
+    public GameDTO getGameDTO() {
         return gameDTO;
     }
 
@@ -117,7 +117,11 @@ public class ConversationDTO {
      * Sets the game associated with the conversation.
      * @param gameDTO The game associated with the conversation to set.
      */
-    public void setGame(GameDTO gameDTO) {
+    public void setGameDTO(GameDTO gameDTO) {
         this.gameDTO = gameDTO;
+    }
+
+    public UserDTO getUserDTO() {
+        return userDTO;
     }
 }

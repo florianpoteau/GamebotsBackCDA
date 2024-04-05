@@ -147,7 +147,7 @@ public class UserDTO {
      * Returns the image associated with the user.
      * @return The image associated with the user.
      */
-    public ImageDTO getImage() {
+    public ImageDTO getImageDTO() {
         return imageDTO;
     }
 
@@ -155,7 +155,7 @@ public class UserDTO {
      * Sets the image associated with the user.
      * @param imageDTO The image associated with the user.
      */
-    public void setImage(ImageDTO imageDTO) {
+    public void setImageDTO(ImageDTO imageDTO) {
         this.imageDTO = imageDTO;
     }
 }

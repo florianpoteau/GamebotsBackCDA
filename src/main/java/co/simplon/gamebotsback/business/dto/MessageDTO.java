@@ -90,7 +90,7 @@ public class MessageDTO {
      * Returns the conversation associated with the message.
      * @return The conversation associated with the message.
      */
-    public ConversationDTO getConversation() {
+    public ConversationDTO getConversationDTO() {
         return conversationDTO;
     }
 
@@ -98,7 +98,7 @@ public class MessageDTO {
      * Sets the conversation associated with the message.
      * @param conversationDTO The conversation associated with the message.
      */
-    public void setConversation(ConversationDTO conversationDTO) {
+    public void setConversationDTO(ConversationDTO conversationDTO) {
         this.conversationDTO = conversationDTO;
     }
 }

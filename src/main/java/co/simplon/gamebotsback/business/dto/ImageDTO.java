@@ -112,7 +112,7 @@ public class ImageDTO {
      * Returns the game of the image.
      * @return The game of the image.
      */
-    public GameDTO getGame() {
+    public GameDTO getGameDTO() {
         return gameDTO;
     }
 
@@ -120,7 +120,7 @@ public class ImageDTO {
      * Sets the game of the image.
      * @param gameDTO The game of the image.
      */
-    public void setGame(GameDTO gameDTO) {
+    public void setGameDTO(GameDTO gameDTO) {
         this.gameDTO = gameDTO;
     }
 
@@ -128,7 +128,7 @@ public class ImageDTO {
      * Returns the type of the image.
      * @return The type of the image.
      */
-    public TypeImageDTO getTypeImage() {
+    public TypeImageDTO getTypeImageDTO() {
         return typeImageDTO;
     }
 
@@ -136,7 +136,7 @@ public class ImageDTO {
      * Sets the type of the image.
      * @param typeImageDTO The type of the image.
      */
-    public void setTypeImage(TypeImageDTO typeImageDTO) {
+    public void setTypeImageDTO(TypeImageDTO typeImageDTO) {
         this.typeImageDTO = typeImageDTO;
     }
 }
