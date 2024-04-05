@@ -1,6 +1,5 @@
 package co.simplon.gamebotsback.business.dto;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -18,7 +17,7 @@ public class Game {
     private String studio;
 
     /** The release date of the game. */
-    private Date date;
+    private Date releaseDate;
 
     /** The platform(s) on which the game is available. */
     private String platform;
@@ -33,10 +32,10 @@ public class Game {
     private int numberPlayers;
 
     /** The creation date of the game. */
-    private Timestamp creationDate;
+    private Date creationDate;
 
     /** The modification date of the game. */
-    private Timestamp modificationDate;
+    private Date modificationDate;
 
     /**
      * Returns the identifier of the game.
@@ -90,16 +89,16 @@ public class Game {
      * Returns the release date of the game.
      * @return The release date of the game.
      */
-    public Date getDate() {
-        return date;
+    public Date getReleaseDate() {
+        return releaseDate;
     }
 
     /**
      * Sets the release date of the game.
-     * @param date The release date of the game.
+     * @param releaseDate The release date of the game.
      */
-    public void setDate(Date date) {
-        this.date = date;
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
     /**
@@ -170,7 +169,7 @@ public class Game {
      * Returns the creation date of the game.
      * @return The creation date of the game.
      */
-    public Timestamp getCreationDate() {
+    public Date getCreationDate() {
         return creationDate;
     }
 
@@ -178,7 +177,7 @@ public class Game {
      * Sets the creation date of the game.
      * @param creationDate The creation date of the game.
      */
-    public void setCreationDate(Timestamp creationDate) {
+    public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -186,15 +185,19 @@ public class Game {
      * Returns the modification date of the game.
      * @return The modification date of the game.
      */
-    public Timestamp getModificationDate() {
+    public Date getModificationDate() {
         return modificationDate;
     }
+
+
+
+
 
     /**
      * Sets the modification date of the game.
      * @param modificationDate The modification date of the game.
      */
-    public void setModificationDate(Timestamp modificationDate) {
+    public void setModificationDate(Date modificationDate) {
         this.modificationDate = modificationDate;
     }
 }
