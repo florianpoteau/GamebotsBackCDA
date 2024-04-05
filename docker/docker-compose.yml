@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+
+  db:
+    image: postgres:16.2
+    container_name: postgres_container
+    restart: always
+    environment:
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=dbpass
+      - POSTGRES_DB=db
+    ports:
+      - "9254:5432"
+    volumes:
+      - pg_data:/var/lib/postgres/data
+
+
+
+  pg-admin:
+    image: dpage/pgadmin4:8.4
+    container_name: pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@email.com
+      - PGADMIN_DEFAULT_PASSWORD=adminpass
+      - PGADMIN_LISTEN_PORT=5050
+    ports:
+      - "5050:5050"
+
+volumes:
+  pg_data:
