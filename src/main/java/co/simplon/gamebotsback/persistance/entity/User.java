@@ -13,12 +13,12 @@ import java.util.Date;
 public class User {
 
     @Id
-    @Column(name = "id_user", length = 50)
+    @Column(name = "id_user")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUser;
 
     @Basic
-    @Column(name = "username")
+    @Column(name = "username", length = 50)
     private String username;
 
     @Column(name = "phone")
