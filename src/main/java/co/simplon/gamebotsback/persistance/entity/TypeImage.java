@@ -18,7 +18,7 @@ public class TypeImage {
     private int idTypeImage;
 
     @Basic
-    @Column(name = "name")
+    @Column(name = "name", length = 50)
     private String name;
 
     @Temporal(TemporalType.DATE)

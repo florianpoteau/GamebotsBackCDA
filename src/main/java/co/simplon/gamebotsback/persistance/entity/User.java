@@ -13,7 +13,7 @@ import java.util.Date;
 public class User {
 
     @Id
-    @Column(name = "id_users")
+    @Column(name = "id_user", length = 50)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUser;
 
@@ -25,11 +25,11 @@ public class User {
     private int phone;
 
     @Basic
-    @Column(name = "email")
+    @Column(name = "email", length = 50)
     private String email;
 
     @Basic
-    @Column(name = "password")
+    @Column(name = "password", length = 50)
     private String password;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -41,7 +41,7 @@ public class User {
     private Date modificationDate;
 
     @ManyToOne
-    @JoinColumn(name = "id_images")
+    @JoinColumn(name = "id_image")
     private Image image;
 
     /**

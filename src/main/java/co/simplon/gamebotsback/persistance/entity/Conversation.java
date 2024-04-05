@@ -19,7 +19,7 @@ public class Conversation {
 
     /** The name of the conversation. */
     @Basic
-    @Column(name = "name")
+    @Column(name = "name", length = 50)
     private String name;
 
     /** The creation date of the conversation. */

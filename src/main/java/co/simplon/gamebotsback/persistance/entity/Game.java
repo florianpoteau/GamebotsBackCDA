@@ -13,12 +13,12 @@ import java.util.Date;
 public class Game {
 
     @Id
-    @Column(name = "id_game")
+    @Column(name = "id_game", length = 50)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idGame;
 
     @Basic
-    @Column(name = "title")
+    @Column(name = "title", length = 50)
     private String title;
 
     @Basic
@@ -30,11 +30,11 @@ public class Game {
     private Date releaseDate;
 
     @Basic
-    @Column(name = "platform")
+    @Column(name = "platform", length = 50)
     private String platform;
 
     @Basic
-    @Column(name = "story")
+    @Column(name = "story", length = 50)
     private String story;
 
     @Column(name = "isOnline")

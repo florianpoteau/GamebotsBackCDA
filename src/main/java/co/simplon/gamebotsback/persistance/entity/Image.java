@@ -18,7 +18,7 @@ public class Image {
         private int idImage;
 
         @Basic
-        @Column(name = "name")
+        @Column(name = "name", length = 50)
         private String name;
 
         @Basic
