@@ -51,9 +51,9 @@ public class MessageConvert {
         return entityList;
     }
 
-    public List<MessageDTO> convertListEntitytoDtoList(final List<Message> entities) {
+    public List<MessageDTO> convertListEntitytoListDto(final List<Message> entityList) {
         final List<MessageDTO> dtoList = new ArrayList<>();
-        for (Message entity : entities) {
+        for (Message entity : entityList) {
             dtoList.add(convertEntitytoDto(entity));
         }
 

@@ -39,7 +39,7 @@ public class TypeImageConvert {
         return entity;
     }
 
-    public List<TypeImage> convertDtoListToEntityList(final List<TypeImageDTO> dtoList) {
+    public List<TypeImage> convertListDtotoListEntity(final List<TypeImageDTO> dtoList) {
         final List<TypeImage> entityList = new ArrayList<>();
         for (TypeImageDTO dto : dtoList) {
             entityList.add(convertDtoToEntity(dto));
@@ -47,12 +47,11 @@ public class TypeImageConvert {
         return entityList;
     }
 
-    public List<TypeImageDTO> convertEntityListToDtoList(final List<TypeImage> entities) {
+    public List<TypeImageDTO> convertListEntitytoListDto(final List<TypeImage> entityList) {
         final List<TypeImageDTO> dtoList = new ArrayList<>();
-        for (TypeImage entity : entities) {
+        for (TypeImage entity : entityList) {
             dtoList.add(convertEntityToDto(entity));
         }
         return dtoList;
     }
 }
-

@@ -10,6 +10,10 @@ public class ConversationConvert {
 
     private static ConversationConvert instance;
 
+    private ConversationConvert() {
+
+    }
+
     public static ConversationConvert getInstance() {
         if (instance == null)
             instance = new ConversationConvert();
@@ -39,7 +43,7 @@ public class ConversationConvert {
         return entity;
     }
 
-    public List<Conversation> convertDtoListToEntityList(final List<ConversationDTO> dtoList) {
+    public List<Conversation> convertListDtotoListEntity(final List<ConversationDTO> dtoList) {
         final List<Conversation> entityList = new ArrayList<>();
         for (ConversationDTO dto : dtoList) {
             entityList.add(convertDtoToEntity(dto));
@@ -47,7 +51,7 @@ public class ConversationConvert {
         return entityList;
     }
 
-    public List<ConversationDTO> convertEntityListToDtoList(final List<Conversation> entityList) {
+    public List<ConversationDTO> convertListEntitytoListDto(final List<Conversation> entityList) {
         final List<ConversationDTO> dtoList = new ArrayList<>();
         for (Conversation entity : entityList) {
             dtoList.add(convertEntityToDto(entity));

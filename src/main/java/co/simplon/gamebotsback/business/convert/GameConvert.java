@@ -10,6 +10,10 @@ public class GameConvert {
 
     private static GameConvert instance;
 
+    private GameConvert() {
+
+    }
+
     public static GameConvert getInstance() {
         if (instance == null)
             instance = new GameConvert();
@@ -47,7 +51,7 @@ public class GameConvert {
         return entity;
     }
 
-    public List<Game> convertDtoListToEntityList(final List<GameDTO> dtoList) {
+    public List<Game> convertListDtotoListEntity(final List<GameDTO> dtoList) {
         final List<Game> entityList = new ArrayList<>();
         for (GameDTO dto : dtoList) {
             entityList.add(convertDtoToEntity(dto));
@@ -55,7 +59,7 @@ public class GameConvert {
         return entityList;
     }
 
-    public List<GameDTO> convertEntityListToDtoList(final List<Game> entityList) {
+    public List<GameDTO> convertListEntitytoListDto(final List<Game> entityList) {
         final List<GameDTO> dtoList = new ArrayList<>();
         for (Game entity : entityList) {
             dtoList.add(convertEntityToDto(entity));

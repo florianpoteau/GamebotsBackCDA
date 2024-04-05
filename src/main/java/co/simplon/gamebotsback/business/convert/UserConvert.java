@@ -48,7 +48,7 @@ public class UserConvert {
         return user;
     }
 
-    public List<User> convertDtoListToEntityList(final List<UserDTO> dtoList) {
+    public List<User> convertListDtotoListEntity(final List<UserDTO> dtoList) {
         final List<User> entityList = new ArrayList<>();
         for (UserDTO dto : dtoList) {
             entityList.add(convertDtoToEntity(dto));
@@ -57,7 +57,7 @@ public class UserConvert {
         return entityList;
     }
 
-    public List<UserDTO> convertEntityListToDtoList(final List<User> entityList) {
+    public List<UserDTO> convertListEntitytoListDto(final List<User> entityList) {
         final List<UserDTO> dtoList = new ArrayList<>();
         for (User entity : entityList) {
             dtoList.add(convertEntityToDto(entity));
