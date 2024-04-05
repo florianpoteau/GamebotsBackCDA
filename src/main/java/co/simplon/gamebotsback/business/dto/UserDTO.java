@@ -1,6 +1,8 @@
 package co.simplon.gamebotsback.business.dto;
 
-import java.sql.Timestamp;
+import co.simplon.gamebotsback.persistance.entity.Image;
+
+import java.util.Date;
 
 /**
  * This class represents a user.
@@ -23,13 +25,13 @@ public class UserDTO {
     private String password;
 
     /** The creation date of the user. */
-    private Timestamp creationDate;
+    private Date creationDate;
 
     /** The modification date of the user. */
-    private Timestamp modificationDate;
+    private Date modificationDate;
 
     /** The image associated with the user. */
-    private ImageDTO imageDTO;
+    private Image image;
 
     /**
      * Returns the identifier of the user.
@@ -115,7 +117,7 @@ public class UserDTO {
      * Returns the creation date of the user.
      * @return The creation date of the user.
      */
-    public Timestamp getCreationDate() {
+    public Date getCreationDate() {
         return creationDate;
     }
 
@@ -123,7 +125,7 @@ public class UserDTO {
      * Sets the creation date of the user.
      * @param creationDate The creation date of the user.
      */
-    public void setCreationDate(Timestamp creationDate) {
+    public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -131,7 +133,7 @@ public class UserDTO {
      * Returns the modification date of the user.
      * @return The modification date of the user.
      */
-    public Timestamp getModificationDate() {
+    public Date getModificationDate() {
         return modificationDate;
     }
 
@@ -139,7 +141,7 @@ public class UserDTO {
      * Sets the modification date of the user.
      * @param modificationDate The modification date of the user.
      */
-    public void setModificationDate(Timestamp modificationDate) {
+    public void setModificationDate(Date modificationDate) {
         this.modificationDate = modificationDate;
     }
 
@@ -147,15 +149,15 @@ public class UserDTO {
      * Returns the image associated with the user.
      * @return The image associated with the user.
      */
-    public ImageDTO getImageDTO() {
-        return imageDTO;
+    public Image getImage() {
+        return image;
     }
 
     /**
      * Sets the image associated with the user.
-     * @param imageDTO The image associated with the user.
+     * @param image The image associated with the user.
      */
-    public void setImageDTO(ImageDTO imageDTO) {
-        this.imageDTO = imageDTO;
+    public void setImage(Image image) {
+        this.image = image;
     }
 }
