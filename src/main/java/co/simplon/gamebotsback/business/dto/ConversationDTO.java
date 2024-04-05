@@ -130,7 +130,7 @@ public class ConversationDTO {
     /**
      * Sets the game associated with the conversation.
      * 
-     * @param gameDTO The game associated with the conversation to set.
+     * @param game The game associated with the conversation to set.
      */
     public void setGame(Game game) {
         this.game = game;
