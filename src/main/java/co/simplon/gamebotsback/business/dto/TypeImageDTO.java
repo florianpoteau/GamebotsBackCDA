@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * This class represents a type of image.
  */
-public class TypeImage {
+public class TypeImageDTO {
 
     /** The identifier of the type of image. */
     private int idTypeImage;

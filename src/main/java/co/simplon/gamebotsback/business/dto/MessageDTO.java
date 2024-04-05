@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * This class represents a message.
  */
-public class Message {
+public class MessageDTO {
 
     /** The identifier of the message. */
     private int idMessage;
@@ -20,7 +20,7 @@ public class Message {
     private Date modificationDate;
 
     /** The conversation associated with the message. */
-    private Conversation conversation;
+    private ConversationDTO conversationDTO;
 
     /**
      * Returns the identifier of the message.
@@ -90,15 +90,15 @@ public class Message {
      * Returns the conversation associated with the message.
      * @return The conversation associated with the message.
      */
-    public Conversation getConversation() {
-        return conversation;
+    public ConversationDTO getConversation() {
+        return conversationDTO;
     }
 
     /**
      * Sets the conversation associated with the message.
-     * @param conversation The conversation associated with the message.
+     * @param conversationDTO The conversation associated with the message.
      */
-    public void setConversation(Conversation conversation) {
-        this.conversation = conversation;
+    public void setConversation(ConversationDTO conversationDTO) {
+        this.conversationDTO = conversationDTO;
     }
 }

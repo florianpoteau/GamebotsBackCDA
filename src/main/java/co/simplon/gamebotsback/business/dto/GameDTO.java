@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * This class represents a game.
  */
-public class Game {
+public class GameDTO {
 
     /** The identifier of the game. */
     private int idGame;

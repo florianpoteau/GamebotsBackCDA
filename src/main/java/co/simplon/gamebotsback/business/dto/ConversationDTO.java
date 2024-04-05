@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * This class represents a conversation.
  */
-public class Conversation {
+public class ConversationDTO {
 
     /** The unique identifier of the conversation. */
     private int idConversation;
@@ -20,10 +20,10 @@ public class Conversation {
     private Date modificationDate;
 
     /** The user associated with the conversation. */
-    private User user;
+    private UserDTO userDTO;
 
     /** The game associated with the conversation. */
-    private Game game;
+    private GameDTO gameDTO;
 
     /**
      * Retrieves the ID of the conversation.
@@ -93,31 +93,31 @@ public class Conversation {
      * Retrieves the user associated with the conversation.
      * @return The user associated with the conversation.
      */
-    public User getUser() {
-        return user;
+    public UserDTO getUser() {
+        return userDTO;
     }
 
     /**
      * Sets the user associated with the conversation.
-     * @param user The user associated with the conversation to set.
+     * @param userDTO The user associated with the conversation to set.
      */
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(UserDTO userDTO) {
+        this.userDTO = userDTO;
     }
 
     /**
      * Retrieves the game associated with the conversation.
      * @return The game associated with the conversation.
      */
-    public Game getGame() {
-        return game;
+    public GameDTO getGame() {
+        return gameDTO;
     }
 
     /**
      * Sets the game associated with the conversation.
-     * @param game The game associated with the conversation to set.
+     * @param gameDTO The game associated with the conversation to set.
      */
-    public void setGame(Game game) {
-        this.game = game;
+    public void setGame(GameDTO gameDTO) {
+        this.gameDTO = gameDTO;
     }
 }

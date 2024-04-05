@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * This class represents an image.
  */
-public class Image {
+public class ImageDTO {
 
     /** The identifier of the image. */
     private int idImage;
@@ -23,10 +23,10 @@ public class Image {
     private Date modificationDate;
 
     /** The game of the image. */
-    private Game game;
+    private GameDTO gameDTO;
 
     /** The type of the image. */
-    private TypeImage typeImage;
+    private TypeImageDTO typeImageDTO;
 
     /**
      * Returns the identifier of the image.
@@ -112,31 +112,31 @@ public class Image {
      * Returns the game of the image.
      * @return The game of the image.
      */
-    public Game getGame() {
-        return game;
+    public GameDTO getGame() {
+        return gameDTO;
     }
 
     /**
      * Sets the game of the image.
-     * @param game The game of the image.
+     * @param gameDTO The game of the image.
      */
-    public void setGame(Game game) {
-        this.game = game;
+    public void setGame(GameDTO gameDTO) {
+        this.gameDTO = gameDTO;
     }
 
     /**
      * Returns the type of the image.
      * @return The type of the image.
      */
-    public TypeImage getTypeImage() {
-        return typeImage;
+    public TypeImageDTO getTypeImage() {
+        return typeImageDTO;
     }
 
     /**
      * Sets the type of the image.
-     * @param typeImage The type of the image.
+     * @param typeImageDTO The type of the image.
      */
-    public void setTypeImage(TypeImage typeImage) {
-        this.typeImage = typeImage;
+    public void setTypeImage(TypeImageDTO typeImageDTO) {
+        this.typeImageDTO = typeImageDTO;
     }
 }

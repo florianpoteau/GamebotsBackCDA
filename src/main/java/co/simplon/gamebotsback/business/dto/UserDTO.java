@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 /**
  * This class represents a user.
  */
-public class User {
+public class UserDTO {
 
     /** The identifier of the user. */
     private int idUser;
@@ -29,7 +29,7 @@ public class User {
     private Timestamp modificationDate;
 
     /** The image associated with the user. */
-    private Image image;
+    private ImageDTO imageDTO;
 
     /**
      * Returns the identifier of the user.
@@ -147,15 +147,15 @@ public class User {
      * Returns the image associated with the user.
      * @return The image associated with the user.
      */
-    public Image getImage() {
-        return image;
+    public ImageDTO getImage() {
+        return imageDTO;
     }
 
     /**
      * Sets the image associated with the user.
-     * @param image The image associated with the user.
+     * @param imageDTO The image associated with the user.
      */
-    public void setImage(Image image) {
-        this.image = image;
+    public void setImage(ImageDTO imageDTO) {
+        this.imageDTO = imageDTO;
     }
 }
