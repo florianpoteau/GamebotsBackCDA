@@ -13,7 +13,7 @@ import java.util.Date;
 public class TypeImage {
 
     @Id
-    @Column(name = "id_type_images")
+    @Column(name = "id_type_image")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idTypeImage;
 
@@ -21,11 +21,11 @@ public class TypeImage {
     @Column(name = "name")
     private String name;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Column(name = "creation_date")
     private Date creationDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Column(name = "modification_date")
     private Date modificationDate;
 
