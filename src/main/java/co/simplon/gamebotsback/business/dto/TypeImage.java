@@ -1,7 +1,7 @@
 package co.simplon.gamebotsback.business.dto;
 
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * This class represents a type of image.
@@ -15,10 +15,10 @@ public class TypeImage {
     private String name;
 
     /** The creation date of the type of image. */
-    private Timestamp creationDate;
+    private Date creationDate;
 
     /** The modification date of the type of image. */
-    private Timestamp modificationDate;
+    private Date modificationDate;
 
     /**
      * Returns the identifier of the type of image.
@@ -35,8 +35,6 @@ public class TypeImage {
     public void setIdTypeImage(int idTypeImage) {
         this.idTypeImage = idTypeImage;
     }
-
-
 
     /**
      * Returns the name of the type of image.
@@ -58,7 +56,7 @@ public class TypeImage {
      * Returns the creation date of the type of image.
      * @return The creation date of the type of image.
      */
-    public Timestamp getCreationDate() {
+    public Date getCreationDate() {
         return creationDate;
     }
 
@@ -66,7 +64,7 @@ public class TypeImage {
      * Sets the creation date of the type of image.
      * @param creationDate The creation date of the type of image.
      */
-    public void setCreationDate(Timestamp creationDate) {
+    public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -74,7 +72,7 @@ public class TypeImage {
      * Returns the modification date of the type of image.
      * @return The modification date of the type of image.
      */
-    public Timestamp getModificationDate() {
+    public Date getModificationDate() {
         return modificationDate;
     }
 
@@ -82,7 +80,7 @@ public class TypeImage {
      * Sets the modification date of the type of image.
      * @param modificationDate The modification date of the type of image.
      */
-    public void setModificationDate(Timestamp modificationDate) {
+    public void setModificationDate(Date modificationDate) {
         this.modificationDate = modificationDate;
     }
 }
