@@ -18,7 +18,7 @@ public class Message {
     private int idMessage;
 
     @Basic
-    @Column(name = "content", length = 50)
+    @Column(name = "content")
     private String content;
 
     @Temporal(TemporalType.DATE)
