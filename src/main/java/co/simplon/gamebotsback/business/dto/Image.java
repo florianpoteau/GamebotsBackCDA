@@ -1,6 +1,6 @@
 package co.simplon.gamebotsback.business.dto;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * This class represents an image.
@@ -17,10 +17,13 @@ public class Image {
     private String source;
 
     /** The creation date of the image. */
-    private Timestamp creationDate;
+    private Date creationDate;
 
     /** The modification date of the image. */
-    private Timestamp modificationDate;
+    private Date modificationDate;
+
+    /** The game of the image. */
+    private Game game;
 
     /** The type of the image. */
     private TypeImage typeImage;
@@ -40,8 +43,6 @@ public class Image {
     public void setIdImage(int idImage) {
         this.idImage = idImage;
     }
-
-
 
     /**
      * Returns the name of the image.
@@ -79,7 +80,7 @@ public class Image {
      * Returns the creation date of the image.
      * @return The creation date of the image.
      */
-    public Timestamp getCreationDate() {
+    public Date getCreationDate() {
         return creationDate;
     }
 
@@ -87,7 +88,7 @@ public class Image {
      * Sets the creation date of the image.
      * @param creationDate The creation date of the image.
      */
-    public void setCreationDate(Timestamp creationDate) {
+    public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -95,7 +96,7 @@ public class Image {
      * Returns the modification date of the image.
      * @return The modification date of the image.
      */
-    public Timestamp getModificationDate() {
+    public Date getModificationDate() {
         return modificationDate;
     }
 
@@ -103,8 +104,24 @@ public class Image {
      * Sets the modification date of the image.
      * @param modificationDate The modification date of the image.
      */
-    public void setModificationDate(Timestamp modificationDate) {
+    public void setModificationDate(Date modificationDate) {
         this.modificationDate = modificationDate;
+    }
+
+    /**
+     * Returns the game of the image.
+     * @return The game of the image.
+     */
+    public Game getGame() {
+        return game;
+    }
+
+    /**
+     * Sets the game of the image.
+     * @param game The game of the image.
+     */
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     /**
