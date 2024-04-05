@@ -18,7 +18,7 @@ services:
 
 
   pg-admin:
-    image: dpage/pgadmin4:8.4
+    image: dpage/pgadmin4:8.5
     container_name: pgadmin4
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@email.com
