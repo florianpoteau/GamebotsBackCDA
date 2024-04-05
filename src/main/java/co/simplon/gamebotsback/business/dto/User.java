@@ -11,7 +11,7 @@ public class User {
     private int idUser;
 
     /** The name of the user. */
-    private String name;
+    private String username;
 
     /** The phone number of the user. */
     private int phone;
@@ -48,19 +48,19 @@ public class User {
     }
 
     /**
-     * Returns the name of the user.
-     * @return The name of the user.
+     * Returns the username of the user.
+     * @return The username of the user.
      */
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
     /**
      * Sets the name of the user.
-     * @param name The name of the user.
+     * @param username The username of the user.
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     /**
