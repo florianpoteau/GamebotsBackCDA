@@ -47,9 +47,9 @@ public class TypeImageConvert {
         return entityList;
     }
 
-    public List<TypeImageDTO> convertEntityListToDtoList(final List<TypeImage> entityList) {
+    public List<TypeImageDTO> convertEntityListToDtoList(final List<TypeImage> entities) {
         final List<TypeImageDTO> dtoList = new ArrayList<>();
-        for (TypeImage entity : entityList) {
+        for (TypeImage entity : entities) {
             dtoList.add(convertEntityToDto(entity));
         }
         return dtoList;
