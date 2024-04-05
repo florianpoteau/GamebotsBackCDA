@@ -1,6 +1,6 @@
 package co.simplon.gamebotsback.business.dto;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * This class represents a message.
@@ -14,10 +14,10 @@ public class Message {
     private String content;
 
     /** The creation date of the message. */
-    private Timestamp creationDate;
+    private Date creationDate;
 
     /** The modification date of the message. */
-    private Timestamp modificationDate;
+    private Date modificationDate;
 
     /** The conversation associated with the message. */
     private Conversation conversation;
@@ -58,7 +58,7 @@ public class Message {
      * Returns the creation date of the message.
      * @return The creation date of the message.
      */
-    public Timestamp getCreationDate() {
+    public Date getCreationDate() {
         return creationDate;
     }
 
@@ -66,7 +66,7 @@ public class Message {
      * Sets the creation date of the message.
      * @param creationDate The creation date of the message.
      */
-    public void setCreationDate(Timestamp creationDate) {
+    public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -74,7 +74,7 @@ public class Message {
      * Returns the modification date of the message.
      * @return The modification date of the message.
      */
-    public Timestamp getModificationDate() {
+    public Date getModificationDate() {
         return modificationDate;
     }
 
@@ -82,7 +82,7 @@ public class Message {
      * Sets the modification date of the message.
      * @param modificationDate The modification date of the message.
      */
-    public void setModificationDate(Timestamp modificationDate) {
+    public void setModificationDate(Date modificationDate) {
         this.modificationDate = modificationDate;
     }
 
