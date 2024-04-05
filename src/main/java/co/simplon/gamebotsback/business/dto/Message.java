@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 public class Message {
 
     /** The identifier of the message. */
-    private int id;
+    private int idMessage;
 
     /** The content of the message. */
     private String content;
@@ -26,16 +26,16 @@ public class Message {
      * Returns the identifier of the message.
      * @return The identifier of the message.
      */
-    public int getId() {
-        return id;
+    public int getIdMessage() {
+        return idMessage;
     }
 
     /**
      * Sets the identifier of the message.
-     * @param id The identifier of the message.
+     * @param idMessage The identifier of the message.
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setIdMessage(int idMessage) {
+        this.idMessage = idMessage;
     }
 
     /**

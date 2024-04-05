@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 public class Image {
 
     /** The identifier of the image. */
-    private int id;
+    private int idImage;
 
     /** The name of the image. */
     private String name;
@@ -29,17 +29,19 @@ public class Image {
      * Returns the identifier of the image.
      * @return The identifier of the image.
      */
-    public int getId() {
-        return id;
+    public int getIdImage() {
+        return idImage;
     }
 
     /**
      * Sets the identifier of the image.
-     * @param id The identifier of the image.
+     * @param idImage The identifier of the image.
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setIdImage(int idImage) {
+        this.idImage = idImage;
     }
+
+
 
     /**
      * Returns the name of the image.

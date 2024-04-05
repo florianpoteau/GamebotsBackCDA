@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 public class User {
 
     /** The identifier of the user. */
-    private int id;
+    private int idUser;
 
     /** The name of the user. */
     private String name;
@@ -35,16 +35,16 @@ public class User {
      * Returns the identifier of the user.
      * @return The identifier of the user.
      */
-    public int getId() {
-        return id;
+    public int getIdUser() {
+        return idUser;
     }
 
     /**
      * Sets the identifier of the user.
-     * @param id The identifier of the user.
+     * @param idUser The identifier of the user.
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
     /**

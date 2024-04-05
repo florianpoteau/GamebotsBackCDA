@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 public class TypeImage {
 
     /** The identifier of the type of image. */
-    private int id;
+    private int idTypeImage;
 
     /** The name of the type of image. */
     private String name;
@@ -24,17 +24,19 @@ public class TypeImage {
      * Returns the identifier of the type of image.
      * @return The identifier of the type of image.
      */
-    public int getId() {
-        return id;
+    public int getIdTypeImage() {
+        return idTypeImage;
     }
 
     /**
      * Sets the identifier of the type of image.
-     * @param id The identifier of the type of image.
+     * @param idTypeImage The identifier of the type of image.
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setIdTypeImage(int idTypeImage) {
+        this.idTypeImage = idTypeImage;
     }
+
+
 
     /**
      * Returns the name of the type of image.
