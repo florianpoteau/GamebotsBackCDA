@@ -13,7 +13,7 @@ import java.util.Date;
 public class Message {
 
     @Id
-    @Column(name = "id_messages")
+    @Column(name = "id_message")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idMessage;
 
@@ -21,16 +21,16 @@ public class Message {
     @Column(name = "content")
     private String content;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Column(name = "creation_date")
     private Date creationDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Column(name = "modification_date")
     private Date modificationDate;
 
     @ManyToOne
-    @JoinColumn(name = "id_conversations")
+    @JoinColumn(name = "id_conversation")
     private Conversation conversation;
 
     /**

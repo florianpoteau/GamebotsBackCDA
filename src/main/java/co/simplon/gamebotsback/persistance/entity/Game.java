@@ -13,7 +13,7 @@ import java.util.Date;
 public class Game {
 
     @Id
-    @Column(name = "id_games")
+    @Column(name = "id_game")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idGame;
 
@@ -43,11 +43,11 @@ public class Game {
     @Column(name = "number_players")
     private int numberPlayers;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Column(name = "creation_date")
     private Date creationDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Column(name = "modification_date")
     private Date modificationDate;
 
@@ -210,4 +210,5 @@ public class Game {
     public void setModificationDate(Date modificationDate) {
         this.modificationDate = modificationDate;
     }
+
 }

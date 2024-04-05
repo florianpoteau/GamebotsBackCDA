@@ -13,7 +13,7 @@ import java.util.Date;
 public class Image {
 
         @Id
-        @Column(name = "id_images")
+        @Column(name = "id_image")
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int idImage;
 
@@ -25,20 +25,20 @@ public class Image {
         @Column(name = "source")
         private String source;
 
-        @Temporal(TemporalType.TIMESTAMP)
+        @Temporal(TemporalType.DATE)
         @Column(name = "creation_date")
         private Date creationDate;
 
-        @Temporal(TemporalType.TIMESTAMP)
+        @Temporal(TemporalType.DATE)
         @Column(name = "modification_date")
         private Date modificationDate;
 
         @ManyToOne
-        @JoinColumn(name = "id_games")
+        @JoinColumn(name = "id_game")
         private Game game;
 
         @ManyToOne
-        @JoinColumn(name = "id_type_images")
+        @JoinColumn(name = "id_type_image")
         private TypeImage typeImage;
 
     /**
