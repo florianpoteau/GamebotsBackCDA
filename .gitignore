@@ -36,3 +36,4 @@ build/
 
 
 /src/main/java/resources/certs/public.pem
+/src/main/java/resources/certs/private.pem
