@@ -35,5 +35,4 @@ build/
 ### KEY ###
 
 
-/src/main/java/resources/certs/public.pem
-/src/main/java/resources/certs/private.pem
+!**/src/main/java/resources/certs/*
