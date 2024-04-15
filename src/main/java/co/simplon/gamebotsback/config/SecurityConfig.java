@@ -8,14 +8,16 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+import javax.sql.DataSource;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
@@ -35,25 +37,30 @@ public class SecurityConfig {
         }
 
         @Bean
-        public InMemoryUserDetailsManager user() {
-                return new InMemoryUserDetailsManager(
-                                User.withUsername("dvega")
-                                                .password("{noop}password")
-                                                .authorities("read")
-                                                .build());
+        public PasswordEncoder passwordEncoder() {
+                return new BCryptPasswordEncoder();
+        }
+
+        @Bean
+        public JdbcUserDetailsManager jdbcUserDetailsManager(DataSource dataSource) {
+                return new JdbcUserDetailsManager(dataSource);
         }
 
         @SuppressWarnings({ "deprecation", "removal" })
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
                 return http
-                                .csrf(csrf -> csrf.disable())
-                                .authorizeRequests(auth -> auth
-                                                .anyRequest().authenticated())
+                                .authorizeRequests(authorize -> authorize
+                                                .requestMatchers("/token").permitAll()
+                                // Autres autorisations...
+                                )
                                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                                 .sessionManagement(session -> session
                                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                                .httpBasic(Customizer.withDefaults())
+                                .httpBasic().disable()
+                                .formLogin().disable()
+                                .logout().disable()
+                                .csrf().disable()
                                 .build();
         }
 
@@ -68,5 +75,4 @@ public class SecurityConfig {
                 JWKSource<SecurityContext> jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
                 return new NimbusJwtEncoder(jwks);
         }
-
 }

@@ -1,4 +1,4 @@
-package co.simplon.gamebotsback.presentation;
+package co.simplon.gamebotsback.presentation.User;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,9 +21,7 @@ public class AuthController {
 
     @PostMapping("/token")
     public String token(Authentication authentication) {
-        LOG.debug("Token request for user: '{}", authentication.getName());
         String token = tokenService.generateToken(authentication);
-        LOG.debug("Token granged {}", token);
         return token;
     }
 
