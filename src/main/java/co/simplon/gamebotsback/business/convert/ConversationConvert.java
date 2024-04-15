@@ -65,7 +65,8 @@ public class ConversationConvert {
     }
 
     /**
-     * Converts a list of ConversationDTO objects to a list of Conversation entities.
+     * Converts a list of ConversationDTO objects to a list of Conversation
+     * entities.
      *
      * @param dtoList the list of ConversationDTO objects to convert
      * @return the list of converted Conversation entities
@@ -79,7 +80,8 @@ public class ConversationConvert {
     }
 
     /**
-     * Converts a list of Conversation entities to a list of ConversationDTO objects.
+     * Converts a list of Conversation entities to a list of ConversationDTO
+     * objects.
      *
      * @param entityList the list of Conversation entities to convert
      * @return the list of converted ConversationDTO objects
