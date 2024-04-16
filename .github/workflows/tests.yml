@@ -6,11 +6,11 @@ on:
   push:
     branches:
       - docker
-      #- develop
+      - develop
   pull_request:
     branches:
       - docker
-      #- develop
+      - develop
 
 jobs:
   test:
