@@ -12,20 +12,21 @@ import java.util.List;
 @Service
 public class MessageServiceImpl implements IMessageService {
 
+    private IMessageRepository messageRepository;
+
     @Autowired
-    public void setMessageRepo(IMessageRepository messageRepo) { this.messageRepo = messageRepo; }
-
-    private IMessageRepository messageRepo;
-
+    public MessageServiceImpl(IMessageRepository messageRepository) {
+        this.messageRepository = messageRepository;
+    }
 
     @Override
     public List<MessageDTO> getAllMessageConversation() {
-        final List<Message> result = messageRepo.findAll();
+        final List<Message> result = messageRepository.findAll();
         return MessageConvert.getInstance().convertListEntityToListDto(result);
     }
 
     @Override
-    public void addNewMessage(MessageDTO message) {
-        messageRepo.save(MessageConvert.getInstance().convertDtoToEntity(message));
+    public void addNewMessage(MessageDTO messageDTO) {
+        messageRepository.save(MessageConvert.getInstance().convertDtoToEntity(messageDTO));
     }
 }

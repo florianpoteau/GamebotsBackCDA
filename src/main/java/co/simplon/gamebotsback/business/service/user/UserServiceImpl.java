@@ -23,11 +23,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public void createAccount(UserDTO userDTO) {
-        User user = UserConvert.getInstance().convertDtoToEntity(userDTO);
-
-        User savedUser = userRepository.save(user);
-
-        UserConvert.getInstance().convertEntityToDto(savedUser);
+        userRepository.save(UserConvert.getInstance().convertDtoToEntity(userDTO));
     }
 
     @Override
