@@ -46,8 +46,8 @@ jobs:
         run : docker login
 
       - name: Prepare to push to docker
-        run: docker tag gamebotsbackimage:0.0.1 ${{secrets.CD_DOCKER_USERNAME}}/gamebotsbackimage:0.0.1
+        run: docker tag gamebotsbackimage:0.0.1 ${{secrets.CD_DOCKER_USERNAME}}/gamebotsbackimage:0.0.2
 
       - name: Push to docker
-        run: docker push ${{secrets.CD_DOCKER_USERNAME}}/gamebotsbackimage:0.0.1
+        run: docker push ${{secrets.CD_DOCKER_USERNAME}}/gamebotsbackimage:0.0.2
 
