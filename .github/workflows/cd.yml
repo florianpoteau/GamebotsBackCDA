@@ -5,12 +5,11 @@ run-name: ${{ github.actor }} is learning GitHub Actions
 on:
   push:
     branches:
+      - main
       - docker
-      - develop
   pull_request:
     branches:
-      - docker
-      - develop
+      - main
 
 jobs:
   test:
