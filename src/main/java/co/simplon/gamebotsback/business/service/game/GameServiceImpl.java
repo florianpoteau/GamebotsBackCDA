@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import co.simplon.gamebotsback.business.convert.GameConvert;
 import co.simplon.gamebotsback.business.dto.GameDTO;
 import co.simplon.gamebotsback.persistance.entity.Game;
 import co.simplon.gamebotsback.persistance.repository.game.IGameRepository;
 
+@Service
 public class GameServiceImpl implements IGameService {
 
     private IGameRepository gameRepository;

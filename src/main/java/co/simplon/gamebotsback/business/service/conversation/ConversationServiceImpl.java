@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import co.simplon.gamebotsback.business.convert.ConversationConvert;
 import co.simplon.gamebotsback.business.dto.ConversationDTO;
@@ -11,6 +12,7 @@ import co.simplon.gamebotsback.persistance.entity.Conversation;
 import co.simplon.gamebotsback.persistance.repository.conversation.IConversationRepository;
 import jakarta.persistence.EntityNotFoundException;
 
+@Service
 public class ConversationServiceImpl implements IConversationService {
 
     private IConversationRepository conversationRepository;
