@@ -20,8 +20,8 @@ public class MessageServiceImpl implements IMessageService {
     }
 
     @Override
-    public List<MessageDTO> getAllMessageConversation() {
-        final List<Message> result = messageRepository.findAll();
+    public List<MessageDTO> getAllMessageConversation(int idConversation) {
+        final List<Message> result = messageRepository.getMessageByConversationId(idConversation);
         return MessageConvert.getInstance().convertListEntityToListDto(result);
     }
 

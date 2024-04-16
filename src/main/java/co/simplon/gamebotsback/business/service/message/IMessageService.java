@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IMessageService {
 
-    List<MessageDTO> getAllMessageConversation();
+    List<MessageDTO> getAllMessageConversation(int idConversation);
 
     void addNewMessage(final MessageDTO messageDTO);
 }

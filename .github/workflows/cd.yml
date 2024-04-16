@@ -1,6 +1,6 @@
 name: Deployment Continue
 
-run-name: ${{ github.actor }} is learning GitHub Actions
+run-name: ${{ github.actor }} is deploy applications
 
 on:
   push:
@@ -38,10 +38,10 @@ jobs:
         run: mvn -B package --file pom.xml
 
       - name: Build image
-        run : docker build -t gamebotsbackimage:0.0.1 .
+        run: docker build -t gamebotsbackimage:0.0.1 .
 
       - name: Login to dockerhub
-        run : docker login -u ${{secrets.CD_DOCKER_USERNAME}} -p ${{secrets.CD_DOCKER_PASSWORD}}
+        run: docker login -u ${{secrets.CD_DOCKER_USERNAME}} -p ${{secrets.CD_DOCKER_PASSWORD}}
 
       - name: Prepare to push to docker
         run: docker tag gamebotsbackimage:0.0.1 ${{secrets.CD_DOCKER_USERNAME}}/gamebotsbackimage:0.0.1
