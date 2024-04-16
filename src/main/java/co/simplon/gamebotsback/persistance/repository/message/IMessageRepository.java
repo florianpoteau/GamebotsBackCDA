@@ -11,7 +11,15 @@
 package co.simplon.gamebotsback.persistance.repository.message;
 
 import co.simplon.gamebotsback.persistance.entity.Message;
+
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 public interface IMessageRepository extends JpaRepository<Message, Integer> {
+
+    @Query(MessageQueries.FIND_MESSAGE_BY_CONVERSATION)
+    Optional<Message> getMessageByConversationId(final int conversationId);
+
 }

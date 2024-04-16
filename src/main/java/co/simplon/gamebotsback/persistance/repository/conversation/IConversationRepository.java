@@ -11,7 +11,15 @@
 package co.simplon.gamebotsback.persistance.repository.conversation;
 
 import co.simplon.gamebotsback.persistance.entity.Conversation;
+
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 public interface IConversationRepository extends JpaRepository<Conversation, Integer> {
+
+    @Query(ConversationQueries.FIND_ALL_USER_BY_CONVERSATION)
+    Optional<Conversation> getAllUserByConversationId(final int idConversation);
+
 }
