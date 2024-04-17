@@ -15,6 +15,7 @@ import co.simplon.gamebotsback.business.convert.ImageConvert;
 import co.simplon.gamebotsback.business.dto.ImageDTO;
 import co.simplon.gamebotsback.persistance.entity.Image;
 import co.simplon.gamebotsback.persistance.repository.image.IImageRepository;
+import java.util.NoSuchElementException;
 
 @Service
 public class ImageServiceImpl implements IImageService {
@@ -51,7 +52,8 @@ public class ImageServiceImpl implements IImageService {
     @Override
     public ImageDTO getById(int id) {
         Optional<Image> optionalImage = imageRepository.findById(id);
-        Image image = optionalImage.get();
+        Image image = optionalImage
+                .orElseThrow(() -> new NoSuchElementException("Aucune image trouvée avec l'identifiant " + id));
         return ImageConvert.getInstance().convertEntityToDto(image);
     }
 

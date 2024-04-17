@@ -13,11 +13,14 @@ import org.springframework.stereotype.Service;
 import co.simplon.gamebotsback.business.convert.ConversationConvert;
 import co.simplon.gamebotsback.business.dto.ConversationDTO;
 import co.simplon.gamebotsback.persistance.entity.Conversation;
+import co.simplon.gamebotsback.persistance.entity.Game;
+import co.simplon.gamebotsback.persistance.entity.User;
 import co.simplon.gamebotsback.persistance.repository.conversation.IConversationRepository;
 import jakarta.persistence.EntityNotFoundException;
 
 /**
- * Implementation of the <code>IConversationService</code> interface providing functionalities for managing conversations.
+ * Implementation of the <code>IConversationService</code> interface providing
+ * functionalities for managing conversations.
  */
 @Service
 public class ConversationServiceImpl implements IConversationService {
@@ -29,7 +32,8 @@ public class ConversationServiceImpl implements IConversationService {
     /**
      * Constructor for <code>ConversationServiceImpl</code>.
      *
-     * @param conversationRepository The repository used to access conversation data.
+     * @param conversationRepository The repository used to access conversation
+     *                               data.
      */
     @Autowired
     public ConversationServiceImpl(IConversationRepository conversationRepository) {
@@ -51,7 +55,8 @@ public class ConversationServiceImpl implements IConversationService {
      *
      * @param id The ID of the conversation.
      * @return The information of the conversation corresponding to the given ID.
-     * @throws EntityNotFoundException if the conversation with the specified ID does not exist.
+     * @throws EntityNotFoundException if the conversation with the specified ID
+     *                                 does not exist.
      */
     @Override
     public ConversationDTO getById(int id) {
@@ -68,18 +73,27 @@ public class ConversationServiceImpl implements IConversationService {
      * Modifies information of an existing conversation.
      *
      * @param id              The ID of the conversation to modify.
-     * @param conversationDTO The new information to associate with the conversation.
+     * @param conversationDTO The new information to associate with the
+     *                        conversation.
      * @return The updated information of the conversation.
-     * @throws EntityNotFoundException if the conversation with the specified ID does not exist.
+     * @throws EntityNotFoundException if the conversation with the specified ID
+     *                                 does not exist.
      */
     @Override
     public ConversationDTO modifyConversation(int id, ConversationDTO conversationDTO) {
-        Optional<Conversation> optionalUser = conversationRepository.findById(id);
-        if (optionalUser.isPresent()) {
-            Conversation existingConversation = optionalUser.get();
+        Optional<Conversation> optionalConversation = conversationRepository.findById(id);
+        if (optionalConversation.isPresent()) {
+            Conversation existingConversation = optionalConversation.get();
+
+            // Récupérer l'utilisateur existant et réattribuer à la conversation existante
+            User existingUser = existingConversation.getUser();
+            conversationDTO.setUser(existingUser);
+
+            // Récupérer le jeu existant et réattribuer à la conversation existante
+            Game existingGame = existingConversation.getGame();
+            conversationDTO.setGame(existingGame);
+
             existingConversation.setName(conversationDTO.getName());
-            existingConversation.setGame(conversationDTO.getGame());
-            existingConversation.setUser(conversationDTO.getUser());
             existingConversation.setCreationDate(conversationDTO.getCreationDate());
             existingConversation.setModificationDate(conversationDTO.getModificationDate());
 
@@ -95,7 +109,8 @@ public class ConversationServiceImpl implements IConversationService {
      * Deletes an existing conversation.
      *
      * @param id The ID of the conversation to delete.
-     * @throws EntityNotFoundException if the conversation with the specified ID does not exist.
+     * @throws EntityNotFoundException if the conversation with the specified ID
+     *                                 does not exist.
      */
     @Override
     public void deleteConversation(int id) {
