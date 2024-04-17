@@ -15,7 +15,8 @@ import co.simplon.gamebotsback.persistance.entity.Image;
 import co.simplon.gamebotsback.persistance.repository.image.IImageRepository;
 
 /**
- * Implementation of the <code>IImageService</code> interface providing functionalities for managing images.
+ * Implementation of the <code>IImageService</code> interface providing
+ * functionalities for managing images.
  */
 @Service
 public class ImageServiceImpl implements IImageService {
@@ -54,6 +55,24 @@ public class ImageServiceImpl implements IImageService {
         Optional<Image> optionalImage = imageRepository.findById(id);
         Image image = optionalImage.get();
         return ImageConvert.getInstance().convertEntityToDto(image);
+    }
+
+    @Override
+    public ImageDTO getImagesByUserIdAndImageType(int userId) {
+        Image image = imageRepository.getImagesByUserIdAndImageType(userId);
+        return ImageConvert.getInstance().convertEntityToDto(image);
+    }
+
+    @Override
+    public ImageDTO getImagesBannerByGameIdAndImageType(int gameId) {
+        Image image = imageRepository.getImagesBannerByGameIdAndImageType(gameId);
+        return ImageConvert.getInstance().convertEntityToDto(image);
+    }
+
+    @Override
+    public List<ImageDTO> getAllImagesByGameId(int gameId) {
+        List<Image> image = imageRepository.getAllImagesByGameId(gameId);
+        return ImageConvert.getInstance().convertListEntityToListDto(image);
     }
 
 }

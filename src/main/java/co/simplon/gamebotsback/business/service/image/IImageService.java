@@ -8,7 +8,8 @@ import java.util.List;
 import co.simplon.gamebotsback.business.dto.ImageDTO;
 
 /**
- * The <code>IImageService</code> interface defines operations available for managing images.
+ * The <code>IImageService</code> interface defines operations available for
+ * managing images.
  */
 public interface IImageService {
 
@@ -26,5 +27,11 @@ public interface IImageService {
      * @return Information about the image corresponding to the given ID.
      */
     ImageDTO getById(int id);
+
+    ImageDTO getImagesByUserIdAndImageType(int userId);
+
+    ImageDTO getImagesBannerByGameIdAndImageType(int gameId);
+
+    List<ImageDTO> getAllImagesByGameId(int gameId);
 
 }
