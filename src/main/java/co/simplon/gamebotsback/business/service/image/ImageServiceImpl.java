@@ -19,7 +19,7 @@ import co.simplon.gamebotsback.persistance.repository.image.IImageRepository;
 @Service
 public class ImageServiceImpl implements IImageService {
 
-    private IImageRepository imageRepository;
+    private final IImageRepository imageRepository;
 
     /**
      * Constructor for <code>ImageServiceImpl</code>.

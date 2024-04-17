@@ -20,7 +20,9 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class UserServiceImpl implements IUserService {
 
-    private IUserRepository userRepository;
+    private final IUserRepository userRepository;
+
+    private static final String ERRORMESSAGE = "User does not exist: ";
 
     /**
      * Constructor for <code>UserServiceImpl</code>.
@@ -56,7 +58,7 @@ public class UserServiceImpl implements IUserService {
             User user = optionalUser.get();
             return UserConvert.getInstance().convertEntityToDto(user);
         } else {
-            throw new EntityNotFoundException("User does not exist: " + id);
+            throw new EntityNotFoundException(ERRORMESSAGE + id);
         }
     }
 
@@ -85,7 +87,7 @@ public class UserServiceImpl implements IUserService {
 
             return UserConvert.getInstance().convertEntityToDto(updatedUser);
         } else {
-            throw new EntityNotFoundException("User does not exist: " + id);
+            throw new EntityNotFoundException(ERRORMESSAGE + id);
         }
     }
 
@@ -101,7 +103,7 @@ public class UserServiceImpl implements IUserService {
         if (optionalUser.isPresent()) {
             userRepository.deleteById(id);
         } else {
-            throw new EntityNotFoundException("User does not exist: " + id);
+            throw new EntityNotFoundException(ERRORMESSAGE + id);
         }
     }
 

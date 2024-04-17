@@ -20,7 +20,7 @@ import co.simplon.gamebotsback.persistance.repository.game.IGameRepository;
 @Service
 public class GameServiceImpl implements IGameService {
 
-    private IGameRepository gameRepository;
+    private final IGameRepository gameRepository;
 
     /**
      * Constructor for <code>GameServiceImpl</code>.

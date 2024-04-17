@@ -18,7 +18,7 @@ import java.util.List;
 @Service
 public class MessageServiceImpl implements IMessageService {
 
-    private IMessageRepository messageRepository;
+    private final IMessageRepository messageRepository;
 
     /**
      * Constructor for <code>MessageServiceImpl</code>.
