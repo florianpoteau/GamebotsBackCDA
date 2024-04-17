@@ -29,7 +29,7 @@ public class DeleteUserAccountController {
      *
      * @param id The ID of the user account to be deleted.
      */
-    @DeleteMapping("/users/$id")
+    @DeleteMapping("/users/{id}")
     public void deleteUserAccountByID(@PathVariable final int id) {
         userService.deleteAccount(id);
     }
