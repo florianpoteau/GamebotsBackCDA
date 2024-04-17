@@ -6,6 +6,7 @@ package co.simplon.gamebotsback.presentation.controller.user;
 
 import co.simplon.gamebotsback.business.service.user.IUserService;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,7 +30,7 @@ public class DeleteUserAccountController {
      * @param id The ID of the user account to be deleted.
      */
     @DeleteMapping("/users/$id")
-    public void deleteUserAccountByID(@RequestParam final int id) {
+    public void deleteUserAccountByID(@PathVariable final int id) {
         userService.deleteAccount(id);
     }
 }
