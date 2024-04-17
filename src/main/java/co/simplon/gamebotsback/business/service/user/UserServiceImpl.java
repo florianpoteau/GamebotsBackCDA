@@ -1,3 +1,6 @@
+/**
+ * Implementation of the <code>IUserService</code> interface providing functionalities for managing users.
+ */
 package co.simplon.gamebotsback.business.service.user;
 
 import java.util.Optional;
@@ -11,28 +14,60 @@ import co.simplon.gamebotsback.persistance.entity.User;
 import co.simplon.gamebotsback.persistance.repository.user.IUserRepository;
 import jakarta.persistence.EntityNotFoundException;
 
+/**
+ * Implementation of the <code>IUserService</code> interface providing functionalities for managing users.
+ */
 @Service
 public class UserServiceImpl implements IUserService {
 
     private IUserRepository userRepository;
 
+    /**
+     * Constructor for <code>UserServiceImpl</code>.
+     *
+     * @param userRepository The repository used to access user data.
+     */
     @Autowired
     public UserServiceImpl(IUserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
+    /**
+     * Creates a new user account.
+     *
+     * @param userDTO The information of the new user to create.
+     */
     @Override
     public void createAccount(UserDTO userDTO) {
         userRepository.save(UserConvert.getInstance().convertDtoToEntity(userDTO));
     }
 
+    /**
+     * Retrieves information about a user based on its ID.
+     *
+     * @param id The ID of the user.
+     * @return Information about the user corresponding to the given ID.
+     * @throws EntityNotFoundException if no user corresponding to the ID is found.
+     */
     @Override
     public UserDTO getById(int id) {
         Optional<User> optionalUser = userRepository.findById(id);
-        User user = optionalUser.get();
-        return UserConvert.getInstance().convertEntityToDto(user);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            return UserConvert.getInstance().convertEntityToDto(user);
+        } else {
+            throw new EntityNotFoundException("User does not exist: " + id);
+        }
     }
 
+    /**
+     * Modifies information of an existing user account.
+     *
+     * @param id      The ID of the user to modify.
+     * @param userDTO The new information to associate with the user.
+     * @return The updated information of the user.
+     * @throws EntityNotFoundException if no user corresponding to the ID is found.
+     */
     @Override
     public UserDTO modifyAccount(int id, UserDTO userDTO) {
         Optional<User> optionalUser = userRepository.findById(id);
@@ -50,17 +85,23 @@ public class UserServiceImpl implements IUserService {
 
             return UserConvert.getInstance().convertEntityToDto(updatedUser);
         } else {
-            throw new EntityNotFoundException("The user does not exist: " + id);
+            throw new EntityNotFoundException("User does not exist: " + id);
         }
     }
 
+    /**
+     * Deletes the user account corresponding to the given ID.
+     *
+     * @param id The ID of the user to delete.
+     * @throws EntityNotFoundException if no user corresponding to the ID is found.
+     */
     @Override
     public void deleteAccount(int id) {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
             userRepository.deleteById(id);
         } else {
-            throw new EntityNotFoundException("L'utilisateur n'existe pas " + id);
+            throw new EntityNotFoundException("User does not exist: " + id);
         }
     }
 
