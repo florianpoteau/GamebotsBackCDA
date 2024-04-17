@@ -59,7 +59,8 @@ public class ImageServiceImpl implements IImageService {
      * Retrieves the image associated with a user by user ID and image type.
      *
      * @param userId The ID of the user.
-     * @return Information about the image associated with the specified user and image type.
+     * @return Information about the image associated with the specified user and
+     *         image type.
      */
     @Override
     public ImageDTO getImagesByUserIdAndImageType(int userId) {
@@ -68,26 +69,15 @@ public class ImageServiceImpl implements IImageService {
     }
 
     /**
-     * Retrieves the banner image associated with a game by game ID and image type.
-     *
-     * @param gameId The ID of the game.
-     * @return Information about the banner image associated with the specified game and image type.
-     */
-    @Override
-    public ImageDTO getImagesBannerByGameIdAndImageType(int gameId) {
-        Image image = imageRepository.getImagesBannerByGameIdAndImageType(gameId);
-        return ImageConvert.getInstance().convertEntityToDto(image);
-    }
-
-    /**
      * Retrieves all images associated with a game by game ID and image type.
      *
      * @param gameId The ID of the game.
-     * @return A list of all images associated with the specified game and image type.
+     * @return A list of all images associated with the specified game and image
+     *         type.
      */
     @Override
-    public List<ImageDTO> getAllImagesByGameId(int gameId) {
-        List<Image> image = imageRepository.getAllImagesByGameId(gameId);
+    public List<ImageDTO> getAllImagesByGameId(String typeImage, int gameId) {
+        List<Image> image = imageRepository.getAllImagesByGameId(typeImage, gameId);
         return ImageConvert.getInstance().convertListEntityToListDto(image);
     }
 

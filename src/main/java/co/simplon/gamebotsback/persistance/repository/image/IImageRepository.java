@@ -28,21 +28,12 @@ public interface IImageRepository extends JpaRepository<Image, Integer> {
     Image getImagesByUserIdAndImageType(final int userId);
 
     /**
-     * Retrieves the banner image associated with a game by game ID.
-     *
-     * @param gameId The ID of the game whose banner image is to be retrieved.
-     * @return The banner image associated with the specified game.
-     */
-    @Query(ImageQueries.FIND_IMAGE_BANNER_BY_GAMEID)
-    Image getImagesBannerByGameIdAndImageType(final int gameId);
-
-    /**
      * Retrieves all images associated with a game by game ID.
      *
      * @param gameId The ID of the game whose images are to be retrieved.
      * @return A list of all images associated with the specified game.
      */
     @Query(ImageQueries.FIND_ALL_IMAGES_BY_GAMEID)
-    List<Image> getAllImagesByGameId(final int gameId);
+    List<Image> getAllImagesByGameId(final String typeImage, final int gameId);
 
 }

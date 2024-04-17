@@ -29,24 +29,18 @@ public interface IImageService {
      * Retrieves the image associated with a user by user ID and image type.
      *
      * @param userId The ID of the user.
-     * @return Information about the image associated with the specified user and image type.
+     * @return Information about the image associated with the specified user and
+     *         image type.
      */
     ImageDTO getImagesByUserIdAndImageType(int userId);
-
-    /**
-     * Retrieves the banner image associated with a game by game ID and image type.
-     *
-     * @param gameId The ID of the game.
-     * @return Information about the banner image associated with the specified game and image type.
-     */
-    ImageDTO getImagesBannerByGameIdAndImageType(int gameId);
 
     /**
      * Retrieves all images associated with a game by game ID and image type.
      *
      * @param gameId The ID of the game.
-     * @return A list of all images associated with the specified game and image type.
+     * @return A list of all images associated with the specified game and image
+     *         type.
      */
-    List<ImageDTO> getAllImagesByGameId(int gameId);
+    List<ImageDTO> getAllImagesByGameId(final String typeImage, int gameId);
 
 }
