@@ -1,7 +1,6 @@
 package co.simplon.gamebotsback.persistance.entity;
 
 import jakarta.persistence.*;
-
 import java.util.Date;
 
 /**
@@ -12,23 +11,28 @@ import java.util.Date;
 @Table(name = "messages")
 public class Message {
 
+    /** The unique identifier of the message. */
     @Id
     @Column(name = "id_message")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idMessage;
 
+    /** The content of the message. */
     @Basic
     @Column(name = "content")
     private String content;
 
+    /** The creation date of the message. */
     @Temporal(TemporalType.DATE)
     @Column(name = "creation_date")
     private Date creationDate;
 
+    /** The last modification date of the message. */
     @Temporal(TemporalType.DATE)
     @Column(name = "modification_date")
     private Date modificationDate;
 
+    /** The conversation associated with the message. */
     @ManyToOne
     @JoinColumn(name = "id_conversation")
     private Conversation conversation;

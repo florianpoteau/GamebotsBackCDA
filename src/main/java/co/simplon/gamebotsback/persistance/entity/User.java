@@ -1,7 +1,6 @@
 package co.simplon.gamebotsback.persistance.entity;
 
 import jakarta.persistence.*;
-
 import java.util.Date;
 
 /**
@@ -12,34 +11,42 @@ import java.util.Date;
 @Table(name = "users")
 public class User {
 
+    /** The unique identifier of the user. */
     @Id
     @Column(name = "id_user")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUser;
 
+    /** The username of the user. */
     @Basic
     @Column(name = "username", length = 50)
     private String username;
 
+    /** The phone number of the user. */
     @Column(name = "phone")
     private int phone;
 
+    /** The email of the user. */
     @Basic
     @Column(name = "email", length = 50)
     private String email;
 
+    /** The password of the user. */
     @Basic
     @Column(name = "password", length = 50)
     private String password;
 
+    /** The creation date of the user. */
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "creation_date")
     private Date creationDate;
 
+    /** The last modification date of the user. */
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "modification_date")
     private Date modificationDate;
 
+    /** The image associated with the user. */
     @ManyToOne
     @JoinColumn(name = "id_image")
     private Image image;
