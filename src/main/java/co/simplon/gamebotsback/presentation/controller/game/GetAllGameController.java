@@ -1,3 +1,6 @@
+/**
+ * Controller class responsible for handling HTTP requests related to retrieving all games.
+ */
 package co.simplon.gamebotsback.presentation.controller.game;
 
 import java.util.List;
@@ -14,11 +17,21 @@ public class GetAllGameController {
 
     private final IGameService gameService;
 
+    /**
+     * Constructor for the GetAllGameController.
+     *
+     * @param gameService The service responsible for retrieving game information.
+     */
     @Autowired
     public GetAllGameController(IGameService gameService) {
         this.gameService = gameService;
     }
 
+    /**
+     * Handles HTTP GET requests to retrieve all games.
+     *
+     * @return A list of DTOs representing all games.
+     */
     @GetMapping("/games")
     public List<GameDTO> findAllGames() {
         return gameService.getAll();
