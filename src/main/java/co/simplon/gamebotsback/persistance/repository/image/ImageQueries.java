@@ -7,5 +7,5 @@ public class ImageQueries {
     }
 
     public static final String FIND_IMAGE_BY_USERID = "SELECT i FROM User u JOIN u.image i JOIN i.typeImage ti WHERE ti.name = 'avatar' AND u.id = :userId";
-
+    public static final String FIND_IMAGE_BANNER_BY_GAMEID = "SELECT i FROM Image i JOIN i.typeImage ti JOIN i.game g WHERE ti.name = 'banner' AND g.idGame = :gameId";
 }

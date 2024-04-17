@@ -20,6 +20,9 @@ import org.springframework.data.jpa.repository.Query;
 public interface IImageRepository extends JpaRepository<Image, Integer> {
 
     @Query(ImageQueries.FIND_IMAGE_BY_USERID)
-    List<Image> getImagesByUserIdAndImageType(final int userId);
+    Image getImagesByUserIdAndImageType(final int userId);
+
+    @Query(ImageQueries.FIND_IMAGE_BANNER_BY_GAMEID)
+    Image getImagesBannerByGameIdAndImageType(final int gameId);
 
 }
