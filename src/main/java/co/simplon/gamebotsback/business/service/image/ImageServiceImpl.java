@@ -1,5 +1,7 @@
 /**
  * Implementation of the <code>IImageService</code> interface providing functionalities for managing images.
+ * This service class retrieves image data from the repository, converts it into DTOs (Data Transfer Objects),
+ * and provides methods to interact with images.
  */
 package co.simplon.gamebotsback.business.service.image;
 
@@ -14,10 +16,6 @@ import co.simplon.gamebotsback.business.dto.ImageDTO;
 import co.simplon.gamebotsback.persistance.entity.Image;
 import co.simplon.gamebotsback.persistance.repository.image.IImageRepository;
 
-/**
- * Implementation of the <code>IImageService</code> interface providing
- * functionalities for managing images.
- */
 @Service
 public class ImageServiceImpl implements IImageService {
 
@@ -57,18 +55,36 @@ public class ImageServiceImpl implements IImageService {
         return ImageConvert.getInstance().convertEntityToDto(image);
     }
 
+    /**
+     * Retrieves the image associated with a user by user ID and image type.
+     *
+     * @param userId The ID of the user.
+     * @return Information about the image associated with the specified user and image type.
+     */
     @Override
     public ImageDTO getImagesByUserIdAndImageType(int userId) {
         Image image = imageRepository.getImagesByUserIdAndImageType(userId);
         return ImageConvert.getInstance().convertEntityToDto(image);
     }
 
+    /**
+     * Retrieves the banner image associated with a game by game ID and image type.
+     *
+     * @param gameId The ID of the game.
+     * @return Information about the banner image associated with the specified game and image type.
+     */
     @Override
     public ImageDTO getImagesBannerByGameIdAndImageType(int gameId) {
         Image image = imageRepository.getImagesBannerByGameIdAndImageType(gameId);
         return ImageConvert.getInstance().convertEntityToDto(image);
     }
 
+    /**
+     * Retrieves all images associated with a game by game ID and image type.
+     *
+     * @param gameId The ID of the game.
+     * @return A list of all images associated with the specified game and image type.
+     */
     @Override
     public List<ImageDTO> getAllImagesByGameId(int gameId) {
         List<Image> image = imageRepository.getAllImagesByGameId(gameId);
