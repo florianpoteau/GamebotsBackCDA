@@ -33,7 +33,7 @@ public class GetUserAccountByIdController {
      * @param id The ID of the user account to retrieve.
      * @return The UserDTO object representing the user account.
      */
-    @GetMapping("/patient/{id}")
+    @GetMapping("/users/{id}")
     public UserDTO findUserById(@PathVariable int id) {
         return userService.getById(id);
     }

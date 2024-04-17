@@ -37,7 +37,8 @@ public interface IImageService {
     /**
      * Retrieves all images associated with a game by game ID and image type.
      *
-     * @param gameId The ID of the game.
+     * @param typeImage The type of the image.
+     * @param gameId    The ID of the game.
      * @return A list of all images associated with the specified game and image
      *         type.
      */

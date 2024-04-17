@@ -69,11 +69,11 @@ public class ImageServiceImpl implements IImageService {
     }
 
     /**
-     * Retrieves all images associated with a game by game ID and image type.
+     * Retrieves all images associated with a game by game ID.
      *
-     * @param gameId The ID of the game.
-     * @return A list of all images associated with the specified game and image
-     *         type.
+     * @param typeImage The type of the image.
+     * @param gameId    The ID of the game.
+     * @return A list of all images associated with the specified game.
      */
     @Override
     public List<ImageDTO> getAllImagesByGameId(String typeImage, int gameId) {
