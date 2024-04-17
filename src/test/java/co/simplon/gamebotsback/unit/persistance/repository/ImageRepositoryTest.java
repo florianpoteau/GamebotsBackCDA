@@ -34,7 +34,6 @@ class ImageRepositoryTest {
         Image image = imageRepository.getImagesByUserIdAndImageType(1);
         verify(imageRepository, times(1)).getImagesByUserIdAndImageType(1);
         assert image != null;
-        assert image instanceof Image;
     }
 
     /**

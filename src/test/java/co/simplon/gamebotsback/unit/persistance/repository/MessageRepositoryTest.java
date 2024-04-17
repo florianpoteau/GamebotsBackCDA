@@ -40,7 +40,7 @@ class MessageRepositoryTest {
         // Verify that getMessageByConversationId was called once with argument 1
         verify(messageRepository, times(1)).getMessageByConversationId(1);
 
-        // Assertion: There should be one message and it should not be null
+        // Assertion: There should be one message, and it should not be null
         assert messages.size() == 1;
         assert messages.get(0) != null;
     }

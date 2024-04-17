@@ -40,7 +40,7 @@ class ConversationRepositoryTest {
         // Verify that getAllUserConversation was called once with argument 1
         verify(conversationRepository, times(1)).getAllUserConversation(1);
 
-        // Assertion: There should be one conversation and it should not be null
+        // Assertion: There should be one conversation, and it should not be null
         assert conversations.size() == 1;
         assert conversations.get(0) != null;
     }

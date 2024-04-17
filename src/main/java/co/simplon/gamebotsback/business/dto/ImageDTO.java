@@ -1,5 +1,5 @@
 /**
- * This class represents a dto for a image.
+ * This class represents a dto for an image.
  */
 package co.simplon.gamebotsback.business.dto;
 

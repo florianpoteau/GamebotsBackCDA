@@ -22,7 +22,9 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class ConversationServiceImpl implements IConversationService {
 
-    private IConversationRepository conversationRepository;
+    private final IConversationRepository conversationRepository;
+
+    private static final String ERRORMESSAGE = "The conversation with the specified ID does not exist:";
 
     /**
      * Constructor for <code>ConversationServiceImpl</code>.
@@ -58,7 +60,7 @@ public class ConversationServiceImpl implements IConversationService {
             Conversation conversation = optionalGame.get();
             return ConversationConvert.getInstance().convertEntityToDto(conversation);
         } else {
-            throw new EntityNotFoundException("The conversation with the specified ID does not exist: " + id);
+            throw new EntityNotFoundException(ERRORMESSAGE + id);
         }
     }
 
@@ -85,7 +87,7 @@ public class ConversationServiceImpl implements IConversationService {
 
             return ConversationConvert.getInstance().convertEntityToDto(updatedConversation);
         } else {
-            throw new EntityNotFoundException("The conversation with the specified ID does not exist: " + id);
+            throw new EntityNotFoundException(ERRORMESSAGE + id);
         }
     }
 
@@ -101,7 +103,7 @@ public class ConversationServiceImpl implements IConversationService {
         if (optionalConversation.isPresent()) {
             conversationRepository.deleteById(id);
         } else {
-            throw new EntityNotFoundException("The conversation with the specified ID does not exist: " + id);
+            throw new EntityNotFoundException(ERRORMESSAGE + id);
         }
     }
 
