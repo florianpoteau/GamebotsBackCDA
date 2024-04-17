@@ -31,7 +31,7 @@ public class CreateUserAccountController {
      *
      * @param userDTO The UserDTO object containing the user data to be used for account creation.
      */
-    @PostMapping(path = "/users")
+    @PostMapping("/users")
     public void createAccount(@RequestBody UserDTO userDTO) {
         userService.createAccount(userDTO);
     }
