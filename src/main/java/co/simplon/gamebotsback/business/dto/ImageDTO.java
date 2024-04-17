@@ -1,3 +1,6 @@
+/**
+ * This class represents a dto for a image.
+ */
 package co.simplon.gamebotsback.business.dto;
 
 import co.simplon.gamebotsback.persistance.entity.Game;
@@ -33,6 +36,7 @@ public class ImageDTO {
 
     /**
      * Returns the identifier of the image.
+     * 
      * @return The identifier of the image.
      */
     public int getIdImage() {
@@ -41,6 +45,7 @@ public class ImageDTO {
 
     /**
      * Sets the identifier of the image.
+     * 
      * @param idImage The identifier of the image.
      */
     public void setIdImage(int idImage) {
@@ -49,6 +54,7 @@ public class ImageDTO {
 
     /**
      * Returns the name of the image.
+     * 
      * @return The name of the image.
      */
     public String getName() {
@@ -57,6 +63,7 @@ public class ImageDTO {
 
     /**
      * Sets the name of the image.
+     * 
      * @param name The name of the image.
      */
     public void setName(String name) {
@@ -65,6 +72,7 @@ public class ImageDTO {
 
     /**
      * Returns the source of the image.
+     * 
      * @return The source of the image.
      */
     public String getSource() {
@@ -73,6 +81,7 @@ public class ImageDTO {
 
     /**
      * Sets the source of the image.
+     * 
      * @param source The source of the image.
      */
     public void setSource(String source) {
@@ -81,6 +90,7 @@ public class ImageDTO {
 
     /**
      * Returns the creation date of the image.
+     * 
      * @return The creation date of the image.
      */
     public Date getCreationDate() {
@@ -89,6 +99,7 @@ public class ImageDTO {
 
     /**
      * Sets the creation date of the image.
+     * 
      * @param creationDate The creation date of the image.
      */
     public void setCreationDate(Date creationDate) {
@@ -97,6 +108,7 @@ public class ImageDTO {
 
     /**
      * Returns the modification date of the image.
+     * 
      * @return The modification date of the image.
      */
     public Date getModificationDate() {
@@ -105,6 +117,7 @@ public class ImageDTO {
 
     /**
      * Sets the modification date of the image.
+     * 
      * @param modificationDate The modification date of the image.
      */
     public void setModificationDate(Date modificationDate) {
@@ -113,6 +126,7 @@ public class ImageDTO {
 
     /**
      * Returns the game of the image.
+     * 
      * @return The game of the image.
      */
     public Game getGame() {
@@ -121,6 +135,7 @@ public class ImageDTO {
 
     /**
      * Sets the game of the image.
+     * 
      * @param game The game of the image.
      */
     public void setGame(Game game) {
@@ -129,6 +144,7 @@ public class ImageDTO {
 
     /**
      * Returns the type of the image.
+     * 
      * @return The type of the image.
      */
     public TypeImage getTypeImage() {
@@ -137,6 +153,7 @@ public class ImageDTO {
 
     /**
      * Sets the type of the image.
+     * 
      * @param typeImage The type of the image.
      */
     public void setTypeImage(TypeImage typeImage) {

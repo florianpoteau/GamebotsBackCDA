@@ -1,3 +1,6 @@
+/**
+ * This class represents a dto for a message.
+ */
 package co.simplon.gamebotsback.business.dto;
 
 import co.simplon.gamebotsback.persistance.entity.Conversation;
@@ -26,6 +29,7 @@ public class MessageDTO {
 
     /**
      * Returns the identifier of the message.
+     * 
      * @return The identifier of the message.
      */
     public int getIdMessage() {
@@ -34,6 +38,7 @@ public class MessageDTO {
 
     /**
      * Sets the identifier of the message.
+     * 
      * @param idMessage The identifier of the message.
      */
     public void setIdMessage(int idMessage) {
@@ -42,6 +47,7 @@ public class MessageDTO {
 
     /**
      * Returns the content of the message.
+     * 
      * @return The content of the message.
      */
     public String getContent() {
@@ -50,6 +56,7 @@ public class MessageDTO {
 
     /**
      * Sets the content of the message.
+     * 
      * @param content The content of the message.
      */
     public void setContent(String content) {
@@ -58,6 +65,7 @@ public class MessageDTO {
 
     /**
      * Returns the creation date of the message.
+     * 
      * @return The creation date of the message.
      */
     public Date getCreationDate() {
@@ -66,6 +74,7 @@ public class MessageDTO {
 
     /**
      * Sets the creation date of the message.
+     * 
      * @param creationDate The creation date of the message.
      */
     public void setCreationDate(Date creationDate) {
@@ -74,6 +83,7 @@ public class MessageDTO {
 
     /**
      * Returns the modification date of the message.
+     * 
      * @return The modification date of the message.
      */
     public Date getModificationDate() {
@@ -82,6 +92,7 @@ public class MessageDTO {
 
     /**
      * Sets the modification date of the message.
+     * 
      * @param modificationDate The modification date of the message.
      */
     public void setModificationDate(Date modificationDate) {
@@ -90,6 +101,7 @@ public class MessageDTO {
 
     /**
      * Returns the conversation associated with the message.
+     * 
      * @return The conversation associated with the message.
      */
     public Conversation getConversation() {
@@ -98,6 +110,7 @@ public class MessageDTO {
 
     /**
      * Sets the conversation associated with the message.
+     * 
      * @param conversation The conversation associated with the message.
      */
     public void setConversation(Conversation conversation) {

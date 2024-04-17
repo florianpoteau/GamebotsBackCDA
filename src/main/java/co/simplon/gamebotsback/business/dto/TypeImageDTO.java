@@ -1,5 +1,7 @@
+/**
+ * This class represents a dto for a typeImage.
+ */
 package co.simplon.gamebotsback.business.dto;
-
 
 import java.util.Date;
 
@@ -22,6 +24,7 @@ public class TypeImageDTO {
 
     /**
      * Returns the identifier of the type of image.
+     * 
      * @return The identifier of the type of image.
      */
     public int getIdTypeImage() {
@@ -30,6 +33,7 @@ public class TypeImageDTO {
 
     /**
      * Sets the identifier of the type of image.
+     * 
      * @param idTypeImage The identifier of the type of image.
      */
     public void setIdTypeImage(int idTypeImage) {
@@ -38,6 +42,7 @@ public class TypeImageDTO {
 
     /**
      * Returns the name of the type of image.
+     * 
      * @return The name of the type of image.
      */
     public String getName() {
@@ -46,6 +51,7 @@ public class TypeImageDTO {
 
     /**
      * Sets the name of the type of image.
+     * 
      * @param name The name of the type of image.
      */
     public void setName(String name) {
@@ -54,6 +60,7 @@ public class TypeImageDTO {
 
     /**
      * Returns the creation date of the type of image.
+     * 
      * @return The creation date of the type of image.
      */
     public Date getCreationDate() {
@@ -62,6 +69,7 @@ public class TypeImageDTO {
 
     /**
      * Sets the creation date of the type of image.
+     * 
      * @param creationDate The creation date of the type of image.
      */
     public void setCreationDate(Date creationDate) {
@@ -70,6 +78,7 @@ public class TypeImageDTO {
 
     /**
      * Returns the modification date of the type of image.
+     * 
      * @return The modification date of the type of image.
      */
     public Date getModificationDate() {
@@ -78,6 +87,7 @@ public class TypeImageDTO {
 
     /**
      * Sets the modification date of the type of image.
+     * 
      * @param modificationDate The modification date of the type of image.
      */
     public void setModificationDate(Date modificationDate) {

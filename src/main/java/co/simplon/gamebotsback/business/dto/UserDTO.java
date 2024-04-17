@@ -1,3 +1,6 @@
+/**
+ * This class represents a dto for a user.
+ */
 package co.simplon.gamebotsback.business.dto;
 
 import co.simplon.gamebotsback.persistance.entity.Image;
@@ -35,6 +38,7 @@ public class UserDTO {
 
     /**
      * Returns the identifier of the user.
+     * 
      * @return The identifier of the user.
      */
     public int getIdUser() {
@@ -43,6 +47,7 @@ public class UserDTO {
 
     /**
      * Sets the identifier of the user.
+     * 
      * @param idUser The identifier of the user.
      */
     public void setIdUser(int idUser) {
@@ -51,6 +56,7 @@ public class UserDTO {
 
     /**
      * Returns the username of the user.
+     * 
      * @return The username of the user.
      */
     public String getUsername() {
@@ -59,6 +65,7 @@ public class UserDTO {
 
     /**
      * Sets the name of the user.
+     * 
      * @param username The username of the user.
      */
     public void setUsername(String username) {
@@ -67,6 +74,7 @@ public class UserDTO {
 
     /**
      * Returns the phone number of the user.
+     * 
      * @return The phone number of the user.
      */
     public int getPhone() {
@@ -75,6 +83,7 @@ public class UserDTO {
 
     /**
      * Sets the phone number of the user.
+     * 
      * @param phone The phone number of the user.
      */
     public void setPhone(int phone) {
@@ -83,6 +92,7 @@ public class UserDTO {
 
     /**
      * Returns the email address of the user.
+     * 
      * @return The email address of the user.
      */
     public String getEmail() {
@@ -91,6 +101,7 @@ public class UserDTO {
 
     /**
      * Sets the email address of the user.
+     * 
      * @param email The email address of the user.
      */
     public void setEmail(String email) {
@@ -99,6 +110,7 @@ public class UserDTO {
 
     /**
      * Returns the password of the user.
+     * 
      * @return The password of the user.
      */
     public String getPassword() {
@@ -107,6 +119,7 @@ public class UserDTO {
 
     /**
      * Sets the password of the user.
+     * 
      * @param password The password of the user.
      */
     public void setPassword(String password) {
@@ -115,6 +128,7 @@ public class UserDTO {
 
     /**
      * Returns the creation date of the user.
+     * 
      * @return The creation date of the user.
      */
     public Date getCreationDate() {
@@ -123,6 +137,7 @@ public class UserDTO {
 
     /**
      * Sets the creation date of the user.
+     * 
      * @param creationDate The creation date of the user.
      */
     public void setCreationDate(Date creationDate) {
@@ -131,6 +146,7 @@ public class UserDTO {
 
     /**
      * Returns the modification date of the user.
+     * 
      * @return The modification date of the user.
      */
     public Date getModificationDate() {
@@ -139,6 +155,7 @@ public class UserDTO {
 
     /**
      * Sets the modification date of the user.
+     * 
      * @param modificationDate The modification date of the user.
      */
     public void setModificationDate(Date modificationDate) {
@@ -147,6 +164,7 @@ public class UserDTO {
 
     /**
      * Returns the image associated with the user.
+     * 
      * @return The image associated with the user.
      */
     public Image getImage() {
@@ -155,6 +173,7 @@ public class UserDTO {
 
     /**
      * Sets the image associated with the user.
+     * 
      * @param image The image associated with the user.
      */
     public void setImage(Image image) {

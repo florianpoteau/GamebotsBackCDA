@@ -1,3 +1,6 @@
+/**
+ * This class represents a dto for a game.
+ */
 package co.simplon.gamebotsback.business.dto;
 
 import java.util.Date;
@@ -39,6 +42,7 @@ public class GameDTO {
 
     /**
      * Returns the identifier of the game.
+     * 
      * @return The identifier of the game.
      */
     public int getIdGame() {
@@ -47,6 +51,7 @@ public class GameDTO {
 
     /**
      * Sets the identifier of the game.
+     * 
      * @param idGame The identifier of the game.
      */
     public void setIdGame(int idGame) {
@@ -55,6 +60,7 @@ public class GameDTO {
 
     /**
      * Returns the title of the game.
+     * 
      * @return The title of the game.
      */
     public String getTitle() {
@@ -63,6 +69,7 @@ public class GameDTO {
 
     /**
      * Sets the title of the game.
+     * 
      * @param title The title of the game.
      */
     public void setTitle(String title) {
@@ -71,6 +78,7 @@ public class GameDTO {
 
     /**
      * Returns the studio that developed the game.
+     * 
      * @return The studio that developed the game.
      */
     public String getStudio() {
@@ -79,6 +87,7 @@ public class GameDTO {
 
     /**
      * Sets the studio that developed the game.
+     * 
      * @param studio The studio that developed the game.
      */
     public void setStudio(String studio) {
@@ -87,6 +96,7 @@ public class GameDTO {
 
     /**
      * Returns the release date of the game.
+     * 
      * @return The release date of the game.
      */
     public Date getReleaseDate() {
@@ -95,6 +105,7 @@ public class GameDTO {
 
     /**
      * Sets the release date of the game.
+     * 
      * @param releaseDate The release date of the game.
      */
     public void setReleaseDate(Date releaseDate) {
@@ -103,6 +114,7 @@ public class GameDTO {
 
     /**
      * Returns the platform(s) on which the game is available.
+     * 
      * @return The platform(s) on which the game is available.
      */
     public String getPlatform() {
@@ -111,6 +123,7 @@ public class GameDTO {
 
     /**
      * Sets the platform(s) on which the game is available.
+     * 
      * @param platform The platform(s) on which the game is available.
      */
     public void setPlatform(String platform) {
@@ -119,6 +132,7 @@ public class GameDTO {
 
     /**
      * Returns the story or description of the game.
+     * 
      * @return The story or description of the game.
      */
     public String getStory() {
@@ -127,6 +141,7 @@ public class GameDTO {
 
     /**
      * Sets the story or description of the game.
+     * 
      * @param story The story or description of the game.
      */
     public void setStory(String story) {
@@ -135,6 +150,7 @@ public class GameDTO {
 
     /**
      * Returns whether the game has online features.
+     * 
      * @return True if the game has online features, false otherwise.
      */
     public boolean isOnline() {
@@ -143,6 +159,7 @@ public class GameDTO {
 
     /**
      * Sets whether the game has online features.
+     * 
      * @param online True if the game has online features, false otherwise.
      */
     public void setOnline(boolean online) {
@@ -151,6 +168,7 @@ public class GameDTO {
 
     /**
      * Returns the maximum number of players supported by the game.
+     * 
      * @return The maximum number of players supported by the game.
      */
     public int getNumberPlayers() {
@@ -159,6 +177,7 @@ public class GameDTO {
 
     /**
      * Sets the maximum number of players supported by the game.
+     * 
      * @param numberPlayers The maximum number of players supported by the game.
      */
     public void setNumberPlayers(int numberPlayers) {
@@ -167,6 +186,7 @@ public class GameDTO {
 
     /**
      * Returns the creation date of the game.
+     * 
      * @return The creation date of the game.
      */
     public Date getCreationDate() {
@@ -175,6 +195,7 @@ public class GameDTO {
 
     /**
      * Sets the creation date of the game.
+     * 
      * @param creationDate The creation date of the game.
      */
     public void setCreationDate(Date creationDate) {
@@ -183,6 +204,7 @@ public class GameDTO {
 
     /**
      * Returns the modification date of the game.
+     * 
      * @return The modification date of the game.
      */
     public Date getModificationDate() {
@@ -191,6 +213,7 @@ public class GameDTO {
 
     /**
      * Sets the modification date of the game.
+     * 
      * @param modificationDate The modification date of the game.
      */
     public void setModificationDate(Date modificationDate) {
