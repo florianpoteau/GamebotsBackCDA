@@ -11,7 +11,15 @@
 package co.simplon.gamebotsback.persistance.repository.image;
 
 import co.simplon.gamebotsback.persistance.entity.Image;
+
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 public interface IImageRepository extends JpaRepository<Image, Integer> {
+
+    @Query(ImageQueries.FIND_IMAGE_BY_USERID)
+    List<Image> getImagesByUserIdAndImageType(final int userId);
+
 }
