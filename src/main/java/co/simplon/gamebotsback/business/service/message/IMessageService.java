@@ -8,7 +8,8 @@ import co.simplon.gamebotsback.business.dto.MessageDTO;
 import java.util.List;
 
 /**
- * The <code>IMessageService</code> interface defines operations available for managing messages.
+ * The <code>IMessageService</code> interface defines operations available for
+ * managing messages.
  */
 public interface IMessageService {
 
