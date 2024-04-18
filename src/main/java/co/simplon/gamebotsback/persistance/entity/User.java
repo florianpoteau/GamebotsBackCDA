@@ -23,8 +23,9 @@ public class User {
     private String username;
 
     /** The phone number of the user. */
-    @Column(name = "phone")
-    private Integer phone;
+    @Basic
+    @Column(name = "phone", length = 10)
+    private String phone;
 
     /** The email of the user. */
     @Basic
@@ -92,7 +93,7 @@ public class User {
      * 
      * @return The phone number of the user.
      */
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
@@ -101,7 +102,7 @@ public class User {
      * 
      * @param phone The phone number to set.
      */
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

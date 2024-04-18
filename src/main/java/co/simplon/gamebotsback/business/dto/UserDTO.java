@@ -19,7 +19,7 @@ public class UserDTO {
     private String username;
 
     /** The phone number of the user. */
-    private Integer phone;
+    private String phone;
 
     /** The email address of the user. */
     private String email;
@@ -77,7 +77,7 @@ public class UserDTO {
      * 
      * @return The phone number of the user.
      */
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
@@ -86,7 +86,7 @@ public class UserDTO {
      * 
      * @param phone The phone number of the user.
      */
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
