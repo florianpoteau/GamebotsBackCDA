@@ -1,3 +1,7 @@
+/**
+ * Controller class for retrieving conversations by user ID and game ID in the presentation layer.
+ * This controller handles HTTP GET requests to fetch all conversations associated with a specific user ID and game ID.
+ */
 package co.simplon.gamebotsback.presentation.controller.conversation;
 
 import java.util.List;
@@ -14,10 +18,21 @@ public class GetAllConversationByUserIdAndGameIdController {
 
     private final IConversationService conversationService;
 
+    /**
+     * Constructs a new GetAllConversationByUserIdAndGameIdController with the
+     * specified conversation service.
+     *
+     * @param conversationService The conversation service to be used for retrieving
+     *                            conversations.
+     */
     public GetAllConversationByUserIdAndGameIdController(IConversationService conversationService) {
         this.conversationService = conversationService;
     }
 
+    /**
+     * Handles HTTP GET requests to fetch all conversations associated with a
+     * specific user ID and game ID
+     */
     @GetMapping("/users/{user_id}/games/{game_id}/conversations")
     List<ConversationDTO> findAllConversationsByUserIdAndGameId(@PathVariable int user_id, @PathVariable int game_id) {
         return conversationService.getAllUserConversationByGameId(user_id, game_id);
