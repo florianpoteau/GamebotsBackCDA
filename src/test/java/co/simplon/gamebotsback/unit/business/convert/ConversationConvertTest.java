@@ -31,7 +31,7 @@ class ConversationConvertTest {
     private Conversation createSampleConversationWithNull() {
         Conversation conversation = new Conversation();
         conversation.setIdConversation(1);
-        conversation.setName(NameConversation);
+        conversation.setName(null);
         conversation.setCreationDate(null);
         conversation.setModificationDate(null);
         conversation.setGame(null);
@@ -53,7 +53,7 @@ class ConversationConvertTest {
     private ConversationDTO createSampleConversationDTOWithNull() {
         ConversationDTO conversationDTO = new ConversationDTO();
         conversationDTO.setIdConversation(1);
-        conversationDTO.setName(NameConversation);
+        conversationDTO.setName(null);
         conversationDTO.setCreationDate(null);
         conversationDTO.setModificationDate(null);
         conversationDTO.setGame(null);
@@ -82,7 +82,7 @@ class ConversationConvertTest {
         ConversationDTO conversationDTO = conversationConvert.convertEntityToDto(conversation);
 
         assertEquals(1, conversationDTO.getIdConversation());
-        assertEquals(NameConversation, conversationDTO.getName());
+        assertNull(conversationDTO.getName());
         assertNull(conversationDTO.getCreationDate());
         assertNull(conversationDTO.getModificationDate());
         assertNull(conversationDTO.getGame());
@@ -110,7 +110,7 @@ class ConversationConvertTest {
         Conversation conversation = conversationConvert.convertDtoToEntity(conversationDTO);
 
         assertEquals(1, conversation.getIdConversation());
-        assertEquals(NameConversation, conversation.getName());
+        assertNull(conversation.getName());
         assertNull(conversation.getCreationDate());
         assertNull(conversation.getModificationDate());
         assertNull(conversation.getGame());
@@ -147,8 +147,8 @@ class ConversationConvertTest {
         assertEquals(ConversationDTO.class, conversationDTOList.get(0).getClass());
         assertEquals(1, conversationDTOList.get(0).getIdConversation());
         assertEquals(1, conversationDTOList.get(1).getIdConversation());
-        assertEquals(NameConversation, conversationDTOList.get(0).getName());
-        assertEquals(NameConversation, conversationDTOList.get(1).getName());
+        assertNull(conversationDTOList.get(0).getName());
+        assertNull(conversationDTOList.get(1).getName());
         assertNull(conversationList.get(0).getCreationDate());
         assertNull(conversationList.get(1).getCreationDate());
         assertNull(conversationList.get(0).getModificationDate());
@@ -191,8 +191,8 @@ class ConversationConvertTest {
         assertEquals(Conversation.class, conversationList.get(0).getClass());
         assertEquals(1, conversationList.get(0).getIdConversation());
         assertEquals(1, conversationList.get(1).getIdConversation());
-        assertEquals(NameConversation, conversationList.get(0).getName());
-        assertEquals(NameConversation, conversationList.get(1).getName());
+        assertNull(conversationList.get(0).getName());
+        assertNull(conversationList.get(1).getName());
         assertNull(conversationDTOList.get(0).getCreationDate());
         assertNull(conversationDTOList.get(1).getCreationDate());
         assertNull(conversationDTOList.get(0).getModificationDate());
