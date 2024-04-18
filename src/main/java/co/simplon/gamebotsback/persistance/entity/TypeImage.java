@@ -1,7 +1,6 @@
 package co.simplon.gamebotsback.persistance.entity;
 
 import jakarta.persistence.*;
-
 import java.util.Date;
 
 /**
@@ -12,19 +11,23 @@ import java.util.Date;
 @Table(name = "type_images")
 public class TypeImage {
 
+    /** The unique identifier of the type of image. */
     @Id
     @Column(name = "id_type_image")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idTypeImage;
 
+    /** The name of the type of image. */
     @Basic
     @Column(name = "name", length = 50)
     private String name;
 
+    /** The creation date of the type of image. */
     @Temporal(TemporalType.DATE)
     @Column(name = "creation_date")
     private Date creationDate;
 
+    /** The last modification date of the type of image. */
     @Temporal(TemporalType.DATE)
     @Column(name = "modification_date")
     private Date modificationDate;

@@ -1,7 +1,6 @@
 package co.simplon.gamebotsback.persistance.entity;
 
 import jakarta.persistence.*;
-
 import java.util.Date;
 
 /**
@@ -12,41 +11,51 @@ import java.util.Date;
 @Table(name = "games")
 public class Game {
 
+    /** The unique identifier of the game. */
     @Id
     @Column(name = "id_game")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idGame;
 
+    /** The title of the game. */
     @Basic
     @Column(name = "title", length = 50)
     private String title;
 
+    /** The studio that developed the game. */
     @Basic
     @Column(name = "studio", length = 50)
     private String studio;
 
+    /** The release date of the game. */
     @Temporal(TemporalType.DATE)
     @Column(name = "release_date")
     private Date releaseDate;
 
+    /** The platform(s) the game is available on. */
     @Basic
     @Column(name = "platform", length = 50)
     private String platform;
 
+    /** The story or plot of the game. */
     @Basic
     @Column(name = "story", length = 50)
     private String story;
 
+    /** Indicates whether the game has online features. */
     @Column(name = "is_online")
     private boolean isOnline;
 
+    /** The maximum number of players supported by the game. */
     @Column(name = "number_players")
     private int numberPlayers;
 
+    /** The creation date of the game entity. */
     @Temporal(TemporalType.DATE)
     @Column(name = "creation_date")
     private Date creationDate;
 
+    /** The last modification date of the game entity. */
     @Temporal(TemporalType.DATE)
     @Column(name = "modification_date")
     private Date modificationDate;
@@ -210,5 +219,4 @@ public class Game {
     public void setModificationDate(Date modificationDate) {
         this.modificationDate = modificationDate;
     }
-
 }

@@ -1,7 +1,6 @@
 package co.simplon.gamebotsback.persistance.entity;
 
 import jakarta.persistence.*;
-
 import java.util.Date;
 
 /**
@@ -12,34 +11,41 @@ import java.util.Date;
 @Table(name = "images")
 public class Image {
 
-        @Id
-        @Column(name = "id_image")
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private int idImage;
+    /** The unique identifier of the image. */
+    @Id
+    @Column(name = "id_image")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idImage;
 
-        @Basic
-        @Column(name = "name", length = 50)
-        private String name;
+    /** The name of the image. */
+    @Basic
+    @Column(name = "name", length = 50)
+    private String name;
 
-        @Basic
-        @Column(name = "source")
-        private String source;
+    /** The source URL or path of the image. */
+    @Basic
+    @Column(name = "source")
+    private String source;
 
-        @Temporal(TemporalType.DATE)
-        @Column(name = "creation_date")
-        private Date creationDate;
+    /** The creation date of the image. */
+    @Temporal(TemporalType.DATE)
+    @Column(name = "creation_date")
+    private Date creationDate;
 
-        @Temporal(TemporalType.DATE)
-        @Column(name = "modification_date")
-        private Date modificationDate;
+    /** The last modification date of the image. */
+    @Temporal(TemporalType.DATE)
+    @Column(name = "modification_date")
+    private Date modificationDate;
 
-        @ManyToOne
-        @JoinColumn(name = "id_game")
-        private Game game;
+    /** The game associated with the image. */
+    @ManyToOne
+    @JoinColumn(name = "id_game")
+    private Game game;
 
-        @ManyToOne
-        @JoinColumn(name = "id_type_image")
-        private TypeImage typeImage;
+    /** The type of image associated with the image. */
+    @ManyToOne
+    @JoinColumn(name = "id_type_image")
+    private TypeImage typeImage;
 
     /**
      * Retrieves the ID of the Image.

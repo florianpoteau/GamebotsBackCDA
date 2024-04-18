@@ -1,3 +1,6 @@
+/**
+ * This class represents a dto for a conversation.
+ */
 package co.simplon.gamebotsback.business.dto;
 
 import java.util.Date;
