@@ -134,4 +134,10 @@ public class ConversationServiceImpl implements IConversationService {
         return ConversationConvert.getInstance().convertListEntityToListDto(result);
     }
 
+    @Override
+    public List<ConversationDTO> getAllUserConversationByGameId(int idUser, int idGame) {
+        final List<Conversation> result = conversationRepository.getAllUserConversationByGameId(idUser, idGame);
+        return ConversationConvert.getInstance().convertListEntityToListDto(result);
+    }
+
 }

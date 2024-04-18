@@ -27,4 +27,7 @@ public interface IConversationRepository extends JpaRepository<Conversation, Int
     @Query(ConversationQueries.FIND_ALL_CONVERSATION_BY_USERID)
     List<Conversation> getAllUserConversation(final int idUser);
 
+    @Query(ConversationQueries.FIND_ALL_CONVERSATION_BY_USERID_AND_GAMEID)
+    List<Conversation> getAllUserConversationByGameId(final int idUser, final int idGame);
+
 }

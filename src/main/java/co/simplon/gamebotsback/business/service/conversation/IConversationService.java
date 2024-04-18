@@ -14,7 +14,8 @@ public interface IConversationService {
     /**
      * Adds a new conversation.
      *
-     * @param conversationDTO The conversation DTO object containing information about the conversation.
+     * @param conversationDTO The conversation DTO object containing information
+     *                        about the conversation.
      */
     void addNewConversation(final ConversationDTO conversationDTO);
 
@@ -22,7 +23,8 @@ public interface IConversationService {
      * Retrieves a conversation by its ID.
      *
      * @param id The ID of the conversation to retrieve.
-     * @return The conversation DTO object corresponding to the provided ID, or null if not found.
+     * @return The conversation DTO object corresponding to the provided ID, or null
+     *         if not found.
      */
     ConversationDTO getById(final int id);
 
@@ -46,7 +48,10 @@ public interface IConversationService {
      * Retrieves all conversations associated with a specific user.
      *
      * @param idUser The ID of the user whose conversations are to be retrieved.
-     * @return A list of conversation DTO objects associated with the specified user.
+     * @return A list of conversation DTO objects associated with the specified
+     *         user.
      */
     List<ConversationDTO> getAllUserConversation(final int idUser);
+
+    List<ConversationDTO> getAllUserConversationByGameId(final int idUser, final int idGame);
 }
