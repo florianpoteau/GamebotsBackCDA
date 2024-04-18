@@ -1,4 +1,4 @@
-package co.simplon.gamebotsback.presentation.User;
+package co.simplon.gamebotsback.presentation.controller.token;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,8 +21,15 @@ public class AuthController {
 
     @PostMapping("/token")
     public String token(Authentication authentication) {
-        String token = tokenService.generateToken(authentication);
-        return token;
+        if (authentication != null) {
+            String token = tokenService.generateToken(authentication);
+            return token;
+        } else {
+            // Gérer le cas où l'authentification a échoué
+            LOG.error("Authentication failed. No valid credentials provided.");
+            // Retourner une réponse d'erreur appropriée, par exemple :
+            throw new RuntimeException("Authentication failed. No valid credentials provided.");
+        }
     }
 
 }

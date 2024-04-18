@@ -1,4 +1,4 @@
-package co.simplon.gamebotsback.presentation.User;
+package co.simplon.gamebotsback.presentation.controller.token;
 
 import java.security.Principal;
 
