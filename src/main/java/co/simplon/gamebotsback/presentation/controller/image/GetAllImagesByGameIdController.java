@@ -22,7 +22,7 @@ public class GetAllImagesByGameIdController {
 
     @GetMapping("/games/{id}/images")
     public List<ImageDTO> findAllImagesByGameId(@PathVariable int id) {
-        return imageService.getAllImagesByGameId("image_jeu", id);
+        return imageService.getImageByGameIdAndImageType("image_jeu", id);
     }
 
 }
