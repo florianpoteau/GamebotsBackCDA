@@ -19,6 +19,12 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface IMessageRepository extends JpaRepository<Message, Integer> {
 
+    /**
+     * Retrieves all messages associated with a specific conversation ID.
+     *
+     * @param conversationId The ID of the conversation.
+     * @return A list of messages associated with the specified conversation ID.
+     */
     @Query(MessageQueries.FIND_MESSAGE_BY_CONVERSATION)
     List<Message> getMessageByConversationId(final int conversationId);
 

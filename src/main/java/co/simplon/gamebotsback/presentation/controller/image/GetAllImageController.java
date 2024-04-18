@@ -1,3 +1,7 @@
+/**
+ * Controller class for retrieving all images in the presentation layer.
+ * This controller handles HTTP GET requests to fetch all images and return them as a list of ImageDTO objects.
+ */
 package co.simplon.gamebotsback.presentation.controller.image;
 
 import java.util.List;
@@ -14,11 +18,21 @@ public class GetAllImageController {
 
     private final IImageService imageService;
 
+    /**
+     * Constructs a new GetAllImageController with the specified image service.
+     *
+     * @param imageService The image service used to retrieve all images.
+     */
     @Autowired
     public GetAllImageController(IImageService imageService) {
         this.imageService = imageService;
     }
 
+    /**
+     * Handles HTTP GET requests to fetch all images.
+     *
+     * @return A list of ImageDTO objects representing all images.
+     */
     @GetMapping("/images")
     public List<ImageDTO> findAllImages() {
         return imageService.getAll();
