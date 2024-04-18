@@ -19,7 +19,7 @@ public class CreateConversationController {
     }
 
     @PostMapping("/conversations")
-    public void createConversations(@RequestBody ConversationDTO conversationDTO) {
+    public void createConversation(@RequestBody ConversationDTO conversationDTO) {
         conversationService.addNewConversation(conversationDTO);
     }
 

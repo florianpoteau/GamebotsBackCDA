@@ -20,7 +20,7 @@ public class GetImageBannerByGameIdController {
 
     @GetMapping("/games/{id}/banner")
     List<ImageDTO> findImageBannerByGameId(@PathVariable int id) {
-        return imageService.getImageByGameIdAndImageType("banner", id);
+        return imageService.getAllImageByGameIdAndImageType("banner", id);
     }
 
 }

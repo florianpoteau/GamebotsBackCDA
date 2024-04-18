@@ -19,7 +19,7 @@ public class GetAllConversationByUserIdAndGameIdController {
     }
 
     @GetMapping("/users/{user_id}/games/{game_id}/conversations")
-    List<ConversationDTO> findConversationByUserIdAndGameId(@PathVariable int user_id, @PathVariable int game_id) {
+    List<ConversationDTO> findAllConversationsByUserIdAndGameId(@PathVariable int user_id, @PathVariable int game_id) {
         return conversationService.getAllUserConversationByGameId(user_id, game_id);
     }
 

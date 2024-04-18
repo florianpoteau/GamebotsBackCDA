@@ -32,7 +32,7 @@ public interface IImageService {
      * @return Information about the image associated with the specified user and
      *         image type.
      */
-    ImageDTO getImagesByUserIdAndImageType(int userId);
+    ImageDTO getImageByUserIdAndImageType(int userId);
 
     /**
      * Retrieves all images associated with a game by game ID and image type.
@@ -42,6 +42,6 @@ public interface IImageService {
      * @return A list of all images associated with the specified game and image
      *         type.
      */
-    List<ImageDTO> getImageByGameIdAndImageType(final String typeImage, int gameId);
+    List<ImageDTO> getAllImageByGameIdAndImageType(final String typeImage, int gameId);
 
 }

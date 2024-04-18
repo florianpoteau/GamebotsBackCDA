@@ -21,7 +21,7 @@ public class GetAllConversationByUserIdController {
     }
 
     @GetMapping("/users/{id}/conversations")
-    List<ConversationDTO> findAllConversationByUserId(@PathVariable int id) {
+    List<ConversationDTO> findAllConversationsByUserId(@PathVariable int id) {
         return conversationService.getAllUserConversation(id);
     }
 

@@ -21,7 +21,7 @@ public class GetAllMessageByIdConversationController {
     }
 
     @GetMapping("/conversations/{id}/messages")
-    List<MessageDTO> findAllMessageByIdConversation(@PathVariable int id) {
+    List<MessageDTO> findAllMessagesByIdConversation(@PathVariable int id) {
         return messageService.getAllMessageConversation(id);
     }
 

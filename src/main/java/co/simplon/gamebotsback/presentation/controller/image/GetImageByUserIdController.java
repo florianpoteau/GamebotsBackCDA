@@ -20,7 +20,7 @@ public class GetImageByUserIdController {
 
     @GetMapping("/users/{id}/images")
     ImageDTO findImageByUserId(@PathVariable int id) {
-        return imageService.getImagesByUserIdAndImageType(id);
+        return imageService.getImageByUserIdAndImageType(id);
     }
 
 }
