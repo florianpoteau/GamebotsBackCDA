@@ -2,7 +2,9 @@ package co.simplon.gamebotsback.unit.business.convert;
 
 import co.simplon.gamebotsback.business.convert.ImageConvert;
 import co.simplon.gamebotsback.business.dto.ImageDTO;
+import co.simplon.gamebotsback.persistance.entity.Game;
 import co.simplon.gamebotsback.persistance.entity.Image;
+import co.simplon.gamebotsback.persistance.entity.TypeImage;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
@@ -11,102 +13,158 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
-/**
- * Unit test for the ImageConvert class.
- */
 class ImageConvertTest {
 
     private static final ImageConvert imageConvert = ImageConvert.getInstance();
 
-    /**
-     * Tests the conversion of an Image entity to an ImageDTO.
-     */
-    @Test
-    void testConvertImageToImageDTO() {
+    private static final String Name = "Avatar-Apex-Pathfinder";
+    private static final String Source = "./src/images";
+
+    private Image createSampleImage() {
         Image image = new Image();
         image.setIdImage(1);
-        image.setName("Avatar-Apex-Pathfinder");
-        image.setSource("./src/images");
-        Date creationDate = new Date();
-        image.setCreationDate(creationDate);
+        image.setName(Name);
+        image.setSource(Source);
+        image.setCreationDate(new Date());
+        image.setModificationDate(new Date());
+        image.setGame(new Game());
+        image.setTypeImage(new TypeImage());
+        return image;
+    }
+
+    private Image createSampleImageWithNull() {
+        Image image = new Image();
+        image.setIdImage(1);
+        image.setName(null);
+        image.setSource(null);
+        image.setCreationDate(null);
         image.setModificationDate(null);
         image.setGame(null);
         image.setTypeImage(null);
+        return image;
+    }
 
+    private ImageDTO createSampleImageDTO() {
+        ImageDTO imageDTO = new ImageDTO();
+        imageDTO.setIdImage(1);
+        imageDTO.setName(Name);
+        imageDTO.setSource(Source);
+        imageDTO.setCreationDate(new Date());
+        imageDTO.setModificationDate(new Date());
+        imageDTO.setGame(new Game());
+        imageDTO.setTypeImage(new TypeImage());
+        return imageDTO;
+    }
+
+    private ImageDTO createSampleImageDTOWithNull() {
+        ImageDTO imageDTO = new ImageDTO();
+        imageDTO.setIdImage(1);
+        imageDTO.setName(null);
+        imageDTO.setSource(null);
+        imageDTO.setCreationDate(null);
+        imageDTO.setModificationDate(null);
+        imageDTO.setGame(null);
+        imageDTO.setTypeImage(null);
+        return imageDTO;
+    }
+
+
+    @Test
+    void testConvertImageToImageDTO() {
+
+        Image image = createSampleImage();
         ImageDTO imageDTO = imageConvert.convertEntityToDto(image);
 
         assertSame(1, imageDTO.getIdImage());
-        assertSame("Avatar-Apex-Pathfinder", imageDTO.getName());
-        assertSame("./src/images", imageDTO.getSource());
-        assertSame(creationDate, imageDTO.getCreationDate());
+        assertSame(Name, imageDTO.getName());
+        assertSame(Source, imageDTO.getSource());
+        assertSame(image.getCreationDate(), imageDTO.getCreationDate());
+        assertSame(image.getModificationDate(), imageDTO.getModificationDate());
+        assertSame(image.getGame(), imageDTO.getGame());
+        assertSame(image.getTypeImage(), imageDTO.getTypeImage());
+    }
+
+    @Test
+    void testConvertImageToImageDTOWithNull() {
+
+        Image image = createSampleImageWithNull();
+        ImageDTO imageDTO = imageConvert.convertEntityToDto(image);
+
+        assertSame(1, imageDTO.getIdImage());
+        assertNull(imageDTO.getName());
+        assertNull(imageDTO.getSource());
+        assertNull(imageDTO.getCreationDate());
         assertNull(imageDTO.getModificationDate());
         assertNull(imageDTO.getGame());
         assertNull(imageDTO.getTypeImage());
     }
 
-    /**
-     * Tests the conversion of an ImageDTO to an Image entity.
-     */
     @Test
     void testConvertImageDTOToImage() {
-        ImageDTO imageDTO = new ImageDTO();
-        imageDTO.setIdImage(1);
-        imageDTO.setName("Avatar-Apex-Pathfinder");
-        imageDTO.setSource("./src/images");
-        Date creationDate = new Date();
-        imageDTO.setCreationDate(creationDate);
-        imageDTO.setModificationDate(null);
-        imageDTO.setGame(null);
-        imageDTO.setTypeImage(null);
 
+        ImageDTO imageDTO = createSampleImageDTO();
         Image image = imageConvert.convertDtoToEntity(imageDTO);
 
         assertSame(1, image.getIdImage());
-        assertSame("Avatar-Apex-Pathfinder", image.getName());
-        assertSame("./src/images", image.getSource());
-        assertSame(creationDate, image.getCreationDate());
+        assertSame(Name, image.getName());
+        assertSame(Source, image.getSource());
+        assertSame(imageDTO.getCreationDate(), image.getCreationDate());
+        assertSame(imageDTO.getModificationDate(),image.getModificationDate());
+        assertSame(imageDTO.getGame(), image.getGame());
+        assertSame(imageDTO.getTypeImage(), image.getTypeImage());
+    }
+
+    @Test
+    void testConvertImageDTOToImageWithNull() {
+
+        ImageDTO imageDTO = createSampleImageDTOWithNull();
+        Image image = imageConvert.convertDtoToEntity(imageDTO);
+
+        assertSame(1, image.getIdImage());
+        assertNull(image.getName());
+        assertNull(image.getSource());
+        assertNull(image.getCreationDate());
         assertNull(image.getModificationDate());
         assertNull(image.getGame());
         assertNull(image.getTypeImage());
     }
 
-    /**
-     * Tests the conversion of a List Image entity to a List ImageDTO.
-     */
     @Test
     void testConvertListImageToListImageDTO() {
-        Image image = new Image();
-        image.setIdImage(1);
-        image.setName("Avatar-Apex-Pathfinder");
-        image.setSource("./src/images/Avatar-Apex-Pathfinder");
-        Date creationDate = new Date();
-        image.setCreationDate(creationDate);
-        image.setModificationDate(null);
-        image.setGame(null);
-        image.setTypeImage(null);
 
-        Image image2 = new Image();
-        image2.setIdImage(2);
-        image2.setName("Avatar-Apex-Lifeline");
-        image2.setSource("./src/images/Avatar-Apex-Lifeline");
-        Date creationDate2 = new Date();
-        image2.setCreationDate(creationDate2);
-        image2.setModificationDate(null);
-        image2.setGame(null);
-        image2.setTypeImage(null);
-
-        List<Image> imageList = List.of(image, image2);
-
+        List<Image> imageList = List.of(createSampleImage(), createSampleImage());
         List<ImageDTO> imageDTOList = imageConvert.convertListEntityToListDto(imageList);
 
         assertSame(1, imageDTOList.get(0).getIdImage());
-        assertSame(2, imageDTOList.get(1).getIdImage());
-        assertSame("Avatar-Apex-Pathfinder", imageDTOList.get(0).getName());
-        assertSame("Avatar-Apex-Lifeline", imageDTOList.get(1).getName());
-        assertSame("./src/images/Avatar-Apex-Pathfinder", imageDTOList.get(0).getSource());
-        assertSame("./src/images/Avatar-Apex-Lifeline", imageDTOList.get(1).getSource());
-        assertSame(creationDate, imageDTOList.get(0).getCreationDate());
-        assertSame(creationDate2, imageDTOList.get(1).getCreationDate());
+        assertSame(1, imageDTOList.get(1).getIdImage());
+        assertSame(Name, imageDTOList.get(0).getName());
+        assertSame(Name, imageDTOList.get(1).getName());
+        assertSame(Source, imageDTOList.get(0).getSource());
+        assertSame(Source, imageDTOList.get(1).getSource());
+        assertSame(imageList.get(0).getCreationDate(), imageDTOList.get(0).getCreationDate());
+        assertSame(imageList.get(1).getCreationDate(), imageDTOList.get(1).getCreationDate());
+        assertSame(imageList.get(0).getModificationDate(), imageDTOList.get(0).getModificationDate());
+        assertSame(imageList.get(1).getModificationDate(), imageDTOList.get(1).getModificationDate());
+        assertSame(imageList.get(0).getGame(), imageDTOList.get(0).getGame());
+        assertSame(imageList.get(1).getGame(), imageDTOList.get(1).getGame());
+        assertSame(imageList.get(0).getTypeImage(), imageDTOList.get(0).getTypeImage());
+        assertSame(imageList.get(1).getTypeImage(), imageDTOList.get(1).getTypeImage());
+    }
+
+    @Test
+    void testConvertListImageToListImageDTOWithNull() {
+
+        List<Image> imageList = List.of(createSampleImageWithNull(), createSampleImageWithNull());
+        List<ImageDTO> imageDTOList = imageConvert.convertListEntityToListDto(imageList);
+
+        assertSame(1, imageDTOList.get(0).getIdImage());
+        assertSame(1, imageDTOList.get(1).getIdImage());
+        assertNull(imageDTOList.get(0).getName());
+        assertNull(imageDTOList.get(1).getName());
+        assertNull(imageDTOList.get(0).getSource());
+        assertNull(imageDTOList.get(1).getSource());
+        assertNull(imageDTOList.get(0).getCreationDate());
+        assertNull(imageDTOList.get(1).getCreationDate());
         assertNull(imageDTOList.get(0).getModificationDate());
         assertNull(imageDTOList.get(1).getModificationDate());
         assertNull(imageDTOList.get(0).getGame());
@@ -115,43 +173,43 @@ class ImageConvertTest {
         assertNull(imageDTOList.get(1).getTypeImage());
     }
 
-    /**
-     * Tests the conversion of a List ImageDTO to a List Image entity.
-     */
+
     @Test
     void testConvertListImageDTOToListImage() {
-        ImageDTO imageDTO = new ImageDTO();
-        imageDTO.setIdImage(1);
-        imageDTO.setName("Avatar-Apex-Pathfinder");
-        imageDTO.setSource("./src/images/Avatar-Apex-Pathfinder");
-        Date creationDate = new Date();
-        imageDTO.setCreationDate(creationDate);
-        imageDTO.setModificationDate(null);
-        imageDTO.setGame(null);
-        imageDTO.setTypeImage(null);
 
-        ImageDTO imageDTO2 = new ImageDTO();
-        imageDTO2.setIdImage(2);
-        imageDTO2.setName("Avatar-Apex-Lifeline");
-        imageDTO2.setSource("./src/images/Avatar-Apex-Lifeline");
-        Date creationDate2 = new Date();
-        imageDTO2.setCreationDate(creationDate2);
-        imageDTO2.setModificationDate(null);
-        imageDTO2.setGame(null);
-        imageDTO2.setTypeImage(null);
-
-        List<ImageDTO> imageDTOList = List.of(imageDTO, imageDTO2);
-
+        List<ImageDTO> imageDTOList = List.of(createSampleImageDTO(), createSampleImageDTO());
         List<Image> imageList = imageConvert.convertListDtoToListEntity(imageDTOList);
 
         assertSame(1, imageList.get(0).getIdImage());
-        assertSame(2, imageList.get(1).getIdImage());
-        assertSame("Avatar-Apex-Pathfinder", imageList.get(0).getName());
-        assertSame("Avatar-Apex-Lifeline", imageList.get(1).getName());
-        assertSame("./src/images/Avatar-Apex-Pathfinder", imageList.get(0).getSource());
-        assertSame("./src/images/Avatar-Apex-Lifeline", imageList.get(1).getSource());
-        assertSame(creationDate, imageList.get(0).getCreationDate());
-        assertSame(creationDate2, imageList.get(1).getCreationDate());
+        assertSame(1, imageList.get(1).getIdImage());
+        assertSame(Name, imageList.get(0).getName());
+        assertSame(Name, imageList.get(1).getName());
+        assertSame(Source, imageList.get(0).getSource());
+        assertSame(Source, imageList.get(1).getSource());
+        assertSame(imageDTOList.get(0).getCreationDate(), imageList.get(0).getCreationDate());
+        assertSame(imageDTOList.get(1).getCreationDate(), imageList.get(1).getCreationDate());
+        assertSame(imageDTOList.get(0).getModificationDate(), imageList.get(0).getModificationDate());
+        assertSame(imageDTOList.get(1).getModificationDate(), imageList.get(1).getModificationDate());
+        assertSame(imageDTOList.get(0).getGame(), imageList.get(0).getGame());
+        assertSame(imageDTOList.get(1).getGame(), imageList.get(1).getGame());
+        assertSame(imageDTOList.get(0).getTypeImage(), imageList.get(0).getTypeImage());
+        assertSame(imageDTOList.get(1).getTypeImage(), imageList.get(1).getTypeImage());
+    }
+
+    @Test
+    void testConvertListImageDTOToListImageWithNull() {
+
+        List<ImageDTO> imageDTOList = List.of(createSampleImageDTOWithNull(), createSampleImageDTOWithNull());
+        List<Image> imageList = imageConvert.convertListDtoToListEntity(imageDTOList);
+
+        assertSame(1, imageList.get(0).getIdImage());
+        assertSame(1, imageList.get(1).getIdImage());
+        assertNull(imageList.get(0).getName());
+        assertNull(imageList.get(1).getName());
+        assertNull(imageList.get(0).getSource());
+        assertNull(imageList.get(1).getSource());
+        assertNull(imageList.get(0).getCreationDate());
+        assertNull(imageList.get(1).getCreationDate());
         assertNull(imageList.get(0).getModificationDate());
         assertNull(imageList.get(1).getModificationDate());
         assertNull(imageList.get(0).getGame());
