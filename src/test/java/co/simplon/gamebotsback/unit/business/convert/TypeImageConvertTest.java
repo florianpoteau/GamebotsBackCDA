@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 class TypeImageConvertTest {
 
@@ -50,6 +50,13 @@ class TypeImageConvertTest {
         typeImageDTO.setCreationDate(null);
         typeImageDTO.setModificationDate(null);
         return typeImageDTO;
+    }
+
+    @Test
+    void testGetInstanceReturnsInstanceOfTypeImageConvert() {
+        TypeImageConvert typeImageConvert = TypeImageConvert.getInstance();
+        assertNotNull(typeImageConvert);
+        assertInstanceOf(TypeImageConvert.class, typeImageConvert);
     }
 
     @Test

@@ -62,6 +62,13 @@ class ConversationConvertTest {
     }
 
     @Test
+    void testGetInstanceReturnsInstanceOfConversationConvert() {
+        ConversationConvert conversationConvert = ConversationConvert.getInstance();
+        assertNotNull(conversationConvert);
+        assertInstanceOf(ConversationConvert.class, conversationConvert);
+    }
+
+    @Test
     void testConvertConversationToConversationDTO() {
 
         Conversation conversation = createSampleConversation();

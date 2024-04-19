@@ -79,6 +79,13 @@ class GameConvertTest {
         }
 
     @Test
+    void testGetInstanceReturnsInstanceOfGameConvert() {
+        GameConvert gameConvert = GameConvert.getInstance();
+        assertNotNull(gameConvert);
+        assertInstanceOf(GameConvert.class, gameConvert);
+    }
+
+    @Test
     void testConvertGameToGameDTO() {
 
         Game game = createSampleGame();

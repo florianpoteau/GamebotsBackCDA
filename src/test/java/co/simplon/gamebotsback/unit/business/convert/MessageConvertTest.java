@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 class MessageConvertTest {
 
@@ -56,6 +56,13 @@ class MessageConvertTest {
         messageDTO.setModificationDate(null);
         messageDTO.setConversation(null);
         return messageDTO;
+    }
+
+    @Test
+    void testGetInstanceReturnsInstanceOfMessageConvert() {
+        MessageConvert messageConvert = MessageConvert.getInstance();
+        assertNotNull(messageConvert);
+        assertInstanceOf(MessageConvert.class, messageConvert);
     }
 
     @Test
