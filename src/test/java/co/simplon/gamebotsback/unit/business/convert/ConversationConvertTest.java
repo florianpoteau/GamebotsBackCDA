@@ -15,12 +15,12 @@ class ConversationConvertTest {
 
     private static final ConversationConvert conversationConvert = ConversationConvert.getInstance();
 
-    private static final String NameConversation = "Comment tuer des mangeurs d'hommes ?";
+    private static final String name = "Comment tuer des mangeurs d'hommes ?";
 
     private Conversation createSampleConversation() {
         Conversation conversation = new Conversation();
         conversation.setIdConversation(1);
-        conversation.setName(NameConversation);
+        conversation.setName(name);
         conversation.setCreationDate(new Date());
         conversation.setModificationDate(new Date());
         conversation.setGame(new Game());
@@ -42,7 +42,7 @@ class ConversationConvertTest {
     private ConversationDTO createSampleConversationDTO() {
         ConversationDTO conversationDTO = new ConversationDTO();
         conversationDTO.setIdConversation(1);
-        conversationDTO.setName(NameConversation);
+        conversationDTO.setName(name);
         conversationDTO.setCreationDate(new Date());
         conversationDTO.setModificationDate(new Date());
         conversationDTO.setGame(new Game());
@@ -68,7 +68,7 @@ class ConversationConvertTest {
         ConversationDTO conversationDTO = conversationConvert.convertEntityToDto(conversation);
 
         assertEquals(1, conversationDTO.getIdConversation());
-        assertEquals(NameConversation, conversationDTO.getName());
+        assertEquals(name, conversationDTO.getName());
         assertEquals(conversation.getCreationDate(), conversationDTO.getCreationDate());
         assertEquals(conversation.getModificationDate(), conversationDTO.getModificationDate());
         assertEquals(conversation.getGame(), conversationDTO.getGame());
@@ -96,7 +96,7 @@ class ConversationConvertTest {
         Conversation conversation = conversationConvert.convertDtoToEntity(conversationDTO);
 
         assertEquals(1, conversation.getIdConversation());
-        assertEquals(NameConversation, conversation.getName());
+        assertEquals(name, conversation.getName());
         assertEquals(conversationDTO.getCreationDate(), conversation.getCreationDate());
         assertEquals(conversationDTO.getModificationDate() ,conversation.getModificationDate());
         assertEquals(conversationDTO.getGame(), conversation.getGame());
@@ -126,8 +126,8 @@ class ConversationConvertTest {
         assertEquals(ConversationDTO.class, conversationDTOList.get(0).getClass());
         assertEquals(1, conversationDTOList.get(0).getIdConversation());
         assertEquals(1, conversationDTOList.get(1).getIdConversation());
-        assertEquals(NameConversation, conversationDTOList.get(0).getName());
-        assertEquals(NameConversation, conversationDTOList.get(1).getName());
+        assertEquals(name, conversationDTOList.get(0).getName());
+        assertEquals(name, conversationDTOList.get(1).getName());
         assertEquals(conversationList.get(0).getCreationDate(), conversationDTOList.get(0).getCreationDate());
         assertEquals(conversationList.get(1).getCreationDate(), conversationDTOList.get(1).getCreationDate());
         assertEquals(conversationList.get(0).getModificationDate(), conversationDTOList.get(0).getModificationDate());
@@ -169,8 +169,8 @@ class ConversationConvertTest {
         assertEquals(Conversation.class, conversationList.get(0).getClass());
         assertEquals(1, conversationList.get(0).getIdConversation());
         assertEquals(1, conversationList.get(1).getIdConversation());
-        assertEquals(NameConversation, conversationList.get(0).getName());
-        assertEquals(NameConversation, conversationList.get(1).getName());
+        assertEquals(name, conversationList.get(0).getName());
+        assertEquals(name, conversationList.get(1).getName());
         assertEquals(conversationDTOList.get(0).getCreationDate(), conversationList.get(0).getCreationDate());
         assertEquals(conversationDTOList.get(1).getCreationDate(), conversationList.get(1).getCreationDate());
         assertEquals(conversationDTOList.get(0).getModificationDate(), conversationList.get(0).getModificationDate());

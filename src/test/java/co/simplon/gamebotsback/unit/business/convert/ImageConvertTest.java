@@ -17,14 +17,14 @@ class ImageConvertTest {
 
     private static final ImageConvert imageConvert = ImageConvert.getInstance();
 
-    private static final String Name = "Avatar-Apex-Pathfinder";
-    private static final String Source = "./src/images";
+    private static final String name = "Avatar-Apex-Pathfinder";
+    private static final String source = "./src/images";
 
     private Image createSampleImage() {
         Image image = new Image();
         image.setIdImage(1);
-        image.setName(Name);
-        image.setSource(Source);
+        image.setName(name);
+        image.setSource(source);
         image.setCreationDate(new Date());
         image.setModificationDate(new Date());
         image.setGame(new Game());
@@ -47,8 +47,8 @@ class ImageConvertTest {
     private ImageDTO createSampleImageDTO() {
         ImageDTO imageDTO = new ImageDTO();
         imageDTO.setIdImage(1);
-        imageDTO.setName(Name);
-        imageDTO.setSource(Source);
+        imageDTO.setName(name);
+        imageDTO.setSource(source);
         imageDTO.setCreationDate(new Date());
         imageDTO.setModificationDate(new Date());
         imageDTO.setGame(new Game());
@@ -76,8 +76,8 @@ class ImageConvertTest {
         ImageDTO imageDTO = imageConvert.convertEntityToDto(image);
 
         assertSame(1, imageDTO.getIdImage());
-        assertSame(Name, imageDTO.getName());
-        assertSame(Source, imageDTO.getSource());
+        assertSame(name, imageDTO.getName());
+        assertSame(source, imageDTO.getSource());
         assertSame(image.getCreationDate(), imageDTO.getCreationDate());
         assertSame(image.getModificationDate(), imageDTO.getModificationDate());
         assertSame(image.getGame(), imageDTO.getGame());
@@ -106,8 +106,8 @@ class ImageConvertTest {
         Image image = imageConvert.convertDtoToEntity(imageDTO);
 
         assertSame(1, image.getIdImage());
-        assertSame(Name, image.getName());
-        assertSame(Source, image.getSource());
+        assertSame(name, image.getName());
+        assertSame(source, image.getSource());
         assertSame(imageDTO.getCreationDate(), image.getCreationDate());
         assertSame(imageDTO.getModificationDate(),image.getModificationDate());
         assertSame(imageDTO.getGame(), image.getGame());
@@ -137,10 +137,10 @@ class ImageConvertTest {
 
         assertSame(1, imageDTOList.get(0).getIdImage());
         assertSame(1, imageDTOList.get(1).getIdImage());
-        assertSame(Name, imageDTOList.get(0).getName());
-        assertSame(Name, imageDTOList.get(1).getName());
-        assertSame(Source, imageDTOList.get(0).getSource());
-        assertSame(Source, imageDTOList.get(1).getSource());
+        assertSame(name, imageDTOList.get(0).getName());
+        assertSame(name, imageDTOList.get(1).getName());
+        assertSame(source, imageDTOList.get(0).getSource());
+        assertSame(source, imageDTOList.get(1).getSource());
         assertSame(imageList.get(0).getCreationDate(), imageDTOList.get(0).getCreationDate());
         assertSame(imageList.get(1).getCreationDate(), imageDTOList.get(1).getCreationDate());
         assertSame(imageList.get(0).getModificationDate(), imageDTOList.get(0).getModificationDate());
@@ -182,10 +182,10 @@ class ImageConvertTest {
 
         assertSame(1, imageList.get(0).getIdImage());
         assertSame(1, imageList.get(1).getIdImage());
-        assertSame(Name, imageList.get(0).getName());
-        assertSame(Name, imageList.get(1).getName());
-        assertSame(Source, imageList.get(0).getSource());
-        assertSame(Source, imageList.get(1).getSource());
+        assertSame(name, imageList.get(0).getName());
+        assertSame(name, imageList.get(1).getName());
+        assertSame(source, imageList.get(0).getSource());
+        assertSame(source, imageList.get(1).getSource());
         assertSame(imageDTOList.get(0).getCreationDate(), imageList.get(0).getCreationDate());
         assertSame(imageDTOList.get(1).getCreationDate(), imageList.get(1).getCreationDate());
         assertSame(imageDTOList.get(0).getModificationDate(), imageList.get(0).getModificationDate());
