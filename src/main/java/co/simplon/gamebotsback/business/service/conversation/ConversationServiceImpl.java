@@ -85,11 +85,9 @@ public class ConversationServiceImpl implements IConversationService {
         if (optionalConversation.isPresent()) {
             Conversation existingConversation = optionalConversation.get();
 
-            // Récupérer l'utilisateur existant et réattribuer à la conversation existante
             User existingUser = existingConversation.getUser();
             conversationDTO.setUser(existingUser);
 
-            // Récupérer le jeu existant et réattribuer à la conversation existante
             Game existingGame = existingConversation.getGame();
             conversationDTO.setGame(existingGame);
 

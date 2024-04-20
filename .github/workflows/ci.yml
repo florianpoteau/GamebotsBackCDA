@@ -35,14 +35,14 @@ jobs:
       - name: Run unitaires tests
         run: mvn test
 
-      # - name: Build image
-       # run: docker build -t gamebotsbackimage:0.0.1 .
+      - name: Build image
+        run: docker build -t gamebotsbackimage:0.0.1 .
 
-      # - name: Login to dockerhub
-        # run: docker login -u ${{secrets.CD_DOCKER_USERNAME}} -p ${{secrets.CD_DOCKER_PASSWORD}}
+      - name: Login to dockerhub
+        run: docker login -u ${{secrets.CD_DOCKER_USERNAME}} -p ${{secrets.CD_DOCKER_PASSWORD}}
 
-      # - name: Prepare to push to docker
-        # run: docker tag gamebotsbackimage:0.0.1 ${{secrets.CD_DOCKER_USERNAME}}/gamebotsbackimage:0.0.1
+      - name: Prepare to push to docker
+        run: docker tag gamebotsbackimage:0.0.1 ${{secrets.CD_DOCKER_USERNAME}}/gamebotsbackimage:0.0.1
 
-      # - name: Push to docker
-       # run: docker push ${{secrets.CD_DOCKER_USERNAME}}/gamebotsbackimage:0.0.1
+      - name: Push to docker
+        run: docker push ${{secrets.CD_DOCKER_USERNAME}}/gamebotsbackimage:0.0.1

@@ -9,193 +9,262 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Unit test for the GameConvert class.
- */
 class GameConvertTest {
 
     private static final GameConvert gameConvert = GameConvert.getInstance();
 
-    /**
-     * Tests the conversion of a Game entity to a GameDTO.
-     */
-    @Test
-    void testConvertGameToGameDTO() {
+    private static final String title = "The Last Of Us";
+    private static final String story = "Jeu de Zombie qui fait peur";
+    private static final String platform = "Playstation";
+    private static final String studio = "Naughty Dog";
+
+    private Game createSampleGame() {
         Game game = new Game();
         game.setIdGame(1);
-        game.setTitle("The Last Of Us");
-        game.setStory("Jeu de Zombie qui fait peur");
+        game.setTitle(title);
+        game.setStory(story);
         game.setNumberPlayers(1);
         game.setOnline(false);
-        game.setPlatform("Playstation");
-        Date releaseDate = new Date();
-        game.setReleaseDate(releaseDate);
-        game.setStudio("Naughty Dog");
-        Date creationDate = new Date();
-        game.setCreationDate(creationDate);
-        game.setModificationDate(null);
+        game.setPlatform(platform);
+        game.setReleaseDate(new Date());
+        game.setStudio(studio);
+        game.setCreationDate(new Date());
+        game.setModificationDate(new Date());
+        return game;
+    }
 
+    private Game createSampleGameWithNull() {
+        Game game = new Game();
+        game.setIdGame(1);
+        game.setTitle(null);
+        game.setStory(null);
+        game.setNumberPlayers(1);
+        game.setOnline(false);
+        game.setPlatform(null);
+        game.setReleaseDate(null);
+        game.setStudio(null);
+        game.setCreationDate(null);
+        game.setModificationDate(null);
+        return game;
+    }
+
+    private GameDTO createSampleGameDTO() {
+        GameDTO gameDTO = new GameDTO();
+        gameDTO.setIdGame(1);
+        gameDTO.setTitle(title);
+        gameDTO.setStory(story);
+        gameDTO.setNumberPlayers(1);
+        gameDTO.setOnline(false);
+        gameDTO.setPlatform(platform);
+        gameDTO.setReleaseDate(new Date());
+        gameDTO.setStudio(studio);
+        gameDTO.setCreationDate(new Date());
+        gameDTO.setModificationDate(new Date());
+        return gameDTO;
+    }
+
+     private GameDTO createSampleGameDTOWithNull() {
+            GameDTO gameDTO = new GameDTO();
+            gameDTO.setIdGame(1);
+            gameDTO.setTitle(null);
+            gameDTO.setStory(null);
+            gameDTO.setNumberPlayers(1);
+            gameDTO.setOnline(false);
+            gameDTO.setPlatform(null);
+            gameDTO.setReleaseDate(null);
+            gameDTO.setStudio(null);
+            gameDTO.setCreationDate(null);
+            gameDTO.setModificationDate(null);
+            return gameDTO;
+        }
+
+    @Test
+    void testGetInstanceReturnsInstanceOfGameConvert() {
+        GameConvert gameConvert = GameConvert.getInstance();
+        assertNotNull(gameConvert);
+        assertInstanceOf(GameConvert.class, gameConvert);
+    }
+
+    @Test
+    void testConvertGameToGameDTO() {
+
+        Game game = createSampleGame();
         GameDTO gameDTO = gameConvert.convertEntityToDto(game);
 
-        assertSame(1, gameDTO.getIdGame());
-        assertSame("The Last Of Us", gameDTO.getTitle());
-        assertSame("Jeu de Zombie qui fait peur", gameDTO.getStory());
-        assertSame(1, gameDTO.getNumberPlayers());
-        assertSame(false, gameDTO.isOnline());
-        assertSame("Playstation", gameDTO.getPlatform());
-        assertSame(releaseDate, gameDTO.getReleaseDate());
-        assertSame("Naughty Dog", gameDTO.getStudio());
-        assertSame(creationDate, gameDTO.getCreationDate());
+        assertEquals(1, gameDTO.getIdGame());
+        assertEquals(title, gameDTO.getTitle());
+        assertEquals(story, gameDTO.getStory());
+        assertEquals(1, gameDTO.getNumberPlayers());
+        assertFalse(gameDTO.isOnline());
+        assertEquals(platform, gameDTO.getPlatform());
+        assertEquals(game.getReleaseDate(), gameDTO.getReleaseDate());
+        assertEquals(studio, gameDTO.getStudio());
+        assertEquals(game.getCreationDate(), gameDTO.getCreationDate());
+        assertEquals(game.getModificationDate(), gameDTO.getModificationDate());
+    }
+
+    @Test
+    void testConvertGameToGameDTOWithNull() {
+
+        Game game = createSampleGameWithNull();
+        GameDTO gameDTO = gameConvert.convertEntityToDto(game);
+
+        assertEquals(1, gameDTO.getIdGame());
+        assertNull(gameDTO.getTitle());
+        assertNull(gameDTO.getStory());
+        assertEquals(1, gameDTO.getNumberPlayers());
+        assertFalse(gameDTO.isOnline());
+        assertNull(gameDTO.getPlatform());
+        assertNull(gameDTO.getReleaseDate());
+        assertNull(gameDTO.getStudio());
+        assertNull(gameDTO.getCreationDate());
         assertNull(gameDTO.getModificationDate());
     }
 
-    /**
-     * Tests the conversion of a GameDTO to a Game entity.
-     */
     @Test
     void testConvertGameDTOToGame() {
-        GameDTO gameDTO = new GameDTO();
-        gameDTO.setIdGame(1);
-        gameDTO.setTitle("The Last Of Us");
-        gameDTO.setStory("Jeu de Zombie qui fait peur");
-        gameDTO.setNumberPlayers(1);
-        gameDTO.setOnline(false);
-        gameDTO.setPlatform("Playstation");
-        Date releaseDate = new Date();
-        gameDTO.setReleaseDate(releaseDate);
-        gameDTO.setStudio("Naughty Dog");
-        Date creationDate = new Date();
-        gameDTO.setCreationDate(creationDate);
-        gameDTO.setModificationDate(null);
 
+        GameDTO gameDTO = createSampleGameDTO();
         Game game = gameConvert.convertDtoToEntity(gameDTO);
 
-        assertSame(1, game.getIdGame());
-        assertSame("The Last Of Us", game.getTitle());
-        assertSame("Jeu de Zombie qui fait peur", game.getStory());
-        assertSame(1, game.getNumberPlayers());
-        assertSame(false, game.isOnline());
-        assertSame("Playstation", game.getPlatform());
-        assertSame(releaseDate, game.getReleaseDate());
-        assertSame("Naughty Dog", game.getStudio());
-        assertSame(creationDate, game.getCreationDate());
+        assertEquals(1, game.getIdGame());
+        assertEquals(title, game.getTitle());
+        assertEquals(story, game.getStory());
+        assertEquals(1, game.getNumberPlayers());
+        assertFalse(game.isOnline());
+        assertEquals(platform, game.getPlatform());
+        assertEquals(gameDTO.getReleaseDate(), game.getReleaseDate());
+        assertEquals(studio, game.getStudio());
+        assertEquals(gameDTO.getCreationDate(), game.getCreationDate());
+        assertEquals(gameDTO.getModificationDate(), game.getModificationDate());
+    }
+
+    @Test
+    void testConvertGameDTOToGameWithNull() {
+
+        GameDTO gameDTO = createSampleGameDTOWithNull();
+        Game game = gameConvert.convertDtoToEntity(gameDTO);
+
+        assertEquals(1, game.getIdGame());
+        assertNull(game.getTitle());
+        assertNull(game.getStory());
+        assertEquals(1, game.getNumberPlayers());
+        assertFalse(game.isOnline());
+        assertNull(game.getPlatform());
+        assertNull(game.getReleaseDate());
+        assertNull(game.getStudio());
+        assertNull(game.getCreationDate());
         assertNull(game.getModificationDate());
     }
 
-    /**
-     * Tests the conversion of a List Game entity to a List GameDTO.
-     */
     @Test
     void testConvertListGameToListGameDTO() {
-        Game game = new Game();
-        game.setIdGame(1);
-        game.setTitle("The Last Of Us");
-        game.setStory("Jeu de Zombie qui fait peur");
-        game.setNumberPlayers(1);
-        game.setOnline(false);
-        game.setPlatform("Playstation");
-        Date releaseDate = new Date();
-        game.setReleaseDate(releaseDate);
-        game.setStudio("Naughty Dog");
-        Date creationDate = new Date();
-        game.setCreationDate(creationDate);
-        game.setModificationDate(null);
 
-        Game game2 = new Game();
-        game2.setIdGame(2);
-        game2.setTitle("The Last Of Us 2");
-        game2.setStory("Jeu de Zombie qui fait peur et qui est triste");
-        game2.setNumberPlayers(1);
-        game2.setOnline(false);
-        game2.setPlatform("Playstation");
-        Date releaseDate2 = new Date();
-        game2.setReleaseDate(releaseDate2);
-        game2.setStudio("Naughty Dog");
-        Date creationDate2 = new Date();
-        game2.setCreationDate(creationDate2);
-        game2.setModificationDate(null);
-
-        List<Game> gameList = List.of(game, game2);
-
+        List<Game> gameList = List.of(createSampleGame(), createSampleGame());
         List<GameDTO> gameDTOList = gameConvert.convertListEntityToListDto(gameList);
 
-        assertSame(1, gameDTOList.get(0).getIdGame());
-        assertSame(2, gameDTOList.get(1).getIdGame());
-        assertSame("The Last Of Us", gameDTOList.get(0).getTitle());
-        assertSame("The Last Of Us 2", gameDTOList.get(1).getTitle());
-        assertSame("Jeu de Zombie qui fait peur", gameDTOList.get(0).getStory());
-        assertSame("Jeu de Zombie qui fait peur et qui est triste", gameDTOList.get(1).getStory());
-        assertSame(1, gameDTOList.get(0).getNumberPlayers());
-        assertSame(1, gameDTOList.get(1).getNumberPlayers());
-        assertSame(false, gameDTOList.get(0).isOnline());
-        assertSame(false, gameDTOList.get(1).isOnline());
-        assertSame("Playstation", gameDTOList.get(0).getPlatform());
-        assertSame("Playstation", gameDTOList.get(1).getPlatform());
-        assertSame(releaseDate, gameDTOList.get(0).getReleaseDate());
-        assertSame(releaseDate2, gameDTOList.get(1).getReleaseDate());
-        assertSame("Naughty Dog", gameDTOList.get(0).getStudio());
-        assertSame("Naughty Dog", gameDTOList.get(1).getStudio());
-        assertSame(creationDate, gameDTOList.get(0).getCreationDate());
-        assertSame(creationDate2, gameDTOList.get(1).getCreationDate());
+        assertEquals(1, gameDTOList.get(0).getIdGame());
+        assertEquals(1, gameDTOList.get(1).getIdGame());
+        assertEquals(title, gameDTOList.get(0).getTitle());
+        assertEquals(title, gameDTOList.get(1).getTitle());
+        assertEquals(story, gameDTOList.get(0).getStory());
+        assertEquals(story, gameDTOList.get(1).getStory());
+        assertEquals(1, gameDTOList.get(0).getNumberPlayers());
+        assertEquals(1, gameDTOList.get(1).getNumberPlayers());
+        assertFalse(gameDTOList.get(0).isOnline());
+        assertFalse(gameDTOList.get(1).isOnline());
+        assertEquals(platform, gameDTOList.get(0).getPlatform());
+        assertEquals(platform, gameDTOList.get(1).getPlatform());
+        assertEquals(gameList.get(0).getReleaseDate(), gameDTOList.get(0).getReleaseDate());
+        assertEquals(gameList.get(1).getReleaseDate(), gameDTOList.get(1).getReleaseDate());
+        assertEquals(studio, gameDTOList.get(0).getStudio());
+        assertEquals(studio, gameDTOList.get(1).getStudio());
+        assertEquals(gameList.get(0).getCreationDate(), gameDTOList.get(0).getCreationDate());
+        assertEquals(gameList.get(1).getCreationDate(), gameDTOList.get(1).getCreationDate());
+        assertEquals(gameList.get(0).getModificationDate(), gameDTOList.get(0).getModificationDate());
+        assertEquals(gameList.get(1).getModificationDate(), gameDTOList.get(1).getModificationDate());
+    }
+
+    @Test
+    void testConvertListGameToListGameDTOWithNull() {
+
+        List<Game> gameList = List.of(createSampleGameWithNull(), createSampleGameWithNull());
+        List<GameDTO> gameDTOList = gameConvert.convertListEntityToListDto(gameList);
+
+        assertEquals(1, gameDTOList.get(0).getIdGame());
+        assertEquals(1, gameDTOList.get(1).getIdGame());
+        assertNull(gameDTOList.get(0).getTitle());
+        assertNull(gameDTOList.get(1).getTitle());
+        assertNull(gameDTOList.get(0).getStory());
+        assertNull(gameDTOList.get(1).getStory());
+        assertEquals(1, gameDTOList.get(0).getNumberPlayers());
+        assertEquals(1, gameDTOList.get(1).getNumberPlayers());
+        assertFalse(gameDTOList.get(0).isOnline());
+        assertFalse(gameDTOList.get(1).isOnline());
+        assertNull(gameDTOList.get(0).getPlatform());
+        assertNull(gameDTOList.get(1).getPlatform());
+        assertNull(gameDTOList.get(0).getReleaseDate());
+        assertNull(gameDTOList.get(1).getReleaseDate());
+        assertNull(gameDTOList.get(0).getStudio());
+        assertNull(gameDTOList.get(1).getStudio());
+        assertNull(gameDTOList.get(0).getCreationDate());
+        assertNull(gameDTOList.get(1).getCreationDate());
         assertNull(gameDTOList.get(0).getModificationDate());
         assertNull(gameDTOList.get(1).getModificationDate());
     }
 
-    /**
-     * Tests the conversion of a List GameDTO to a List Game entity.
-     */
     @Test
     void testConvertListGameDTOToListGame() {
-        GameDTO gameDTO = new GameDTO();
-        gameDTO.setIdGame(1);
-        gameDTO.setTitle("The Last Of Us");
-        gameDTO.setStory("Jeu de Zombie qui fait peur");
-        gameDTO.setNumberPlayers(1);
-        gameDTO.setOnline(false);
-        gameDTO.setPlatform("Playstation");
-        Date releaseDate = new Date();
-        gameDTO.setReleaseDate(releaseDate);
-        gameDTO.setStudio("Naughty Dog");
-        Date creationDate = new Date();
-        gameDTO.setCreationDate(creationDate);
-        gameDTO.setModificationDate(null);
 
-        GameDTO gameDTO2 = new GameDTO();
-        gameDTO2.setIdGame(2);
-        gameDTO2.setTitle("The Last Of Us 2");
-        gameDTO2.setStory("Jeu de Zombie qui fait peur et qui est triste");
-        gameDTO2.setNumberPlayers(1);
-        gameDTO2.setOnline(false);
-        gameDTO2.setPlatform("Playstation");
-        Date releaseDate2 = new Date();
-        gameDTO2.setReleaseDate(releaseDate2);
-        gameDTO2.setStudio("Naughty Dog");
-        Date creationDate2 = new Date();
-        gameDTO2.setCreationDate(creationDate2);
-        gameDTO2.setModificationDate(null);
-
-        List<GameDTO> gameDTOList = List.of(gameDTO, gameDTO2);
-
+        List<GameDTO> gameDTOList = List.of(createSampleGameDTO(), createSampleGameDTO());
         List<Game> gameList = gameConvert.convertListDtoToListEntity(gameDTOList);
 
-        assertSame(1, gameList.get(0).getIdGame());
-        assertSame(2, gameList.get(1).getIdGame());
-        assertSame("The Last Of Us", gameList.get(0).getTitle());
-        assertSame("The Last Of Us 2", gameList.get(1).getTitle());
-        assertSame("Jeu de Zombie qui fait peur", gameList.get(0).getStory());
-        assertSame("Jeu de Zombie qui fait peur et qui est triste", gameList.get(1).getStory());
-        assertSame(1, gameList.get(0).getNumberPlayers());
-        assertSame(1, gameList.get(1).getNumberPlayers());
-        assertSame(false, gameList.get(0).isOnline());
-        assertSame(false, gameList.get(1).isOnline());
-        assertSame("Playstation", gameList.get(0).getPlatform());
-        assertSame("Playstation", gameList.get(1).getPlatform());
-        assertSame(releaseDate, gameList.get(0).getReleaseDate());
-        assertSame(releaseDate2, gameList.get(1).getReleaseDate());
-        assertSame("Naughty Dog", gameList.get(0).getStudio());
-        assertSame("Naughty Dog", gameList.get(1).getStudio());
-        assertSame(creationDate, gameList.get(0).getCreationDate());
-        assertSame(creationDate2, gameList.get(1).getCreationDate());
+        assertEquals(1, gameList.get(0).getIdGame());
+        assertEquals(1, gameList.get(1).getIdGame());
+        assertEquals(title, gameList.get(0).getTitle());
+        assertEquals(title, gameList.get(1).getTitle());
+        assertEquals(story, gameList.get(0).getStory());
+        assertEquals(story, gameList.get(1).getStory());
+        assertEquals(1, gameList.get(0).getNumberPlayers());
+        assertEquals(1, gameList.get(1).getNumberPlayers());
+        assertFalse(gameList.get(0).isOnline());
+        assertFalse(gameList.get(1).isOnline());
+        assertEquals(platform, gameList.get(0).getPlatform());
+        assertEquals(platform, gameList.get(1).getPlatform());
+        assertEquals(gameDTOList.get(0).getReleaseDate(), gameList.get(0).getReleaseDate());
+        assertEquals(gameDTOList.get(0).getReleaseDate(), gameList.get(1).getReleaseDate());
+        assertEquals(studio, gameList.get(0).getStudio());
+        assertEquals(studio, gameList.get(1).getStudio());
+        assertEquals(gameDTOList.get(0).getCreationDate(), gameList.get(0).getCreationDate());
+        assertEquals(gameDTOList.get(0).getCreationDate(), gameList.get(1).getCreationDate());
+        assertEquals(gameDTOList.get(0).getModificationDate(), gameList.get(0).getModificationDate());
+        assertEquals(gameDTOList.get(0).getModificationDate(), gameList.get(1).getModificationDate());
+    }
+
+    @Test
+    void testConvertListGameDTOToListGameWithNull() {
+
+        List<GameDTO> gameDTOList = List.of(createSampleGameDTOWithNull(), createSampleGameDTOWithNull());
+        List<Game> gameList = gameConvert.convertListDtoToListEntity(gameDTOList);
+
+        assertEquals(1, gameList.get(0).getIdGame());
+        assertEquals(1, gameList.get(1).getIdGame());
+        assertNull(gameList.get(0).getTitle());
+        assertNull(gameList.get(1).getTitle());
+        assertNull(gameList.get(0).getStory());
+        assertNull(gameList.get(1).getStory());
+        assertEquals(1, gameList.get(0).getNumberPlayers());
+        assertEquals(1, gameList.get(1).getNumberPlayers());
+        assertFalse(gameList.get(0).isOnline());
+        assertFalse(gameList.get(1).isOnline());
+        assertNull(gameList.get(0).getPlatform());
+        assertNull(gameList.get(1).getPlatform());
+        assertNull(gameList.get(0).getReleaseDate());
+        assertNull(gameList.get(1).getReleaseDate());
+        assertNull(gameList.get(0).getStudio());
+        assertNull(gameList.get(1).getStudio());
+        assertNull(gameList.get(0).getCreationDate());
+        assertNull(gameList.get(1).getCreationDate());
         assertNull(gameList.get(0).getModificationDate());
         assertNull(gameList.get(1).getModificationDate());
     }

@@ -2,170 +2,238 @@ package co.simplon.gamebotsback.unit.business.convert;
 
 import co.simplon.gamebotsback.business.convert.UserConvert;
 import co.simplon.gamebotsback.business.dto.UserDTO;
+import co.simplon.gamebotsback.persistance.entity.Image;
 import co.simplon.gamebotsback.persistance.entity.User;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
-/**
- * Unit test for the UserConvert class.
- */
 class UserConvertTest {
 
     private static final UserConvert userConvert = UserConvert.getInstance();
 
-    /**
-     * Tests the conversion of a User entity to a UserDTO.
-     */
-    @Test
-    void testConvertUserToUserDTO() {
+    private static final String username = "PaRzIval";
+    private static final String phone = "0656565656";
+    private static final String email = "flo@email.com";
+    private static final String password = "123456";
+
+    private User createSampleUser() {
         User user = new User();
         user.setIdUser(1);
-        user.setUsername("PaRzIval");
-        user.setPhone("0656565656");
-        user.setEmail("flo@email.com");
-        user.setPassword("123456");
-        Date creationDate = new Date();
-        user.setCreationDate(creationDate);
+        user.setUsername(username);
+        user.setPhone(phone);
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setCreationDate(new Date());
+        user.setModificationDate(new Date());
+        user.setImage(new Image());
+        return user;
+    }
+
+    private User createSampleUserWithNull() {
+        User user = new User();
+        user.setIdUser(1);
+        user.setUsername(null);
+        user.setPhone(null);
+        user.setEmail(null);
+        user.setPassword(null);
+        user.setCreationDate(null);
         user.setModificationDate(null);
         user.setImage(null);
+        return user;
+    }
 
+    private UserDTO createSampleUserDTO() {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setIdUser(1);
+        userDTO.setUsername(username);
+        userDTO.setPhone(phone);
+        userDTO.setEmail(email);
+        userDTO.setPassword(password);
+        userDTO.setCreationDate(new Date());
+        userDTO.setModificationDate(new Date());
+        userDTO.setImage(new Image());
+        return userDTO;
+    }
+
+    private UserDTO createSampleUserDTOWithNull() {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setIdUser(1);
+        userDTO.setUsername(null);
+        userDTO.setPhone(null);
+        userDTO.setEmail(null);
+        userDTO.setPassword(null);
+        userDTO.setCreationDate(null);
+        userDTO.setModificationDate(null);
+        userDTO.setImage(null);
+        return userDTO;
+    }
+
+    @Test
+    void testGetInstanceReturnsInstanceOfUserConvert() {
+        UserConvert userConvert = UserConvert.getInstance();
+        assertNotNull(userConvert);
+        assertInstanceOf(UserConvert.class, userConvert);
+    }
+
+    @Test
+    void testConvertUserToUserDTO() {
+
+        User user = createSampleUser();
         UserDTO userDTO = userConvert.convertEntityToDto(user);
 
         assertSame(1, userDTO.getIdUser());
-        assertSame("PaRzIval", userDTO.getUsername());
-        assertSame("0656565656", userDTO.getPhone());
-        assertSame("flo@email.com", userDTO.getEmail());
-        assertSame("123456", userDTO.getPassword());
-        assertSame(creationDate, userDTO.getCreationDate());
+        assertSame(username, userDTO.getUsername());
+        assertSame(phone, userDTO.getPhone());
+        assertSame(email, userDTO.getEmail());
+        assertSame(password, userDTO.getPassword());
+        assertSame(user.getCreationDate(), userDTO.getCreationDate());
+        assertSame(user.getModificationDate(), userDTO.getModificationDate());
+        assertSame(user.getImage(), userDTO.getImage());
+    }
+
+    @Test
+    void testConvertUserToUserDTOWithNull() {
+
+        User user = createSampleUserWithNull();
+        UserDTO userDTO = userConvert.convertEntityToDto(user);
+
+        assertSame(1, userDTO.getIdUser());
+        assertNull(userDTO.getUsername());
+        assertNull(userDTO.getPhone());
+        assertNull(userDTO.getEmail());
+        assertNull(userDTO.getPassword());
+        assertNull(userDTO.getCreationDate());
         assertNull(userDTO.getModificationDate());
         assertNull(userDTO.getImage());
     }
 
-    /**
-     * Tests the conversion of a UserDTO to a User.
-     */
     @Test
     void testConvertUserDTOToUser() {
-        UserDTO userDTO = new UserDTO();
-        userDTO.setIdUser(1);
-        userDTO.setUsername("PaRzIval");
-        userDTO.setPhone("0656565656");
-        userDTO.setEmail("flo@email.com");
-        userDTO.setPassword("123456");
-        Date creationDate = new Date();
-        userDTO.setCreationDate(creationDate);
-        userDTO.setModificationDate(null);
-        userDTO.setImage(null);
 
+        UserDTO userDTO = createSampleUserDTO();
         User user = userConvert.convertDtoToEntity(userDTO);
 
         assertSame(1, user.getIdUser());
-        assertSame("PaRzIval", user.getUsername());
-        assertSame("0656565656", user.getPhone());
-        assertSame("flo@email.com", user.getEmail());
-        assertSame("123456", user.getPassword());
-        assertSame(creationDate, user.getCreationDate());
+        assertSame(username, user.getUsername());
+        assertSame(phone, user.getPhone());
+        assertSame(email, user.getEmail());
+        assertSame(password, user.getPassword());
+        assertSame(userDTO.getCreationDate(), user.getCreationDate());
+        assertSame(userDTO.getModificationDate(), user.getModificationDate());
+        assertSame(userDTO.getImage(), user.getImage());
+    }
+
+    @Test
+    void testConvertUserDTOToUserWithNull() {
+
+        UserDTO userDTO = createSampleUserDTOWithNull();
+        User user = userConvert.convertDtoToEntity(userDTO);
+
+        assertSame(1, user.getIdUser());
+        assertNull(user.getUsername());
+        assertNull(user.getPhone());
+        assertNull(user.getEmail());
+        assertNull(user.getPassword());
+        assertNull(user.getCreationDate());
         assertNull(user.getModificationDate());
         assertNull(user.getImage());
     }
 
-    /**
-     * Tests the conversion of a List User entity to a List UserDTO.
-     */
     @Test
     void testConvertListUserToListUserDTO() {
-        User user = new User();
-        user.setIdUser(1);
-        user.setUsername("PaRzIval");
-        user.setPhone("0656565656");
-        user.setEmail("flo@email.com");
-        user.setPassword("123456");
-        Date creationDate = new Date();
-        user.setCreationDate(creationDate);
-        user.setModificationDate(null);
-        user.setImage(null);
 
-        User user2 = new User();
-        user2.setIdUser(2);
-        user2.setUsername("Yoan");
-        user2.setPhone("0667565656");
-        user2.setEmail("yoan@email.com");
-        user2.setPassword("123326");
-        Date creationDate2 = new Date();
-        user2.setCreationDate(creationDate2);
-        user2.setModificationDate(null);
-        user2.setImage(null);
-
-        List<User> userList = List.of(user, user2);
-
+        List<User> userList = List.of(createSampleUser(), createSampleUser());
         List<UserDTO> userDTOList = userConvert.convertListEntityToListDto(userList);
 
         assertSame(1, userDTOList.get(0).getIdUser());
-        assertSame(2, userDTOList.get(1).getIdUser());
-        assertSame("PaRzIval", userDTOList.get(0).getUsername());
-        assertSame("Yoan", userDTOList.get(1).getUsername());
-        assertSame("0656565656", userDTOList.get(0).getPhone());
-        assertSame("0667565656", userDTOList.get(1).getPhone());
-        assertSame("flo@email.com", userDTOList.get(0).getEmail());
-        assertSame("yoan@email.com", userDTOList.get(1).getEmail());
-        assertSame("123456", userDTOList.get(0).getPassword());
-        assertSame("123326", userDTOList.get(1).getPassword());
-        assertSame(creationDate, userDTOList.get(0).getCreationDate());
-        assertSame(creationDate2, userDTOList.get(1).getCreationDate());
+        assertSame(1, userDTOList.get(1).getIdUser());
+        assertSame(username, userDTOList.get(0).getUsername());
+        assertSame(username, userDTOList.get(1).getUsername());
+        assertSame(phone, userDTOList.get(0).getPhone());
+        assertSame(phone, userDTOList.get(1).getPhone());
+        assertSame(email, userDTOList.get(0).getEmail());
+        assertSame(email, userDTOList.get(1).getEmail());
+        assertSame(password, userDTOList.get(0).getPassword());
+        assertSame(password, userDTOList.get(1).getPassword());
+        assertSame(userList.get(0).getCreationDate(), userDTOList.get(0).getCreationDate());
+        assertSame(userList.get(1).getCreationDate(), userDTOList.get(1).getCreationDate());
+        assertSame(userList.get(0).getModificationDate(), userDTOList.get(0).getModificationDate());
+        assertSame(userList.get(1).getModificationDate(), userDTOList.get(1).getModificationDate());
+        assertSame(userList.get(0).getImage(), userDTOList.get(0).getImage());
+        assertSame(userList.get(1).getImage(), userDTOList.get(1).getImage());
+    }
+
+    @Test
+    void testConvertListUserToListUserDTOWithNull() {
+
+        List<User> userList = List.of(createSampleUserWithNull(), createSampleUserWithNull());
+        List<UserDTO> userDTOList = userConvert.convertListEntityToListDto(userList);
+
+        assertSame(1, userDTOList.get(0).getIdUser());
+        assertSame(1, userDTOList.get(1).getIdUser());
+        assertNull(userDTOList.get(0).getUsername());
+        assertNull(userDTOList.get(1).getUsername());
+        assertNull(userDTOList.get(0).getPhone());
+        assertNull(userDTOList.get(1).getPhone());
+        assertNull(userDTOList.get(0).getEmail());
+        assertNull(userDTOList.get(1).getEmail());
+        assertNull(userDTOList.get(0).getPassword());
+        assertNull(userDTOList.get(1).getPassword());
+        assertNull(userDTOList.get(0).getCreationDate());
+        assertNull(userDTOList.get(1).getCreationDate());
         assertNull(userDTOList.get(0).getModificationDate());
         assertNull(userDTOList.get(1).getModificationDate());
         assertNull(userDTOList.get(0).getImage());
         assertNull(userDTOList.get(1).getImage());
     }
 
-    /**
-     * Tests the conversion of a List UserDTO to a List User entity.
-     */
     @Test
     void testConvertListUserDTOToListUser() {
-        UserDTO userDTO = new UserDTO();
-        userDTO.setIdUser(1);
-        userDTO.setUsername("PaRzIval");
-        userDTO.setPhone("0656565656");
-        userDTO.setEmail("flo@email.com");
-        userDTO.setPassword("123456");
-        Date creationDate = new Date();
-        userDTO.setCreationDate(creationDate);
-        userDTO.setModificationDate(null);
-        userDTO.setImage(null);
 
-        UserDTO userDTO2 = new UserDTO();
-        userDTO2.setIdUser(2);
-        userDTO2.setUsername("Yoan");
-        userDTO2.setPhone("0667565656");
-        userDTO2.setEmail("yoan@email.com");
-        userDTO2.setPassword("123326");
-        Date creationDate2 = new Date();
-        userDTO2.setCreationDate(creationDate2);
-        userDTO2.setModificationDate(null);
-        userDTO2.setImage(null);
-
-        List<UserDTO> userDTOList = List.of(userDTO, userDTO2);
-
+        List<UserDTO> userDTOList = List.of(createSampleUserDTO(), createSampleUserDTO());
         List<User> userList = userConvert.convertListDtoToListEntity(userDTOList);
 
         assertSame(1, userList.get(0).getIdUser());
-        assertSame(2, userList.get(1).getIdUser());
-        assertSame("PaRzIval", userList.get(0).getUsername());
-        assertSame("Yoan", userList.get(1).getUsername());
-        assertSame("0656565656", userList.get(0).getPhone());
-        assertSame("0667565656", userList.get(1).getPhone());
-        assertSame("flo@email.com", userList.get(0).getEmail());
-        assertSame("yoan@email.com", userList.get(1).getEmail());
-        assertSame("123456", userList.get(0).getPassword());
-        assertSame("123326", userList.get(1).getPassword());
-        assertSame(creationDate, userList.get(0).getCreationDate());
-        assertSame(creationDate2, userList.get(1).getCreationDate());
+        assertSame(1, userList.get(1).getIdUser());
+        assertSame(username, userList.get(0).getUsername());
+        assertSame(username, userList.get(1).getUsername());
+        assertSame(phone, userList.get(0).getPhone());
+        assertSame(phone, userList.get(1).getPhone());
+        assertSame(email, userList.get(0).getEmail());
+        assertSame(email, userList.get(1).getEmail());
+        assertSame(password, userList.get(0).getPassword());
+        assertSame(password, userList.get(1).getPassword());
+        assertSame(userDTOList.get(0).getCreationDate(), userList.get(0).getCreationDate());
+        assertSame(userDTOList.get(1).getCreationDate(), userList.get(1).getCreationDate());
+        assertSame(userDTOList.get(0).getModificationDate(), userList.get(0).getModificationDate());
+        assertSame(userDTOList.get(1).getModificationDate(), userList.get(1).getModificationDate());
+        assertSame(userDTOList.get(0).getImage(), userList.get(0).getImage());
+        assertSame(userDTOList.get(1).getImage(), userList.get(1).getImage());
+    }
+
+    @Test
+    void testConvertListUserDTOToListUserWithNull() {
+
+        List<UserDTO> userDTOList = List.of(createSampleUserDTOWithNull(), createSampleUserDTOWithNull());
+        List<User> userList = userConvert.convertListDtoToListEntity(userDTOList);
+
+        assertSame(1, userList.get(0).getIdUser());
+        assertSame(1, userList.get(1).getIdUser());
+        assertNull(userList.get(0).getUsername());
+        assertNull(userList.get(1).getUsername());
+        assertNull(userList.get(0).getPhone());
+        assertNull(userList.get(1).getPhone());
+        assertNull(userList.get(0).getEmail());
+        assertNull(userList.get(1).getEmail());
+        assertNull(userList.get(0).getPassword());
+        assertNull(userList.get(1).getPassword());
+        assertNull(userList.get(0).getCreationDate());
+        assertNull(userList.get(1).getCreationDate());
         assertNull(userList.get(0).getModificationDate());
         assertNull(userList.get(1).getModificationDate());
         assertNull(userList.get(0).getImage());
