@@ -5,8 +5,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import co.simplon.gamebotsback.business.service.user.IUserService;
-
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,11 +15,9 @@ import java.sql.SQLException;
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final DataSource dataSource;
-    private final IUserService userService;
 
-    public CustomUserDetailsService(DataSource dataSource, IUserService userService) {
+    public CustomUserDetailsService(DataSource dataSource) {
         this.dataSource = dataSource;
-        this.userService = userService;
     }
 
     @Override

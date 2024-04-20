@@ -12,8 +12,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Optional;
-
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -32,15 +30,16 @@ class UserRepositoryTest {
     @DisplayName("Test Find By Username")
     void testFindByUsername() {
         // Mock behavior for findByUsername method
-        when(userRepository.findByUsername("Ylorklan")).thenReturn(Optional.of(new User()));
+        User user = new User();
+        when(userRepository.findByUsername("Ylorklan")).thenReturn(user);
 
         // Call findByUsername method and retrieve the optional user
-        Optional<User> user = userRepository.findByUsername("Ylorklan");
+        User result = userRepository.findByUsername("Ylorklan");
 
         // Verify that findByUsername was called once with the username "Ylorklan"
         verify(userRepository, times(1)).findByUsername("Ylorklan");
 
         // Assertion: The user should be present
-        assert user.isPresent();
+        assert result != null;
     }
 }
