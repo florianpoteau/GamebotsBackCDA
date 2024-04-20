@@ -11,8 +11,6 @@ package co.simplon.gamebotsback.persistance.repository.user;
 
 import co.simplon.gamebotsback.persistance.entity.User;
 
-import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -28,6 +26,6 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      *         if not found.
      */
     @Query(UserQueries.FIND_BY_USERNAME)
-    Optional<User> findByUsername(final String username);
+    User findByUsername(final String username);
 
 }

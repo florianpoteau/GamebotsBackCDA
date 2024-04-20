@@ -13,10 +13,8 @@ import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-import javax.sql.DataSource;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
@@ -40,24 +38,17 @@ public class SecurityConfig {
                 return new BCryptPasswordEncoder();
         }
 
-        @Bean
-        public JdbcUserDetailsManager jdbcUserDetailsManager(DataSource dataSource) {
-                return new JdbcUserDetailsManager(dataSource);
-        }
-
         @SuppressWarnings({ "deprecation", "removal" })
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
                 return http
                                 .authorizeRequests(authorize -> authorize
-                                                .requestMatchers("/token").permitAll()
+                                                .requestMatchers("/login").permitAll()
                                 // Autres autorisations...
                                 )
                                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                                 .sessionManagement(session -> session
                                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                                .httpBasic().disable()
-                                .formLogin().disable()
                                 .logout().disable()
                                 .csrf().disable()
                                 .build();

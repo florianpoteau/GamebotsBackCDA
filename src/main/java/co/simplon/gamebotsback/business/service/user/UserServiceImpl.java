@@ -6,6 +6,7 @@ package co.simplon.gamebotsback.business.service.user;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import co.simplon.gamebotsback.business.convert.UserConvert;
@@ -22,6 +23,7 @@ import jakarta.persistence.EntityNotFoundException;
 public class UserServiceImpl implements IUserService {
 
     private final IUserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     private static final String ERRORMESSAGE = "User does not exist: ";
 
@@ -31,8 +33,9 @@ public class UserServiceImpl implements IUserService {
      * @param userRepository The repository used to access user data.
      */
     @Autowired
-    public UserServiceImpl(IUserRepository userRepository) {
+    public UserServiceImpl(IUserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     /**
@@ -42,6 +45,8 @@ public class UserServiceImpl implements IUserService {
      */
     @Override
     public void createAccount(UserDTO userDTO) {
+        String encodePassword = passwordEncoder.encode(userDTO.getPassword());
+        userDTO.setPassword(encodePassword);
         userRepository.save(UserConvert.getInstance().convertDtoToEntity(userDTO));
     }
 
@@ -106,6 +111,11 @@ public class UserServiceImpl implements IUserService {
         } else {
             throw new EntityNotFoundException(ERRORMESSAGE + id);
         }
+    }
+
+    @Override
+    public UserDTO login(String username) {
+        return UserConvert.getInstance().convertEntityToDto(userRepository.findByUsername(username));
     }
 
 }
