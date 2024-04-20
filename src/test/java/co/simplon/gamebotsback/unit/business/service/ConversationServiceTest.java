@@ -41,7 +41,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
             when(iConversationRepository.getAllUserConversation(1)).thenReturn(List.of(new Conversation()));
             List<ConversationDTO> conversations = conversationService.getAllUserConversation(1);
             verify(iConversationRepository, times(1)).getAllUserConversation(1);
-            assertEquals(ConversationDTO.class, conversations.get(0).getClass());
+            assertEquals(ConversationDTO.class, conversations.get(0).getClass(), "La classe de l'objet de conversation ne correspond pas à la classe attendue");
         }
 
 
@@ -51,6 +51,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
             when(iConversationRepository.getAllUserConversationByGameId(1, 1)).thenReturn(List.of(new Conversation()));
             List<ConversationDTO> conversations = conversationService.getAllUserConversationByGameId(1, 1);
             verify(iConversationRepository, times(1)).getAllUserConversationByGameId(1, 1);
-            assertEquals(ConversationDTO.class, conversations.get(0).getClass());
+            assertEquals(ConversationDTO.class, conversations.get(0).getClass(), "La classe de l'objet de conversation ne correspond pas à la classe attendue");
         }
     }
