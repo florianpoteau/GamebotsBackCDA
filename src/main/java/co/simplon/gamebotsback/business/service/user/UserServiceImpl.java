@@ -113,9 +113,4 @@ public class UserServiceImpl implements IUserService {
         }
     }
 
-    @Override
-    public UserDTO login(String username) {
-        return UserConvert.getInstance().convertEntityToDto(userRepository.findByUsername(username));
-    }
-
 }

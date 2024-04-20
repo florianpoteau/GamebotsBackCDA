@@ -41,6 +41,4 @@ public interface IUserService {
      * @param id The ID of the user to delete.
      */
     void deleteAccount(int id);
-
-    UserDTO login(String username);
 }
