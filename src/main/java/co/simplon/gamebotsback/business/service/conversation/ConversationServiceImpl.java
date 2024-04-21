@@ -27,7 +27,7 @@ public class ConversationServiceImpl implements IConversationService {
 
     private final IConversationRepository conversationRepository;
 
-    private static final String ERRORMESSAGE = "The conversation with the specified ID does not exist:";
+    public static final String ERRORMESSAGE = "The conversation with the specified ID does not exist:";
 
     /**
      * Constructor for <code>ConversationServiceImpl</code>.
