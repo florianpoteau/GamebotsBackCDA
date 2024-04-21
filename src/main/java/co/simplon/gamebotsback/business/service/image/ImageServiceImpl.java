@@ -66,7 +66,7 @@ public class ImageServiceImpl implements IImageService {
      */
     @Override
     public ImageDTO getImageByUserIdAndImageType(int userId) {
-        Image image = imageRepository.getImagesByUserIdAndImageType(userId);
+        Image image = imageRepository.getImageByUserIdAndImageType(userId);
         return ImageConvert.getInstance().convertEntityToDto(image);
     }
 
@@ -78,7 +78,7 @@ public class ImageServiceImpl implements IImageService {
      * @return A list of all images associated with the specified game.
      */
     @Override
-    public List<ImageDTO> getAllImageByGameIdAndImageType(String typeImage, int gameId) {
+    public List<ImageDTO> getAllImagesByGameIdAndImageType(String typeImage, int gameId) {
         List<Image> image = imageRepository.getAllImagesByGameId(typeImage, gameId);
         return ImageConvert.getInstance().convertListEntityToListDto(image);
     }

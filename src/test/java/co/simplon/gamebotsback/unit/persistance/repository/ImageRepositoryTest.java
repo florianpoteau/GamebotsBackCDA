@@ -30,9 +30,9 @@ class ImageRepositoryTest {
     @Test
     @DisplayName("Test Find Image By User Id ")
     void testFindImageByUserId() {
-        when(imageRepository.getImagesByUserIdAndImageType(1)).thenReturn(new Image());
-        Image image = imageRepository.getImagesByUserIdAndImageType(1);
-        verify(imageRepository, times(1)).getImagesByUserIdAndImageType(1);
+        when(imageRepository.getImageByUserIdAndImageType(1)).thenReturn(new Image());
+        Image image = imageRepository.getImageByUserIdAndImageType(1);
+        verify(imageRepository, times(1)).getImageByUserIdAndImageType(1);
         assert image != null;
     }
 
