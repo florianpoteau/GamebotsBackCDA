@@ -5,6 +5,10 @@ package co.simplon.gamebotsback.persistance.repository.conversation;
  */
 public class ConversationQueries {
 
+    /**
+     * Private constructor to prevent instantiation of this utility class.
+     * Throws an exception if an attempt is made to instantiate it.
+     */
     private ConversationQueries() {
         throw new IllegalStateException("Utility class cannot be instantiated");
     }
