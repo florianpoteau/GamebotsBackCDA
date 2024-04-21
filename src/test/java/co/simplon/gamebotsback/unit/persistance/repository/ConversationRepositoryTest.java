@@ -19,28 +19,19 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class ConversationRepositoryTest {
 
-    /**
-     * Mock object representing the IConversationRepository interface.
-     */
     @Mock
     private IConversationRepository conversationRepository;
 
-    /**
-     * Test method for finding all conversations by user ID.
-     */
     @Test
     @DisplayName("Test Find All Conversation By User Id")
     void testFindAllConversationByUserId() {
-        // Mock behavior for getAllUserConversation method
+
         when(conversationRepository.getAllUserConversation(1)).thenReturn(List.of(new Conversation()));
 
-        // Call getAllUserConversation method and retrieve conversations
         List<Conversation> conversations = conversationRepository.getAllUserConversation(1);
 
-        // Verify that getAllUserConversation was called once with argument 1
         verify(conversationRepository, times(1)).getAllUserConversation(1);
 
-        // Assertion: There should be one conversation, and it should not be null
         assert conversations.size() == 1;
         assert conversations.get(0) != null;
     }

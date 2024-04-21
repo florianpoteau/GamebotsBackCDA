@@ -20,7 +20,9 @@ class ImageConvertTest {
     private static final String source = "./src/images";
 
     private Image createSampleImage() {
+
         Image image = new Image();
+
         image.setIdImage(1);
         image.setName(name);
         image.setSource(source);
@@ -28,11 +30,14 @@ class ImageConvertTest {
         image.setModificationDate(new Date());
         image.setGame(new Game());
         image.setTypeImage(new TypeImage());
+
         return image;
     }
 
     private Image createSampleImageWithNull() {
+
         Image image = new Image();
+
         image.setIdImage(1);
         image.setName(null);
         image.setSource(null);
@@ -40,11 +45,14 @@ class ImageConvertTest {
         image.setModificationDate(null);
         image.setGame(null);
         image.setTypeImage(null);
+
         return image;
     }
 
     private ImageDTO createSampleImageDTO() {
+
         ImageDTO imageDTO = new ImageDTO();
+
         imageDTO.setIdImage(1);
         imageDTO.setName(name);
         imageDTO.setSource(source);
@@ -52,11 +60,14 @@ class ImageConvertTest {
         imageDTO.setModificationDate(new Date());
         imageDTO.setGame(new Game());
         imageDTO.setTypeImage(new TypeImage());
+
         return imageDTO;
     }
 
     private ImageDTO createSampleImageDTOWithNull() {
+
         ImageDTO imageDTO = new ImageDTO();
+
         imageDTO.setIdImage(1);
         imageDTO.setName(null);
         imageDTO.setSource(null);
@@ -64,12 +75,15 @@ class ImageConvertTest {
         imageDTO.setModificationDate(null);
         imageDTO.setGame(null);
         imageDTO.setTypeImage(null);
+
         return imageDTO;
     }
 
     @Test
     void testGetInstanceReturnsInstanceOfImageConvert() {
+
         ImageConvert imageConvert = ImageConvert.getInstance();
+
         assertNotNull(imageConvert);
         assertInstanceOf(ImageConvert.class, imageConvert);
     }

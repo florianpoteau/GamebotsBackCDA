@@ -38,7 +38,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
         @Test
         @DisplayName("Test d'ajout d'une nouvelle conversation")
-        void addNewConversation() {
+        void testAddNewConversation() {
             when(iConversationRepository.save(any(Conversation.class))).thenReturn(null);
             conversationService.addNewConversation(new ConversationDTO());
             verify(iConversationRepository, times(1)).save(any(Conversation.class));
@@ -46,7 +46,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
         @Test
         @DisplayName("Test de récupération d'une conversation par son ID")
-        void getConversationById() {
+        void testGetConversationById() {
             existingConversation.setIdConversation(conversationId);
             when(iConversationRepository.findById(conversationId)).thenReturn(Optional.of(existingConversation));
             ConversationDTO conversationDTO = conversationService.getById(conversationId);
@@ -66,7 +66,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
         @Test
         @DisplayName("Test de modification d'une conversation existante")
-        void modifyConversation() {
+        void testModifyConversation() {
             existingConversation.setIdConversation(conversationId);
             modifiedConversationDTO.setIdConversation(conversationId);
             modifiedConversationDTO.setName("Modified Conversation");
@@ -106,7 +106,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
         @Test
         @DisplayName("Test de suppression d'une conversation par son ID")
-        void deleteConversation() {
+        void testDeleteConversation() {
             existingConversation.setIdConversation(conversationId);
             when(iConversationRepository.findById(conversationId)).thenReturn(Optional.of(existingConversation));
             conversationService.deleteConversation(conversationId);
@@ -126,7 +126,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
         @Test
         @DisplayName("Test de récupération de toutes les conversations d'un utilisateur")
-        void getAllUserConversation() {
+        void testGetAllUserConversation() {
             when(iConversationRepository.getAllUserConversation(conversationId)).thenReturn(List.of(new Conversation()));
             List<ConversationDTO> conversations = conversationService.getAllUserConversation(1);
             verify(iConversationRepository, times(1)).getAllUserConversation(1);
@@ -135,7 +135,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
         @Test
         @DisplayName("Test de récupération de toutes les conversations d'un utilisateur pour un jeu donné")
-        void getAllUserConversationByGameId() {
+        void testGetAllUserConversationByGameId() {
             when(iConversationRepository.getAllUserConversationByGameId(1, 1)).thenReturn(List.of(new Conversation()));
             List<ConversationDTO> conversations = conversationService.getAllUserConversationByGameId(1, 1);
             verify(iConversationRepository, times(1)).getAllUserConversationByGameId(1, 1);

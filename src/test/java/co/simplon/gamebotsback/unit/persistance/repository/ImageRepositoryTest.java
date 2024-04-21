@@ -22,11 +22,6 @@ class ImageRepositoryTest {
     @Mock
     private IImageRepository imageRepository;
 
-    /**
-     * Test method to verify the functionality of finding an image by user ID.
-     * This test method mocks the behavior of the getImagesByUserIdAndImageType method in the ImageRepository,
-     * expects it to return a non-null Image object, and verifies that the method is called exactly once.
-     */
     @Test
     @DisplayName("Test Find Image By User Id ")
     void testFindImageByUserId() {
@@ -36,17 +31,17 @@ class ImageRepositoryTest {
         assert image != null;
     }
 
-    /**
-     * Test method to verify the functionality of finding all images by game ID.
-     * This test method mocks the behavior of the getAllImagesByGameId method in the ImageRepository,
-     * expects it to return a list containing one Image object, and verifies that the method is called exactly once.
-     */
     @Test
     @DisplayName("Test Find All Images By Game Id ")
     void testFindAllImagesByGameId() {
+
         when(imageRepository.getAllImagesByGameId("Avatar", 1)).thenReturn(List.of(new Image()));
+
         List<Image> images = imageRepository.getAllImagesByGameId("Avatar", 1);
+
         verify(imageRepository, times(1)).getAllImagesByGameId("Avatar", 1);
+
+        assert images != null;
         assert images.size() == 1;
         assert images.get(0) != null;
     }

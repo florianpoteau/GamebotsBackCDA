@@ -33,7 +33,7 @@ class ImageServiceTest {
 
     @Test
     @DisplayName("Test de récupération de toutes les images")
-    void getAll() {
+    void testGetAll() {
         when(iImageRepository.findAll()).thenReturn(List.of(existingImage));
         List<ImageDTO> images = imageService.getAll();
         verify(iImageRepository, times(1)).findAll();
@@ -43,8 +43,7 @@ class ImageServiceTest {
 
     @Test
     @DisplayName("Test de récupération d'une image par son id")
-    void getById() {
-        existingImage.setIdImage(imageId);
+    void testGetById() {        existingImage.setIdImage(imageId);
         when(iImageRepository.findById(imageId)).thenReturn(Optional.of(existingImage));
         ImageDTO imageDTO = imageService.getById(imageId);
         verify(iImageRepository, times(1)).findById(imageId);
@@ -54,7 +53,7 @@ class ImageServiceTest {
 
     @Test
     @DisplayName("Test de récupération de toutes les images par ID de jeu et type d'image")
-    void getAllImagesByGameIdAndImageType() {
+    void testGetAllImagesByGameIdAndImageType() {
         int gameId = 1;
         String typeImage = "Avatar";
         when(iImageRepository.getAllImagesByGameId(typeImage, gameId)).thenReturn(List.of(existingImage));

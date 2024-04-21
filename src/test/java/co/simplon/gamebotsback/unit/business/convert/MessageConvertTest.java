@@ -19,48 +19,62 @@ class MessageConvertTest {
     private static final String content = "Hello World";
 
     private Message createSampleMessage() {
+
         Message message = new Message();
+
         message.setIdMessage(1);
         message.setContent(content);
         message.setCreationDate(new Date());
         message.setModificationDate(new Date());
         message.setConversation(new Conversation());
+
         return message;
     }
 
     private Message createSampleMessageWithNull() {
+
         Message message = new Message();
+
         message.setIdMessage(1);
         message.setContent(null);
         message.setCreationDate(null);
         message.setModificationDate(null);
         message.setConversation(null);
+
         return message;
     }
 
     private MessageDTO createSampleMessageDTO() {
+
         MessageDTO messageDTO = new MessageDTO();
+
         messageDTO.setIdMessage(1);
         messageDTO.setContent(content);
         messageDTO.setCreationDate(new Date());
         messageDTO.setModificationDate(new Date());
         messageDTO.setConversation(new Conversation());
+
         return messageDTO;
     }
 
     private MessageDTO createSampleMessageDTOWithNull() {
+
         MessageDTO messageDTO = new MessageDTO();
+
         messageDTO.setIdMessage(1);
         messageDTO.setContent(null);
         messageDTO.setCreationDate(null);
         messageDTO.setModificationDate(null);
         messageDTO.setConversation(null);
+
         return messageDTO;
     }
 
     @Test
     void testGetInstanceReturnsInstanceOfMessageConvert() {
+
         MessageConvert messageConvert = MessageConvert.getInstance();
+
         assertNotNull(messageConvert);
         assertInstanceOf(MessageConvert.class, messageConvert);
     }

@@ -31,7 +31,7 @@ class GameServiceTest {
 
     @Test
     @DisplayName("Test de récupération de tous les jeux")
-    void getAll() {
+    void testGetAll() {
         when(iGameRepository.findAll()).thenReturn(List.of(new Game()));
         List<GameDTO> games = gameService.getAll();
         verify(iGameRepository, times(1)).findAll();
@@ -40,7 +40,7 @@ class GameServiceTest {
 
         @Test
         @DisplayName("Test de récupération d'un jeu par son id")
-        void getById() {
+        void testGetById() {
             existingGame.setIdGame(gameId);
             when(iGameRepository.findById(gameId)).thenReturn(Optional.of(existingGame));
             GameDTO gameDTO = gameService.getById(gameId);

@@ -31,16 +31,13 @@ class UserRepositoryTest {
     @Test
     @DisplayName("Test Find By Username")
     void testFindByUsername() {
-        // Mock behavior for findByUsername method
+
         when(userRepository.findByUsername("Ylorklan")).thenReturn(Optional.of(new User()));
 
-        // Call findByUsername method and retrieve the optional user
         Optional<User> user = userRepository.findByUsername("Ylorklan");
 
-        // Verify that findByUsername was called once with the username "Ylorklan"
         verify(userRepository, times(1)).findByUsername("Ylorklan");
 
-        // Assertion: The user should be present
         assert user.isPresent();
     }
 }
