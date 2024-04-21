@@ -28,8 +28,10 @@ class MessageServiceTest {
     @Test
     @DisplayName("Test de récupération de tous les messages d'une conversation")
     void testGetAllMessageConversation() {
+
         when(iMessageRepository.getMessageByConversationId(any(Integer.class))).thenReturn(List.of(new Message()));
         List<MessageDTO> messages = messageService.getAllMessageConversation(any(Integer.class));
+
         verify(iMessageRepository, times(1)).getMessageByConversationId(any(Integer.class));
         assertEquals(MessageDTO.class, messages.get(0).getClass(), "MessageDTO attendu dans la liste");
     }
@@ -37,8 +39,10 @@ class MessageServiceTest {
     @Test
     @DisplayName("Test d'ajout d'un nouveau message")
     void testAddNewMessage() {
+
         when(iMessageRepository.save(any(Message.class))).thenReturn(null);
         messageService.addNewMessage(new MessageDTO());
+
         verify(iMessageRepository, times(1)).save(any(Message.class));
     }
 }
