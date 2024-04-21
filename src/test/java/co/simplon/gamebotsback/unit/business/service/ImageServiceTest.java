@@ -12,8 +12,10 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -25,10 +27,14 @@ class ImageServiceTest {
     @Mock
     private IImageRepository iImageRepository;
 
+    Image existingImage = new Image();
+    int imageId = 1;
+
+
     @Test
     @DisplayName("Test de récupération de toutes les images")
     void getAll() {
-        when(iImageRepository.findAll()).thenReturn(List.of(new Image()));
+        when(iImageRepository.findAll()).thenReturn(List.of(existingImage));
         List<ImageDTO> images = imageService.getAll();
         verify(iImageRepository, times(1)).findAll();
         assertEquals(1, images.size(), "Une seule image attendue dans la liste");
@@ -36,14 +42,26 @@ class ImageServiceTest {
     }
 
     @Test
+    @DisplayName("Test de récupération d'une image par son id")
+    void getById() {
+        existingImage.setIdImage(imageId);
+        when(iImageRepository.findById(imageId)).thenReturn(Optional.of(existingImage));
+        ImageDTO imageDTO = imageService.getById(imageId);
+        verify(iImageRepository, times(1)).findById(imageId);
+        assertNotNull(imageDTO, "ImageDTO attendu dans la liste");
+        assertEquals(imageId, imageDTO.getIdImage(), "ImageDTO attendu dans la liste");
+    }
+
+    @Test
     @DisplayName("Test de récupération de toutes les images par ID de jeu et type d'image")
-    void getAllImageByGameIdAndImageType() {
+    void getAllImagesByGameIdAndImageType() {
         int gameId = 1;
         String typeImage = "Avatar";
-        when(iImageRepository.getAllImagesByGameId(typeImage, gameId)).thenReturn(List.of(new Image()));
-        List<ImageDTO> images = imageService.getAllImageByGameIdAndImageType(typeImage, gameId);
+        when(iImageRepository.getAllImagesByGameId(typeImage, gameId)).thenReturn(List.of(existingImage));
+        List<ImageDTO> images = imageService.getAllImagesByGameIdAndImageType(typeImage, gameId);
         verify(iImageRepository, times(1)).getAllImagesByGameId(typeImage, gameId);
-        assertEquals(1, images.size(), "Une seule image attendue dans la liste");
+        assertNotNull(images, "L'objet images ne doit pas être nul");
+        assertEquals(imageId, images.size(), "Une seule image attendue dans la liste");
         assertEquals(ImageDTO.class, images.get(0).getClass(), "ImageDTO attendu dans la liste");
     }
 
