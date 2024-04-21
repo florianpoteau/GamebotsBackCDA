@@ -5,6 +5,10 @@ package co.simplon.gamebotsback.persistance.repository.message;
  */
 public class MessageQueries {
 
+    /**
+     * Private constructor to prevent instantiation of this utility class.
+     * Throws an exception if an attempt is made to instantiate it.
+     */
     private MessageQueries() {
         throw new IllegalStateException("Utility class cannot be instantiated");
     }
