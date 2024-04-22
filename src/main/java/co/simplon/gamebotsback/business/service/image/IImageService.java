@@ -42,6 +42,6 @@ public interface IImageService {
      * @return A list of all images associated with the specified game and image
      *         type.
      */
-    List<ImageDTO> getAllImageByGameIdAndImageType(final String typeImage, int gameId);
+    List<ImageDTO> getAllImagesByGameIdAndImageType(final String typeImage, int gameId);
 
 }

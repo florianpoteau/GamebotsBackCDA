@@ -17,44 +17,58 @@ class TypeImageConvertTest {
     private static final String name = "Avatar";
 
     private TypeImage createSampleTypeImage() {
+
         TypeImage typeImage = new TypeImage();
+
         typeImage.setIdTypeImage(1);
         typeImage.setName(name);
         typeImage.setCreationDate(new Date());
         typeImage.setModificationDate(new Date());
+
         return typeImage;
     }
 
     private TypeImage createSampleTypeImageWithNull() {
+
         TypeImage typeImage = new TypeImage();
+
         typeImage.setIdTypeImage(1);
         typeImage.setName(null);
         typeImage.setCreationDate(null);
         typeImage.setModificationDate(null);
+
         return typeImage;
     }
 
     private TypeImageDTO createSampleTypeImageDTO() {
+
         TypeImageDTO typeImageDTO = new TypeImageDTO();
+
         typeImageDTO.setIdTypeImage(1);
         typeImageDTO.setName(name);
         typeImageDTO.setCreationDate(new Date());
         typeImageDTO.setModificationDate(new Date());
+
         return typeImageDTO;
     }
 
     private TypeImageDTO createSampleTypeImageDTOWithNull() {
+
         TypeImageDTO typeImageDTO = new TypeImageDTO();
+
         typeImageDTO.setIdTypeImage(1);
         typeImageDTO.setName(null);
         typeImageDTO.setCreationDate(null);
         typeImageDTO.setModificationDate(null);
+
         return typeImageDTO;
     }
 
     @Test
     void testGetInstanceReturnsInstanceOfTypeImageConvert() {
+
         TypeImageConvert typeImageConvert = TypeImageConvert.getInstance();
+
         assertNotNull(typeImageConvert);
         assertInstanceOf(TypeImageConvert.class, typeImageConvert);
     }

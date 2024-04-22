@@ -22,7 +22,9 @@ class UserConvertTest {
     private static final String password = "123456";
 
     private User createSampleUser() {
+
         User user = new User();
+
         user.setIdUser(1);
         user.setUsername(username);
         user.setPhone(phone);
@@ -31,10 +33,12 @@ class UserConvertTest {
         user.setCreationDate(new Date());
         user.setModificationDate(new Date());
         user.setImage(new Image());
+
         return user;
     }
 
     private User createSampleUserWithNull() {
+
         User user = new User();
         user.setIdUser(1);
         user.setUsername(null);
@@ -44,11 +48,14 @@ class UserConvertTest {
         user.setCreationDate(null);
         user.setModificationDate(null);
         user.setImage(null);
+
         return user;
     }
 
     private UserDTO createSampleUserDTO() {
+
         UserDTO userDTO = new UserDTO();
+
         userDTO.setIdUser(1);
         userDTO.setUsername(username);
         userDTO.setPhone(phone);
@@ -57,11 +64,14 @@ class UserConvertTest {
         userDTO.setCreationDate(new Date());
         userDTO.setModificationDate(new Date());
         userDTO.setImage(new Image());
+
         return userDTO;
     }
 
     private UserDTO createSampleUserDTOWithNull() {
+
         UserDTO userDTO = new UserDTO();
+
         userDTO.setIdUser(1);
         userDTO.setUsername(null);
         userDTO.setPhone(null);
@@ -70,12 +80,15 @@ class UserConvertTest {
         userDTO.setCreationDate(null);
         userDTO.setModificationDate(null);
         userDTO.setImage(null);
+
         return userDTO;
     }
 
     @Test
     void testGetInstanceReturnsInstanceOfUserConvert() {
+
         UserConvert userConvert = UserConvert.getInstance();
+
         assertNotNull(userConvert);
         assertInstanceOf(UserConvert.class, userConvert);
     }

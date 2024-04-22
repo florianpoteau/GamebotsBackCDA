@@ -17,7 +17,7 @@ import co.simplon.gamebotsback.business.service.image.IImageService;
 @RestController
 public class GetAllImagesByGameIdController {
 
-    private IImageService imageService;
+    private final IImageService imageService;
 
     /**
      * Constructs a new GetAllImagesByGameIdController with the specified image
@@ -40,7 +40,7 @@ public class GetAllImagesByGameIdController {
      */
     @GetMapping("/games/{id}/images")
     public List<ImageDTO> findAllImagesByGameId(@PathVariable int id) {
-        return imageService.getAllImageByGameIdAndImageType("image_jeu", id);
+        return imageService.getAllImagesByGameIdAndImageType("image_jeu", id);
     }
 
 }

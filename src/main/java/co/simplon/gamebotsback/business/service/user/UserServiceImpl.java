@@ -25,7 +25,7 @@ public class UserServiceImpl implements IUserService {
     private final IUserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    private static final String ERRORMESSAGE = "User does not exist: ";
+    public static final String ERRORMESSAGE = "User does not exist: ";
 
     /**
      * Constructor for <code>UserServiceImpl</code>.

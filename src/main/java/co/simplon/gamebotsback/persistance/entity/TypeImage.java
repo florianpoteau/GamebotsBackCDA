@@ -1,6 +1,14 @@
 package co.simplon.gamebotsback.persistance.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import java.util.Date;
 
 /**
@@ -11,6 +19,11 @@ import java.util.Date;
 @Table(name = "type_images")
 public class TypeImage {
 
+    /**
+     * The maximum length for string fields in the Game entity.
+     */
+    private static final int LENGTH = 50;
+
     /** The unique identifier of the type of image. */
     @Id
     @Column(name = "id_type_image")
@@ -19,7 +32,7 @@ public class TypeImage {
 
     /** The name of the type of image. */
     @Basic
-    @Column(name = "name", length = 50)
+    @Column(name = "name", length = LENGTH)
     private String name;
 
     /** The creation date of the type of image. */
@@ -42,10 +55,10 @@ public class TypeImage {
 
     /**
      * Sets the ID of the TypeImage.
-     * @param idTypeImage The ID of the TypeImage to set.
+     * @param typeImageId The ID of the TypeImage to set.
      */
-    public void setIdTypeImage(int idTypeImage) {
-        this.idTypeImage = idTypeImage;
+    public void setIdTypeImage(final int typeImageId) {
+        this.idTypeImage = typeImageId;
     }
 
     /**
@@ -57,11 +70,11 @@ public class TypeImage {
     }
 
     /**
-     * Sets the name of the TypeImage.
-     * @param name The name of the TypeImage to set.
+     * Sets the typeImageName of the TypeImage.
+     * @param typeImageName The typeImageName of the TypeImage to set.
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setName(final String typeImageName) {
+        this.name = typeImageName;
     }
 
     /**
@@ -74,10 +87,10 @@ public class TypeImage {
 
     /**
      * Sets the creation date of the TypeImage.
-     * @param creationDate The creation date of the TypeImage to set.
+     * @param typeImageCreationDate The creation date of the TypeImage to set.
      */
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+    public void setCreationDate(final Date typeImageCreationDate) {
+        this.creationDate = typeImageCreationDate;
     }
 
     /**
@@ -90,9 +103,10 @@ public class TypeImage {
 
     /**
      * Sets the modification date of the TypeImage.
-     * @param modificationDate The modification date of the TypeImage to set.
+     * @param typeImageModificationDate The modification date of
+     * the TypeImage to set.
      */
-    public void setModificationDate(Date modificationDate) {
-        this.modificationDate = modificationDate;
+    public void setModificationDate(final Date typeImageModificationDate) {
+        this.modificationDate = typeImageModificationDate;
     }
 }

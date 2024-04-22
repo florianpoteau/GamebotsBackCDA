@@ -1,6 +1,15 @@
 package co.simplon.gamebotsback.persistance.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+
 import java.util.Date;
 
 /**
@@ -11,6 +20,11 @@ import java.util.Date;
 @Table(name = "games")
 public class Game {
 
+    /**
+     * The maximum length for string fields in the Game entity.
+     */
+    private static final int LENGTH = 50;
+
     /** The unique identifier of the game. */
     @Id
     @Column(name = "id_game")
@@ -19,12 +33,12 @@ public class Game {
 
     /** The title of the game. */
     @Basic
-    @Column(name = "title", length = 50)
+    @Column(name = "title", length = LENGTH)
     private String title;
 
     /** The studio that developed the game. */
     @Basic
-    @Column(name = "studio", length = 50)
+    @Column(name = "studio", length = LENGTH)
     private String studio;
 
     /** The release date of the game. */
@@ -34,12 +48,12 @@ public class Game {
 
     /** The platform(s) the game is available on. */
     @Basic
-    @Column(name = "platform", length = 50)
+    @Column(name = "platform", length = LENGTH)
     private String platform;
 
     /** The story or plot of the game. */
     @Basic
-    @Column(name = "story", length = 50)
+    @Column(name = "story", length = LENGTH)
     private String story;
 
     /** Indicates whether the game has online features. */
@@ -70,10 +84,10 @@ public class Game {
 
     /**
      * Sets the ID of the Game.
-     * @param idGame The ID of the Game to set.
+     * @param gameId The ID of the Game to set.
      */
-    public void setIdGame(int idGame) {
-        this.idGame = idGame;
+    public void setIdGame(final int gameId) {
+        this.idGame = gameId;
     }
 
     /**
@@ -86,10 +100,10 @@ public class Game {
 
     /**
      * Sets the title of the Game.
-     * @param title The title of the Game to set.
+     * @param gameTitle The title of the Game to set.
      */
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitle(final String gameTitle) {
+        this.title = gameTitle;
     }
 
     /**
@@ -102,10 +116,10 @@ public class Game {
 
     /**
      * Sets the studio of the Game.
-     * @param studio The studio of the Game to set.
+     * @param gameStudio The studio of the Game to set.
      */
-    public void setStudio(String studio) {
-        this.studio = studio;
+    public void setStudio(final String gameStudio) {
+        this.studio = gameStudio;
     }
 
     /**
@@ -118,10 +132,10 @@ public class Game {
 
     /**
      * Sets the release date of the Game.
-     * @param releaseDate The release date of the Game to set.
+     * @param gameReleaseDate The release date of the Game to set.
      */
-    public void setReleaseDate(Date releaseDate) {
-        this.releaseDate = releaseDate;
+    public void setReleaseDate(final Date gameReleaseDate) {
+        this.releaseDate = gameReleaseDate;
     }
 
     /**
@@ -134,10 +148,10 @@ public class Game {
 
     /**
      * Sets the platform of the Game.
-     * @param platform The platform of the Game to set.
+     * @param gamePlatform The platform of the Game to set.
      */
-    public void setPlatform(String platform) {
-        this.platform = platform;
+    public void setPlatform(final String gamePlatform) {
+        this.platform = gamePlatform;
     }
 
     /**
@@ -150,10 +164,10 @@ public class Game {
 
     /**
      * Sets the story of the Game.
-     * @param story The story of the Game to set.
+     * @param gameStory The story of the Game to set.
      */
-    public void setStory(String story) {
-        this.story = story;
+    public void setStory(final String gameStory) {
+        this.story = gameStory;
     }
 
     /**
@@ -166,10 +180,10 @@ public class Game {
 
     /**
      * Sets whether the Game is online.
-     * @param online True if the Game is online, otherwise false.
+     * @param gameIsOnline True if the Game is online, otherwise false.
      */
-    public void setOnline(boolean online) {
-        isOnline = online;
+    public void setOnline(final boolean gameIsOnline) {
+        isOnline = gameIsOnline;
     }
 
     /**
@@ -182,10 +196,10 @@ public class Game {
 
     /**
      * Sets the number of players for the Game.
-     * @param numberPlayers The number of players for the Game to set.
+     * @param gameNumberPlayers The number of players for the Game to set.
      */
-    public void setNumberPlayers(int numberPlayers) {
-        this.numberPlayers = numberPlayers;
+    public void setNumberPlayers(final int gameNumberPlayers) {
+        this.numberPlayers = gameNumberPlayers;
     }
 
     /**
@@ -198,10 +212,10 @@ public class Game {
 
     /**
      * Sets the creation date of the Game.
-     * @param creationDate The creation date of the Game to set.
+     * @param gameCreationDate The creation date of the Game to set.
      */
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+    public void setCreationDate(final Date gameCreationDate) {
+        this.creationDate = gameCreationDate;
     }
 
     /**
@@ -214,9 +228,9 @@ public class Game {
 
     /**
      * Sets the modification date of the Game.
-     * @param modificationDate The modification date of the Game to set.
+     * @param gameModificationDate The modification date of the Game to set.
      */
-    public void setModificationDate(Date modificationDate) {
-        this.modificationDate = modificationDate;
+    public void setModificationDate(final Date gameModificationDate) {
+        this.modificationDate = gameModificationDate;
     }
 }

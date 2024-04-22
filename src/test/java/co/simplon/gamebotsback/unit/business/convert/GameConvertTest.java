@@ -19,7 +19,9 @@ class GameConvertTest {
     private static final String studio = "Naughty Dog";
 
     private Game createSampleGame() {
+
         Game game = new Game();
+
         game.setIdGame(1);
         game.setTitle(title);
         game.setStory(story);
@@ -30,11 +32,14 @@ class GameConvertTest {
         game.setStudio(studio);
         game.setCreationDate(new Date());
         game.setModificationDate(new Date());
+
         return game;
     }
 
     private Game createSampleGameWithNull() {
+
         Game game = new Game();
+
         game.setIdGame(1);
         game.setTitle(null);
         game.setStory(null);
@@ -45,11 +50,14 @@ class GameConvertTest {
         game.setStudio(null);
         game.setCreationDate(null);
         game.setModificationDate(null);
+
         return game;
     }
 
     private GameDTO createSampleGameDTO() {
+
         GameDTO gameDTO = new GameDTO();
+
         gameDTO.setIdGame(1);
         gameDTO.setTitle(title);
         gameDTO.setStory(story);
@@ -60,11 +68,14 @@ class GameConvertTest {
         gameDTO.setStudio(studio);
         gameDTO.setCreationDate(new Date());
         gameDTO.setModificationDate(new Date());
+
         return gameDTO;
     }
 
      private GameDTO createSampleGameDTOWithNull() {
+
             GameDTO gameDTO = new GameDTO();
+
             gameDTO.setIdGame(1);
             gameDTO.setTitle(null);
             gameDTO.setStory(null);
@@ -75,12 +86,15 @@ class GameConvertTest {
             gameDTO.setStudio(null);
             gameDTO.setCreationDate(null);
             gameDTO.setModificationDate(null);
+
             return gameDTO;
         }
 
     @Test
     void testGetInstanceReturnsInstanceOfGameConvert() {
+
         GameConvert gameConvert = GameConvert.getInstance();
+
         assertNotNull(gameConvert);
         assertInstanceOf(GameConvert.class, gameConvert);
     }

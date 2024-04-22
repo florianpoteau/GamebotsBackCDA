@@ -14,17 +14,17 @@ import co.simplon.gamebotsback.business.dto.ImageDTO;
 import co.simplon.gamebotsback.business.service.image.IImageService;
 
 @RestController
-public class GetAllImageController {
+public class GetAllImagesController {
 
     private final IImageService imageService;
 
     /**
-     * Constructs a new GetAllImageController with the specified image service.
+     * Constructs a new GetAllImagesController with the specified image service.
      *
      * @param imageService The image service used to retrieve all images.
      */
     @Autowired
-    public GetAllImageController(IImageService imageService) {
+    public GetAllImagesController(IImageService imageService) {
         this.imageService = imageService;
     }
 

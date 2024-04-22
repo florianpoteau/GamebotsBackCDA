@@ -18,52 +18,66 @@ class ConversationConvertTest {
     private static final String name = "Comment tuer des mangeurs d'hommes ?";
 
     private Conversation createSampleConversation() {
+
         Conversation conversation = new Conversation();
+
         conversation.setIdConversation(1);
         conversation.setName(name);
         conversation.setCreationDate(new Date());
         conversation.setModificationDate(new Date());
         conversation.setGame(new Game());
         conversation.setUser(new User());
+
         return conversation;
     }
 
     private Conversation createSampleConversationWithNull() {
+
         Conversation conversation = new Conversation();
+
         conversation.setIdConversation(1);
         conversation.setName(null);
         conversation.setCreationDate(null);
         conversation.setModificationDate(null);
         conversation.setGame(null);
         conversation.setUser(null);
+
         return conversation;
     }
 
     private ConversationDTO createSampleConversationDTO() {
+
         ConversationDTO conversationDTO = new ConversationDTO();
+
         conversationDTO.setIdConversation(1);
         conversationDTO.setName(name);
         conversationDTO.setCreationDate(new Date());
         conversationDTO.setModificationDate(new Date());
         conversationDTO.setGame(new Game());
         conversationDTO.setUser(new User());
+
         return conversationDTO;
     }
 
     private ConversationDTO createSampleConversationDTOWithNull() {
+
         ConversationDTO conversationDTO = new ConversationDTO();
+
         conversationDTO.setIdConversation(1);
         conversationDTO.setName(null);
         conversationDTO.setCreationDate(null);
         conversationDTO.setModificationDate(null);
         conversationDTO.setGame(null);
         conversationDTO.setUser(null);
+
         return conversationDTO;
     }
 
     @Test
     void testGetInstanceReturnsInstanceOfConversationConvert() {
+
         ConversationConvert conversationConvert = ConversationConvert.getInstance();
+
         assertNotNull(conversationConvert);
         assertInstanceOf(ConversationConvert.class, conversationConvert);
     }
@@ -192,7 +206,6 @@ class ConversationConvertTest {
     void testConvertListConversationDTOToListConversationWithNull() {
 
         List<ConversationDTO> conversationDTOList = List.of(createSampleConversationDTOWithNull(), createSampleConversationDTOWithNull());
-
         List<Conversation> conversationList = conversationConvert.convertListDtoToListEntity(conversationDTOList);
 
         assertEquals(Conversation.class, conversationList.get(0).getClass());
