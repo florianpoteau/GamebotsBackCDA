@@ -4,7 +4,7 @@ import co.simplon.gamebotsback.business.dto.Userdto;
 import co.simplon.gamebotsback.business.service.user.UserServiceImpl;
 import co.simplon.gamebotsback.persistance.entity.Image;
 import co.simplon.gamebotsback.persistance.entity.User;
-import co.simplon.gamebotsback.persistance.repository.user.IUserRepository;
+import co.simplon.gamebotsback.persistance.repository.user.Iuserrepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,7 +30,7 @@ class UserServiceTest {
   @InjectMocks
   private UserServiceImpl userService;
   @Mock
-  private IUserRepository iUserRepository;
+  private Iuserrepository iUserRepository;
 
   @Test
   @DisplayName("Test d'ajout d'un nouvel utilisateur")

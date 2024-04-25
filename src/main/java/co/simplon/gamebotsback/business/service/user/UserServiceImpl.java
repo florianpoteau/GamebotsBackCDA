@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import co.simplon.gamebotsback.business.convert.UserConvert;
 import co.simplon.gamebotsback.business.dto.Userdto;
 import co.simplon.gamebotsback.persistance.entity.User;
-import co.simplon.gamebotsback.persistance.repository.user.IUserRepository;
+import co.simplon.gamebotsback.persistance.repository.user.Iuserrepository;
 import jakarta.persistence.EntityNotFoundException;
 
 /**
@@ -21,7 +21,7 @@ import jakarta.persistence.EntityNotFoundException;
 public class UserServiceImpl implements IUserService {
 
   public static final String ERRORMESSAGE = "User does not exist: ";
-  private final IUserRepository userRepository;
+  private final Iuserrepository userRepository;
 
   /**
    * Constructor for <code>UserServiceImpl</code>.
@@ -29,7 +29,7 @@ public class UserServiceImpl implements IUserService {
    * @param userRepository The repository used to access user data.
    */
   @Autowired
-  public UserServiceImpl(IUserRepository userRepository) {
+  public UserServiceImpl(Iuserrepository userRepository) {
     this.userRepository = userRepository;
   }
 

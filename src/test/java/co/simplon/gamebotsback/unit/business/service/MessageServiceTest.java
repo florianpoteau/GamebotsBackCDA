@@ -3,7 +3,7 @@ package co.simplon.gamebotsback.unit.business.service;
 import co.simplon.gamebotsback.business.dto.Messagedto;
 import co.simplon.gamebotsback.business.service.message.MessageServiceImpl;
 import co.simplon.gamebotsback.persistance.entity.Message;
-import co.simplon.gamebotsback.persistance.repository.message.IMessageRepository;
+import co.simplon.gamebotsback.persistance.repository.message.Imessagerepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,7 +23,7 @@ class MessageServiceTest {
   private MessageServiceImpl messageService;
 
   @Mock
-  private IMessageRepository iMessageRepository;
+  private Imessagerepository iMessageRepository;
 
   @Test
   @DisplayName("Test de récupération de tous les messages d'une conversation")
