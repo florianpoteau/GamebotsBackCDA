@@ -3,7 +3,7 @@ package co.simplon.gamebotsback.unit.business.service;
 import co.simplon.gamebotsback.business.dto.Imagedto;
 import co.simplon.gamebotsback.business.service.image.ImageServiceImpl;
 import co.simplon.gamebotsback.persistance.entity.Image;
-import co.simplon.gamebotsback.persistance.repository.image.IImageRepository;
+import co.simplon.gamebotsback.persistance.repository.image.Iimagerepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,7 +26,7 @@ class ImageServiceTest {
   @InjectMocks
   private ImageServiceImpl imageService;
   @Mock
-  private IImageRepository iImageRepository;
+  private Iimagerepository iImageRepository;
 
   @Test
   @DisplayName("Test de récupération de toutes les images")

@@ -15,7 +15,7 @@ import co.simplon.gamebotsback.business.dto.Conversationdto;
 import co.simplon.gamebotsback.persistance.entity.Conversation;
 import co.simplon.gamebotsback.persistance.entity.Game;
 import co.simplon.gamebotsback.persistance.entity.User;
-import co.simplon.gamebotsback.persistance.repository.conversation.IConversationRepository;
+import co.simplon.gamebotsback.persistance.repository.conversation.Iconversationrepository;
 import jakarta.persistence.EntityNotFoundException;
 
 /**
@@ -26,7 +26,7 @@ import jakarta.persistence.EntityNotFoundException;
 public class ConversationServiceImpl implements IConversationService {
 
   public static final String ERRORMESSAGE = "The conversation with the specified ID does not exist:";
-  private final IConversationRepository conversationRepository;
+  private final Iconversationrepository conversationRepository;
 
   /**
    * Constructor for <code>ConversationServiceImpl</code>.
@@ -35,7 +35,7 @@ public class ConversationServiceImpl implements IConversationService {
    *                               data.
    */
   @Autowired
-  public ConversationServiceImpl(IConversationRepository conversationRepository) {
+  public ConversationServiceImpl(Iconversationrepository conversationRepository) {
     this.conversationRepository = conversationRepository;
   }
 

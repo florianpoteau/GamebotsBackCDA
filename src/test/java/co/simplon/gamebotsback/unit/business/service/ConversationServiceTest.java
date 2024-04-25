@@ -14,7 +14,7 @@ import co.simplon.gamebotsback.persistance.entity.Conversation;
 import co.simplon.gamebotsback.business.dto.Conversationdto;
 import co.simplon.gamebotsback.persistance.entity.Game;
 import co.simplon.gamebotsback.persistance.entity.User;
-import co.simplon.gamebotsback.persistance.repository.conversation.IConversationRepository;
+import co.simplon.gamebotsback.persistance.repository.conversation.Iconversationrepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,7 +32,7 @@ class ConversationServiceTest {
   @InjectMocks
   private ConversationServiceImpl conversationService;
   @Mock
-  private IConversationRepository iConversationRepository;
+  private Iconversationrepository iConversationRepository;
 
   @Test
   @DisplayName("Test d'ajout d'une nouvelle conversation")

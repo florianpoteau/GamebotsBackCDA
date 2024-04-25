@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import co.simplon.gamebotsback.business.convert.GameConvert;
 import co.simplon.gamebotsback.business.dto.Gamedto;
 import co.simplon.gamebotsback.persistance.entity.Game;
-import co.simplon.gamebotsback.persistance.repository.game.IGameRepository;
+import co.simplon.gamebotsback.persistance.repository.game.Igamerepository;
 
 /**
  * Implementation of the <code>IGameService</code> interface providing functionalities for managing games.
@@ -20,7 +20,7 @@ import co.simplon.gamebotsback.persistance.repository.game.IGameRepository;
 @Service
 public class GameServiceImpl implements IGameService {
 
-  private final IGameRepository gameRepository;
+  private final Igamerepository gameRepository;
 
   /**
    * Constructor for <code>GameServiceImpl</code>.
@@ -28,7 +28,7 @@ public class GameServiceImpl implements IGameService {
    * @param gameRepository The repository used to access game data.
    */
   @Autowired
-  public GameServiceImpl(IGameRepository gameRepository) {
+  public GameServiceImpl(Igamerepository gameRepository) {
     this.gameRepository = gameRepository;
   }
 

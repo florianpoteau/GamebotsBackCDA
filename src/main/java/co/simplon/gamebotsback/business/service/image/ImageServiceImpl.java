@@ -14,14 +14,14 @@ import org.springframework.stereotype.Service;
 import co.simplon.gamebotsback.business.convert.ImageConvert;
 import co.simplon.gamebotsback.business.dto.Imagedto;
 import co.simplon.gamebotsback.persistance.entity.Image;
-import co.simplon.gamebotsback.persistance.repository.image.IImageRepository;
+import co.simplon.gamebotsback.persistance.repository.image.Iimagerepository;
 
 import java.util.NoSuchElementException;
 
 @Service
 public class ImageServiceImpl implements IImageService {
 
-  private final IImageRepository imageRepository;
+  private final Iimagerepository imageRepository;
 
   /**
    * Constructor for <code>ImageServiceImpl</code>.
@@ -29,7 +29,7 @@ public class ImageServiceImpl implements IImageService {
    * @param imageRepository The repository used to access image data.
    */
   @Autowired
-  public ImageServiceImpl(IImageRepository imageRepository) {
+  public ImageServiceImpl(Iimagerepository imageRepository) {
     this.imageRepository = imageRepository;
   }
 

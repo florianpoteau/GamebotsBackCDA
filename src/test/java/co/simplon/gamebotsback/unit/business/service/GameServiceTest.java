@@ -3,7 +3,7 @@ package co.simplon.gamebotsback.unit.business.service;
 import co.simplon.gamebotsback.business.dto.Gamedto;
 import co.simplon.gamebotsback.business.service.game.GameServiceImpl;
 import co.simplon.gamebotsback.persistance.entity.Game;
-import co.simplon.gamebotsback.persistance.repository.game.IGameRepository;
+import co.simplon.gamebotsback.persistance.repository.game.Igamerepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,7 +25,7 @@ class GameServiceTest {
   @InjectMocks
   private GameServiceImpl gameService;
   @Mock
-  private IGameRepository iGameRepository;
+  private Igamerepository iGameRepository;
 
   @Test
   @DisplayName("Test de récupération de tous les jeux")
