@@ -1,6 +1,17 @@
 package co.simplon.gamebotsback.persistance.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+
 import java.util.Date;
 
 /**
@@ -11,188 +22,214 @@ import java.util.Date;
 @Table(name = "users")
 public class User {
 
-    /** The unique identifier of the user. */
-    @Id
-    @Column(name = "id_user")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUser;
+  /**
+   * The maximum length for string fields in the Game entity.
+   */
+  private static final int LENGTH = 50;
 
-    /** The username of the user. */
-    @Basic
-    @Column(name = "username", length = 50)
-    private String username;
+  /**
+   * The maximum length for string fields in the Game entity.
+   */
+  private static final int LENGTHPHONE = 50;
 
-    /** The phone number of the user. */
-    @Basic
-    @Column(name = "phone", length = 10)
-    private String phone;
+  /**
+   * The unique identifier of the user.
+   */
+  @Id
+  @Column(name = "id_user")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int idUser;
 
-    /** The email of the user. */
-    @Basic
-    @Column(name = "email", length = 50)
-    private String email;
+  /**
+   * The username of the user.
+   */
+  @Basic
+  @Column(name = "username", length = LENGTH)
+  private String username;
 
-    /** The password of the user. */
-    @Basic
-    @Column(name = "password", length = 50)
-    private String password;
+  /**
+   * The phone number of the user.
+   */
+  @Basic
+  @Column(name = "phone", length = LENGTHPHONE)
+  private String phone;
 
-    /** The creation date of the user. */
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "creation_date")
-    private Date creationDate;
+  /**
+   * The email of the user.
+   */
+  @Basic
+  @Column(name = "email", length = LENGTH)
+  private String email;
 
-    /** The last modification date of the user. */
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "modification_date")
-    private Date modificationDate;
+  /**
+   * The password of the user.
+   */
+  @Basic
+  @Column(name = "password", length = LENGTH)
+  private String password;
 
-    /** The image associated with the user. */
-    @ManyToOne
-    @JoinColumn(name = "id_image")
-    private Image image;
+  /**
+   * The creation date of the user.
+   */
+  @Temporal(TemporalType.TIMESTAMP)
+  @Column(name = "creation_date")
+  private Date creationDate;
 
-    /**
-     * Retrieves the user's ID.
-     * 
-     * @return The user's ID.
-     */
-    public int getIdUser() {
-        return idUser;
-    }
+  /**
+   * The last modification date of the user.
+   */
+  @Temporal(TemporalType.TIMESTAMP)
+  @Column(name = "modification_date")
+  private Date modificationDate;
 
-    /**
-     * Sets the user's ID.
-     * 
-     * @param idUser The user's ID to set.
-     */
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
-    }
+  /**
+   * The image associated with the user.
+   */
+  @ManyToOne
+  @JoinColumn(name = "id_image")
+  private Image image;
 
-    /**
-     * Retrieves the username of the user.
-     * 
-     * @return The username of the user.
-     */
-    public String getUsername() {
-        return username;
-    }
+  /**
+   * Retrieves the user's ID.
+   *
+   * @return The user's ID.
+   */
+  public int getIdUser() {
+    return idUser;
+  }
 
-    /**
-     * Sets the username of the user.
-     * 
-     * @param username The username to set.
-     */
-    public void setUsername(String username) {
-        this.username = username;
-    }
+  /**
+   * Sets the user's ID.
+   *
+   * @param userId The user's ID to set.
+   */
+  public void setIdUser(final int userId) {
+    this.idUser = userId;
+  }
 
-    /**
-     * Retrieves the phone number of the user.
-     * 
-     * @return The phone number of the user.
-     */
-    public String getPhone() {
-        return phone;
-    }
+  /**
+   * Retrieves the username of the user.
+   *
+   * @return The username of the user.
+   */
+  public String getUsername() {
+    return username;
+  }
 
-    /**
-     * Sets the phone number of the user.
-     * 
-     * @param phone The phone number to set.
-     */
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+  /**
+   * Sets the username of the user.
+   *
+   * @param userUsername The username to set.
+   */
+  public void setUsername(final String userUsername) {
+    this.username = userUsername;
+  }
 
-    /**
-     * Retrieves the email of the user.
-     * 
-     * @return The email of the user.
-     */
-    public String getEmail() {
-        return email;
-    }
+  /**
+   * Retrieves the phone number of the user.
+   *
+   * @return The phone number of the user.
+   */
+  public String getPhone() {
+    return phone;
+  }
 
-    /**
-     * Sets the email of the user.
-     * 
-     * @param email The email to set.
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  /**
+   * Sets the phone number of the user.
+   *
+   * @param userPhone The phone number to set.
+   */
+  public void setPhone(final String userPhone) {
+    this.phone = userPhone;
+  }
 
-    /**
-     * Retrieves the password of the user.
-     * 
-     * @return The password of the user.
-     */
-    public String getPassword() {
-        return password;
-    }
+  /**
+   * Retrieves the email of the user.
+   *
+   * @return The email of the user.
+   */
+  public String getEmail() {
+    return email;
+  }
 
-    /**
-     * Sets the password of the user.
-     * 
-     * @param password The password to set.
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  /**
+   * Sets the email of the user.
+   *
+   * @param userEmail The email to set.
+   */
+  public void setEmail(final String userEmail) {
+    this.email = userEmail;
+  }
 
-    /**
-     * Retrieves the creation date of the user.
-     * 
-     * @return The creation date of the user.
-     */
-    public Date getCreationDate() {
-        return creationDate;
-    }
+  /**
+   * Retrieves the password of the user.
+   *
+   * @return The password of the user.
+   */
+  public String getPassword() {
+    return password;
+  }
 
-    /**
-     * Sets the creation date of the user.
-     * 
-     * @param creationDate The creation date to set.
-     */
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
+  /**
+   * Sets the password of the user.
+   *
+   * @param userPassword The password to set.
+   */
+  public void setPassword(final String userPassword) {
+    this.password = userPassword;
+  }
 
-    /**
-     * Retrieves the modification date of the user.
-     * 
-     * @return The modification date of the user.
-     */
-    public Date getModificationDate() {
-        return modificationDate;
-    }
+  /**
+   * Retrieves the creation date of the user.
+   *
+   * @return The creation date of the user.
+   */
+  public Date getCreationDate() {
+    return creationDate;
+  }
 
-    /**
-     * Sets the modification date of the user.
-     * 
-     * @param modificationDate The modification date to set.
-     */
-    public void setModificationDate(Date modificationDate) {
-        this.modificationDate = modificationDate;
-    }
+  /**
+   * Sets the creation date of the user.
+   *
+   * @param userCreationDate The creation date to set.
+   */
+  public void setCreationDate(final Date userCreationDate) {
+    this.creationDate = userCreationDate;
+  }
 
-    /**
-     * Retrieves the image associated with the user.
-     * 
-     * @return The image associated with the user.
-     */
-    public Image getImage() {
-        return image;
-    }
+  /**
+   * Retrieves the modification date of the user.
+   *
+   * @return The modification date of the user.
+   */
+  public Date getModificationDate() {
+    return modificationDate;
+  }
 
-    /**
-     * Sets the image associated with the user.
-     * 
-     * @param image The image to set.
-     */
-    public void setImage(Image image) {
-        this.image = image;
-    }
+  /**
+   * Sets the modification date of the user.
+   *
+   * @param userModificationDate The modification date to set.
+   */
+  public void setModificationDate(final Date userModificationDate) {
+    this.modificationDate = userModificationDate;
+  }
+
+  /**
+   * Retrieves the image associated with the user.
+   *
+   * @return The image associated with the user.
+   */
+  public Image getImage() {
+    return image;
+  }
+
+  /**
+   * Sets the image associated with the user.
+   *
+   * @param userImage The image to set.
+   */
+  public void setImage(final Image userImage) {
+    this.image = userImage;
+  }
 }
