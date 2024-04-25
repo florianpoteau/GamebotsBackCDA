@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.simplon.gamebotsback.business.dto.Conversationdto;
-import co.simplon.gamebotsback.business.service.conversation.IConversationService;
+import co.simplon.gamebotsback.business.service.conversation.Iconversationservice;
 
 @RestController
 public class ModifyConversationController {
 
-  private final IConversationService conversationService;
+  private final Iconversationservice conversationService;
 
   /**
    * Constructs a new ModifyConversationController with the specified conversation
@@ -26,7 +26,7 @@ public class ModifyConversationController {
    *                            conversations.
    */
   @Autowired
-  public ModifyConversationController(IConversationService conversationService) {
+  public ModifyConversationController(Iconversationservice conversationService) {
     this.conversationService = conversationService;
   }
 

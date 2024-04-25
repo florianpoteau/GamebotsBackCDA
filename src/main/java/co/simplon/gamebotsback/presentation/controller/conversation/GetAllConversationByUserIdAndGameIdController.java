@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.simplon.gamebotsback.business.dto.Conversationdto;
-import co.simplon.gamebotsback.business.service.conversation.IConversationService;
+import co.simplon.gamebotsback.business.service.conversation.Iconversationservice;
 
 @RestController
 public class GetAllConversationByUserIdAndGameIdController {
 
-  private final IConversationService conversationService;
+  private final Iconversationservice conversationService;
 
   /**
    * Constructs a new GetAllConversationByUserIdAndGameIdController with the
@@ -25,7 +25,7 @@ public class GetAllConversationByUserIdAndGameIdController {
    * @param conversationService The conversation service to be used for retrieving
    *                            conversations.
    */
-  public GetAllConversationByUserIdAndGameIdController(IConversationService conversationService) {
+  public GetAllConversationByUserIdAndGameIdController(Iconversationservice conversationService) {
     this.conversationService = conversationService;
   }
 

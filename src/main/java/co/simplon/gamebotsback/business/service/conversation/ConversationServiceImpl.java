@@ -1,14 +1,11 @@
 /**
- * Implementation of the <code>IConversationService</code> interface providing functionalities for managing conversations.
- * This includes adding, retrieving, modifying, and deleting conversations, as well as retrieving all conversations associated with a specific user.
+ * Implementation of the <code>IConversationService</code>
+ * interface providing functionalities for managing conversations.
+ * This includes adding, retrieving, modifying, and deleting conversations,
+ * as well as retrieving all conversations associated with a specific user.
  */
+
 package co.simplon.gamebotsback.business.service.conversation;
-
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import co.simplon.gamebotsback.business.convert.ConversationConvert;
 import co.simplon.gamebotsback.business.dto.Conversationdto;
@@ -18,35 +15,56 @@ import co.simplon.gamebotsback.persistance.entity.User;
 import co.simplon.gamebotsback.persistance.repository.conversation.Iconversationrepository;
 import jakarta.persistence.EntityNotFoundException;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
 /**
  * Implementation of the <code>IConversationService</code> interface providing
  * functionalities for managing conversations.
  */
 @Service
-public class ConversationServiceImpl implements IConversationService {
+public class ConversationServiceImpl implements Iconversationservice {
 
-  public static final String ERRORMESSAGE = "The conversation with the specified ID does not exist:";
+  /**
+   * Standard error message indicating that a conversation
+   * with the specified ID does not exist.
+   * Used for exceptions thrown when the
+   * operation cannot be performed due to the absence
+   * of the corresponding conversation.
+   */
+  public static final String ERRORMESSAGE =
+      "The conversation with the specified ID does not exist:";
+
+  /**
+   * The repository used to access conversation data.
+   */
   private final Iconversationrepository conversationRepository;
 
   /**
    * Constructor for <code>ConversationServiceImpl</code>.
    *
-   * @param conversationRepository The repository used to access conversation
+   * @param repositoryConversation The repository used to access conversation
    *                               data.
    */
   @Autowired
-  public ConversationServiceImpl(Iconversationrepository conversationRepository) {
-    this.conversationRepository = conversationRepository;
+  public ConversationServiceImpl(
+      final Iconversationrepository repositoryConversation) {
+    this.conversationRepository = repositoryConversation;
   }
 
   /**
    * Adds a new conversation.
    *
-   * @param conversationDTO The information of the new conversation to add.
+   * @param conversationDto The information of the new conversation to add.
    */
   @Override
-  public void addNewConversation(Conversationdto conversationDTO) {
-    conversationRepository.save(ConversationConvert.getInstance().convertDtoToEntity(conversationDTO));
+  public void addNewConversation(final Conversationdto conversationDto) {
+    conversationRepository.save(
+        ConversationConvert.getInstance().convertDtoToEntity(conversationDto));
   }
 
   /**
@@ -58,7 +76,7 @@ public class ConversationServiceImpl implements IConversationService {
    *                                 does not exist.
    */
   @Override
-  public Conversationdto getById(int id) {
+  public Conversationdto getById(final int id) {
     Optional<Conversation> optionalGame = conversationRepository.findById(id);
     if (optionalGame.isPresent()) {
       Conversation conversation = optionalGame.get();
@@ -72,31 +90,36 @@ public class ConversationServiceImpl implements IConversationService {
    * Modifies information of an existing conversation.
    *
    * @param id              The ID of the conversation to modify.
-   * @param conversationDTO The new information to associate with the
+   * @param conversationDto The new information to associate with the
    *                        conversation.
    * @return The updated information of the conversation.
    * @throws EntityNotFoundException if the conversation with the specified ID
    *                                 does not exist.
    */
   @Override
-  public Conversationdto modifyConversation(int id, Conversationdto conversationDTO) {
-    Optional<Conversation> optionalConversation = conversationRepository.findById(id);
+  public Conversationdto modifyConversation(
+      final int id, final Conversationdto conversationDto) {
+    Optional<Conversation> optionalConversation =
+        conversationRepository.findById(id);
     if (optionalConversation.isPresent()) {
       Conversation existingConversation = optionalConversation.get();
 
       User existingUser = existingConversation.getUser();
-      conversationDTO.setUser(existingUser);
+      conversationDto.setUser(existingUser);
 
       Game existingGame = existingConversation.getGame();
-      conversationDTO.setGame(existingGame);
+      conversationDto.setGame(existingGame);
 
-      existingConversation.setName(conversationDTO.getName());
-      existingConversation.setCreationDate(conversationDTO.getCreationDate());
-      existingConversation.setModificationDate(conversationDTO.getModificationDate());
+      existingConversation.setName(conversationDto.getName());
+      existingConversation.setCreationDate(conversationDto.getCreationDate());
+      existingConversation.setModificationDate(
+          conversationDto.getModificationDate());
 
-      Conversation updatedConversation = conversationRepository.save(existingConversation);
+      Conversation updatedConversation =
+          conversationRepository.save(existingConversation);
 
-      return ConversationConvert.getInstance().convertEntityToDto(updatedConversation);
+      return ConversationConvert.getInstance().convertEntityToDto(
+          updatedConversation);
     } else {
       throw new EntityNotFoundException(ERRORMESSAGE + id);
     }
@@ -110,8 +133,9 @@ public class ConversationServiceImpl implements IConversationService {
    *                                 does not exist.
    */
   @Override
-  public void deleteConversation(int id) {
-    Optional<Conversation> optionalConversation = conversationRepository.findById(id);
+  public void deleteConversation(final int id) {
+    Optional<Conversation> optionalConversation =
+        conversationRepository.findById(id);
     if (optionalConversation.isPresent()) {
       conversationRepository.deleteById(id);
     } else {
@@ -126,15 +150,29 @@ public class ConversationServiceImpl implements IConversationService {
    * @return A list of conversations of the specified user.
    */
   @Override
-  public List<Conversationdto> getAllUserConversation(int idUser) {
-    final List<Conversation> result = conversationRepository.getAllUserConversation(idUser);
+  public List<Conversationdto> getAllUserConversation(
+      final int idUser) {
+    final List<Conversation> result =
+        conversationRepository.getAllUserConversation(idUser);
     return ConversationConvert.getInstance().convertListEntityToListDto(result);
   }
 
+  /**
+   * Retrieves all conversations associated with
+   * a specific user and a specific game.
+   *
+   * @param idUser The ID of the user.
+   * @param idGame The ID of the game.
+   * @return A list of conversations associated with
+   * the specified user and game.
+   */
   @Override
-  public List<Conversationdto> getAllUserConversationByGameId(int idUser, int idGame) {
-    final List<Conversation> result = conversationRepository.getAllUserConversationByGameId(idUser, idGame);
+  public List<Conversationdto> getAllUserConversationByGameId(
+      final int idUser, final int idGame) {
+    final List<Conversation> result =
+        conversationRepository.getAllUserConversationByGameId(idUser, idGame);
     return ConversationConvert.getInstance().convertListEntityToListDto(result);
   }
+
 
 }
