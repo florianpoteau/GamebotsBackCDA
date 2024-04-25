@@ -1,36 +1,41 @@
-/**
- * Implementation of the <code>IImageService</code> interface providing functionalities for managing images.
- * This service class retrieves image data from the repository, converts it into DTOs (Data Transfer Objects),
- * and provides methods to interact with images.
- */
 package co.simplon.gamebotsback.business.service.image;
-
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import co.simplon.gamebotsback.business.convert.ImageConvert;
 import co.simplon.gamebotsback.business.dto.Imagedto;
 import co.simplon.gamebotsback.persistance.entity.Image;
 import co.simplon.gamebotsback.persistance.repository.image.Iimagerepository;
 
+import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+/**
+ * Implementation of the <code>IImageService</code> interface
+ * providing functionalities for managing images.
+ * This service class retrieves image data from the repository,
+ * converts it into DTOs (Data Transfer Objects),
+ * and provides methods to interact with images.
+ */
 @Service
-public class ImageServiceImpl implements IImageService {
+public class ImageServiceImpl implements Iimageservice {
 
+  /**
+   * The repository used to access image data.
+   */
   private final Iimagerepository imageRepository;
 
   /**
    * Constructor for <code>ImageServiceImpl</code>.
    *
-   * @param imageRepository The repository used to access image data.
+   * @param repositoryImage The repository used to access image data.
    */
   @Autowired
-  public ImageServiceImpl(Iimagerepository imageRepository) {
-    this.imageRepository = imageRepository;
+  public ImageServiceImpl(final Iimagerepository repositoryImage) {
+    this.imageRepository = repositoryImage;
   }
 
   /**
@@ -51,10 +56,11 @@ public class ImageServiceImpl implements IImageService {
    * @return Information about the image corresponding to the given ID.
    */
   @Override
-  public Imagedto getById(int id) {
+  public Imagedto getById(final int id) {
     Optional<Image> optionalImage = imageRepository.findById(id);
     Image image = optionalImage
-        .orElseThrow(() -> new NoSuchElementException("Aucune image trouvée avec l'identifiant " + id));
+        .orElseThrow(() -> new NoSuchElementException(
+            "Aucune image trouvée avec l'identifiant " + id));
     return ImageConvert.getInstance().convertEntityToDto(image);
   }
 
@@ -66,7 +72,7 @@ public class ImageServiceImpl implements IImageService {
    * image type.
    */
   @Override
-  public Imagedto getImageByUserIdAndImageType(int userId) {
+  public Imagedto getImageByUserIdAndImageType(final int userId) {
     Image image = imageRepository.getImageByUserIdAndImageType(userId);
     return ImageConvert.getInstance().convertEntityToDto(image);
   }
@@ -79,7 +85,8 @@ public class ImageServiceImpl implements IImageService {
    * @return A list of all images associated with the specified game.
    */
   @Override
-  public List<Imagedto> getAllImagesByGameIdAndImageType(String typeImage, int gameId) {
+  public List<Imagedto> getAllImagesByGameIdAndImageType(
+      final String typeImage, final int gameId) {
     List<Image> image = imageRepository.getAllImagesByGameId(typeImage, gameId);
     return ImageConvert.getInstance().convertListEntityToListDto(image);
   }

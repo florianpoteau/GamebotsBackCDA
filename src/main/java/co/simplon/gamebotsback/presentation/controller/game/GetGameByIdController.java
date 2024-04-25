@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.simplon.gamebotsback.business.dto.Gamedto;
-import co.simplon.gamebotsback.business.service.game.IGameService;
+import co.simplon.gamebotsback.business.service.game.Igameservice;
 
 @RestController
 public class GetGameByIdController {
 
-  private final IGameService gameService;
+  private final Igameservice gameService;
 
   /**
    * Constructor for the GetGameByIdController.
@@ -22,7 +22,7 @@ public class GetGameByIdController {
    * @param gameService The service responsible for retrieving game information.
    */
   @Autowired
-  public GetGameByIdController(IGameService gameService) {
+  public GetGameByIdController(Igameservice gameService) {
     this.gameService = gameService;
   }
 

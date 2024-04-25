@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.simplon.gamebotsback.business.dto.Imagedto;
-import co.simplon.gamebotsback.business.service.image.IImageService;
+import co.simplon.gamebotsback.business.service.image.Iimageservice;
 
 @RestController
 public class GetAllImagesController {
 
-  private final IImageService imageService;
+  private final Iimageservice imageService;
 
   /**
    * Constructs a new GetAllImagesController with the specified image service.
@@ -24,7 +24,7 @@ public class GetAllImagesController {
    * @param imageService The image service used to retrieve all images.
    */
   @Autowired
-  public GetAllImagesController(IImageService imageService) {
+  public GetAllImagesController(Iimageservice imageService) {
     this.imageService = imageService;
   }
 

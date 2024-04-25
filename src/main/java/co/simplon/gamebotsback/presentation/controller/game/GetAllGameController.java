@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.simplon.gamebotsback.business.dto.Gamedto;
-import co.simplon.gamebotsback.business.service.game.IGameService;
+import co.simplon.gamebotsback.business.service.game.Igameservice;
 
 @RestController
 public class GetAllGameController {
 
-  private final IGameService gameService;
+  private final Igameservice gameService;
 
   /**
    * Constructor for the GetAllGameController.
@@ -23,7 +23,7 @@ public class GetAllGameController {
    * @param gameService The service responsible for retrieving game information.
    */
   @Autowired
-  public GetAllGameController(IGameService gameService) {
+  public GetAllGameController(Igameservice gameService) {
     this.gameService = gameService;
   }
 

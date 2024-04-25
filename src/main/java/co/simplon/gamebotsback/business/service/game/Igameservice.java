@@ -1,16 +1,14 @@
-/**
- * The <code>IGameService</code> interface defines operations available for managing games.
- */
 package co.simplon.gamebotsback.business.service.game;
-
-import java.util.List;
 
 import co.simplon.gamebotsback.business.dto.Gamedto;
 
+import java.util.List;
+
 /**
- * The <code>IGameService</code> interface defines operations available for managing games.
+ * The <code>IGameService</code> interface
+ * defines operations available for managing games.
  */
-public interface IGameService {
+public interface Igameservice {
 
   /**
    * Retrieves all available games.
@@ -25,6 +23,6 @@ public interface IGameService {
    * @param id The ID of the game.
    * @return Information about the game corresponding to the given ID.
    */
-  Gamedto getById(final int id);
+  Gamedto getById(int id);
 
 }

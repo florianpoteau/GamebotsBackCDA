@@ -1,14 +1,15 @@
-/**
- * The <code>IImageService</code> interface defines operations available for managing images.
- * This interface provides methods for retrieving information about images.
- */
 package co.simplon.gamebotsback.business.service.image;
-
-import java.util.List;
 
 import co.simplon.gamebotsback.business.dto.Imagedto;
 
-public interface IImageService {
+import java.util.List;
+
+/**
+ * The <code>IImageService</code> interface defines
+ * operations available for managing images.
+ * This interface provides methods for retrieving information about images.
+ */
+public interface Iimageservice {
 
   /**
    * Retrieves all images.
@@ -42,6 +43,7 @@ public interface IImageService {
    * @return A list of all images associated with the specified game and image
    * type.
    */
-  List<Imagedto> getAllImagesByGameIdAndImageType(final String typeImage, int gameId);
+  List<Imagedto> getAllImagesByGameIdAndImageType(
+      String typeImage, int gameId);
 
 }

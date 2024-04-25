@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.simplon.gamebotsback.business.dto.Imagedto;
-import co.simplon.gamebotsback.business.service.image.IImageService;
+import co.simplon.gamebotsback.business.service.image.Iimageservice;
 
 @RestController
 public class GetImageByIdController {
 
-  private final IImageService imageService;
+  private final Iimageservice imageService;
 
   /**
    * Constructs a new GetImageByIdController with the specified image service.
@@ -23,7 +23,7 @@ public class GetImageByIdController {
    * @param imageService The image service used to retrieve an image by its ID.
    */
   @Autowired
-  public GetImageByIdController(IImageService imageService) {
+  public GetImageByIdController(Iimageservice imageService) {
     this.imageService = imageService;
   }
 

@@ -1,10 +1,3 @@
-/**
- * Implementation of the <code>IConversationService</code>
- * interface providing functionalities for managing conversations.
- * This includes adding, retrieving, modifying, and deleting conversations,
- * as well as retrieving all conversations associated with a specific user.
- */
-
 package co.simplon.gamebotsback.business.service.conversation;
 
 import co.simplon.gamebotsback.business.convert.ConversationConvert;

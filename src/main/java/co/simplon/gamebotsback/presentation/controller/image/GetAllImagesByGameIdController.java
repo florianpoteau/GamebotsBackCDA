@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.simplon.gamebotsback.business.dto.Imagedto;
-import co.simplon.gamebotsback.business.service.image.IImageService;
+import co.simplon.gamebotsback.business.service.image.Iimageservice;
 
 @RestController
 public class GetAllImagesByGameIdController {
 
-  private final IImageService imageService;
+  private final Iimageservice imageService;
 
   /**
    * Constructs a new GetAllImagesByGameIdController with the specified image
@@ -27,7 +27,7 @@ public class GetAllImagesByGameIdController {
    *                     with a specific game ID.
    */
   @Autowired
-  public GetAllImagesByGameIdController(IImageService imageService) {
+  public GetAllImagesByGameIdController(Iimageservice imageService) {
     this.imageService = imageService;
   }
 

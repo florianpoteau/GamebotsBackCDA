@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.simplon.gamebotsback.business.dto.Imagedto;
-import co.simplon.gamebotsback.business.service.image.IImageService;
+import co.simplon.gamebotsback.business.service.image.Iimageservice;
 
 @RestController
 public class GetImageBannerByGameIdController {
 
-  private final IImageService imageService;
+  private final Iimageservice imageService;
 
   /**
    * Constructs a new GetImageBannerByGameIdController with the specified image
@@ -25,7 +25,7 @@ public class GetImageBannerByGameIdController {
    * @param imageService The image service used to retrieve the banner image
    *                     associated with a specific game ID.
    */
-  public GetImageBannerByGameIdController(IImageService imageService) {
+  public GetImageBannerByGameIdController(Iimageservice imageService) {
     this.imageService = imageService;
   }
 
