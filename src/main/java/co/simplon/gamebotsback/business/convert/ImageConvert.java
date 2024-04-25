@@ -1,6 +1,6 @@
 package co.simplon.gamebotsback.business.convert;
 
-import co.simplon.gamebotsback.business.dto.ImageDTO;
+import co.simplon.gamebotsback.business.dto.Imagedto;
 import co.simplon.gamebotsback.persistance.entity.Image;
 
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * This class provides methods to convert
- * between ImageDTO objects and Image entities.
+ * between Imagedto objects and Image entities.
  */
 public final class ImageConvert {
 
@@ -37,13 +37,13 @@ public final class ImageConvert {
   }
 
   /**
-   * Converts an Image entity to an ImageDTO.
+   * Converts an Image entity to an Imagedto.
    *
    * @param entity the Image entity to convert
-   * @return the converted ImageDTO
+   * @return the converted Imagedto
    */
-  public ImageDTO convertEntityToDto(final Image entity) {
-    final ImageDTO dto = new ImageDTO();
+  public Imagedto convertEntityToDto(final Image entity) {
+    final Imagedto dto = new Imagedto();
     dto.setIdImage(entity.getIdImage());
     dto.setName(entity.getName());
     dto.setSource(entity.getSource());
@@ -56,12 +56,12 @@ public final class ImageConvert {
   }
 
   /**
-   * Converts an ImageDTO to an Image entity.
+   * Converts an Imagedto to an Image entity.
    *
-   * @param dto the ImageDTO to convert
+   * @param dto the Imagedto to convert
    * @return the converted Image entity
    */
-  public Image convertDtoToEntity(final ImageDTO dto) {
+  public Image convertDtoToEntity(final Imagedto dto) {
     final Image entity = new Image();
     entity.setIdImage(dto.getIdImage());
     entity.setName(dto.getName());
@@ -75,14 +75,14 @@ public final class ImageConvert {
   }
 
   /**
-   * Converts a list of ImageDTO objects to a list of Image entities.
+   * Converts a list of Imagedto objects to a list of Image entities.
    *
-   * @param dtoList the list of ImageDTO objects to convert
+   * @param dtoList the list of Imagedto objects to convert
    * @return the list of converted Image entities
    */
-  public List<Image> convertListDtoToListEntity(final List<ImageDTO> dtoList) {
+  public List<Image> convertListDtoToListEntity(final List<Imagedto> dtoList) {
     final List<Image> entityList = new ArrayList<>();
-    for (ImageDTO dto : dtoList) {
+    for (Imagedto dto : dtoList) {
       entityList.add(convertDtoToEntity(dto));
     }
 
@@ -90,14 +90,14 @@ public final class ImageConvert {
   }
 
   /**
-   * Converts a list of Image entities to a list of ImageDTO objects.
+   * Converts a list of Image entities to a list of Imagedto objects.
    *
    * @param entityList the list of Image entities to convert
-   * @return the list of converted ImageDTO objects
+   * @return the list of converted Imagedto objects
    */
-  public List<ImageDTO> convertListEntityToListDto(
+  public List<Imagedto> convertListEntityToListDto(
       final List<Image> entityList) {
-    final List<ImageDTO> dtoList = new ArrayList<>();
+    final List<Imagedto> dtoList = new ArrayList<>();
     for (Image entity : entityList) {
       dtoList.add(convertEntityToDto(entity));
     }

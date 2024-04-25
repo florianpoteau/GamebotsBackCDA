@@ -12,75 +12,76 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.simplon.gamebotsback.business.convert.ImageConvert;
-import co.simplon.gamebotsback.business.dto.ImageDTO;
+import co.simplon.gamebotsback.business.dto.Imagedto;
 import co.simplon.gamebotsback.persistance.entity.Image;
 import co.simplon.gamebotsback.persistance.repository.image.IImageRepository;
+
 import java.util.NoSuchElementException;
 
 @Service
 public class ImageServiceImpl implements IImageService {
 
-    private final IImageRepository imageRepository;
+  private final IImageRepository imageRepository;
 
-    /**
-     * Constructor for <code>ImageServiceImpl</code>.
-     *
-     * @param imageRepository The repository used to access image data.
-     */
-    @Autowired
-    public ImageServiceImpl(IImageRepository imageRepository) {
-        this.imageRepository = imageRepository;
-    }
+  /**
+   * Constructor for <code>ImageServiceImpl</code>.
+   *
+   * @param imageRepository The repository used to access image data.
+   */
+  @Autowired
+  public ImageServiceImpl(IImageRepository imageRepository) {
+    this.imageRepository = imageRepository;
+  }
 
-    /**
-     * Retrieves all images.
-     *
-     * @return A list of all images.
-     */
-    @Override
-    public List<ImageDTO> getAll() {
-        final List<Image> result = imageRepository.findAll();
-        return ImageConvert.getInstance().convertListEntityToListDto(result);
-    }
+  /**
+   * Retrieves all images.
+   *
+   * @return A list of all images.
+   */
+  @Override
+  public List<Imagedto> getAll() {
+    final List<Image> result = imageRepository.findAll();
+    return ImageConvert.getInstance().convertListEntityToListDto(result);
+  }
 
-    /**
-     * Retrieves information about an image based on its ID.
-     *
-     * @param id The ID of the image.
-     * @return Information about the image corresponding to the given ID.
-     */
-    @Override
-    public ImageDTO getById(int id) {
-        Optional<Image> optionalImage = imageRepository.findById(id);
-        Image image = optionalImage
-                .orElseThrow(() -> new NoSuchElementException("Aucune image trouvée avec l'identifiant " + id));
-        return ImageConvert.getInstance().convertEntityToDto(image);
-    }
+  /**
+   * Retrieves information about an image based on its ID.
+   *
+   * @param id The ID of the image.
+   * @return Information about the image corresponding to the given ID.
+   */
+  @Override
+  public Imagedto getById(int id) {
+    Optional<Image> optionalImage = imageRepository.findById(id);
+    Image image = optionalImage
+        .orElseThrow(() -> new NoSuchElementException("Aucune image trouvée avec l'identifiant " + id));
+    return ImageConvert.getInstance().convertEntityToDto(image);
+  }
 
-    /**
-     * Retrieves the image associated with a user by user ID and image type.
-     *
-     * @param userId The ID of the user.
-     * @return Information about the image associated with the specified user and
-     *         image type.
-     */
-    @Override
-    public ImageDTO getImageByUserIdAndImageType(int userId) {
-        Image image = imageRepository.getImageByUserIdAndImageType(userId);
-        return ImageConvert.getInstance().convertEntityToDto(image);
-    }
+  /**
+   * Retrieves the image associated with a user by user ID and image type.
+   *
+   * @param userId The ID of the user.
+   * @return Information about the image associated with the specified user and
+   * image type.
+   */
+  @Override
+  public Imagedto getImageByUserIdAndImageType(int userId) {
+    Image image = imageRepository.getImageByUserIdAndImageType(userId);
+    return ImageConvert.getInstance().convertEntityToDto(image);
+  }
 
-    /**
-     * Retrieves all images associated with a game by game ID.
-     *
-     * @param typeImage The type of the image.
-     * @param gameId    The ID of the game.
-     * @return A list of all images associated with the specified game.
-     */
-    @Override
-    public List<ImageDTO> getAllImagesByGameIdAndImageType(String typeImage, int gameId) {
-        List<Image> image = imageRepository.getAllImagesByGameId(typeImage, gameId);
-        return ImageConvert.getInstance().convertListEntityToListDto(image);
-    }
+  /**
+   * Retrieves all images associated with a game by game ID.
+   *
+   * @param typeImage The type of the image.
+   * @param gameId    The ID of the game.
+   * @return A list of all images associated with the specified game.
+   */
+  @Override
+  public List<Imagedto> getAllImagesByGameIdAndImageType(String typeImage, int gameId) {
+    List<Image> image = imageRepository.getAllImagesByGameId(typeImage, gameId);
+    return ImageConvert.getInstance().convertListEntityToListDto(image);
+  }
 
 }

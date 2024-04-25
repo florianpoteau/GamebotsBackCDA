@@ -9,33 +9,33 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.simplon.gamebotsback.business.dto.MessageDTO;
+import co.simplon.gamebotsback.business.dto.Messagedto;
 import co.simplon.gamebotsback.business.service.message.IMessageService;
 
 @RestController
 public class CreateMessageController {
 
-    private final IMessageService messageService;
+  private final IMessageService messageService;
 
-    /**
-     * Constructs a new CreateMessageController with the specified message service.
-     *
-     * @param messageService The message service used to add a new message.
-     */
-    @Autowired
-    public CreateMessageController(IMessageService messageService) {
-        this.messageService = messageService;
-    }
+  /**
+   * Constructs a new CreateMessageController with the specified message service.
+   *
+   * @param messageService The message service used to add a new message.
+   */
+  @Autowired
+  public CreateMessageController(IMessageService messageService) {
+    this.messageService = messageService;
+  }
 
-    /**
-     * Handles HTTP POST requests to create a new message.
-     *
-     * @param messageDTO The MessageDTO object containing the details of the message
-     *                   to be created.
-     */
-    @PostMapping("/messages")
-    public void createMessage(@RequestBody MessageDTO messageDTO) {
-        messageService.addNewMessage(messageDTO);
-    }
+  /**
+   * Handles HTTP POST requests to create a new message.
+   *
+   * @param messageDTO The MessageDTO object containing the details of the message
+   *                   to be created.
+   */
+  @PostMapping("/messages")
+  public void createMessage(@RequestBody Messagedto messageDTO) {
+    messageService.addNewMessage(messageDTO);
+  }
 
 }

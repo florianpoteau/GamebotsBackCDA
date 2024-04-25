@@ -1,6 +1,6 @@
 package co.simplon.gamebotsback.business.convert;
 
-import co.simplon.gamebotsback.business.dto.GameDTO;
+import co.simplon.gamebotsback.business.dto.Gamedto;
 import co.simplon.gamebotsback.persistance.entity.Game;
 
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * This class provides methods to convert
- * between GameDTO objects and Game entities.
+ * between Gamedto objects and Game entities.
  */
 public final class GameConvert {
 
@@ -36,13 +36,13 @@ public final class GameConvert {
   }
 
   /**
-   * Converts a Game entity to a GameDTO.
+   * Converts a Game entity to a Gamedto.
    *
    * @param entity the Game entity to convert
-   * @return the converted GameDTO
+   * @return the converted Gamedto
    */
-  public GameDTO convertEntityToDto(final Game entity) {
-    final GameDTO dto = new GameDTO();
+  public Gamedto convertEntityToDto(final Game entity) {
+    final Gamedto dto = new Gamedto();
     dto.setIdGame(entity.getIdGame());
     dto.setTitle(entity.getTitle());
     dto.setStory(entity.getStory());
@@ -58,12 +58,12 @@ public final class GameConvert {
   }
 
   /**
-   * Converts a GameDTO to a Game entity.
+   * Converts a Gamedto to a Game entity.
    *
-   * @param dto the GameDTO to convert
+   * @param dto the Gamedto to convert
    * @return the converted Game entity
    */
-  public Game convertDtoToEntity(final GameDTO dto) {
+  public Game convertDtoToEntity(final Gamedto dto) {
     final Game entity = new Game();
     entity.setIdGame(dto.getIdGame());
     entity.setTitle(dto.getTitle());
@@ -80,14 +80,14 @@ public final class GameConvert {
   }
 
   /**
-   * Converts a list of GameDTO objects to a list of Game entities.
+   * Converts a list of Gamedto objects to a list of Game entities.
    *
-   * @param dtoList the list of GameDTO objects to convert
+   * @param dtoList the list of Gamedto objects to convert
    * @return the list of converted Game entities
    */
-  public List<Game> convertListDtoToListEntity(final List<GameDTO> dtoList) {
+  public List<Game> convertListDtoToListEntity(final List<Gamedto> dtoList) {
     final List<Game> entityList = new ArrayList<>();
-    for (GameDTO dto : dtoList) {
+    for (Gamedto dto : dtoList) {
       entityList.add(convertDtoToEntity(dto));
     }
 
@@ -95,13 +95,13 @@ public final class GameConvert {
   }
 
   /**
-   * Converts a list of Game entities to a list of GameDTO objects.
+   * Converts a list of Game entities to a list of Gamedto objects.
    *
    * @param entityList the list of Game entities to convert
-   * @return the list of converted GameDTO objects
+   * @return the list of converted Gamedto objects
    */
-  public List<GameDTO> convertListEntityToListDto(final List<Game> entityList) {
-    final List<GameDTO> dtoList = new ArrayList<>();
+  public List<Gamedto> convertListEntityToListDto(final List<Game> entityList) {
+    final List<Gamedto> dtoList = new ArrayList<>();
     for (Game entity : entityList) {
       dtoList.add(convertEntityToDto(entity));
     }

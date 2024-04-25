@@ -1,6 +1,6 @@
 package co.simplon.gamebotsback.unit.business.service;
 
-import co.simplon.gamebotsback.business.dto.MessageDTO;
+import co.simplon.gamebotsback.business.dto.Messagedto;
 import co.simplon.gamebotsback.business.service.message.MessageServiceImpl;
 import co.simplon.gamebotsback.persistance.entity.Message;
 import co.simplon.gamebotsback.persistance.repository.message.IMessageRepository;
@@ -19,30 +19,30 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class MessageServiceTest {
 
-    @InjectMocks
-    private MessageServiceImpl messageService;
+  @InjectMocks
+  private MessageServiceImpl messageService;
 
-    @Mock
-    private IMessageRepository iMessageRepository;
+  @Mock
+  private IMessageRepository iMessageRepository;
 
-    @Test
-    @DisplayName("Test de récupération de tous les messages d'une conversation")
-    void testGetAllMessageConversation() {
+  @Test
+  @DisplayName("Test de récupération de tous les messages d'une conversation")
+  void testGetAllMessageConversation() {
 
-        when(iMessageRepository.getMessageByConversationId(any(Integer.class))).thenReturn(List.of(new Message()));
-        List<MessageDTO> messages = messageService.getAllMessageConversation(any(Integer.class));
+    when(iMessageRepository.getMessageByConversationId(any(Integer.class))).thenReturn(List.of(new Message()));
+    List<Messagedto> messages = messageService.getAllMessageConversation(any(Integer.class));
 
-        verify(iMessageRepository, times(1)).getMessageByConversationId(any(Integer.class));
-        assertEquals(MessageDTO.class, messages.get(0).getClass(), "MessageDTO attendu dans la liste");
-    }
+    verify(iMessageRepository, times(1)).getMessageByConversationId(any(Integer.class));
+    assertEquals(Messagedto.class, messages.get(0).getClass(), "MessageDTO attendu dans la liste");
+  }
 
-    @Test
-    @DisplayName("Test d'ajout d'un nouveau message")
-    void testAddNewMessage() {
+  @Test
+  @DisplayName("Test d'ajout d'un nouveau message")
+  void testAddNewMessage() {
 
-        when(iMessageRepository.save(any(Message.class))).thenReturn(null);
-        messageService.addNewMessage(new MessageDTO());
+    when(iMessageRepository.save(any(Message.class))).thenReturn(null);
+    messageService.addNewMessage(new Messagedto());
 
-        verify(iMessageRepository, times(1)).save(any(Message.class));
-    }
+    verify(iMessageRepository, times(1)).save(any(Message.class));
+  }
 }

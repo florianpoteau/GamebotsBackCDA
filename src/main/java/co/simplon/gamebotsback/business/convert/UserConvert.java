@@ -1,6 +1,6 @@
 package co.simplon.gamebotsback.business.convert;
 
-import co.simplon.gamebotsback.business.dto.UserDTO;
+import co.simplon.gamebotsback.business.dto.Userdto;
 import co.simplon.gamebotsback.persistance.entity.User;
 
 import java.util.ArrayList;
@@ -40,8 +40,8 @@ public final class UserConvert {
    * @param entity the User entity to convert
    * @return the converted UserDTO
    */
-  public UserDTO convertEntityToDto(final User entity) {
-    final UserDTO dto = new UserDTO();
+  public Userdto convertEntityToDto(final User entity) {
+    final Userdto dto = new Userdto();
     dto.setIdUser(entity.getIdUser());
     dto.setUsername(entity.getUsername());
     dto.setPhone(entity.getPhone());
@@ -60,7 +60,7 @@ public final class UserConvert {
    * @param dto the UserDTO to convert
    * @return the converted User entity
    */
-  public User convertDtoToEntity(final UserDTO dto) {
+  public User convertDtoToEntity(final Userdto dto) {
     final User user = new User();
     user.setIdUser(dto.getIdUser());
     user.setUsername(dto.getUsername());
@@ -81,9 +81,9 @@ public final class UserConvert {
    * @return the list of converted User entities
    */
   public List<User> convertListDtoToListEntity(
-      final List<UserDTO> dtoList) {
+      final List<Userdto> dtoList) {
     final List<User> entityList = new ArrayList<>();
-    for (UserDTO dto : dtoList) {
+    for (Userdto dto : dtoList) {
       entityList.add(convertDtoToEntity(dto));
     }
 
@@ -96,9 +96,9 @@ public final class UserConvert {
    * @param entityList the list of User entities to convert
    * @return the list of converted UserDTO objects
    */
-  public List<UserDTO> convertListEntityToListDto(
+  public List<Userdto> convertListEntityToListDto(
       final List<User> entityList) {
-    final List<UserDTO> dtoList = new ArrayList<>();
+    final List<Userdto> dtoList = new ArrayList<>();
     for (User entity : entityList) {
       dtoList.add(convertEntityToDto(entity));
     }

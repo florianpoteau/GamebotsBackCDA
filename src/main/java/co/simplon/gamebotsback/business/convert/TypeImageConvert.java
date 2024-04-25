@@ -1,6 +1,6 @@
 package co.simplon.gamebotsback.business.convert;
 
-import co.simplon.gamebotsback.business.dto.TypeImageDTO;
+import co.simplon.gamebotsback.business.dto.TypeImagedto;
 import co.simplon.gamebotsback.persistance.entity.TypeImage;
 
 import java.util.ArrayList;
@@ -41,8 +41,8 @@ public final class TypeImageConvert {
    * @param entity the TypeImage entity to convert
    * @return the converted TypeImageDTO
    */
-  public TypeImageDTO convertEntityToDto(final TypeImage entity) {
-    final TypeImageDTO dto = new TypeImageDTO();
+  public TypeImagedto convertEntityToDto(final TypeImage entity) {
+    final TypeImagedto dto = new TypeImagedto();
     dto.setIdTypeImage(entity.getIdTypeImage());
     dto.setName(entity.getName());
     dto.setCreationDate(entity.getCreationDate());
@@ -57,7 +57,7 @@ public final class TypeImageConvert {
    * @param dto the TypeImageDTO to convert
    * @return the converted TypeImage entity
    */
-  public TypeImage convertDtoToEntity(final TypeImageDTO dto) {
+  public TypeImage convertDtoToEntity(final TypeImagedto dto) {
     final TypeImage entity = new TypeImage();
     entity.setIdTypeImage(dto.getIdTypeImage());
     entity.setName(dto.getName());
@@ -74,9 +74,9 @@ public final class TypeImageConvert {
    * @return the list of converted TypeImage entities
    */
   public List<TypeImage> convertListDtoToListEntity(
-      final List<TypeImageDTO> dtoList) {
+      final List<TypeImagedto> dtoList) {
     final List<TypeImage> entityList = new ArrayList<>();
-    for (TypeImageDTO dto : dtoList) {
+    for (TypeImagedto dto : dtoList) {
       entityList.add(convertDtoToEntity(dto));
     }
 
@@ -89,9 +89,9 @@ public final class TypeImageConvert {
    * @param entityList the list of TypeImage entities to convert
    * @return the list of converted TypeImageDTO objects
    */
-  public List<TypeImageDTO> convertListEntityToListDto(
+  public List<TypeImagedto> convertListEntityToListDto(
       final List<TypeImage> entityList) {
-    final List<TypeImageDTO> dtoList = new ArrayList<>();
+    final List<TypeImagedto> dtoList = new ArrayList<>();
     for (TypeImage entity : entityList) {
       dtoList.add(convertEntityToDto(entity));
     }

@@ -1,7 +1,7 @@
 package co.simplon.gamebotsback.unit.business.convert;
 
 import co.simplon.gamebotsback.business.convert.MessageConvert;
-import co.simplon.gamebotsback.business.dto.MessageDTO;
+import co.simplon.gamebotsback.business.dto.Messagedto;
 import co.simplon.gamebotsback.persistance.entity.Conversation;
 import co.simplon.gamebotsback.persistance.entity.Message;
 import org.junit.jupiter.api.Test;
@@ -14,192 +14,192 @@ import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 class MessageConvertTest {
 
-    private static final MessageConvert messageConvert = MessageConvert.getInstance();
+  private static final MessageConvert messageConvert = MessageConvert.getInstance();
 
-    private static final String content = "Hello World";
+  private static final String content = "Hello World";
 
-    private Message createSampleMessage() {
+  private Message createSampleMessage() {
 
-        Message message = new Message();
+    Message message = new Message();
 
-        message.setIdMessage(1);
-        message.setContent(content);
-        message.setCreationDate(new Date());
-        message.setModificationDate(new Date());
-        message.setConversation(new Conversation());
+    message.setIdMessage(1);
+    message.setContent(content);
+    message.setCreationDate(new Date());
+    message.setModificationDate(new Date());
+    message.setConversation(new Conversation());
 
-        return message;
-    }
+    return message;
+  }
 
-    private Message createSampleMessageWithNull() {
+  private Message createSampleMessageWithNull() {
 
-        Message message = new Message();
+    Message message = new Message();
 
-        message.setIdMessage(1);
-        message.setContent(null);
-        message.setCreationDate(null);
-        message.setModificationDate(null);
-        message.setConversation(null);
+    message.setIdMessage(1);
+    message.setContent(null);
+    message.setCreationDate(null);
+    message.setModificationDate(null);
+    message.setConversation(null);
 
-        return message;
-    }
+    return message;
+  }
 
-    private MessageDTO createSampleMessageDTO() {
+  private Messagedto createSampleMessageDTO() {
 
-        MessageDTO messageDTO = new MessageDTO();
+    Messagedto messageDTO = new Messagedto();
 
-        messageDTO.setIdMessage(1);
-        messageDTO.setContent(content);
-        messageDTO.setCreationDate(new Date());
-        messageDTO.setModificationDate(new Date());
-        messageDTO.setConversation(new Conversation());
+    messageDTO.setIdMessage(1);
+    messageDTO.setContent(content);
+    messageDTO.setCreationDate(new Date());
+    messageDTO.setModificationDate(new Date());
+    messageDTO.setConversation(new Conversation());
 
-        return messageDTO;
-    }
+    return messageDTO;
+  }
 
-    private MessageDTO createSampleMessageDTOWithNull() {
+  private Messagedto createSampleMessageDTOWithNull() {
 
-        MessageDTO messageDTO = new MessageDTO();
+    Messagedto messageDTO = new Messagedto();
 
-        messageDTO.setIdMessage(1);
-        messageDTO.setContent(null);
-        messageDTO.setCreationDate(null);
-        messageDTO.setModificationDate(null);
-        messageDTO.setConversation(null);
+    messageDTO.setIdMessage(1);
+    messageDTO.setContent(null);
+    messageDTO.setCreationDate(null);
+    messageDTO.setModificationDate(null);
+    messageDTO.setConversation(null);
 
-        return messageDTO;
-    }
+    return messageDTO;
+  }
 
-    @Test
-    void testGetInstanceReturnsInstanceOfMessageConvert() {
+  @Test
+  void testGetInstanceReturnsInstanceOfMessageConvert() {
 
-        MessageConvert messageConvert = MessageConvert.getInstance();
+    MessageConvert messageConvert = MessageConvert.getInstance();
 
-        assertNotNull(messageConvert);
-        assertInstanceOf(MessageConvert.class, messageConvert);
-    }
+    assertNotNull(messageConvert);
+    assertInstanceOf(MessageConvert.class, messageConvert);
+  }
 
-    @Test
-    void testConvertMessageToMessageDTO() {
+  @Test
+  void testConvertMessageToMessageDTO() {
 
-        Message message = createSampleMessage();
-        MessageDTO messageDTO = messageConvert.convertEntityToDto(message);
+    Message message = createSampleMessage();
+    Messagedto messageDTO = messageConvert.convertEntityToDto(message);
 
-        assertSame(1, messageDTO.getIdMessage());
-        assertSame(content, messageDTO.getContent());
-        assertSame(message.getCreationDate(), messageDTO.getCreationDate());
-        assertSame(message.getModificationDate(), messageDTO.getModificationDate());
-        assertSame(message.getConversation(), messageDTO.getConversation());
-    }
+    assertSame(1, messageDTO.getIdMessage());
+    assertSame(content, messageDTO.getContent());
+    assertSame(message.getCreationDate(), messageDTO.getCreationDate());
+    assertSame(message.getModificationDate(), messageDTO.getModificationDate());
+    assertSame(message.getConversation(), messageDTO.getConversation());
+  }
 
-    @Test
-    void testConvertMessageToMessageDTOWithNull() {
+  @Test
+  void testConvertMessageToMessageDTOWithNull() {
 
-        Message message = createSampleMessageWithNull();
-        MessageDTO messageDTO = messageConvert.convertEntityToDto(message);
+    Message message = createSampleMessageWithNull();
+    Messagedto messageDTO = messageConvert.convertEntityToDto(message);
 
-        assertSame(1, messageDTO.getIdMessage());
-        assertNull(messageDTO.getContent());
-        assertNull(messageDTO.getCreationDate());
-        assertNull(messageDTO.getModificationDate());
-        assertNull(messageDTO.getConversation());
-    }
+    assertSame(1, messageDTO.getIdMessage());
+    assertNull(messageDTO.getContent());
+    assertNull(messageDTO.getCreationDate());
+    assertNull(messageDTO.getModificationDate());
+    assertNull(messageDTO.getConversation());
+  }
 
-    @Test
-    void testConvertMessageDTOToMessage() {
+  @Test
+  void testConvertMessageDTOToMessage() {
 
-        MessageDTO messageDTO = createSampleMessageDTO();
-        Message message = messageConvert.convertDtoToEntity(messageDTO);
+    Messagedto messageDTO = createSampleMessageDTO();
+    Message message = messageConvert.convertDtoToEntity(messageDTO);
 
-        assertSame(1, message.getIdMessage());
-        assertSame(content, message.getContent());
-        assertSame(messageDTO.getCreationDate(), message.getCreationDate());
-        assertSame(messageDTO.getModificationDate(), message.getModificationDate());
-        assertSame(messageDTO.getConversation(), message.getConversation());
-    }
+    assertSame(1, message.getIdMessage());
+    assertSame(content, message.getContent());
+    assertSame(messageDTO.getCreationDate(), message.getCreationDate());
+    assertSame(messageDTO.getModificationDate(), message.getModificationDate());
+    assertSame(messageDTO.getConversation(), message.getConversation());
+  }
 
-    @Test
-    void testConvertMessageDTOToMessageWithNull() {
+  @Test
+  void testConvertMessageDTOToMessageWithNull() {
 
-        MessageDTO messageDTO = createSampleMessageDTOWithNull();
-        Message message = messageConvert.convertDtoToEntity(messageDTO);
+    Messagedto messageDTO = createSampleMessageDTOWithNull();
+    Message message = messageConvert.convertDtoToEntity(messageDTO);
 
-        assertSame(1, message.getIdMessage());
-        assertNull(message.getContent());
-        assertNull(message.getCreationDate());
-        assertNull(message.getModificationDate());
-        assertNull(message.getConversation());
-    }
+    assertSame(1, message.getIdMessage());
+    assertNull(message.getContent());
+    assertNull(message.getCreationDate());
+    assertNull(message.getModificationDate());
+    assertNull(message.getConversation());
+  }
 
-    @Test
-    void testConvertListMessageToListMessageDTO() {
+  @Test
+  void testConvertListMessageToListMessageDTO() {
 
-        List<Message> messageList = List.of(createSampleMessage(), createSampleMessage());
-        List<MessageDTO> messageDTOList = messageConvert.convertListEntityToListDto(messageList);
+    List<Message> messageList = List.of(createSampleMessage(), createSampleMessage());
+    List<Messagedto> messagedtoList = messageConvert.convertListEntityToListDto(messageList);
 
-        assertSame(1, messageDTOList.get(0).getIdMessage());
-        assertSame(1, messageDTOList.get(1).getIdMessage());
-        assertSame(content, messageDTOList.get(0).getContent());
-        assertSame(content, messageDTOList.get(1).getContent());
-        assertSame(messageList.get(0).getCreationDate(), messageDTOList.get(0).getCreationDate());
-        assertSame(messageList.get(1).getCreationDate(), messageDTOList.get(1).getCreationDate());
-        assertSame(messageList.get(0).getModificationDate(), messageDTOList.get(0).getModificationDate());
-        assertSame(messageList.get(1).getModificationDate(), messageDTOList.get(1).getModificationDate());
-        assertSame(messageList.get(0).getConversation(), messageDTOList.get(0).getConversation());
-        assertSame(messageList.get(1).getConversation(), messageDTOList.get(1).getConversation());
-    }
+    assertSame(1, messagedtoList.get(0).getIdMessage());
+    assertSame(1, messagedtoList.get(1).getIdMessage());
+    assertSame(content, messagedtoList.get(0).getContent());
+    assertSame(content, messagedtoList.get(1).getContent());
+    assertSame(messageList.get(0).getCreationDate(), messagedtoList.get(0).getCreationDate());
+    assertSame(messageList.get(1).getCreationDate(), messagedtoList.get(1).getCreationDate());
+    assertSame(messageList.get(0).getModificationDate(), messagedtoList.get(0).getModificationDate());
+    assertSame(messageList.get(1).getModificationDate(), messagedtoList.get(1).getModificationDate());
+    assertSame(messageList.get(0).getConversation(), messagedtoList.get(0).getConversation());
+    assertSame(messageList.get(1).getConversation(), messagedtoList.get(1).getConversation());
+  }
 
-    @Test
-    void testConvertListMessageToListMessageDTOWithNull() {
+  @Test
+  void testConvertListMessageToListMessageDTOWithNull() {
 
-        List<Message> messageList = List.of(createSampleMessageWithNull(), createSampleMessageWithNull());
-        List<MessageDTO> messageDTOList = messageConvert.convertListEntityToListDto(messageList);
+    List<Message> messageList = List.of(createSampleMessageWithNull(), createSampleMessageWithNull());
+    List<Messagedto> messagedtoList = messageConvert.convertListEntityToListDto(messageList);
 
-        assertSame(1, messageDTOList.get(0).getIdMessage());
-        assertSame(1, messageDTOList.get(1).getIdMessage());
-        assertNull(messageDTOList.get(0).getContent());
-        assertNull(messageDTOList.get(1).getContent());
-        assertNull(messageDTOList.get(0).getCreationDate());
-        assertNull(messageDTOList.get(1).getCreationDate());
-        assertNull(messageDTOList.get(0).getModificationDate());
-        assertNull(messageDTOList.get(1).getModificationDate());
-        assertNull(messageDTOList.get(0).getConversation());
-        assertNull(messageDTOList.get(1).getConversation());
-    }
+    assertSame(1, messagedtoList.get(0).getIdMessage());
+    assertSame(1, messagedtoList.get(1).getIdMessage());
+    assertNull(messagedtoList.get(0).getContent());
+    assertNull(messagedtoList.get(1).getContent());
+    assertNull(messagedtoList.get(0).getCreationDate());
+    assertNull(messagedtoList.get(1).getCreationDate());
+    assertNull(messagedtoList.get(0).getModificationDate());
+    assertNull(messagedtoList.get(1).getModificationDate());
+    assertNull(messagedtoList.get(0).getConversation());
+    assertNull(messagedtoList.get(1).getConversation());
+  }
 
-    @Test
-    void testConvertListMessageDTOToListMessage() {
+  @Test
+  void testConvertListMessageDTOToListMessage() {
 
-        List<MessageDTO> messageDTOList = List.of(createSampleMessageDTO(), createSampleMessageDTO());
-        List<Message> messageList = messageConvert.convertListDtoToListEntity(messageDTOList);
+    List<Messagedto> messagedtoList = List.of(createSampleMessageDTO(), createSampleMessageDTO());
+    List<Message> messageList = messageConvert.convertListDtoToListEntity(messagedtoList);
 
-        assertSame(1, messageList.get(0).getIdMessage());
-        assertSame(1, messageList.get(1).getIdMessage());
-        assertSame(content, messageList.get(0).getContent());
-        assertSame(content, messageList.get(1).getContent());
-        assertSame(messageDTOList.get(0).getCreationDate(), messageList.get(0).getCreationDate());
-        assertSame(messageDTOList.get(1).getCreationDate(), messageList.get(1).getCreationDate());
-        assertSame(messageDTOList.get(0).getModificationDate(), messageList.get(0).getModificationDate());
-        assertSame(messageDTOList.get(1).getModificationDate(), messageList.get(1).getModificationDate());
-        assertSame(messageDTOList.get(0).getConversation(), messageList.get(0).getConversation());
-        assertSame(messageDTOList.get(1).getConversation(), messageList.get(1).getConversation());
-    }
+    assertSame(1, messageList.get(0).getIdMessage());
+    assertSame(1, messageList.get(1).getIdMessage());
+    assertSame(content, messageList.get(0).getContent());
+    assertSame(content, messageList.get(1).getContent());
+    assertSame(messagedtoList.get(0).getCreationDate(), messageList.get(0).getCreationDate());
+    assertSame(messagedtoList.get(1).getCreationDate(), messageList.get(1).getCreationDate());
+    assertSame(messagedtoList.get(0).getModificationDate(), messageList.get(0).getModificationDate());
+    assertSame(messagedtoList.get(1).getModificationDate(), messageList.get(1).getModificationDate());
+    assertSame(messagedtoList.get(0).getConversation(), messageList.get(0).getConversation());
+    assertSame(messagedtoList.get(1).getConversation(), messageList.get(1).getConversation());
+  }
 
-    @Test
-    void testConvertListMessageDTOToListMessageWithNull() {
+  @Test
+  void testConvertListMessageDTOToListMessageWithNull() {
 
-        List<MessageDTO> messageDTOList = List.of(createSampleMessageDTOWithNull(), createSampleMessageDTOWithNull());
-        List<Message> messageList = messageConvert.convertListDtoToListEntity(messageDTOList);
+    List<Messagedto> messagedtoList = List.of(createSampleMessageDTOWithNull(), createSampleMessageDTOWithNull());
+    List<Message> messageList = messageConvert.convertListDtoToListEntity(messagedtoList);
 
-        assertSame(1, messageList.get(0).getIdMessage());
-        assertSame(1, messageList.get(1).getIdMessage());
-        assertNull(messageList.get(0).getContent());
-        assertNull(messageList.get(1).getContent());
-        assertNull(messageList.get(0).getCreationDate());
-        assertNull(messageList.get(1).getCreationDate());
-        assertNull(messageList.get(0).getModificationDate());
-        assertNull(messageList.get(1).getModificationDate());
-        assertNull(messageList.get(0).getConversation());
-        assertNull(messageList.get(1).getConversation());
-    }
+    assertSame(1, messageList.get(0).getIdMessage());
+    assertSame(1, messageList.get(1).getIdMessage());
+    assertNull(messageList.get(0).getContent());
+    assertNull(messageList.get(1).getContent());
+    assertNull(messageList.get(0).getCreationDate());
+    assertNull(messageList.get(1).getCreationDate());
+    assertNull(messageList.get(0).getModificationDate());
+    assertNull(messageList.get(1).getModificationDate());
+    assertNull(messageList.get(0).getConversation());
+    assertNull(messageList.get(1).getConversation());
+  }
 }

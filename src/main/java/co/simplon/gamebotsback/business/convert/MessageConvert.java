@@ -1,6 +1,6 @@
 package co.simplon.gamebotsback.business.convert;
 
-import co.simplon.gamebotsback.business.dto.MessageDTO;
+import co.simplon.gamebotsback.business.dto.Messagedto;
 import co.simplon.gamebotsback.persistance.entity.Message;
 
 import java.util.ArrayList;
@@ -41,8 +41,8 @@ public final class MessageConvert {
    * @param entity the Message entity to convert
    * @return the converted MessageDTO
    */
-  public MessageDTO convertEntityToDto(final Message entity) {
-    final MessageDTO dto = new MessageDTO();
+  public Messagedto convertEntityToDto(final Message entity) {
+    final Messagedto dto = new Messagedto();
     dto.setIdMessage(entity.getIdMessage());
     dto.setContent(entity.getContent());
     dto.setCreationDate(entity.getCreationDate());
@@ -58,7 +58,7 @@ public final class MessageConvert {
    * @param dto the MessageDTO to convert
    * @return the converted Message entity
    */
-  public Message convertDtoToEntity(final MessageDTO dto) {
+  public Message convertDtoToEntity(final Messagedto dto) {
     final Message entity = new Message();
     entity.setIdMessage(dto.getIdMessage());
     entity.setContent(dto.getContent());
@@ -76,9 +76,9 @@ public final class MessageConvert {
    * @return the list of converted Message entities
    */
   public List<Message> convertListDtoToListEntity(
-      final List<MessageDTO> dtoList) {
+      final List<Messagedto> dtoList) {
     final List<Message> entityList = new ArrayList<>();
-    for (MessageDTO dto : dtoList) {
+    for (Messagedto dto : dtoList) {
       entityList.add(convertDtoToEntity(dto));
     }
 
@@ -91,9 +91,9 @@ public final class MessageConvert {
    * @param entityList the list of Message entities to convert
    * @return the list of converted MessageDTO objects
    */
-  public List<MessageDTO> convertListEntityToListDto(
+  public List<Messagedto> convertListEntityToListDto(
       final List<Message> entityList) {
-    final List<MessageDTO> dtoList = new ArrayList<>();
+    final List<Messagedto> dtoList = new ArrayList<>();
     for (Message entity : entityList) {
       dtoList.add(convertEntityToDto(entity));
     }

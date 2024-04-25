@@ -5,7 +5,7 @@
  */
 package co.simplon.gamebotsback.presentation.controller.user;
 
-import co.simplon.gamebotsback.business.dto.UserDTO;
+import co.simplon.gamebotsback.business.dto.Userdto;
 import co.simplon.gamebotsback.business.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,26 +16,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ModifyUserAccountController {
 
-    private final IUserService userService;
+  private final IUserService userService;
 
-    /**
-     * Constructor for the ModifyUserAccountController.
-     *
-     * @param userService The UserService used to modify user accounts.
-     */
-    @Autowired
-    public ModifyUserAccountController(IUserService userService) {
-        this.userService = userService;
-    }
+  /**
+   * Constructor for the ModifyUserAccountController.
+   *
+   * @param userService The UserService used to modify user accounts.
+   */
+  @Autowired
+  public ModifyUserAccountController(IUserService userService) {
+    this.userService = userService;
+  }
 
-    /**
-     * Handles a PUT request to modify a user account.
-     *
-     * @param id       The ID of the user account to be modified.
-     * @param userDTO  The UserDTO object containing the updated user data.
-     */
-    @PutMapping("/users/{id}")
-    public void modifyUserAccount(@PathVariable int id, @RequestBody UserDTO userDTO) {
-        userService.modifyAccount(id, userDTO);
-    }
+  /**
+   * Handles a PUT request to modify a user account.
+   *
+   * @param id      The ID of the user account to be modified.
+   * @param userDTO The UserDTO object containing the updated user data.
+   */
+  @PutMapping("/users/{id}")
+  public void modifyUserAccount(@PathVariable int id, @RequestBody Userdto userDTO) {
+    userService.modifyAccount(id, userDTO);
+  }
 }
