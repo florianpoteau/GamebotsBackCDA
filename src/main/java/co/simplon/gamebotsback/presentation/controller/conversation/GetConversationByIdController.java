@@ -9,36 +9,36 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.simplon.gamebotsback.business.dto.ConversationDTO;
+import co.simplon.gamebotsback.business.dto.Conversationdto;
 import co.simplon.gamebotsback.business.service.conversation.IConversationService;
 
 @RestController
 public class GetConversationByIdController {
 
-    private final IConversationService conversationService;
+  private final IConversationService conversationService;
 
-    /**
-     * Constructs a new GetConversationByIdController with the specified
-     * conversation service.
-     *
-     * @param conversationService The conversation service to be used for retrieving
-     *                            the conversation by ID.
-     */
-    @Autowired
-    public GetConversationByIdController(IConversationService conversationService) {
-        this.conversationService = conversationService;
-    }
+  /**
+   * Constructs a new GetConversationByIdController with the specified
+   * conversation service.
+   *
+   * @param conversationService The conversation service to be used for retrieving
+   *                            the conversation by ID.
+   */
+  @Autowired
+  public GetConversationByIdController(IConversationService conversationService) {
+    this.conversationService = conversationService;
+  }
 
-    /**
-     * Handles HTTP GET requests to fetch a conversation by its ID.
-     *
-     * @param id The ID of the conversation to retrieve.
-     * @return A ConversationDTO object representing the conversation with the
-     *         specified ID.
-     */
-    @GetMapping("/conversations/{id}")
-    ConversationDTO findConversationById(@PathVariable int id) {
-        return conversationService.getById(id);
-    }
+  /**
+   * Handles HTTP GET requests to fetch a conversation by its ID.
+   *
+   * @param id The ID of the conversation to retrieve.
+   * @return A ConversationDTO object representing the conversation with the
+   * specified ID.
+   */
+  @GetMapping("/conversations/{id}")
+  Conversationdto findConversationById(@PathVariable int id) {
+    return conversationService.getById(id);
+  }
 
 }

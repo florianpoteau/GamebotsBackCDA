@@ -1,11 +1,12 @@
 package co.simplon.gamebotsback.unit.business.convert;
 
 import co.simplon.gamebotsback.business.convert.ConversationConvert;
-import co.simplon.gamebotsback.business.dto.ConversationDTO;
+import co.simplon.gamebotsback.business.dto.Conversationdto;
 import co.simplon.gamebotsback.persistance.entity.Conversation;
 import co.simplon.gamebotsback.persistance.entity.Game;
 import co.simplon.gamebotsback.persistance.entity.User;
 import org.junit.jupiter.api.Test;
+
 import java.util.Date;
 import java.util.List;
 
@@ -13,213 +14,213 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ConversationConvertTest {
 
-    private static final ConversationConvert conversationConvert = ConversationConvert.getInstance();
+  private static final ConversationConvert conversationConvert = ConversationConvert.getInstance();
 
-    private static final String name = "Comment tuer des mangeurs d'hommes ?";
+  private static final String name = "Comment tuer des mangeurs d'hommes ?";
 
-    private Conversation createSampleConversation() {
+  private Conversation createSampleConversation() {
 
-        Conversation conversation = new Conversation();
+    Conversation conversation = new Conversation();
 
-        conversation.setIdConversation(1);
-        conversation.setName(name);
-        conversation.setCreationDate(new Date());
-        conversation.setModificationDate(new Date());
-        conversation.setGame(new Game());
-        conversation.setUser(new User());
+    conversation.setIdConversation(1);
+    conversation.setName(name);
+    conversation.setCreationDate(new Date());
+    conversation.setModificationDate(new Date());
+    conversation.setGame(new Game());
+    conversation.setUser(new User());
 
-        return conversation;
-    }
+    return conversation;
+  }
 
-    private Conversation createSampleConversationWithNull() {
+  private Conversation createSampleConversationWithNull() {
 
-        Conversation conversation = new Conversation();
+    Conversation conversation = new Conversation();
 
-        conversation.setIdConversation(1);
-        conversation.setName(null);
-        conversation.setCreationDate(null);
-        conversation.setModificationDate(null);
-        conversation.setGame(null);
-        conversation.setUser(null);
+    conversation.setIdConversation(1);
+    conversation.setName(null);
+    conversation.setCreationDate(null);
+    conversation.setModificationDate(null);
+    conversation.setGame(null);
+    conversation.setUser(null);
 
-        return conversation;
-    }
+    return conversation;
+  }
 
-    private ConversationDTO createSampleConversationDTO() {
+  private Conversationdto createSampleConversationDTO() {
 
-        ConversationDTO conversationDTO = new ConversationDTO();
+    Conversationdto conversationDTO = new Conversationdto();
 
-        conversationDTO.setIdConversation(1);
-        conversationDTO.setName(name);
-        conversationDTO.setCreationDate(new Date());
-        conversationDTO.setModificationDate(new Date());
-        conversationDTO.setGame(new Game());
-        conversationDTO.setUser(new User());
+    conversationDTO.setIdConversation(1);
+    conversationDTO.setName(name);
+    conversationDTO.setCreationDate(new Date());
+    conversationDTO.setModificationDate(new Date());
+    conversationDTO.setGame(new Game());
+    conversationDTO.setUser(new User());
 
-        return conversationDTO;
-    }
+    return conversationDTO;
+  }
 
-    private ConversationDTO createSampleConversationDTOWithNull() {
+  private Conversationdto createSampleConversationDTOWithNull() {
 
-        ConversationDTO conversationDTO = new ConversationDTO();
+    Conversationdto conversationDTO = new Conversationdto();
 
-        conversationDTO.setIdConversation(1);
-        conversationDTO.setName(null);
-        conversationDTO.setCreationDate(null);
-        conversationDTO.setModificationDate(null);
-        conversationDTO.setGame(null);
-        conversationDTO.setUser(null);
+    conversationDTO.setIdConversation(1);
+    conversationDTO.setName(null);
+    conversationDTO.setCreationDate(null);
+    conversationDTO.setModificationDate(null);
+    conversationDTO.setGame(null);
+    conversationDTO.setUser(null);
 
-        return conversationDTO;
-    }
+    return conversationDTO;
+  }
 
-    @Test
-    void testGetInstanceReturnsInstanceOfConversationConvert() {
+  @Test
+  void testGetInstanceReturnsInstanceOfConversationConvert() {
 
-        ConversationConvert conversationConvert = ConversationConvert.getInstance();
+    ConversationConvert conversationConvert = ConversationConvert.getInstance();
 
-        assertNotNull(conversationConvert);
-        assertInstanceOf(ConversationConvert.class, conversationConvert);
-    }
+    assertNotNull(conversationConvert);
+    assertInstanceOf(ConversationConvert.class, conversationConvert);
+  }
 
-    @Test
-    void testConvertConversationToConversationDTO() {
+  @Test
+  void testConvertConversationToConversationDTO() {
 
-        Conversation conversation = createSampleConversation();
-        ConversationDTO conversationDTO = conversationConvert.convertEntityToDto(conversation);
+    Conversation conversation = createSampleConversation();
+    Conversationdto conversationDTO = conversationConvert.convertEntityToDto(conversation);
 
-        assertEquals(1, conversationDTO.getIdConversation());
-        assertEquals(name, conversationDTO.getName());
-        assertEquals(conversation.getCreationDate(), conversationDTO.getCreationDate());
-        assertEquals(conversation.getModificationDate(), conversationDTO.getModificationDate());
-        assertEquals(conversation.getGame(), conversationDTO.getGame());
-        assertEquals(conversation.getUser(),conversationDTO.getUser());
-    }
+    assertEquals(1, conversationDTO.getIdConversation());
+    assertEquals(name, conversationDTO.getName());
+    assertEquals(conversation.getCreationDate(), conversationDTO.getCreationDate());
+    assertEquals(conversation.getModificationDate(), conversationDTO.getModificationDate());
+    assertEquals(conversation.getGame(), conversationDTO.getGame());
+    assertEquals(conversation.getUser(), conversationDTO.getUser());
+  }
 
-    @Test
-    void testConvertConversationToConversationDTOWithNull() {
+  @Test
+  void testConvertConversationToConversationDTOWithNull() {
 
-        Conversation conversation = createSampleConversationWithNull();
-        ConversationDTO conversationDTO = conversationConvert.convertEntityToDto(conversation);
+    Conversation conversation = createSampleConversationWithNull();
+    Conversationdto conversationDTO = conversationConvert.convertEntityToDto(conversation);
 
-        assertEquals(1, conversationDTO.getIdConversation());
-        assertNull(conversationDTO.getName());
-        assertNull(conversationDTO.getCreationDate());
-        assertNull(conversationDTO.getModificationDate());
-        assertNull(conversationDTO.getGame());
-        assertNull(conversationDTO.getUser());
-    }
+    assertEquals(1, conversationDTO.getIdConversation());
+    assertNull(conversationDTO.getName());
+    assertNull(conversationDTO.getCreationDate());
+    assertNull(conversationDTO.getModificationDate());
+    assertNull(conversationDTO.getGame());
+    assertNull(conversationDTO.getUser());
+  }
 
-    @Test
-    void testConvertConversationDTOToConversation() {
+  @Test
+  void testConvertConversationDTOToConversation() {
 
-        ConversationDTO conversationDTO = createSampleConversationDTO();
-        Conversation conversation = conversationConvert.convertDtoToEntity(conversationDTO);
+    Conversationdto conversationDTO = createSampleConversationDTO();
+    Conversation conversation = conversationConvert.convertDtoToEntity(conversationDTO);
 
-        assertEquals(1, conversation.getIdConversation());
-        assertEquals(name, conversation.getName());
-        assertEquals(conversationDTO.getCreationDate(), conversation.getCreationDate());
-        assertEquals(conversationDTO.getModificationDate() ,conversation.getModificationDate());
-        assertEquals(conversationDTO.getGame(), conversation.getGame());
-        assertEquals(conversationDTO.getUser(), conversation.getUser());
-    }
+    assertEquals(1, conversation.getIdConversation());
+    assertEquals(name, conversation.getName());
+    assertEquals(conversationDTO.getCreationDate(), conversation.getCreationDate());
+    assertEquals(conversationDTO.getModificationDate(), conversation.getModificationDate());
+    assertEquals(conversationDTO.getGame(), conversation.getGame());
+    assertEquals(conversationDTO.getUser(), conversation.getUser());
+  }
 
-    @Test
-    void testConvertConversationDTOToConversationWithNull() {
+  @Test
+  void testConvertConversationDTOToConversationWithNull() {
 
-        ConversationDTO conversationDTO = createSampleConversationDTOWithNull();
-        Conversation conversation = conversationConvert.convertDtoToEntity(conversationDTO);
+    Conversationdto conversationDTO = createSampleConversationDTOWithNull();
+    Conversation conversation = conversationConvert.convertDtoToEntity(conversationDTO);
 
-        assertEquals(1, conversation.getIdConversation());
-        assertNull(conversation.getName());
-        assertNull(conversation.getCreationDate());
-        assertNull(conversation.getModificationDate());
-        assertNull(conversation.getGame());
-        assertNull(conversation.getUser());
-    }
+    assertEquals(1, conversation.getIdConversation());
+    assertNull(conversation.getName());
+    assertNull(conversation.getCreationDate());
+    assertNull(conversation.getModificationDate());
+    assertNull(conversation.getGame());
+    assertNull(conversation.getUser());
+  }
 
-    @Test
-    void testConvertListConversationToListConversationDTO() {
+  @Test
+  void testConvertListConversationToListConversationDTO() {
 
-        List<Conversation> conversationList = List.of(createSampleConversation(), createSampleConversation());
-        List<ConversationDTO> conversationDTOList = conversationConvert.convertListEntityToListDto(conversationList);
+    List<Conversation> conversationList = List.of(createSampleConversation(), createSampleConversation());
+    List<Conversationdto> conversationdtoList = conversationConvert.convertListEntityToListDto(conversationList);
 
-        assertEquals(ConversationDTO.class, conversationDTOList.get(0).getClass());
-        assertEquals(1, conversationDTOList.get(0).getIdConversation());
-        assertEquals(1, conversationDTOList.get(1).getIdConversation());
-        assertEquals(name, conversationDTOList.get(0).getName());
-        assertEquals(name, conversationDTOList.get(1).getName());
-        assertEquals(conversationList.get(0).getCreationDate(), conversationDTOList.get(0).getCreationDate());
-        assertEquals(conversationList.get(1).getCreationDate(), conversationDTOList.get(1).getCreationDate());
-        assertEquals(conversationList.get(0).getModificationDate(), conversationDTOList.get(0).getModificationDate());
-        assertEquals(conversationList.get(1).getModificationDate(), conversationDTOList.get(1).getModificationDate());
-        assertEquals(conversationList.get(0).getGame(), conversationDTOList.get(0).getGame());
-        assertEquals(conversationList.get(1).getGame(), conversationDTOList.get(1).getGame());
-        assertEquals(conversationList.get(0).getUser(), conversationDTOList.get(0).getUser());
-        assertEquals(conversationList.get(1).getUser(), conversationDTOList.get(1).getUser());
-    }
+    assertEquals(Conversationdto.class, conversationdtoList.get(0).getClass());
+    assertEquals(1, conversationdtoList.get(0).getIdConversation());
+    assertEquals(1, conversationdtoList.get(1).getIdConversation());
+    assertEquals(name, conversationdtoList.get(0).getName());
+    assertEquals(name, conversationdtoList.get(1).getName());
+    assertEquals(conversationList.get(0).getCreationDate(), conversationdtoList.get(0).getCreationDate());
+    assertEquals(conversationList.get(1).getCreationDate(), conversationdtoList.get(1).getCreationDate());
+    assertEquals(conversationList.get(0).getModificationDate(), conversationdtoList.get(0).getModificationDate());
+    assertEquals(conversationList.get(1).getModificationDate(), conversationdtoList.get(1).getModificationDate());
+    assertEquals(conversationList.get(0).getGame(), conversationdtoList.get(0).getGame());
+    assertEquals(conversationList.get(1).getGame(), conversationdtoList.get(1).getGame());
+    assertEquals(conversationList.get(0).getUser(), conversationdtoList.get(0).getUser());
+    assertEquals(conversationList.get(1).getUser(), conversationdtoList.get(1).getUser());
+  }
 
-    @Test
-    void testConvertListConversationToListConversationDTOWithNull() {
+  @Test
+  void testConvertListConversationToListConversationDTOWithNull() {
 
-        List<Conversation> conversationList = List.of(createSampleConversationWithNull(), createSampleConversationWithNull());
-        List<ConversationDTO> conversationDTOList = conversationConvert.convertListEntityToListDto(conversationList);
+    List<Conversation> conversationList = List.of(createSampleConversationWithNull(), createSampleConversationWithNull());
+    List<Conversationdto> conversationdtoList = conversationConvert.convertListEntityToListDto(conversationList);
 
-        assertEquals(ConversationDTO.class, conversationDTOList.get(0).getClass());
-        assertEquals(1, conversationDTOList.get(0).getIdConversation());
-        assertEquals(1, conversationDTOList.get(1).getIdConversation());
-        assertNull(conversationDTOList.get(0).getName());
-        assertNull(conversationDTOList.get(1).getName());
-        assertNull(conversationList.get(0).getCreationDate());
-        assertNull(conversationList.get(1).getCreationDate());
-        assertNull(conversationList.get(0).getModificationDate());
-        assertNull(conversationList.get(1).getModificationDate());
-        assertNull(conversationList.get(0).getGame());
-        assertNull(conversationList.get(1).getGame());
-        assertNull(conversationList.get(0).getUser());
-        assertNull(conversationList.get(1).getUser());
-    }
+    assertEquals(Conversationdto.class, conversationdtoList.get(0).getClass());
+    assertEquals(1, conversationdtoList.get(0).getIdConversation());
+    assertEquals(1, conversationdtoList.get(1).getIdConversation());
+    assertNull(conversationdtoList.get(0).getName());
+    assertNull(conversationdtoList.get(1).getName());
+    assertNull(conversationList.get(0).getCreationDate());
+    assertNull(conversationList.get(1).getCreationDate());
+    assertNull(conversationList.get(0).getModificationDate());
+    assertNull(conversationList.get(1).getModificationDate());
+    assertNull(conversationList.get(0).getGame());
+    assertNull(conversationList.get(1).getGame());
+    assertNull(conversationList.get(0).getUser());
+    assertNull(conversationList.get(1).getUser());
+  }
 
-    @Test
-    void testConvertListConversationDTOToListConversation() {
+  @Test
+  void testConvertListConversationDTOToListConversation() {
 
-        List<ConversationDTO> conversationDTOList = List.of(createSampleConversationDTO(), createSampleConversationDTO());
+    List<Conversationdto> conversationdtoList = List.of(createSampleConversationDTO(), createSampleConversationDTO());
 
-        List<Conversation> conversationList = conversationConvert.convertListDtoToListEntity(conversationDTOList);
+    List<Conversation> conversationList = conversationConvert.convertListDtoToListEntity(conversationdtoList);
 
-        assertEquals(Conversation.class, conversationList.get(0).getClass());
-        assertEquals(1, conversationList.get(0).getIdConversation());
-        assertEquals(1, conversationList.get(1).getIdConversation());
-        assertEquals(name, conversationList.get(0).getName());
-        assertEquals(name, conversationList.get(1).getName());
-        assertEquals(conversationDTOList.get(0).getCreationDate(), conversationList.get(0).getCreationDate());
-        assertEquals(conversationDTOList.get(1).getCreationDate(), conversationList.get(1).getCreationDate());
-        assertEquals(conversationDTOList.get(0).getModificationDate(), conversationList.get(0).getModificationDate());
-        assertEquals(conversationDTOList.get(1).getModificationDate(), conversationList.get(1).getModificationDate());
-        assertEquals(conversationDTOList.get(0).getGame(), conversationList.get(0).getGame());
-        assertEquals(conversationDTOList.get(1).getGame(), conversationList.get(1).getGame());
-        assertEquals(conversationDTOList.get(0).getUser(), conversationList.get(0).getUser());
-        assertEquals(conversationDTOList.get(1).getUser(), conversationList.get(1).getUser());
-    }
+    assertEquals(Conversation.class, conversationList.get(0).getClass());
+    assertEquals(1, conversationList.get(0).getIdConversation());
+    assertEquals(1, conversationList.get(1).getIdConversation());
+    assertEquals(name, conversationList.get(0).getName());
+    assertEquals(name, conversationList.get(1).getName());
+    assertEquals(conversationdtoList.get(0).getCreationDate(), conversationList.get(0).getCreationDate());
+    assertEquals(conversationdtoList.get(1).getCreationDate(), conversationList.get(1).getCreationDate());
+    assertEquals(conversationdtoList.get(0).getModificationDate(), conversationList.get(0).getModificationDate());
+    assertEquals(conversationdtoList.get(1).getModificationDate(), conversationList.get(1).getModificationDate());
+    assertEquals(conversationdtoList.get(0).getGame(), conversationList.get(0).getGame());
+    assertEquals(conversationdtoList.get(1).getGame(), conversationList.get(1).getGame());
+    assertEquals(conversationdtoList.get(0).getUser(), conversationList.get(0).getUser());
+    assertEquals(conversationdtoList.get(1).getUser(), conversationList.get(1).getUser());
+  }
 
-    @Test
-    void testConvertListConversationDTOToListConversationWithNull() {
+  @Test
+  void testConvertListConversationDTOToListConversationWithNull() {
 
-        List<ConversationDTO> conversationDTOList = List.of(createSampleConversationDTOWithNull(), createSampleConversationDTOWithNull());
-        List<Conversation> conversationList = conversationConvert.convertListDtoToListEntity(conversationDTOList);
+    List<Conversationdto> conversationdtoList = List.of(createSampleConversationDTOWithNull(), createSampleConversationDTOWithNull());
+    List<Conversation> conversationList = conversationConvert.convertListDtoToListEntity(conversationdtoList);
 
-        assertEquals(Conversation.class, conversationList.get(0).getClass());
-        assertEquals(1, conversationList.get(0).getIdConversation());
-        assertEquals(1, conversationList.get(1).getIdConversation());
-        assertNull(conversationList.get(0).getName());
-        assertNull(conversationList.get(1).getName());
-        assertNull(conversationDTOList.get(0).getCreationDate());
-        assertNull(conversationDTOList.get(1).getCreationDate());
-        assertNull(conversationDTOList.get(0).getModificationDate());
-        assertNull(conversationDTOList.get(1).getModificationDate());
-        assertNull(conversationDTOList.get(0).getGame());
-        assertNull(conversationDTOList.get(1).getGame());
-        assertNull(conversationDTOList.get(0).getUser());
-        assertNull(conversationDTOList.get(1).getUser());
-    }
+    assertEquals(Conversation.class, conversationList.get(0).getClass());
+    assertEquals(1, conversationList.get(0).getIdConversation());
+    assertEquals(1, conversationList.get(1).getIdConversation());
+    assertNull(conversationList.get(0).getName());
+    assertNull(conversationList.get(1).getName());
+    assertNull(conversationdtoList.get(0).getCreationDate());
+    assertNull(conversationdtoList.get(1).getCreationDate());
+    assertNull(conversationdtoList.get(0).getModificationDate());
+    assertNull(conversationdtoList.get(1).getModificationDate());
+    assertNull(conversationdtoList.get(0).getGame());
+    assertNull(conversationdtoList.get(1).getGame());
+    assertNull(conversationdtoList.get(0).getUser());
+    assertNull(conversationdtoList.get(1).getUser());
+  }
 }

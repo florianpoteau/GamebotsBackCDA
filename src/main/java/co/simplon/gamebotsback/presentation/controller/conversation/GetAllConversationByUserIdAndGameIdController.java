@@ -10,32 +10,32 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.simplon.gamebotsback.business.dto.ConversationDTO;
+import co.simplon.gamebotsback.business.dto.Conversationdto;
 import co.simplon.gamebotsback.business.service.conversation.IConversationService;
 
 @RestController
 public class GetAllConversationByUserIdAndGameIdController {
 
-    private final IConversationService conversationService;
+  private final IConversationService conversationService;
 
-    /**
-     * Constructs a new GetAllConversationByUserIdAndGameIdController with the
-     * specified conversation service.
-     *
-     * @param conversationService The conversation service to be used for retrieving
-     *                            conversations.
-     */
-    public GetAllConversationByUserIdAndGameIdController(IConversationService conversationService) {
-        this.conversationService = conversationService;
-    }
+  /**
+   * Constructs a new GetAllConversationByUserIdAndGameIdController with the
+   * specified conversation service.
+   *
+   * @param conversationService The conversation service to be used for retrieving
+   *                            conversations.
+   */
+  public GetAllConversationByUserIdAndGameIdController(IConversationService conversationService) {
+    this.conversationService = conversationService;
+  }
 
-    /**
-     * Handles HTTP GET requests to fetch all conversations associated with a
-     * specific user ID and game ID
-     */
-    @GetMapping("/users/{user_id}/games/{game_id}/conversations")
-    List<ConversationDTO> findAllConversationsByUserIdAndGameId(@PathVariable int user_id, @PathVariable int game_id) {
-        return conversationService.getAllUserConversationByGameId(user_id, game_id);
-    }
+  /**
+   * Handles HTTP GET requests to fetch all conversations associated with a
+   * specific user ID and game ID
+   */
+  @GetMapping("/users/{user_id}/games/{game_id}/conversations")
+  List<Conversationdto> findAllConversationsByUserIdAndGameId(@PathVariable int user_id, @PathVariable int game_id) {
+    return conversationService.getAllUserConversationByGameId(user_id, game_id);
+  }
 
 }

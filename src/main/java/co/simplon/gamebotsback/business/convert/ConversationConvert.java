@@ -1,6 +1,6 @@
 package co.simplon.gamebotsback.business.convert;
 
-import co.simplon.gamebotsback.business.dto.ConversationDTO;
+import co.simplon.gamebotsback.business.dto.Conversationdto;
 import co.simplon.gamebotsback.persistance.entity.Conversation;
 
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * This class provides methods to convert between
- * ConversationDTO objects and Conversation entities.
+ * Conversationdto objects and Conversation entities.
  */
 public final class ConversationConvert {
 
@@ -36,13 +36,13 @@ public final class ConversationConvert {
   }
 
   /**
-   * Converts a Conversation entity to a ConversationDTO.
+   * Converts a Conversation entity to a Conversationdto.
    *
    * @param entity the Conversation entity to convert
-   * @return the converted ConversationDTO
+   * @return the converted Conversationdto
    */
-  public ConversationDTO convertEntityToDto(final Conversation entity) {
-    final ConversationDTO dto = new ConversationDTO();
+  public Conversationdto convertEntityToDto(final Conversation entity) {
+    final Conversationdto dto = new Conversationdto();
     dto.setIdConversation(entity.getIdConversation());
     dto.setName(entity.getName());
     dto.setCreationDate(entity.getCreationDate());
@@ -53,12 +53,12 @@ public final class ConversationConvert {
   }
 
   /**
-   * Converts a ConversationDTO to a Conversation entity.
+   * Converts a Conversationdto to a Conversation entity.
    *
-   * @param dto the ConversationDTO to convert
+   * @param dto the Conversationdto to convert
    * @return the converted Conversation entity
    */
-  public Conversation convertDtoToEntity(final ConversationDTO dto) {
+  public Conversation convertDtoToEntity(final Conversationdto dto) {
     final Conversation entity = new Conversation();
     entity.setIdConversation(dto.getIdConversation());
     entity.setName(dto.getName());
@@ -70,31 +70,31 @@ public final class ConversationConvert {
   }
 
   /**
-   * Converts a list of ConversationDTO objects to a list of Conversation
+   * Converts a list of Conversationdto objects to a list of Conversation
    * entities.
    *
-   * @param dtoList the list of ConversationDTO objects to convert
+   * @param dtoList the list of Conversationdto objects to convert
    * @return the list of converted Conversation entities
    */
   public List<Conversation> convertListDtoToListEntity(
-      final List<ConversationDTO> dtoList) {
+      final List<Conversationdto> dtoList) {
     final List<Conversation> entityList = new ArrayList<>();
-    for (ConversationDTO dto : dtoList) {
+    for (Conversationdto dto : dtoList) {
       entityList.add(convertDtoToEntity(dto));
     }
     return entityList;
   }
 
   /**
-   * Converts a list of Conversation entities to a list of ConversationDTO
+   * Converts a list of Conversation entities to a list of Conversationdto
    * objects.
    *
    * @param entityList the list of Conversation entities to convert
-   * @return the list of converted ConversationDTO objects
+   * @return the list of converted Conversationdto objects
    */
-  public List<ConversationDTO> convertListEntityToListDto(
+  public List<Conversationdto> convertListEntityToListDto(
       final List<Conversation> entityList) {
-    final List<ConversationDTO> dtoList = new ArrayList<>();
+    final List<Conversationdto> dtoList = new ArrayList<>();
     for (Conversation entity : entityList) {
       dtoList.add(convertEntityToDto(entity));
     }
