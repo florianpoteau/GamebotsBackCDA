@@ -5,7 +5,7 @@
 package co.simplon.gamebotsback.presentation.controller.user;
 
 import co.simplon.gamebotsback.business.dto.Userdto;
-import co.simplon.gamebotsback.business.service.user.IUserService;
+import co.simplon.gamebotsback.business.service.user.Iuserservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CreateUserAccountController {
 
-  private final IUserService userService;
+  private final Iuserservice userService;
 
   /**
    * Constructor for the CreateUserAccountController.
@@ -22,7 +22,7 @@ public class CreateUserAccountController {
    * @param userService The UserService used to create user accounts.
    */
   @Autowired
-  public CreateUserAccountController(IUserService userService) {
+  public CreateUserAccountController(Iuserservice userService) {
     this.userService = userService;
   }
 

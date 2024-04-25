@@ -1,33 +1,37 @@
-/**
- * Implementation of the <code>IMessageService</code> interface providing functionalities for managing messages.
- */
 package co.simplon.gamebotsback.business.service.message;
 
 import co.simplon.gamebotsback.business.convert.MessageConvert;
 import co.simplon.gamebotsback.business.dto.Messagedto;
 import co.simplon.gamebotsback.persistance.entity.Message;
 import co.simplon.gamebotsback.persistance.repository.message.Imessagerepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
 /**
- * Implementation of the <code>IMessageService</code> interface providing functionalities for managing messages.
+ * Implementation of the <code>IMessageService</code> interface
+ * providing functionalities for managing messages.
  */
 @Service
-public class MessageServiceImpl implements IMessageService {
+public class MessageServiceImpl implements Imessageservice {
 
+
+  /**
+   * The repository used to access message data.
+   */
   private final Imessagerepository messageRepository;
 
   /**
    * Constructor for <code>MessageServiceImpl</code>.
    *
-   * @param messageRepository The repository used to access message data.
+   * @param repositoryMessage The repository used to access message data.
    */
   @Autowired
-  public MessageServiceImpl(Imessagerepository messageRepository) {
-    this.messageRepository = messageRepository;
+  public MessageServiceImpl(final Imessagerepository repositoryMessage) {
+    this.messageRepository = repositoryMessage;
   }
 
   /**
@@ -37,18 +41,20 @@ public class MessageServiceImpl implements IMessageService {
    * @return A list of messages of the specified conversation.
    */
   @Override
-  public List<Messagedto> getAllMessageConversation(int idConversation) {
-    final List<Message> result = messageRepository.getMessageByConversationId(idConversation);
+  public List<Messagedto> getAllMessageConversation(final int idConversation) {
+    final List<Message> result =
+        messageRepository.getMessageByConversationId(idConversation);
     return MessageConvert.getInstance().convertListEntityToListDto(result);
   }
 
   /**
    * Adds a new message to a conversation.
    *
-   * @param messageDTO The information of the new message to add.
+   * @param messageDto The information of the new message to add.
    */
   @Override
-  public void addNewMessage(Messagedto messageDTO) {
-    messageRepository.save(MessageConvert.getInstance().convertDtoToEntity(messageDTO));
+  public void addNewMessage(final Messagedto messageDto) {
+    messageRepository.save(
+        MessageConvert.getInstance().convertDtoToEntity(messageDto));
   }
 }

@@ -6,7 +6,7 @@
 package co.simplon.gamebotsback.presentation.controller.user;
 
 import co.simplon.gamebotsback.business.dto.Userdto;
-import co.simplon.gamebotsback.business.service.user.IUserService;
+import co.simplon.gamebotsback.business.service.user.Iuserservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ModifyUserAccountController {
 
-  private final IUserService userService;
+  private final Iuserservice userService;
 
   /**
    * Constructor for the ModifyUserAccountController.
@@ -24,7 +24,7 @@ public class ModifyUserAccountController {
    * @param userService The UserService used to modify user accounts.
    */
   @Autowired
-  public ModifyUserAccountController(IUserService userService) {
+  public ModifyUserAccountController(Iuserservice userService) {
     this.userService = userService;
   }
 

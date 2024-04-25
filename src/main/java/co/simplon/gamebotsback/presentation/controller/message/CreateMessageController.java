@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.simplon.gamebotsback.business.dto.Messagedto;
-import co.simplon.gamebotsback.business.service.message.IMessageService;
+import co.simplon.gamebotsback.business.service.message.Imessageservice;
 
 @RestController
 public class CreateMessageController {
 
-  private final IMessageService messageService;
+  private final Imessageservice messageService;
 
   /**
    * Constructs a new CreateMessageController with the specified message service.
@@ -23,7 +23,7 @@ public class CreateMessageController {
    * @param messageService The message service used to add a new message.
    */
   @Autowired
-  public CreateMessageController(IMessageService messageService) {
+  public CreateMessageController(Imessageservice messageService) {
     this.messageService = messageService;
   }
 

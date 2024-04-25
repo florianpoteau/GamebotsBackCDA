@@ -8,7 +8,7 @@ import co.simplon.gamebotsback.business.dto.Userdto;
 /**
  * The IUserService interface defines operations available for managing user accounts.
  */
-public interface IUserService {
+public interface Iuserservice {
 
   /**
    * Creates a new user account.

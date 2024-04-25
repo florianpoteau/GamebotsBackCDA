@@ -1,6 +1,3 @@
-/**
- * The <code>IMessageService</code> interface defines operations available for managing messages.
- */
 package co.simplon.gamebotsback.business.service.message;
 
 import co.simplon.gamebotsback.business.dto.Messagedto;
@@ -11,7 +8,7 @@ import java.util.List;
  * The <code>IMessageService</code> interface defines operations available for
  * managing messages.
  */
-public interface IMessageService {
+public interface Imessageservice {
 
   /**
    * Retrieves all messages of a specific conversation.
@@ -24,7 +21,7 @@ public interface IMessageService {
   /**
    * Adds a new message to a conversation.
    *
-   * @param messageDTO The information of the new message to add.
+   * @param messageDto The information of the new message to add.
    */
-  void addNewMessage(final Messagedto messageDTO);
+  void addNewMessage(Messagedto messageDto);
 }

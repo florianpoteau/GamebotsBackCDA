@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.simplon.gamebotsback.business.dto.Messagedto;
-import co.simplon.gamebotsback.business.service.message.IMessageService;
+import co.simplon.gamebotsback.business.service.message.Imessageservice;
 
 @RestController
 public class GetAllMessageByIdConversationController {
 
-  private final IMessageService messageService;
+  private final Imessageservice messageService;
 
   /**
    * Constructs a new GetAllMessageByIdConversationController with the specified
@@ -27,7 +27,7 @@ public class GetAllMessageByIdConversationController {
    *                       conversation ID.
    */
   @Autowired
-  public GetAllMessageByIdConversationController(IMessageService messageService) {
+  public GetAllMessageByIdConversationController(Imessageservice messageService) {
     this.messageService = messageService;
   }
 
