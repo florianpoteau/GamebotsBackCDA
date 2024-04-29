@@ -18,16 +18,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IUserRepository extends JpaRepository<User, Integer> {
+public interface Iuserrepository extends JpaRepository<User, Integer> {
 
-    /**
-     * Retrieves a user by username.
-     *
-     * @param username The username of the user.
-     * @return An optional containing the user with the specified username, or empty
-     *         if not found.
-     */
-    @Query(UserQueries.FIND_BY_USERNAME)
-    Optional<User> findByUsername(final String username);
+  /**
+   * Retrieves a user by username.
+   *
+   * @param username The username of the user.
+   * @return An optional containing the user with the specified username, or empty
+   *         if not found.
+   */
+  @Query(UserQueries.FIND_BY_USERNAME)
+  Optional<User> findByUsername(final String username);
 
 }

@@ -1,9 +1,9 @@
 package co.simplon.gamebotsback.unit.business.service;
 
-import co.simplon.gamebotsback.business.dto.GameDTO;
+import co.simplon.gamebotsback.business.dto.Gamedto;
 import co.simplon.gamebotsback.business.service.game.GameServiceImpl;
 import co.simplon.gamebotsback.persistance.entity.Game;
-import co.simplon.gamebotsback.persistance.repository.game.IGameRepository;
+import co.simplon.gamebotsback.persistance.repository.game.Igamerepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,47 +20,45 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class GameServiceTest {
 
-    @InjectMocks
-    private GameServiceImpl gameService;
+  Game existingGame = new Game();
+  int gameId = 1;
+  @InjectMocks
+  private GameServiceImpl gameService;
+  @Mock
+  private Igamerepository iGameRepository;
 
-    @Mock
-    private IGameRepository iGameRepository;
+  @Test
+  @DisplayName("Test de récupération de tous les jeux")
+  void testGetAll() {
 
-    Game existingGame = new Game();
-    int gameId = 1;
+    when(iGameRepository.findAll()).thenReturn(List.of(new Game()));
+    List<Gamedto> games = gameService.getAll();
 
-    @Test
-    @DisplayName("Test de récupération de tous les jeux")
-    void testGetAll() {
+    verify(iGameRepository, times(1)).findAll();
+    assertEquals(Gamedto.class, games.get(0).getClass(), "GameDTO attendu dans la liste");
+  }
 
-        when(iGameRepository.findAll()).thenReturn(List.of(new Game()));
-        List<GameDTO> games = gameService.getAll();
+  @Test
+  @DisplayName("Test de récupération d'un jeu par son id")
+  void testGetById() {
 
-        verify(iGameRepository, times(1)).findAll();
-        assertEquals(GameDTO.class, games.get(0).getClass(), "GameDTO attendu dans la liste");
-    }
+    existingGame.setIdGame(gameId);
 
-        @Test
-        @DisplayName("Test de récupération d'un jeu par son id")
-        void testGetById() {
+    when(iGameRepository.findById(gameId)).thenReturn(Optional.of(existingGame));
+    Gamedto gameDTO = gameService.getById(gameId);
 
-            existingGame.setIdGame(gameId);
+    verify(iGameRepository, times(1)).findById(gameId);
+    assertNotNull(gameDTO, "ImageDTO attendu dans la liste");
+    assertEquals(gameId, gameDTO.getIdGame(), "ImageDTO attendu dans la liste");
+  }
 
-            when(iGameRepository.findById(gameId)).thenReturn(Optional.of(existingGame));
-            GameDTO gameDTO = gameService.getById(gameId);
+  @Test
+  @DisplayName("Test de récupération d'un jeu par son id - jeu non trouvé")
+  void testGetByIdWhenGameDoesNotExist() {
 
-            verify(iGameRepository, times(1)).findById(gameId);
-            assertNotNull(gameDTO, "ImageDTO attendu dans la liste");
-            assertEquals(gameId, gameDTO.getIdGame(), "ImageDTO attendu dans la liste");
-        }
+    when(iGameRepository.findById(gameId)).thenReturn(Optional.empty());
+    IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> gameService.getById(gameId));
 
-        @Test
-        @DisplayName("Test de récupération d'un jeu par son id - jeu non trouvé")
-        void testGetByIdWhenGameDoesNotExist() {
-
-            when(iGameRepository.findById(gameId)).thenReturn(Optional.empty());
-            IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () ->  gameService.getById(gameId));
-
-            assertEquals("The game with the specified ID does not exist: " + gameId, exception.getMessage(), "Expected exception message to match");
-        }
+    assertEquals("The game with the specified ID does not exist: " + gameId, exception.getMessage(), "Expected exception message to match");
+  }
 }

@@ -1,7 +1,7 @@
 package co.simplon.gamebotsback.unit.business.convert;
 
 import co.simplon.gamebotsback.business.convert.TypeImageConvert;
-import co.simplon.gamebotsback.business.dto.TypeImageDTO;
+import co.simplon.gamebotsback.business.dto.TypeImagedto;
 import co.simplon.gamebotsback.persistance.entity.TypeImage;
 import org.junit.jupiter.api.Test;
 
@@ -13,175 +13,175 @@ import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 class TypeImageConvertTest {
 
-    private static final TypeImageConvert typeImageConvert = TypeImageConvert.getInstance();
-    private static final String name = "Avatar";
+  private static final TypeImageConvert typeImageConvert = TypeImageConvert.getInstance();
+  private static final String name = "Avatar";
 
-    private TypeImage createSampleTypeImage() {
+  private TypeImage createSampleTypeImage() {
 
-        TypeImage typeImage = new TypeImage();
+    TypeImage typeImage = new TypeImage();
 
-        typeImage.setIdTypeImage(1);
-        typeImage.setName(name);
-        typeImage.setCreationDate(new Date());
-        typeImage.setModificationDate(new Date());
+    typeImage.setIdTypeImage(1);
+    typeImage.setName(name);
+    typeImage.setCreationDate(new Date());
+    typeImage.setModificationDate(new Date());
 
-        return typeImage;
-    }
+    return typeImage;
+  }
 
-    private TypeImage createSampleTypeImageWithNull() {
+  private TypeImage createSampleTypeImageWithNull() {
 
-        TypeImage typeImage = new TypeImage();
+    TypeImage typeImage = new TypeImage();
 
-        typeImage.setIdTypeImage(1);
-        typeImage.setName(null);
-        typeImage.setCreationDate(null);
-        typeImage.setModificationDate(null);
+    typeImage.setIdTypeImage(1);
+    typeImage.setName(null);
+    typeImage.setCreationDate(null);
+    typeImage.setModificationDate(null);
 
-        return typeImage;
-    }
+    return typeImage;
+  }
 
-    private TypeImageDTO createSampleTypeImageDTO() {
+  private TypeImagedto createSampleTypeImageDTO() {
 
-        TypeImageDTO typeImageDTO = new TypeImageDTO();
+    TypeImagedto typeImageDTO = new TypeImagedto();
 
-        typeImageDTO.setIdTypeImage(1);
-        typeImageDTO.setName(name);
-        typeImageDTO.setCreationDate(new Date());
-        typeImageDTO.setModificationDate(new Date());
+    typeImageDTO.setIdTypeImage(1);
+    typeImageDTO.setName(name);
+    typeImageDTO.setCreationDate(new Date());
+    typeImageDTO.setModificationDate(new Date());
 
-        return typeImageDTO;
-    }
+    return typeImageDTO;
+  }
 
-    private TypeImageDTO createSampleTypeImageDTOWithNull() {
+  private TypeImagedto createSampleTypeImageDTOWithNull() {
 
-        TypeImageDTO typeImageDTO = new TypeImageDTO();
+    TypeImagedto typeImageDTO = new TypeImagedto();
 
-        typeImageDTO.setIdTypeImage(1);
-        typeImageDTO.setName(null);
-        typeImageDTO.setCreationDate(null);
-        typeImageDTO.setModificationDate(null);
+    typeImageDTO.setIdTypeImage(1);
+    typeImageDTO.setName(null);
+    typeImageDTO.setCreationDate(null);
+    typeImageDTO.setModificationDate(null);
 
-        return typeImageDTO;
-    }
+    return typeImageDTO;
+  }
 
-    @Test
-    void testGetInstanceReturnsInstanceOfTypeImageConvert() {
+  @Test
+  void testGetInstanceReturnsInstanceOfTypeImageConvert() {
 
-        TypeImageConvert typeImageConvert = TypeImageConvert.getInstance();
+    TypeImageConvert typeImageConvert = TypeImageConvert.getInstance();
 
-        assertNotNull(typeImageConvert);
-        assertInstanceOf(TypeImageConvert.class, typeImageConvert);
-    }
+    assertNotNull(typeImageConvert);
+    assertInstanceOf(TypeImageConvert.class, typeImageConvert);
+  }
 
-    @Test
-    void testConvertTypeImageToTypeImageDTO() {
+  @Test
+  void testConvertTypeImageToTypeImageDTO() {
 
-        TypeImage typeImage = createSampleTypeImage();
-        TypeImageDTO typeImageDTO = typeImageConvert.convertEntityToDto(typeImage);
+    TypeImage typeImage = createSampleTypeImage();
+    TypeImagedto typeImageDTO = typeImageConvert.convertEntityToDto(typeImage);
 
-        assertSame(1, typeImageDTO.getIdTypeImage());
-        assertSame(name, typeImageDTO.getName());
-        assertSame(typeImage.getCreationDate(), typeImageDTO.getCreationDate());
-        assertSame(typeImage.getModificationDate(), typeImageDTO.getModificationDate());
-    }
+    assertSame(1, typeImageDTO.getIdTypeImage());
+    assertSame(name, typeImageDTO.getName());
+    assertSame(typeImage.getCreationDate(), typeImageDTO.getCreationDate());
+    assertSame(typeImage.getModificationDate(), typeImageDTO.getModificationDate());
+  }
 
-    @Test
-    void testConvertTypeImageToTypeImageDTOWithNull() {
+  @Test
+  void testConvertTypeImageToTypeImageDTOWithNull() {
 
-        TypeImage typeImage = createSampleTypeImageWithNull();
-        TypeImageDTO typeImageDTO = typeImageConvert.convertEntityToDto(typeImage);
+    TypeImage typeImage = createSampleTypeImageWithNull();
+    TypeImagedto typeImageDTO = typeImageConvert.convertEntityToDto(typeImage);
 
-        assertSame(1, typeImageDTO.getIdTypeImage());
-        assertNull(typeImageDTO.getName());
-        assertNull(typeImageDTO.getCreationDate());
-        assertNull(typeImageDTO.getModificationDate());
-    }
+    assertSame(1, typeImageDTO.getIdTypeImage());
+    assertNull(typeImageDTO.getName());
+    assertNull(typeImageDTO.getCreationDate());
+    assertNull(typeImageDTO.getModificationDate());
+  }
 
-    @Test
-    void testConvertTypeImageDTOToTypeImage() {
+  @Test
+  void testConvertTypeImageDTOToTypeImage() {
 
-        TypeImageDTO typeImageDTO = createSampleTypeImageDTO();
-        TypeImage typeImage = typeImageConvert.convertDtoToEntity(typeImageDTO);
+    TypeImagedto typeImageDTO = createSampleTypeImageDTO();
+    TypeImage typeImage = typeImageConvert.convertDtoToEntity(typeImageDTO);
 
-        assertSame(1, typeImage.getIdTypeImage());
-        assertSame(name, typeImage.getName());
-        assertSame(typeImageDTO.getCreationDate(), typeImage.getCreationDate());
-        assertSame(typeImageDTO.getModificationDate(), typeImage.getModificationDate());
-    }
+    assertSame(1, typeImage.getIdTypeImage());
+    assertSame(name, typeImage.getName());
+    assertSame(typeImageDTO.getCreationDate(), typeImage.getCreationDate());
+    assertSame(typeImageDTO.getModificationDate(), typeImage.getModificationDate());
+  }
 
-    @Test
-    void testConvertTypeImageDTOToTypeImageWithNull() {
+  @Test
+  void testConvertTypeImageDTOToTypeImageWithNull() {
 
-        TypeImageDTO typeImageDTO = createSampleTypeImageDTOWithNull();
-        TypeImage typeImage = typeImageConvert.convertDtoToEntity(typeImageDTO);
+    TypeImagedto typeImageDTO = createSampleTypeImageDTOWithNull();
+    TypeImage typeImage = typeImageConvert.convertDtoToEntity(typeImageDTO);
 
-        assertSame(1, typeImage.getIdTypeImage());
-        assertNull(typeImage.getName());
-        assertNull(typeImage.getCreationDate());
-        assertNull(typeImage.getModificationDate());
-    }
+    assertSame(1, typeImage.getIdTypeImage());
+    assertNull(typeImage.getName());
+    assertNull(typeImage.getCreationDate());
+    assertNull(typeImage.getModificationDate());
+  }
 
-    @Test
-    void testConvertListTypeImageToListTypeImageDTO() {
+  @Test
+  void testConvertListTypeImageToListTypeImageDTO() {
 
-        List<TypeImage> typeImageList = List.of(createSampleTypeImage(), createSampleTypeImage());
-        List<TypeImageDTO> typeImageDTOList = typeImageConvert.convertListEntityToListDto(typeImageList);
+    List<TypeImage> typeImageList = List.of(createSampleTypeImage(), createSampleTypeImage());
+    List<TypeImagedto> typeImagedtoList = typeImageConvert.convertListEntityToListDto(typeImageList);
 
-        assertSame(1, typeImageDTOList.get(0).getIdTypeImage());
-        assertSame(1, typeImageDTOList.get(1).getIdTypeImage());
-        assertSame(name, typeImageDTOList.get(0).getName());
-        assertSame(name, typeImageDTOList.get(1).getName());
-        assertSame(typeImageList.get(0).getCreationDate(), typeImageDTOList.get(0).getCreationDate());
-        assertSame(typeImageList.get(1).getCreationDate(), typeImageDTOList.get(1).getCreationDate());
-        assertSame(typeImageList.get(0).getModificationDate(), typeImageDTOList.get(0).getModificationDate());
-        assertSame(typeImageList.get(1).getModificationDate(), typeImageDTOList.get(1).getModificationDate());
-    }
+    assertSame(1, typeImagedtoList.get(0).getIdTypeImage());
+    assertSame(1, typeImagedtoList.get(1).getIdTypeImage());
+    assertSame(name, typeImagedtoList.get(0).getName());
+    assertSame(name, typeImagedtoList.get(1).getName());
+    assertSame(typeImageList.get(0).getCreationDate(), typeImagedtoList.get(0).getCreationDate());
+    assertSame(typeImageList.get(1).getCreationDate(), typeImagedtoList.get(1).getCreationDate());
+    assertSame(typeImageList.get(0).getModificationDate(), typeImagedtoList.get(0).getModificationDate());
+    assertSame(typeImageList.get(1).getModificationDate(), typeImagedtoList.get(1).getModificationDate());
+  }
 
-    @Test
-    void testConvertListTypeImageToListTypeImageDTOWithNull() {
+  @Test
+  void testConvertListTypeImageToListTypeImageDTOWithNull() {
 
-        List<TypeImage> typeImageList = List.of(createSampleTypeImageWithNull(), createSampleTypeImageWithNull());
-        List<TypeImageDTO> typeImageDTOList = typeImageConvert.convertListEntityToListDto(typeImageList);
+    List<TypeImage> typeImageList = List.of(createSampleTypeImageWithNull(), createSampleTypeImageWithNull());
+    List<TypeImagedto> typeImagedtoList = typeImageConvert.convertListEntityToListDto(typeImageList);
 
-        assertSame(1, typeImageDTOList.get(0).getIdTypeImage());
-        assertSame(1, typeImageDTOList.get(1).getIdTypeImage());
-        assertNull(typeImageDTOList.get(0).getName());
-        assertNull(typeImageDTOList.get(1).getName());
-        assertNull(typeImageDTOList.get(0).getCreationDate());
-        assertNull(typeImageDTOList.get(1).getCreationDate());
-        assertNull(typeImageDTOList.get(0).getModificationDate());
-        assertNull(typeImageDTOList.get(1).getModificationDate());
-    }
+    assertSame(1, typeImagedtoList.get(0).getIdTypeImage());
+    assertSame(1, typeImagedtoList.get(1).getIdTypeImage());
+    assertNull(typeImagedtoList.get(0).getName());
+    assertNull(typeImagedtoList.get(1).getName());
+    assertNull(typeImagedtoList.get(0).getCreationDate());
+    assertNull(typeImagedtoList.get(1).getCreationDate());
+    assertNull(typeImagedtoList.get(0).getModificationDate());
+    assertNull(typeImagedtoList.get(1).getModificationDate());
+  }
 
-    @Test
-    void testConvertListTypeImageDTOToListTypeImage() {
+  @Test
+  void testConvertListTypeImageDTOToListTypeImage() {
 
-        List<TypeImageDTO> typeImageDTOList = List.of(createSampleTypeImageDTO(), createSampleTypeImageDTO());
-        List<TypeImage> typeImageList = typeImageConvert.convertListDtoToListEntity(typeImageDTOList);
+    List<TypeImagedto> typeImagedtoList = List.of(createSampleTypeImageDTO(), createSampleTypeImageDTO());
+    List<TypeImage> typeImageList = typeImageConvert.convertListDtoToListEntity(typeImagedtoList);
 
-        assertSame(1, typeImageList.get(0).getIdTypeImage());
-        assertSame(1, typeImageList.get(1).getIdTypeImage());
-        assertSame(name, typeImageList.get(0).getName());
-        assertSame(name, typeImageList.get(1).getName());
-        assertSame(typeImageDTOList.get(0).getCreationDate(), typeImageList.get(0).getCreationDate());
-        assertSame(typeImageDTOList.get(1).getCreationDate(), typeImageList.get(1).getCreationDate());
-        assertSame(typeImageDTOList.get(0).getModificationDate(), typeImageList.get(0).getModificationDate());
-        assertSame(typeImageDTOList.get(1).getModificationDate(), typeImageList.get(1).getModificationDate());
-    }
+    assertSame(1, typeImageList.get(0).getIdTypeImage());
+    assertSame(1, typeImageList.get(1).getIdTypeImage());
+    assertSame(name, typeImageList.get(0).getName());
+    assertSame(name, typeImageList.get(1).getName());
+    assertSame(typeImagedtoList.get(0).getCreationDate(), typeImageList.get(0).getCreationDate());
+    assertSame(typeImagedtoList.get(1).getCreationDate(), typeImageList.get(1).getCreationDate());
+    assertSame(typeImagedtoList.get(0).getModificationDate(), typeImageList.get(0).getModificationDate());
+    assertSame(typeImagedtoList.get(1).getModificationDate(), typeImageList.get(1).getModificationDate());
+  }
 
-    @Test
-    void testConvertListTypeImageDTOToListTypeImageWithNull() {
+  @Test
+  void testConvertListTypeImageDTOToListTypeImageWithNull() {
 
-        List<TypeImageDTO> typeImageDTOList = List.of(createSampleTypeImageDTOWithNull(), createSampleTypeImageDTOWithNull());
-        List<TypeImage> typeImageList = typeImageConvert.convertListDtoToListEntity(typeImageDTOList);
+    List<TypeImagedto> typeImagedtoList = List.of(createSampleTypeImageDTOWithNull(), createSampleTypeImageDTOWithNull());
+    List<TypeImage> typeImageList = typeImageConvert.convertListDtoToListEntity(typeImagedtoList);
 
-        assertSame(1, typeImageList.get(0).getIdTypeImage());
-        assertSame(1, typeImageList.get(1).getIdTypeImage());
-        assertNull(typeImageList.get(0).getName());
-        assertNull(typeImageList.get(1).getName());
-        assertNull(typeImageList.get(0).getCreationDate());
-        assertNull(typeImageList.get(1).getCreationDate());
-        assertNull(typeImageList.get(0).getModificationDate());
-        assertNull(typeImageList.get(1).getModificationDate());
-    }
+    assertSame(1, typeImageList.get(0).getIdTypeImage());
+    assertSame(1, typeImageList.get(1).getIdTypeImage());
+    assertNull(typeImageList.get(0).getName());
+    assertNull(typeImageList.get(1).getName());
+    assertNull(typeImageList.get(0).getCreationDate());
+    assertNull(typeImageList.get(1).getCreationDate());
+    assertNull(typeImageList.get(0).getModificationDate());
+    assertNull(typeImageList.get(1).getModificationDate());
+  }
 }

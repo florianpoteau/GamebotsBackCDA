@@ -1,10 +1,10 @@
 package co.simplon.gamebotsback.unit.business.service;
 
-import co.simplon.gamebotsback.business.dto.UserDTO;
+import co.simplon.gamebotsback.business.dto.Userdto;
 import co.simplon.gamebotsback.business.service.user.UserServiceImpl;
 import co.simplon.gamebotsback.persistance.entity.Image;
 import co.simplon.gamebotsback.persistance.entity.User;
-import co.simplon.gamebotsback.persistance.repository.user.IUserRepository;
+import co.simplon.gamebotsback.persistance.repository.user.Iuserrepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,127 +24,125 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
 
-    @InjectMocks
-    private UserServiceImpl userService;
+  User existingUser = new User();
+  int userId = 1;
+  Userdto modifiedUserdto = new Userdto();
+  @InjectMocks
+  private UserServiceImpl userService;
+  @Mock
+  private Iuserrepository iUserRepository;
 
-    @Mock
-    private IUserRepository iUserRepository;
+  @Test
+  @DisplayName("Test d'ajout d'un nouvel utilisateur")
+  void createAccount() {
 
-    User existingUser = new User();
-    int userId = 1;
-    UserDTO modifiedUserDTO = new UserDTO();
+    when(iUserRepository.save(any(User.class))).thenReturn(null);
 
-    @Test
-    @DisplayName("Test d'ajout d'un nouvel utilisateur")
-    void createAccount() {
+    userService.createAccount(new Userdto());
 
-        when(iUserRepository.save(any(User.class))).thenReturn(null);
+    verify(iUserRepository, times(1)).save(any(User.class));
+  }
 
-        userService.createAccount(new UserDTO());
+  @Test
+  @DisplayName("Test de récupération d'un jeu par son id")
+  void testGetById() {
 
-        verify(iUserRepository, times(1)).save(any(User.class));
-    }
+    existingUser.setIdUser(userId);
 
-    @Test
-    @DisplayName("Test de récupération d'un jeu par son id")
-    void testGetById() {
+    when(iUserRepository.findById(userId)).thenReturn(Optional.of(existingUser));
+    Userdto userDTO = userService.getById(userId);
 
-        existingUser.setIdUser(userId);
+    verify(iUserRepository, times(1)).findById(userId);
+    assertNotNull(userDTO, "UserDTO attendu dans la liste");
+    assertEquals(userId, userDTO.getIdUser(), "UserDTO attendu dans la liste");
+  }
 
-        when(iUserRepository.findById(userId)).thenReturn(Optional.of(existingUser));
-        UserDTO userDTO = userService.getById(userId);
+  @Test
+  @DisplayName("Test de récupération d'un jeu par son id - jeu non trouvé")
+  void testGetByIdWhenUserDoesNotExist() {
 
-        verify(iUserRepository, times(1)).findById(userId);
-        assertNotNull(userDTO, "UserDTO attendu dans la liste");
-        assertEquals(userId, userDTO.getIdUser(), "UserDTO attendu dans la liste");
-    }
+    when(iUserRepository.findById(userId)).thenReturn(Optional.empty());
+    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> userService.getById(userId));
 
-    @Test
-    @DisplayName("Test de récupération d'un jeu par son id - jeu non trouvé")
-    void testGetByIdWhenUserDoesNotExist() {
+    assertEquals(ERRORMESSAGE + userId, exception.getMessage(), "Le message d'erreur doit être correct");
+    verify(iUserRepository, times(1)).findById(userId);
+  }
 
-        when(iUserRepository.findById(userId)).thenReturn(Optional.empty());
-        EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () ->  userService.getById(userId));
+  @Test
+  @DisplayName("Test de modification d'un utilisateur existant")
+  void testModifyAccount() {
 
-        assertEquals(ERRORMESSAGE + userId, exception.getMessage(), "Le message d'erreur doit être correct");
-        verify(iUserRepository, times(1)).findById(userId);
-    }
+    existingUser.setIdUser(userId);
+    modifiedUserdto.setIdUser(userId);
+    modifiedUserdto.setUsername("leGamerzzz");
+    modifiedUserdto.setPhone("1234567890");
+    modifiedUserdto.setEmail("leGamerzzz@gmail.com");
+    modifiedUserdto.setPassword("*****");
+    modifiedUserdto.setCreationDate(new Date());
+    modifiedUserdto.setModificationDate(new Date());
+    modifiedUserdto.setImage(new Image());
 
-    @Test
-    @DisplayName("Test de modification d'un utilisateur existant")
-    void testModifyAccount() {
+    when(iUserRepository.findById(userId)).thenReturn(Optional.of(existingUser));
+    when(iUserRepository.save(any(User.class))).thenReturn(existingUser);
+    Userdto modifiedUser = userService.modifyAccount(userId, modifiedUserdto);
 
-        existingUser.setIdUser(userId);
-        modifiedUserDTO.setIdUser(userId);
-        modifiedUserDTO.setUsername("leGamerzzz");
-        modifiedUserDTO.setPhone("1234567890");
-        modifiedUserDTO.setEmail("leGamerzzz@gmail.com");
-        modifiedUserDTO.setPassword("*****");
-        modifiedUserDTO.setCreationDate(new Date());
-        modifiedUserDTO.setModificationDate(new Date());
-        modifiedUserDTO.setImage(new Image());
+    verify(iUserRepository, times(1)).findById(userId);
+    verify(iUserRepository, times(1)).save(any(User.class));
+    assertNotNull(modifiedUser, "L'utilisateur modifié ne doit pas être null");
+    assertEquals(modifiedUserdto.getIdUser(), modifiedUser.getIdUser());
+    assertEquals(modifiedUserdto.getUsername(), modifiedUser.getUsername());
+    assertEquals(modifiedUserdto.getPhone(), modifiedUser.getPhone());
+    assertEquals(modifiedUserdto.getEmail(), modifiedUser.getEmail());
+    assertEquals(modifiedUserdto.getPassword(), modifiedUser.getPassword());
+    assertEquals(modifiedUserdto.getCreationDate(), modifiedUser.getCreationDate());
+    assertEquals(modifiedUserdto.getModificationDate(), modifiedUser.getModificationDate());
+    assertEquals(modifiedUserdto.getImage(), modifiedUser.getImage());
+  }
 
-        when(iUserRepository.findById(userId)).thenReturn(Optional.of(existingUser));
-        when(iUserRepository.save(any(User.class))).thenReturn(existingUser);
-        UserDTO modifiedUser = userService.modifyAccount(userId, modifiedUserDTO);
+  @Test
+  @DisplayName("Test de modification d'un utilisateur existant - utilisateur non trouvé")
+  void testModifyAccountNotFound() {
 
-        verify(iUserRepository, times(1)).findById(userId);
-        verify(iUserRepository, times(1)).save(any(User.class));
-        assertNotNull(modifiedUser,"L'utilisateur modifié ne doit pas être null");
-        assertEquals(modifiedUserDTO.getIdUser(), modifiedUser.getIdUser());
-        assertEquals(modifiedUserDTO.getUsername(), modifiedUser.getUsername());
-        assertEquals(modifiedUserDTO.getPhone(), modifiedUser.getPhone());
-        assertEquals(modifiedUserDTO.getEmail(), modifiedUser.getEmail());
-        assertEquals(modifiedUserDTO.getPassword(), modifiedUser.getPassword());
-        assertEquals(modifiedUserDTO.getCreationDate(), modifiedUser.getCreationDate());
-        assertEquals(modifiedUserDTO.getModificationDate(), modifiedUser.getModificationDate());
-        assertEquals(modifiedUserDTO.getImage(), modifiedUser.getImage());
-    }
+    modifiedUserdto.setIdUser(userId);
+    modifiedUserdto.setUsername("leGamerzzz");
+    modifiedUserdto.setPhone("1234567890");
+    modifiedUserdto.setEmail("leGamerzzz@gmail.com");
+    modifiedUserdto.setPassword("*****");
+    modifiedUserdto.setCreationDate(new Date());
+    modifiedUserdto.setModificationDate(new Date());
+    modifiedUserdto.setImage(new Image());
 
-    @Test
-    @DisplayName("Test de modification d'un utilisateur existant - utilisateur non trouvé")
-    void testModifyAccountNotFound() {
+    when(iUserRepository.findById(userId)).thenReturn(Optional.empty());
+    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> userService.modifyAccount(userId, modifiedUserdto));
 
-        modifiedUserDTO.setIdUser(userId);
-        modifiedUserDTO.setUsername("leGamerzzz");
-        modifiedUserDTO.setPhone("1234567890");
-        modifiedUserDTO.setEmail("leGamerzzz@gmail.com");
-        modifiedUserDTO.setPassword("*****");
-        modifiedUserDTO.setCreationDate(new Date());
-        modifiedUserDTO.setModificationDate(new Date());
-        modifiedUserDTO.setImage(new Image());
+    assertEquals(UserServiceImpl.ERRORMESSAGE + userId, exception.getMessage(), "Le message d'erreur doit être correct");
+    verify(iUserRepository, times(1)).findById(userId);
+    verify(iUserRepository, never()).save(any(User.class));
+  }
 
-        when(iUserRepository.findById(userId)).thenReturn(Optional.empty());
-        EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> userService.modifyAccount(userId, modifiedUserDTO));
+  @Test
+  @DisplayName("Test de suppression d'un utilisateur par son ID")
+  void testDeleteAccount() {
 
-        assertEquals(UserServiceImpl.ERRORMESSAGE + userId, exception.getMessage(), "Le message d'erreur doit être correct");
-        verify(iUserRepository, times(1)).findById(userId);
-        verify(iUserRepository, never()).save(any(User.class));
-    }
+    existingUser.setIdUser(userId);
 
-    @Test
-    @DisplayName("Test de suppression d'un utilisateur par son ID")
-    void testDeleteAccount() {
+    when(iUserRepository.findById(userId)).thenReturn(Optional.of(existingUser));
+    userService.deleteAccount(userId);
 
-        existingUser.setIdUser(userId);
+    verify(iUserRepository, times(1)).findById(userId);
+    verify(iUserRepository, times(1)).deleteById(any(Integer.class));
+  }
 
-        when(iUserRepository.findById(userId)).thenReturn(Optional.of(existingUser));
-        userService.deleteAccount(userId);
+  @Test
+  @DisplayName("Test de suppression d'un utilisateur par son ID - utilisateur non trouvé")
+  void testDeleteAccountNotFound() {
 
-        verify(iUserRepository, times(1)).findById(userId);
-        verify(iUserRepository, times(1)).deleteById(any(Integer.class));
-    }
+    when(iUserRepository.findById(userId)).thenReturn(Optional.empty());
+    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> userService.deleteAccount(userId));
 
-    @Test
-    @DisplayName("Test de suppression d'un utilisateur par son ID - utilisateur non trouvé")
-    void testDeleteAccountNotFound() {
-
-        when(iUserRepository.findById(userId)).thenReturn(Optional.empty());
-        EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> userService.deleteAccount(userId));
-
-        assertEquals(UserServiceImpl.ERRORMESSAGE + userId, exception.getMessage(), "Le message d'erreur doit être correct");
-        verify(iUserRepository, times(1)).findById(userId);
-        verify(iUserRepository, never()).deleteById(any(Integer.class));
-    }
+    assertEquals(UserServiceImpl.ERRORMESSAGE + userId, exception.getMessage(), "Le message d'erreur doit être correct");
+    verify(iUserRepository, times(1)).findById(userId);
+    verify(iUserRepository, never()).deleteById(any(Integer.class));
+  }
 
 }

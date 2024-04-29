@@ -1,72 +1,43 @@
-package co.simplon.gamebotsback.persistance.entity;
+package co.simplon.gamebotsback.business.dto;
 
-import jakarta.persistence.Basic;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import co.simplon.gamebotsback.persistance.entity.Game;
+import co.simplon.gamebotsback.persistance.entity.User;
 
 import java.util.Date;
 
 /**
- * Represents a Conversation entity in the persistence layer.
- * This class is mapped to the "conversations" table in the database.
+ * This class represents a dto for a conversation.
  */
-@Entity
-@Table(name = "conversations")
-public class Conversation {
+public class Conversationdto {
 
-  /**
-   * The maximum length for string fields in the Conversation entity.
-   */
-  private static final int LENGTH = 50;
   /**
    * The unique identifier of the conversation.
    */
-  @Id
-  @Column(name = "id_conversation")
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int idConversation;
 
   /**
    * The name of the conversation.
    */
-  @Basic
-  @Column(name = "name", length = LENGTH)
   private String name;
 
   /**
    * The creation date of the conversation.
    */
-  @Temporal(TemporalType.DATE)
-  @Column(name = "creation_date")
   private Date creationDate;
 
   /**
    * The modification date of the conversation.
    */
-  @Temporal(TemporalType.DATE)
-  @Column(name = "modification_date")
   private Date modificationDate;
 
   /**
    * The user associated with the conversation.
    */
-  @ManyToOne
-  @JoinColumn(name = "id_user")
   private User user;
 
   /**
    * The game associated with the conversation.
    */
-  @ManyToOne
-  @JoinColumn(name = "id_game")
   private Game game;
 
   /**

@@ -11,36 +11,36 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.simplon.gamebotsback.business.dto.MessageDTO;
-import co.simplon.gamebotsback.business.service.message.IMessageService;
+import co.simplon.gamebotsback.business.dto.Messagedto;
+import co.simplon.gamebotsback.business.service.message.Imessageservice;
 
 @RestController
 public class GetAllMessageByIdConversationController {
 
-    private final IMessageService messageService;
+  private final Imessageservice messageService;
 
-    /**
-     * Constructs a new GetAllMessageByIdConversationController with the specified
-     * message service.
-     *
-     * @param messageService The message service used to retrieve all messages by
-     *                       conversation ID.
-     */
-    @Autowired
-    public GetAllMessageByIdConversationController(IMessageService messageService) {
-        this.messageService = messageService;
-    }
+  /**
+   * Constructs a new GetAllMessageByIdConversationController with the specified
+   * message service.
+   *
+   * @param messageService The message service used to retrieve all messages by
+   *                       conversation ID.
+   */
+  @Autowired
+  public GetAllMessageByIdConversationController(Imessageservice messageService) {
+    this.messageService = messageService;
+  }
 
-    /**
-     * Handles HTTP GET requests to fetch all messages by conversation ID.
-     *
-     * @param id The ID of the conversation for which messages are to be retrieved.
-     * @return A list of MessageDTO objects representing all messages associated
-     *         with the specified conversation ID.
-     */
-    @GetMapping("/conversations/{id}/messages")
-    List<MessageDTO> findAllMessagesByIdConversation(@PathVariable int id) {
-        return messageService.getAllMessageConversation(id);
-    }
+  /**
+   * Handles HTTP GET requests to fetch all messages by conversation ID.
+   *
+   * @param id The ID of the conversation for which messages are to be retrieved.
+   * @return A list of MessageDTO objects representing all messages associated
+   * with the specified conversation ID.
+   */
+  @GetMapping("/conversations/{id}/messages")
+  List<Messagedto> findAllMessagesByIdConversation(@PathVariable int id) {
+    return messageService.getAllMessageConversation(id);
+  }
 
 }

@@ -4,8 +4,8 @@
  */
 package co.simplon.gamebotsback.presentation.controller.user;
 
-import co.simplon.gamebotsback.business.dto.UserDTO;
-import co.simplon.gamebotsback.business.service.user.IUserService;
+import co.simplon.gamebotsback.business.dto.Userdto;
+import co.simplon.gamebotsback.business.service.user.Iuserservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,25 +14,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CreateUserAccountController {
 
-    private final IUserService userService;
+  private final Iuserservice userService;
 
-    /**
-     * Constructor for the CreateUserAccountController.
-     *
-     * @param userService The UserService used to create user accounts.
-     */
-    @Autowired
-    public CreateUserAccountController(IUserService userService) {
-        this.userService = userService;
-    }
+  /**
+   * Constructor for the CreateUserAccountController.
+   *
+   * @param userService The UserService used to create user accounts.
+   */
+  @Autowired
+  public CreateUserAccountController(Iuserservice userService) {
+    this.userService = userService;
+  }
 
-    /**
-     * Handles a POST request to create a new user account.
-     *
-     * @param userDTO The UserDTO object containing the user data to be used for account creation.
-     */
-    @PostMapping("/users")
-    public void createAccount(@RequestBody UserDTO userDTO) {
-        userService.createAccount(userDTO);
-    }
+  /**
+   * Handles a POST request to create a new user account.
+   *
+   * @param userDTO The UserDTO object containing the user data to be used for account creation.
+   */
+  @PostMapping("/users")
+  public void createAccount(@RequestBody Userdto userDTO) {
+    userService.createAccount(userDTO);
+  }
 }

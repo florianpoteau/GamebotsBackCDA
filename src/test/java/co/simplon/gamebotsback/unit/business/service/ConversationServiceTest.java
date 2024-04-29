@@ -11,10 +11,10 @@ import java.util.Optional;
 
 import co.simplon.gamebotsback.business.service.conversation.ConversationServiceImpl;
 import co.simplon.gamebotsback.persistance.entity.Conversation;
-import co.simplon.gamebotsback.business.dto.ConversationDTO;
+import co.simplon.gamebotsback.business.dto.Conversationdto;
 import co.simplon.gamebotsback.persistance.entity.Game;
 import co.simplon.gamebotsback.persistance.entity.User;
-import co.simplon.gamebotsback.persistance.repository.conversation.IConversationRepository;
+import co.simplon.gamebotsback.persistance.repository.conversation.Iconversationrepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,145 +23,143 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-    @ExtendWith(MockitoExtension.class)
-    class ConversationServiceTest {
+@ExtendWith(MockitoExtension.class)
+class ConversationServiceTest {
 
-        @InjectMocks
-        private ConversationServiceImpl conversationService;
+  int conversationId = 1;
+  Conversation existingConversation = new Conversation();
+  Conversationdto modifiedConversationdto = new Conversationdto();
+  @InjectMocks
+  private ConversationServiceImpl conversationService;
+  @Mock
+  private Iconversationrepository iConversationRepository;
 
-        @Mock
-        private IConversationRepository iConversationRepository;
+  @Test
+  @DisplayName("Test d'ajout d'une nouvelle conversation")
+  void testAddNewConversation() {
 
-        int conversationId = 1;
-        Conversation existingConversation = new Conversation();
-        ConversationDTO modifiedConversationDTO = new ConversationDTO();
+    when(iConversationRepository.save(any(Conversation.class))).thenReturn(null);
 
-        @Test
-        @DisplayName("Test d'ajout d'une nouvelle conversation")
-        void testAddNewConversation() {
+    conversationService.addNewConversation(new Conversationdto());
 
-            when(iConversationRepository.save(any(Conversation.class))).thenReturn(null);
+    verify(iConversationRepository, times(1)).save(any(Conversation.class));
+  }
 
-            conversationService.addNewConversation(new ConversationDTO());
+  @Test
+  @DisplayName("Test de récupération d'une conversation par son ID")
+  void testGetConversationById() {
 
-            verify(iConversationRepository, times(1)).save(any(Conversation.class));
-        }
+    existingConversation.setIdConversation(conversationId);
 
-        @Test
-        @DisplayName("Test de récupération d'une conversation par son ID")
-        void testGetConversationById() {
+    when(iConversationRepository.findById(conversationId)).thenReturn(Optional.of(existingConversation));
+    Conversationdto conversationDTO = conversationService.getById(conversationId);
 
-            existingConversation.setIdConversation(conversationId);
+    verify(iConversationRepository, times(1)).findById(conversationId);
+    assertNotNull(conversationDTO, "La conversation retournée ne doit pas être nulle");
+    assertEquals(conversationId, conversationDTO.getIdConversation(), "L'ID de la conversation retournée doit être celui attendu");
+  }
 
-            when(iConversationRepository.findById(conversationId)).thenReturn(Optional.of(existingConversation));
-            ConversationDTO conversationDTO = conversationService.getById(conversationId);
+  @Test
+  @DisplayName("Test de récupération d'une conversation par son ID - conversation non trouvée")
+  void testGetConversationByIdNotFound() {
 
-            verify(iConversationRepository, times(1)).findById(conversationId);
-            assertNotNull(conversationDTO, "La conversation retournée ne doit pas être nulle");
-            assertEquals(conversationId, conversationDTO.getIdConversation(),"L'ID de la conversation retournée doit être celui attendu");
-        }
+    when(iConversationRepository.findById(conversationId)).thenReturn(Optional.empty());
+    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> conversationService.getById(conversationId));
 
-        @Test
-        @DisplayName("Test de récupération d'une conversation par son ID - conversation non trouvée")
-        void testGetConversationByIdNotFound() {
+    assertEquals(ERRORMESSAGE + conversationId, exception.getMessage(), "Le message d'erreur doit être correct");
+    verify(iConversationRepository, times(1)).findById(conversationId);
+  }
 
-            when(iConversationRepository.findById(conversationId)).thenReturn(Optional.empty());
-            EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> conversationService.getById(conversationId));
+  @Test
+  @DisplayName("Test de modification d'une conversation existante")
+  void testModifyConversation() {
 
-            assertEquals(ERRORMESSAGE + conversationId, exception.getMessage(), "Le message d'erreur doit être correct");
-            verify(iConversationRepository, times(1)).findById(conversationId);
-        }
+    existingConversation.setIdConversation(conversationId);
+    modifiedConversationdto.setIdConversation(conversationId);
+    modifiedConversationdto.setName("Modified Conversation");
+    modifiedConversationdto.setCreationDate(new Date());
+    modifiedConversationdto.setModificationDate(new Date());
+    modifiedConversationdto.setUser(new User());
+    modifiedConversationdto.setGame(new Game());
 
-        @Test
-        @DisplayName("Test de modification d'une conversation existante")
-        void testModifyConversation() {
+    when(iConversationRepository.findById(conversationId)).thenReturn(Optional.of(existingConversation));
+    when(iConversationRepository.save(any(Conversation.class))).thenReturn(existingConversation);
+    Conversationdto modifiedConversation = conversationService.modifyConversation(conversationId, modifiedConversationdto);
 
-            existingConversation.setIdConversation(conversationId);
-            modifiedConversationDTO.setIdConversation(conversationId);
-            modifiedConversationDTO.setName("Modified Conversation");
-            modifiedConversationDTO.setCreationDate(new Date());
-            modifiedConversationDTO.setModificationDate(new Date());
-            modifiedConversationDTO.setUser(new User());
-            modifiedConversationDTO.setGame(new Game());
+    verify(iConversationRepository, times(1)).findById(conversationId);
+    verify(iConversationRepository, times(1)).save(any(Conversation.class));
+    assertNotNull(modifiedConversation, "La conversation modifiée ne doit pas être nulle");
+    assertEquals(modifiedConversationdto.getIdConversation(), modifiedConversation.getIdConversation());
+    assertEquals(modifiedConversationdto.getName(), modifiedConversation.getName());
+    assertEquals(modifiedConversationdto.getCreationDate(), modifiedConversation.getCreationDate());
+    assertEquals(modifiedConversationdto.getModificationDate(), modifiedConversation.getModificationDate());
+    assertEquals(modifiedConversationdto.getUser(), modifiedConversation.getUser());
+    assertEquals(modifiedConversationdto.getGame(), modifiedConversation.getGame());
+  }
 
-            when(iConversationRepository.findById(conversationId)).thenReturn(Optional.of(existingConversation));
-            when(iConversationRepository.save(any(Conversation.class))).thenReturn(existingConversation);
-            ConversationDTO modifiedConversation = conversationService.modifyConversation(conversationId, modifiedConversationDTO);
+  @Test
+  @DisplayName("Test de modification d'une conversation existante - conversation non trouvée")
+  void testModifyConversationNotFound() {
 
-            verify(iConversationRepository, times(1)).findById(conversationId);
-            verify(iConversationRepository, times(1)).save(any(Conversation.class));
-            assertNotNull(modifiedConversation,"La conversation modifiée ne doit pas être nulle");
-            assertEquals(modifiedConversationDTO.getIdConversation(), modifiedConversation.getIdConversation());
-            assertEquals(modifiedConversationDTO.getName(), modifiedConversation.getName());
-            assertEquals(modifiedConversationDTO.getCreationDate(), modifiedConversation.getCreationDate());
-            assertEquals(modifiedConversationDTO.getModificationDate(), modifiedConversation.getModificationDate());
-            assertEquals(modifiedConversationDTO.getUser(), modifiedConversation.getUser());
-            assertEquals(modifiedConversationDTO.getGame(), modifiedConversation.getGame());
-        }
+    modifiedConversationdto.setIdConversation(conversationId);
+    modifiedConversationdto.setName("Modified Conversation");
+    modifiedConversationdto.setCreationDate(new Date());
+    modifiedConversationdto.setModificationDate(new Date());
+    modifiedConversationdto.setUser(new User());
+    modifiedConversationdto.setGame(new Game());
 
-        @Test
-        @DisplayName("Test de modification d'une conversation existante - conversation non trouvée")
-        void testModifyConversationNotFound() {
+    when(iConversationRepository.findById(conversationId)).thenReturn(Optional.empty());
+    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> conversationService.modifyConversation(conversationId, modifiedConversationdto));
 
-            modifiedConversationDTO.setIdConversation(conversationId);
-            modifiedConversationDTO.setName("Modified Conversation");
-            modifiedConversationDTO.setCreationDate(new Date());
-            modifiedConversationDTO.setModificationDate(new Date());
-            modifiedConversationDTO.setUser(new User());
-            modifiedConversationDTO.setGame(new Game());
+    assertEquals(ERRORMESSAGE + conversationId, exception.getMessage(), "Le message d'erreur doit être correct");
+    verify(iConversationRepository, times(1)).findById(conversationId);
+    verify(iConversationRepository, never()).save(any(Conversation.class));
+  }
 
-            when(iConversationRepository.findById(conversationId)).thenReturn(Optional.empty());
-            EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> conversationService.modifyConversation(conversationId, modifiedConversationDTO));
+  @Test
+  @DisplayName("Test de suppression d'une conversation par son ID")
+  void testDeleteConversation() {
 
-            assertEquals(ERRORMESSAGE + conversationId, exception.getMessage(), "Le message d'erreur doit être correct");
-            verify(iConversationRepository, times(1)).findById(conversationId);
-            verify(iConversationRepository, never()).save(any(Conversation.class));
-        }
+    existingConversation.setIdConversation(conversationId);
 
-        @Test
-        @DisplayName("Test de suppression d'une conversation par son ID")
-        void testDeleteConversation() {
+    when(iConversationRepository.findById(conversationId)).thenReturn(Optional.of(existingConversation));
+    conversationService.deleteConversation(conversationId);
 
-            existingConversation.setIdConversation(conversationId);
+    verify(iConversationRepository, times(1)).findById(conversationId);
+    verify(iConversationRepository, times(1)).deleteById(any(Integer.class));
+  }
 
-            when(iConversationRepository.findById(conversationId)).thenReturn(Optional.of(existingConversation));
-            conversationService.deleteConversation(conversationId);
+  @Test
+  @DisplayName("Test de suppression d'une conversation par son ID - conversation non trouvée")
+  void testDeleteConversationNotFound() {
 
-            verify(iConversationRepository, times(1)).findById(conversationId);
-            verify(iConversationRepository, times(1)).deleteById(any(Integer.class));
-        }
+    when(iConversationRepository.findById(conversationId)).thenReturn(Optional.empty());
+    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> conversationService.deleteConversation(conversationId));
 
-        @Test
-        @DisplayName("Test de suppression d'une conversation par son ID - conversation non trouvée")
-        void testDeleteConversationNotFound() {
+    assertEquals(ERRORMESSAGE + conversationId, exception.getMessage(), "Le message d'erreur doit être correct");
+    verify(iConversationRepository, times(1)).findById(conversationId);
+    verify(iConversationRepository, never()).deleteById(any(Integer.class));
+  }
 
-            when(iConversationRepository.findById(conversationId)).thenReturn(Optional.empty());
-            EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> conversationService.deleteConversation(conversationId));
+  @Test
+  @DisplayName("Test de récupération de toutes les conversations d'un utilisateur")
+  void testGetAllUserConversation() {
 
-            assertEquals(ERRORMESSAGE + conversationId, exception.getMessage(), "Le message d'erreur doit être correct");
-            verify(iConversationRepository, times(1)).findById(conversationId);
-            verify(iConversationRepository, never()).deleteById(any(Integer.class));
-        }
+    when(iConversationRepository.getAllUserConversation(conversationId)).thenReturn(List.of(new Conversation()));
+    List<Conversationdto> conversations = conversationService.getAllUserConversation(1);
 
-        @Test
-        @DisplayName("Test de récupération de toutes les conversations d'un utilisateur")
-        void testGetAllUserConversation() {
+    verify(iConversationRepository, times(1)).getAllUserConversation(1);
+    assertEquals(Conversationdto.class, conversations.get(0).getClass(), "La classe de l'objet de conversation ne correspond pas à la classe attendue");
+  }
 
-            when(iConversationRepository.getAllUserConversation(conversationId)).thenReturn(List.of(new Conversation()));
-            List<ConversationDTO> conversations = conversationService.getAllUserConversation(1);
+  @Test
+  @DisplayName("Test de récupération de toutes les conversations d'un utilisateur pour un jeu donné")
+  void testGetAllUserConversationByGameId() {
 
-            verify(iConversationRepository, times(1)).getAllUserConversation(1);
-            assertEquals(ConversationDTO.class, conversations.get(0).getClass(), "La classe de l'objet de conversation ne correspond pas à la classe attendue");
-        }
+    when(iConversationRepository.getAllUserConversationByGameId(1, 1)).thenReturn(List.of(new Conversation()));
+    List<Conversationdto> conversations = conversationService.getAllUserConversationByGameId(1, 1);
 
-        @Test
-        @DisplayName("Test de récupération de toutes les conversations d'un utilisateur pour un jeu donné")
-        void testGetAllUserConversationByGameId() {
-
-            when(iConversationRepository.getAllUserConversationByGameId(1, 1)).thenReturn(List.of(new Conversation()));
-            List<ConversationDTO> conversations = conversationService.getAllUserConversationByGameId(1, 1);
-
-            verify(iConversationRepository, times(1)).getAllUserConversationByGameId(1, 1);
-            assertEquals(ConversationDTO.class, conversations.get(0).getClass(), "La classe de l'objet de conversation ne correspond pas à la classe attendue");
-        }
-    }
+    verify(iConversationRepository, times(1)).getAllUserConversationByGameId(1, 1);
+    assertEquals(Conversationdto.class, conversations.get(0).getClass(), "La classe de l'objet de conversation ne correspond pas à la classe attendue");
+  }
+}

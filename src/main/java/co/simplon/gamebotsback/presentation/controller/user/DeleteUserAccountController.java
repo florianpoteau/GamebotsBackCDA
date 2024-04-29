@@ -4,7 +4,7 @@
  */
 package co.simplon.gamebotsback.presentation.controller.user;
 
-import co.simplon.gamebotsback.business.service.user.IUserService;
+import co.simplon.gamebotsback.business.service.user.Iuserservice;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,24 +12,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DeleteUserAccountController {
 
-    private final IUserService userService;
+  private final Iuserservice userService;
 
-    /**
-     * Constructor for the DeleteUserAccountController.
-     *
-     * @param userService The UserService used to delete user accounts.
-     */
-    public DeleteUserAccountController(IUserService userService) {
-        this.userService = userService;
-    }
+  /**
+   * Constructor for the DeleteUserAccountController.
+   *
+   * @param userService The UserService used to delete user accounts.
+   */
+  public DeleteUserAccountController(Iuserservice userService) {
+    this.userService = userService;
+  }
 
-    /**
-     * Handles a DELETE request to delete a user account by ID.
-     *
-     * @param id The ID of the user account to be deleted.
-     */
-    @DeleteMapping("/users/{id}")
-    public void deleteUserAccountByID(@PathVariable final int id) {
-        userService.deleteAccount(id);
-    }
+  /**
+   * Handles a DELETE request to delete a user account by ID.
+   *
+   * @param id The ID of the user account to be deleted.
+   */
+  @DeleteMapping("/users/{id}")
+  public void deleteUserAccountByID(@PathVariable final int id) {
+    userService.deleteAccount(id);
+  }
 }
