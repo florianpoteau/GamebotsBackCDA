@@ -49,7 +49,7 @@ public class User {
    * The username of the user.
    */
   @Basic
-  @Column(name = "username", length = LENGTH)
+  @Column(name = "username", length = LENGTH, unique = true)
   private String username;
 
   /**
