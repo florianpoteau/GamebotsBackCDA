@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.simplon.gamebotsback.business.dto.UserDTO;
+import co.simplon.gamebotsback.business.dto.Userdto;
 import co.simplon.gamebotsback.business.service.token.TokenService;
 
 @RestController
@@ -17,7 +17,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody UserDTO userDTO) {
+    public String login(@RequestBody Userdto userDTO) {
 
         // Vérifier si l'objet Authentication est null
         if (userDTO != null && userDTO.getUsername() != null) {
