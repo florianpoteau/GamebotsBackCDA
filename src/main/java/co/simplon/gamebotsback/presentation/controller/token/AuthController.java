@@ -1,3 +1,7 @@
+/**
+ * Controller class for login user
+ * This controller handles HTTP POST requests to login user
+ */
 package co.simplon.gamebotsback.presentation.controller.token;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,10 +16,24 @@ public class AuthController {
 
     private final TokenService tokenService;
 
+    /**
+     * Constructs a new AuthController with the specified TokenService.
+     *
+     * @param tokenService the TokenService used for generating JWT tokens
+     */
     public AuthController(TokenService tokenService) {
         this.tokenService = tokenService;
     }
 
+    /**
+     * Handles a login request by generating a JWT token for the specified user
+     * credentials.
+     *
+     * @param userDTO the user credentials provided in the login request
+     * @return the generated JWT token
+     * @throws IllegalArgumentException if the user credentials are null or
+     *                                  incomplete
+     */
     @PostMapping("/login")
     public String login(@RequestBody Userdto userDTO) {
 

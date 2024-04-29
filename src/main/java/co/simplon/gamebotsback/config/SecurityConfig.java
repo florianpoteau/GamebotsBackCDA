@@ -22,22 +22,42 @@ import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 
+/**
+ * Configuration class for security settings.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
         private final RsaKeyProperties rsaKeys;
 
+        /**
+         * Constructs a new SecurityConfig with the specified RSA key properties.
+         *
+         * @param rsaKeys the RSA key properties containing the public and private keys
+         */
         @Autowired
         public SecurityConfig(RsaKeyProperties rsaKeys) {
                 this.rsaKeys = rsaKeys;
         }
 
+        /**
+         * Creates a PasswordEncoder bean.
+         *
+         * @return a BCryptPasswordEncoder instance
+         */
         @Bean
         public PasswordEncoder passwordEncoder() {
                 return new BCryptPasswordEncoder();
         }
 
+        /**
+         * Configures security filters for HTTP requests.
+         *
+         * @param http the HttpSecurity object to configure
+         * @return a SecurityFilterChain instance
+         * @throws Exception if an error occurs while configuring security
+         */
         @SuppressWarnings({ "deprecation", "removal" })
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -55,11 +75,21 @@ public class SecurityConfig {
                                 .build();
         }
 
+        /**
+         * Creates a JwtDecoder bean for decoding JWT tokens.
+         *
+         * @return a NimbusJwtDecoder instance
+         */
         @Bean
         JwtDecoder jwtDecoder() {
                 return NimbusJwtDecoder.withPublicKey(rsaKeys.publicKey()).build();
         }
 
+        /**
+         * Creates a JwtEncoder bean for encoding JWT tokens.
+         *
+         * @return a NimbusJwtEncoder instance
+         */
         @Bean
         JwtEncoder jwtEncoder() {
                 JWK jwk = new RSAKey.Builder(rsaKeys.publicKey()).privateKey(rsaKeys.privateKey()).build();

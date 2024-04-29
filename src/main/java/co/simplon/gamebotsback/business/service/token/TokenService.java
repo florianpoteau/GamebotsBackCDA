@@ -18,6 +18,15 @@ public class TokenService {
     private final CustomUserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
 
+    /**
+     * Constructs a new TokenService with the specified dependencies.
+     *
+     * @param encoder            the JwtEncoder used for encoding JWT tokens
+     * @param userDetailsService the CustomUserDetailsService used for retrieving
+     *                           user details
+     * @param passwordEncoder    the PasswordEncoder used for encoding and verifying
+     *                           passwords
+     */
     @Autowired
     public TokenService(JwtEncoder encoder, CustomUserDetailsService userDetailsService,
             PasswordEncoder passwordEncoder) {
@@ -26,6 +35,15 @@ public class TokenService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    /**
+     * Generates a JWT token for the specified username and password.
+     *
+     * @param username the username of the user
+     * @param password the password of the user
+     * @return the generated JWT token
+     * @throws RuntimeException if the credentials are invalid or an error occurs
+     *                          during token generation
+     */
     public String generateToken(String username, String password) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
         if (passwordMatches(userDetails.getPassword(), password)) {
@@ -42,6 +60,13 @@ public class TokenService {
         }
     }
 
+    /**
+     * Checks if the provided raw password matches the encoded password.
+     *
+     * @param encodedPassword the encoded password
+     * @param rawPassword     the raw (unencoded) password
+     * @return true if the passwords match, false otherwise
+     */
     private boolean passwordMatches(String encodedPassword, String rawPassword) {
         return passwordEncoder.matches(rawPassword, encodedPassword);
     }
