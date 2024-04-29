@@ -30,6 +30,11 @@ public class User {
   /**
    * The maximum length for string fields in the Game entity.
    */
+  private static final int LENGTHPASSWORD = 64;
+
+  /**
+   * The maximum length for string fields in the Game entity.
+   */
   private static final int LENGTHPHONE = 50;
 
   /**
@@ -65,7 +70,7 @@ public class User {
    * The password of the user.
    */
   @Basic
-  @Column(name = "password", length = LENGTH)
+  @Column(name = "password", length = LENGTHPASSWORD)
   private String password;
 
   /**
