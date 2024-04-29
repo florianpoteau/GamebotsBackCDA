@@ -19,7 +19,7 @@ import java.util.Optional;
 
 import static co.simplon.gamebotsback.business.service.user.UserServiceImpl.ERRORMESSAGE;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -27,7 +27,6 @@ class UserServiceTest {
 
   User existingUser = new User();
   int userId = 1;
-  String username = "user";
   Userdto modifiedUserdto = new Userdto();
   @InjectMocks
   private UserServiceImpl userService;
@@ -49,28 +48,27 @@ class UserServiceTest {
 
   @Test
   @DisplayName("Test de récupération d'un jeu par son id")
-  void testGetByUsername() {
+  void testGetById() {
 
-    existingUser.setUsername(username);
+    existingUser.setIdUser(userId);
 
-    when(iUserRepository.findByUsername(username)).thenReturn(Optional.of(existingUser));
-    Userdto userDTO = userService.getByUsername(username);
+    when(iUserRepository.findById(userId)).thenReturn(Optional.of(existingUser));
+    Userdto userDTO = userService.getById(userId);
 
-    verify(iUserRepository, times(1)).findByUsername(username);
+    verify(iUserRepository, times(1)).findById(userId);
     assertNotNull(userDTO, "UserDTO attendu dans la liste");
-    assertEquals(username, userDTO.getUsername(), "UserDTO attendu dans la liste");
+    assertEquals(userId, userDTO.getIdUser(), "UserDTO attendu dans la liste");
   }
 
   @Test
   @DisplayName("Test de récupération d'un jeu par son id - jeu non trouvé")
-  void testGetByUsernameWhenUserDoesNotExist() {
+  void testGetByIdWhenUserDoesNotExist() {
 
-    when(iUserRepository.findByUsername(username)).thenReturn(Optional.empty());
-    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class,
-        () -> userService.getByUsername(username));
+    when(iUserRepository.findById(userId)).thenReturn(Optional.empty());
+    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> userService.getById(userId));
 
-    assertEquals(ERRORMESSAGE + username, exception.getMessage(), "Le message d'erreur doit être correct");
-    verify(iUserRepository, times(1)).findByUsername(username);
+    assertEquals(ERRORMESSAGE + userId, exception.getMessage(), "Le message d'erreur doit être correct");
+    verify(iUserRepository, times(1)).findById(userId);
   }
 
   @Test
@@ -83,7 +81,6 @@ class UserServiceTest {
     modifiedUserdto.setPhone("1234567890");
     modifiedUserdto.setEmail("leGamerzzz@gmail.com");
     modifiedUserdto.setPassword("*****");
-    modifiedUserdto.setCreationDate(new Date());
     modifiedUserdto.setModificationDate(new Date());
     modifiedUserdto.setImage(new Image());
 
@@ -99,8 +96,8 @@ class UserServiceTest {
     assertEquals(modifiedUserdto.getPhone(), modifiedUser.getPhone());
     assertEquals(modifiedUserdto.getEmail(), modifiedUser.getEmail());
     assertEquals(modifiedUserdto.getPassword(), modifiedUser.getPassword());
-    assertEquals(modifiedUserdto.getCreationDate(), modifiedUser.getCreationDate());
-    assertEquals(modifiedUserdto.getModificationDate(), modifiedUser.getModificationDate());
+
+    assertEquals(modifiedUserdto.getModificationDate().getTime(), modifiedUser.getModificationDate().getTime(), 1000);
     assertEquals(modifiedUserdto.getImage(), modifiedUser.getImage());
   }
 

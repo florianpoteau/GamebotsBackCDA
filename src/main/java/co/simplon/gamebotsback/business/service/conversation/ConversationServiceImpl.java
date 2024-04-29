@@ -8,12 +8,12 @@ import co.simplon.gamebotsback.persistance.entity.User;
 import co.simplon.gamebotsback.persistance.repository.conversation.Iconversationrepository;
 import jakarta.persistence.EntityNotFoundException;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 
 /**
  * Implementation of the <code>IConversationService</code> interface providing
@@ -29,8 +29,7 @@ public class ConversationServiceImpl implements Iconversationservice {
    * operation cannot be performed due to the absence
    * of the corresponding conversation.
    */
-  public static final String ERRORMESSAGE =
-      "The conversation with the specified ID does not exist:";
+  public static final String ERRORMESSAGE = "The conversation with the specified ID does not exist:";
 
   /**
    * The repository used to access conversation data.
@@ -56,6 +55,7 @@ public class ConversationServiceImpl implements Iconversationservice {
    */
   @Override
   public void addNewConversation(final Conversationdto conversationDto) {
+    conversationDto.setCreationDate(new Date());
     conversationRepository.save(
         ConversationConvert.getInstance().convertDtoToEntity(conversationDto));
   }
@@ -92,8 +92,7 @@ public class ConversationServiceImpl implements Iconversationservice {
   @Override
   public Conversationdto modifyConversation(
       final int id, final Conversationdto conversationDto) {
-    Optional<Conversation> optionalConversation =
-        conversationRepository.findById(id);
+    Optional<Conversation> optionalConversation = conversationRepository.findById(id);
     if (optionalConversation.isPresent()) {
       Conversation existingConversation = optionalConversation.get();
 
@@ -104,12 +103,10 @@ public class ConversationServiceImpl implements Iconversationservice {
       conversationDto.setGame(existingGame);
 
       existingConversation.setName(conversationDto.getName());
-      existingConversation.setCreationDate(conversationDto.getCreationDate());
       existingConversation.setModificationDate(
-          conversationDto.getModificationDate());
+          new Date());
 
-      Conversation updatedConversation =
-          conversationRepository.save(existingConversation);
+      Conversation updatedConversation = conversationRepository.save(existingConversation);
 
       return ConversationConvert.getInstance().convertEntityToDto(
           updatedConversation);
@@ -127,8 +124,7 @@ public class ConversationServiceImpl implements Iconversationservice {
    */
   @Override
   public void deleteConversation(final int id) {
-    Optional<Conversation> optionalConversation =
-        conversationRepository.findById(id);
+    Optional<Conversation> optionalConversation = conversationRepository.findById(id);
     if (optionalConversation.isPresent()) {
       conversationRepository.deleteById(id);
     } else {
@@ -145,8 +141,7 @@ public class ConversationServiceImpl implements Iconversationservice {
   @Override
   public List<Conversationdto> getAllUserConversation(
       final int idUser) {
-    final List<Conversation> result =
-        conversationRepository.getAllUserConversation(idUser);
+    final List<Conversation> result = conversationRepository.getAllUserConversation(idUser);
     return ConversationConvert.getInstance().convertListEntityToListDto(result);
   }
 
@@ -157,15 +152,13 @@ public class ConversationServiceImpl implements Iconversationservice {
    * @param idUser The ID of the user.
    * @param idGame The ID of the game.
    * @return A list of conversations associated with
-   * the specified user and game.
+   *         the specified user and game.
    */
   @Override
   public List<Conversationdto> getAllUserConversationByGameId(
       final int idUser, final int idGame) {
-    final List<Conversation> result =
-        conversationRepository.getAllUserConversationByGameId(idUser, idGame);
+    final List<Conversation> result = conversationRepository.getAllUserConversationByGameId(idUser, idGame);
     return ConversationConvert.getInstance().convertListEntityToListDto(result);
   }
-
 
 }

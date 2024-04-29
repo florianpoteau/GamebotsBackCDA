@@ -6,6 +6,7 @@ import co.simplon.gamebotsback.persistance.entity.User;
 import co.simplon.gamebotsback.persistance.repository.user.Iuserrepository;
 import jakarta.persistence.EntityNotFoundException;
 
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,7 @@ public class UserServiceImpl implements Iuserservice {
   public void createAccount(Userdto userDTO) {
     String encodePassword = passwordEncoder.encode(userDTO.getPassword());
     userDTO.setPassword(encodePassword);
+    userDTO.setCreationDate(new Date());
     userrepository.save(UserConvert.getInstance().convertDtoToEntity(userDTO));
   }
 
@@ -66,11 +68,12 @@ public class UserServiceImpl implements Iuserservice {
    *                                 user corresponding to the ID is found.
    */
   @Override
-  public Userdto getByUsername(final String username) {
+  public int getIdByUsername(final String username) {
     Optional<User> optionalUser = userrepository.findByUsername(username);
     if (optionalUser.isPresent()) {
       User user = optionalUser.get();
-      return UserConvert.getInstance().convertEntityToDto(user);
+      UserConvert.getInstance().convertEntityToDto(user);
+      return user.getIdUser();
     } else {
       throw new EntityNotFoundException(ERRORMESSAGE + username);
     }
@@ -95,8 +98,7 @@ public class UserServiceImpl implements Iuserservice {
       existingUser.setPassword(userDto.getPassword());
       existingUser.setImage(userDto.getImage());
       existingUser.setPhone(userDto.getPhone());
-      existingUser.setCreationDate(userDto.getCreationDate());
-      existingUser.setModificationDate(userDto.getModificationDate());
+      existingUser.setModificationDate(new Date());
 
       User updatedUser = userrepository.save(existingUser);
 
@@ -120,6 +122,24 @@ public class UserServiceImpl implements Iuserservice {
       userrepository.deleteById(id);
     } else {
       throw new EntityNotFoundException(ERRORMESSAGE + id);
+    }
+  }
+
+  /**
+   * Retrieves information about a user based on its ID.
+   *
+   * @param userId The ID of the user.
+   * @return Information about the user corresponding to the given ID.
+   * @throws EntityNotFoundException if no user corresponding to the ID is found.
+   */
+  @Override
+  public Userdto getById(int userId) {
+    Optional<User> optionalUser = userrepository.findById(userId);
+    if (optionalUser.isPresent()) {
+      User user = optionalUser.get();
+      return UserConvert.getInstance().convertEntityToDto(user);
+    } else {
+      throw new EntityNotFoundException(ERRORMESSAGE + userId);
     }
   }
 

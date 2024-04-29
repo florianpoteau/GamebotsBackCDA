@@ -44,7 +44,7 @@ public class TokenService {
      * @throws RuntimeException if the credentials are invalid or an error occurs
      *                          during token generation
      */
-    public String generateToken(String username, String password) {
+    public String generateToken(String username, String password, int userId) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
         if (passwordMatches(userDetails.getPassword(), password)) {
             Instant now = Instant.now();
@@ -53,6 +53,8 @@ public class TokenService {
                     .issuedAt(now)
                     .expiresAt(now.plus(1, ChronoUnit.HOURS))
                     .subject(username)
+                    .claim(username, username)
+                    .claim("userId", userId)
                     .build();
             return this.encoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
         } else {

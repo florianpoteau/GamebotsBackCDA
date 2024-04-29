@@ -24,7 +24,7 @@ public interface Iuserservice {
      * @param id The ID of the user.
      * @return Information about the user corresponding to the given ID.
      */
-    Userdto getByUsername(final String username);
+    int getIdByUsername(final String username);
 
     /**
      * Modifies information of an existing user account.
@@ -41,4 +41,13 @@ public interface Iuserservice {
      * @param id The ID of the user to delete.
      */
     void deleteAccount(int id);
+
+    /**
+     * Retrieves information about a user based on their ID.
+     *
+     * @param userId The ID of the user.
+     * @return Information about the user corresponding to the given ID.
+     */
+    Userdto getById(final int userId);
+
 }

@@ -5,11 +5,11 @@ import co.simplon.gamebotsback.business.dto.Messagedto;
 import co.simplon.gamebotsback.persistance.entity.Message;
 import co.simplon.gamebotsback.persistance.repository.message.Imessagerepository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 
 /**
  * Implementation of the <code>IMessageService</code> interface
@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class MessageServiceImpl implements Imessageservice {
-
 
   /**
    * The repository used to access message data.
@@ -42,8 +41,7 @@ public class MessageServiceImpl implements Imessageservice {
    */
   @Override
   public List<Messagedto> getAllMessageConversation(final int idConversation) {
-    final List<Message> result =
-        messageRepository.getMessageByConversationId(idConversation);
+    final List<Message> result = messageRepository.getMessageByConversationId(idConversation);
     return MessageConvert.getInstance().convertListEntityToListDto(result);
   }
 
@@ -54,6 +52,7 @@ public class MessageServiceImpl implements Imessageservice {
    */
   @Override
   public void addNewMessage(final Messagedto messageDto) {
+    messageDto.setCreationDate(new Date());
     messageRepository.save(
         MessageConvert.getInstance().convertDtoToEntity(messageDto));
   }
