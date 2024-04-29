@@ -24,7 +24,7 @@ public interface Iuserservice {
      * @param id The ID of the user.
      * @return Information about the user corresponding to the given ID.
      */
-    Userdto getById(final int id);
+    Userdto getByUsername(final String username);
 
     /**
      * Modifies information of an existing user account.

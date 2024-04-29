@@ -66,13 +66,13 @@ public class UserServiceImpl implements Iuserservice {
    *                                 user corresponding to the ID is found.
    */
   @Override
-  public Userdto getById(final int id) {
-    Optional<User> optionalUser = userrepository.findById(id);
+  public Userdto getByUsername(final String username) {
+    Optional<User> optionalUser = userrepository.findByUsername(username);
     if (optionalUser.isPresent()) {
       User user = optionalUser.get();
       return UserConvert.getInstance().convertEntityToDto(user);
     } else {
-      throw new EntityNotFoundException(ERRORMESSAGE + id);
+      throw new EntityNotFoundException(ERRORMESSAGE + username);
     }
   }
 

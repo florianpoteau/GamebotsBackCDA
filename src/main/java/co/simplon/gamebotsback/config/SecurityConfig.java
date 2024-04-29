@@ -43,8 +43,8 @@ public class SecurityConfig {
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
                 return http
                                 .authorizeRequests(authorize -> authorize
-                                                .requestMatchers("/login").permitAll()
-                                // Autres autorisations...
+                                                .requestMatchers("/login").permitAll().anyRequest().authenticated()
+
                                 )
                                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                                 .sessionManagement(session -> session

@@ -26,6 +26,7 @@ class UserServiceTest {
 
   User existingUser = new User();
   int userId = 1;
+  String username = "user";
   Userdto modifiedUserdto = new Userdto();
   @InjectMocks
   private UserServiceImpl userService;
@@ -45,27 +46,28 @@ class UserServiceTest {
 
   @Test
   @DisplayName("Test de récupération d'un jeu par son id")
-  void testGetById() {
+  void testGetByUsername() {
 
-    existingUser.setIdUser(userId);
+    existingUser.setUsername(username);
 
-    when(iUserRepository.findById(userId)).thenReturn(Optional.of(existingUser));
-    Userdto userDTO = userService.getById(userId);
+    when(iUserRepository.findByUsername(username)).thenReturn(Optional.of(existingUser));
+    Userdto userDTO = userService.getByUsername(username);
 
-    verify(iUserRepository, times(1)).findById(userId);
+    verify(iUserRepository, times(1)).findByUsername(username);
     assertNotNull(userDTO, "UserDTO attendu dans la liste");
-    assertEquals(userId, userDTO.getIdUser(), "UserDTO attendu dans la liste");
+    assertEquals(username, userDTO.getUsername(), "UserDTO attendu dans la liste");
   }
 
   @Test
   @DisplayName("Test de récupération d'un jeu par son id - jeu non trouvé")
-  void testGetByIdWhenUserDoesNotExist() {
+  void testGetByUsernameWhenUserDoesNotExist() {
 
-    when(iUserRepository.findById(userId)).thenReturn(Optional.empty());
-    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> userService.getById(userId));
+    when(iUserRepository.findByUsername(username)).thenReturn(Optional.empty());
+    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class,
+        () -> userService.getByUsername(username));
 
-    assertEquals(ERRORMESSAGE + userId, exception.getMessage(), "Le message d'erreur doit être correct");
-    verify(iUserRepository, times(1)).findById(userId);
+    assertEquals(ERRORMESSAGE + username, exception.getMessage(), "Le message d'erreur doit être correct");
+    verify(iUserRepository, times(1)).findByUsername(username);
   }
 
   @Test
@@ -113,9 +115,11 @@ class UserServiceTest {
     modifiedUserdto.setImage(new Image());
 
     when(iUserRepository.findById(userId)).thenReturn(Optional.empty());
-    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> userService.modifyAccount(userId, modifiedUserdto));
+    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class,
+        () -> userService.modifyAccount(userId, modifiedUserdto));
 
-    assertEquals(UserServiceImpl.ERRORMESSAGE + userId, exception.getMessage(), "Le message d'erreur doit être correct");
+    assertEquals(UserServiceImpl.ERRORMESSAGE + userId, exception.getMessage(),
+        "Le message d'erreur doit être correct");
     verify(iUserRepository, times(1)).findById(userId);
     verify(iUserRepository, never()).save(any(User.class));
   }
@@ -138,9 +142,11 @@ class UserServiceTest {
   void testDeleteAccountNotFound() {
 
     when(iUserRepository.findById(userId)).thenReturn(Optional.empty());
-    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> userService.deleteAccount(userId));
+    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class,
+        () -> userService.deleteAccount(userId));
 
-    assertEquals(UserServiceImpl.ERRORMESSAGE + userId, exception.getMessage(), "Le message d'erreur doit être correct");
+    assertEquals(UserServiceImpl.ERRORMESSAGE + userId, exception.getMessage(),
+        "Le message d'erreur doit être correct");
     verify(iUserRepository, times(1)).findById(userId);
     verify(iUserRepository, never()).deleteById(any(Integer.class));
   }
