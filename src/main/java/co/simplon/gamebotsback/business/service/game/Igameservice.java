@@ -1,7 +1,6 @@
 package co.simplon.gamebotsback.business.service.game;
 
 import co.simplon.gamebotsback.business.dto.Gamedto;
-
 import java.util.List;
 
 /**
@@ -20,7 +19,9 @@ public interface Igameservice {
   /**
    * Retrieves information about a game based on its ID.
    *
-   * @param id The ID of the game.
+   * @param id
+   *     The ID of the game.
+   *
    * @return Information about the game corresponding to the given ID.
    */
   Gamedto getById(int id);

@@ -1,7 +1,6 @@
 package co.simplon.gamebotsback.business.service.conversation;
 
 import co.simplon.gamebotsback.business.dto.Conversationdto;
-
 import java.util.List;
 
 /**
