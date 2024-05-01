@@ -64,17 +64,17 @@ public final class UserConvert {
    * @return the converted User entity
    */
   public User convertDtoToEntity(final Userdto dto) {
-    final User user = new User();
-    user.setIdUser(dto.getIdUser());
-    user.setUsername(dto.getUsername());
-    user.setPhone(dto.getPhone());
-    user.setEmail(dto.getEmail());
-    user.setPassword(dto.getPassword());
-    user.setCreationDate(dto.getCreationDate());
-    user.setModificationDate(dto.getModificationDate());
-    user.setImage(dto.getImage());
+    final User entity = new User();
+    entity.setIdUser(dto.getIdUser());
+    entity.setUsername(dto.getUsername());
+    entity.setPhone(dto.getPhone());
+    entity.setEmail(dto.getEmail());
+    entity.setPassword(dto.getPassword());
+    entity.setCreationDate(dto.getCreationDate());
+    entity.setModificationDate(dto.getModificationDate());
+    entity.setImage(dto.getImage());
 
-    return user;
+    return entity;
   }
 
   /**
