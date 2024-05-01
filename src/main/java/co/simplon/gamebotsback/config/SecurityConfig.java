@@ -28,6 +28,9 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
+  /**
+   * Represents RSA keys used for JWT token encryption and decryption.
+   */
   private final RsaKeyProperties rsaKeys;
 
   /**

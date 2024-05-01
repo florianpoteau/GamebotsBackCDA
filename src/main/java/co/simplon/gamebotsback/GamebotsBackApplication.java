@@ -10,14 +10,14 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
  * point for the GamebotsBack application.
  * It utilizes Spring Boot's {@code @SpringBootApplication}
  * annotation to enable
- * auto-configuration and component scanning.
+ * autoconfiguration and component scanning.
  */
 @EnableConfigurationProperties(RsaKeyProperties.class)
 @SpringBootApplication
 public class GamebotsBackApplication {
 
   /**
-   * The main method to start the GamebotsBack application.
+   * Main method to start the GamebotsBack application.
    *
    * @param args
    *     Command-line arguments passed to the application.
