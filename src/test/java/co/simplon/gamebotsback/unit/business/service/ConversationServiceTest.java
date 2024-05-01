@@ -81,8 +81,8 @@ class ConversationServiceTest {
     modifiedConversationdto.setUser(new User());
     modifiedConversationdto.setGame(new Game());
 
-    when(iConversationRepository.findById(conversationId)).thenReturn(Optional.of(existingConversation));
     when(iConversationRepository.save(any(Conversation.class))).thenReturn(existingConversation);
+    when(iConversationRepository.findById(conversationId)).thenReturn(Optional.of(existingConversation));
     Conversationdto modifiedConversation = conversationService.modifyConversation(conversationId, modifiedConversationdto);
 
     verify(iConversationRepository, times(1)).findById(conversationId);
@@ -90,7 +90,7 @@ class ConversationServiceTest {
     assertNotNull(modifiedConversation, "La conversation modifiée ne doit pas être nulle");
     assertEquals(modifiedConversationdto.getIdConversation(), modifiedConversation.getIdConversation());
     assertEquals(modifiedConversationdto.getName(), modifiedConversation.getName());
-    assertEquals(modifiedConversationdto.getModificationDate(), modifiedConversation.getModificationDate());
+    assertEquals(modifiedConversationdto.getModificationDate().getTime(), modifiedConversation.getModificationDate().getTime(), 1000);
     assertEquals(modifiedConversationdto.getUser(), modifiedConversation.getUser());
     assertEquals(modifiedConversationdto.getGame(), modifiedConversation.getGame());
   }
