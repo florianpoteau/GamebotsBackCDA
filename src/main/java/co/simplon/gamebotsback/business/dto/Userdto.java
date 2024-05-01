@@ -1,7 +1,6 @@
 package co.simplon.gamebotsback.business.dto;
 
 import co.simplon.gamebotsback.persistance.entity.Image;
-
 import java.util.Date;
 
 /**
@@ -61,7 +60,8 @@ public class Userdto {
   /**
    * Sets the identifier of the user.
    *
-   * @param userId The identifier of the user.
+   * @param userId
+   *     The identifier of the user.
    */
   public void setIdUser(final int userId) {
     this.idUser = userId;
@@ -79,7 +79,8 @@ public class Userdto {
   /**
    * Sets the name of the user.
    *
-   * @param userUsername The username of the user.
+   * @param userUsername
+   *     The username of the user.
    */
   public void setUsername(final String userUsername) {
     this.username = userUsername;
@@ -97,7 +98,8 @@ public class Userdto {
   /**
    * Sets the phone number of the user.
    *
-   * @param userPhone The phone number of the user.
+   * @param userPhone
+   *     The phone number of the user.
    */
   public void setPhone(final String userPhone) {
     this.phone = userPhone;
@@ -115,7 +117,8 @@ public class Userdto {
   /**
    * Sets the email address of the user.
    *
-   * @param userEmail The email address of the user.
+   * @param userEmail
+   *     The email address of the user.
    */
   public void setEmail(final String userEmail) {
     this.email = userEmail;
@@ -133,7 +136,8 @@ public class Userdto {
   /**
    * Sets the password of the user.
    *
-   * @param userPassword The password of the user.
+   * @param userPassword
+   *     The password of the user.
    */
   public void setPassword(final String userPassword) {
     this.password = userPassword;
@@ -151,7 +155,8 @@ public class Userdto {
   /**
    * Sets the creation date of the user.
    *
-   * @param userCreationDate The creation date of the user.
+   * @param userCreationDate
+   *     The creation date of the user.
    */
   public void setCreationDate(final Date userCreationDate) {
     this.creationDate = userCreationDate;
@@ -169,7 +174,8 @@ public class Userdto {
   /**
    * Sets the modification date of the user.
    *
-   * @param userModificationDate The modification date of the user.
+   * @param userModificationDate
+   *     The modification date of the user.
    */
   public void setModificationDate(final Date userModificationDate) {
     this.modificationDate = userModificationDate;
@@ -187,7 +193,8 @@ public class Userdto {
   /**
    * Sets the image associated with the user.
    *
-   * @param userImage The image associated with the user.
+   * @param userImage
+   *     The image associated with the user.
    */
   public void setImage(final Image userImage) {
     this.image = userImage;

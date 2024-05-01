@@ -1,7 +1,6 @@
 package co.simplon.gamebotsback.business.dto;
 
 import co.simplon.gamebotsback.persistance.entity.Conversation;
-
 import java.util.Date;
 
 /**
@@ -46,7 +45,8 @@ public class Messagedto {
   /**
    * Sets the identifier of the message.
    *
-   * @param messageId The identifier of the message.
+   * @param messageId
+   *     The identifier of the message.
    */
   public void setIdMessage(final int messageId) {
     this.idMessage = messageId;
@@ -64,7 +64,8 @@ public class Messagedto {
   /**
    * Sets the content of the message.
    *
-   * @param messageContent The content of the message.
+   * @param messageContent
+   *     The content of the message.
    */
   public void setContent(final String messageContent) {
     this.content = messageContent;
@@ -82,7 +83,8 @@ public class Messagedto {
   /**
    * Sets the creation date of the message.
    *
-   * @param messageCreationDate The creation date of the message.
+   * @param messageCreationDate
+   *     The creation date of the message.
    */
   public void setCreationDate(final Date messageCreationDate) {
     this.creationDate = messageCreationDate;
@@ -100,7 +102,8 @@ public class Messagedto {
   /**
    * Sets the modification date of the message.
    *
-   * @param messageModificationDate The modification date of the message.
+   * @param messageModificationDate
+   *     The modification date of the message.
    */
   public void setModificationDate(final Date messageModificationDate) {
     this.modificationDate = messageModificationDate;
@@ -118,7 +121,8 @@ public class Messagedto {
   /**
    * Sets the conversation associated with the message.
    *
-   * @param messageConversation The conversation associated with the message.
+   * @param messageConversation
+   *     The conversation associated with the message.
    */
   public void setConversation(final Conversation messageConversation) {
     this.conversation = messageConversation;
