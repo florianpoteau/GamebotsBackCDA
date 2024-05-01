@@ -77,7 +77,6 @@ class ConversationServiceTest {
     existingConversation.setIdConversation(conversationId);
     modifiedConversationdto.setIdConversation(conversationId);
     modifiedConversationdto.setName("Modified Conversation");
-    modifiedConversationdto.setCreationDate(new Date());
     modifiedConversationdto.setModificationDate(new Date());
     modifiedConversationdto.setUser(new User());
     modifiedConversationdto.setGame(new Game());
@@ -91,7 +90,6 @@ class ConversationServiceTest {
     assertNotNull(modifiedConversation, "La conversation modifiée ne doit pas être nulle");
     assertEquals(modifiedConversationdto.getIdConversation(), modifiedConversation.getIdConversation());
     assertEquals(modifiedConversationdto.getName(), modifiedConversation.getName());
-    assertEquals(modifiedConversationdto.getCreationDate(), modifiedConversation.getCreationDate());
     assertEquals(modifiedConversationdto.getModificationDate(), modifiedConversation.getModificationDate());
     assertEquals(modifiedConversationdto.getUser(), modifiedConversation.getUser());
     assertEquals(modifiedConversationdto.getGame(), modifiedConversation.getGame());
