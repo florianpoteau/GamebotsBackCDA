@@ -1,9 +1,7 @@
 package co.simplon.gamebotsback.persistance.repository.message;
 
 import co.simplon.gamebotsback.persistance.entity.Message;
-
 import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
