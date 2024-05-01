@@ -7,11 +7,9 @@ import co.simplon.gamebotsback.persistance.entity.Game;
 import co.simplon.gamebotsback.persistance.entity.User;
 import co.simplon.gamebotsback.persistance.repository.conversation.Iconversationrepository;
 import jakarta.persistence.EntityNotFoundException;
-
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -179,8 +177,7 @@ public class ConversationServiceImpl implements Iconversationservice {
    *     the specified user and game.
    */
   @Override
-  public List<Conversationdto>
-  getAllUserConversationByGameId(
+  public List<Conversationdto> getAllUserConversationByGameId(
       final int idUser, final int idGame) {
     final List<Conversation> result =
         conversationRepository.getAllUserConversationByGameId(idUser, idGame);

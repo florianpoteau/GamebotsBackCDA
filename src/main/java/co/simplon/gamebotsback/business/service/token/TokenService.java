@@ -2,7 +2,6 @@ package co.simplon.gamebotsback.business.service.token;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -11,12 +10,25 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Service;
 
-
+/**
+ * Service class responsible for generating JWT tokens for user authentication.
+ */
 @Service
 public class TokenService {
 
+  /**
+   * The JwtEncoder used for encoding JWT tokens.
+   */
   private final JwtEncoder encoder;
+
+  /**
+   * The CustomUserDetailsService used for retrieving user details.
+   */
   private final CustomUserDetailsService userDetailsService;
+
+  /**
+   * The PasswordEncoder used for encoding and verifying passwords.
+   */
   private final PasswordEncoder passwordEncoder;
 
   /**
@@ -47,6 +59,8 @@ public class TokenService {
    *     the username of the user
    * @param password
    *     the password of the user
+   * @param userId
+   *     the ID of the user
    *
    * @return the generated JWT token
    *
@@ -88,5 +102,4 @@ public class TokenService {
                                   final String rawPassword) {
     return passwordEncoder.matches(rawPassword, encodedPassword);
   }
-
 }

@@ -4,10 +4,8 @@ import co.simplon.gamebotsback.business.convert.MessageConvert;
 import co.simplon.gamebotsback.business.dto.Messagedto;
 import co.simplon.gamebotsback.persistance.entity.Message;
 import co.simplon.gamebotsback.persistance.repository.message.Imessagerepository;
-
 import java.util.Date;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +24,8 @@ public class MessageServiceImpl implements Imessageservice {
   /**
    * Constructor for <code>MessageServiceImpl</code>.
    *
-   * @param repositoryMessage The repository used to access message data.
+   * @param repositoryMessage
+   *     The repository used to access message data.
    */
   @Autowired
   public MessageServiceImpl(final Imessagerepository repositoryMessage) {
@@ -36,19 +35,23 @@ public class MessageServiceImpl implements Imessageservice {
   /**
    * Retrieves all messages of a specific conversation.
    *
-   * @param idConversation The ID of the conversation.
+   * @param idConversation
+   *     The ID of the conversation.
+   *
    * @return A list of messages of the specified conversation.
    */
   @Override
   public List<Messagedto> getAllMessageConversation(final int idConversation) {
-    final List<Message> result = messageRepository.getMessageByConversationId(idConversation);
+    final List<Message> result =
+        messageRepository.getMessageByConversationId(idConversation);
     return MessageConvert.getInstance().convertListEntityToListDto(result);
   }
 
   /**
    * Adds a new message to a conversation.
    *
-   * @param messageDto The information of the new message to add.
+   * @param messageDto
+   *     The information of the new message to add.
    */
   @Override
   public void addNewMessage(final Messagedto messageDto) {

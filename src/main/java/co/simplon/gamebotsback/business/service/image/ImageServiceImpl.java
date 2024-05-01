@@ -4,11 +4,9 @@ import co.simplon.gamebotsback.business.convert.ImageConvert;
 import co.simplon.gamebotsback.business.dto.Imagedto;
 import co.simplon.gamebotsback.persistance.entity.Image;
 import co.simplon.gamebotsback.persistance.repository.image.Iimagerepository;
-
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +29,8 @@ public class ImageServiceImpl implements Iimageservice {
   /**
    * Constructor for <code>ImageServiceImpl</code>.
    *
-   * @param repositoryImage The repository used to access image data.
+   * @param repositoryImage
+   *     The repository used to access image data.
    */
   @Autowired
   public ImageServiceImpl(final Iimagerepository repositoryImage) {
@@ -52,7 +51,9 @@ public class ImageServiceImpl implements Iimageservice {
   /**
    * Retrieves information about an image based on its ID.
    *
-   * @param id The ID of the image.
+   * @param id
+   *     The ID of the image.
+   *
    * @return Information about the image corresponding to the given ID.
    */
   @Override
@@ -67,9 +68,11 @@ public class ImageServiceImpl implements Iimageservice {
   /**
    * Retrieves the image associated with a user by user ID and image type.
    *
-   * @param userId The ID of the user.
+   * @param userId
+   *     The ID of the user.
+   *
    * @return Information about the image associated with the specified user and
-   * image type.
+   *     image type.
    */
   @Override
   public Imagedto getImageByUserIdAndImageType(final int userId) {
@@ -80,8 +83,11 @@ public class ImageServiceImpl implements Iimageservice {
   /**
    * Retrieves all images associated with a game by game ID.
    *
-   * @param typeImage The type of the image.
-   * @param gameId    The ID of the game.
+   * @param typeImage
+   *     The type of the image.
+   * @param gameId
+   *     The ID of the game.
+   *
    * @return A list of all images associated with the specified game.
    */
   @Override

@@ -4,10 +4,8 @@ import co.simplon.gamebotsback.business.convert.GameConvert;
 import co.simplon.gamebotsback.business.dto.Gamedto;
 import co.simplon.gamebotsback.persistance.entity.Game;
 import co.simplon.gamebotsback.persistance.repository.game.Igamerepository;
-
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +25,8 @@ public class GameServiceImpl implements Igameservice {
   /**
    * Constructor for <code>GameServiceImpl</code>.
    *
-   * @param repositoryGame The repository used to access game data.
+   * @param repositoryGame
+   *     The repository used to access game data.
    */
   @Autowired
   public GameServiceImpl(final Igamerepository repositoryGame) {
@@ -48,10 +47,14 @@ public class GameServiceImpl implements Igameservice {
   /**
    * Retrieves information about a game based on its ID.
    *
-   * @param id The ID of the game.
+   * @param id
+   *     The ID of the game.
+   *
    * @return Information about the game corresponding to the given ID.
-   * @throws IllegalArgumentException if the game with
-   *                                  the specified ID does not exist.
+   *
+   * @throws IllegalArgumentException
+   *     if the game with
+   *     the specified ID does not exist.
    */
   @Override
   public Gamedto getById(final int id) {
