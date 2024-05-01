@@ -21,9 +21,11 @@ public interface Iuserrepository
   /**
    * Retrieves a user by username.
    *
-   * @param username The username of the user.
+   * @param username
+   *     The username of the user.
+   *
    * @return An optional containing the user
-   * with the specified username, or empty if not found.
+   *     with the specified username, or empty if not found.
    */
   @Query(UserQueries.FIND_BY_USERNAME)
   Optional<User> findByUsername(String username);

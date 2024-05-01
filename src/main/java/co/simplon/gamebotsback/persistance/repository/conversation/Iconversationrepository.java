@@ -20,7 +20,9 @@ public interface Iconversationrepository extends
   /**
    * Retrieves all conversations associated with a specific user ID.
    *
-   * @param idUser The ID of the user.
+   * @param idUser
+   *     The ID of the user.
+   *
    * @return A list of conversations associated with the specified user ID.
    */
   @Query(ConversationQueries.FIND_ALL_CONVERSATION_BY_USERID)
@@ -29,10 +31,13 @@ public interface Iconversationrepository extends
   /**
    * Retrieves all conversations associated with a specific user ID and game ID.
    *
-   * @param idUser The ID of the user.
-   * @param idGame The ID of the game.
-   * @return A list of conversations associated with the
-   * specified user ID and game ID.
+   * @param idUser
+   *     The ID of the user.
+   * @param idGame
+   *     The ID of the game.
+   *
+   * @return A list of conversations
+   *     associated with the specified user ID and game ID.
    */
   @Query(ConversationQueries.FIND_ALL_CONVERSATION_BY_USERID_AND_GAMEID)
   List<Conversation> getAllUserConversationByGameId(int idUser, int idGame);
