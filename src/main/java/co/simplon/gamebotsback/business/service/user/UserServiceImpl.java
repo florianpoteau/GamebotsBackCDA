@@ -38,34 +38,42 @@ public class UserServiceImpl implements Iuserservice {
   /**
    * Constructor for <code>UserServiceImpl</code>.
    *
-   * @param userRepository The repository used to access user data.
+   * @param repositoryUser
+   *     The repository used to access user data.
    */
   @Autowired
-  public UserServiceImpl(Iuserrepository userRepository, PasswordEncoder passwordEncoder) {
-    this.userrepository = userRepository;
-    this.passwordEncoder = passwordEncoder;
+  public UserServiceImpl(
+      final Iuserrepository repositoryUser,
+      final PasswordEncoder encoderPassword) {
+    this.userrepository = repositoryUser;
+    this.passwordEncoder = encoderPassword;
   }
 
   /**
    * Creates a new user account.
    *
-   * @param userDTO The information of the new user to create.
+   * @param userDto
+   *     The information of the new user to create.
    */
   @Override
-  public void createAccount(Userdto userDTO) {
-    String encodePassword = passwordEncoder.encode(userDTO.getPassword());
-    userDTO.setPassword(encodePassword);
-    userDTO.setCreationDate(new Date());
-    userrepository.save(UserConvert.getInstance().convertDtoToEntity(userDTO));
+  public void createAccount(final Userdto userDto) {
+    String encodePassword = passwordEncoder.encode(userDto.getPassword());
+    userDto.setPassword(encodePassword);
+    userDto.setCreationDate(new Date());
+    userrepository.save(UserConvert.getInstance().convertDtoToEntity(userDto));
   }
 
   /**
    * Retrieves information about a user based on its ID.
    *
-   * @param id The ID of the user.
+   * @param id
+   *     The ID of the user.
+   *
    * @return Information about the user corresponding to the given ID.
-   * @throws EntityNotFoundException if no
-   *                                 user corresponding to the ID is found.
+   *
+   * @throws EntityNotFoundException
+   *     if no
+   *     user corresponding to the ID is found.
    */
   @Override
   public int getIdByUsername(final String username) {
@@ -82,11 +90,16 @@ public class UserServiceImpl implements Iuserservice {
   /**
    * Modifies information of an existing user account.
    *
-   * @param id      The ID of the user to modify.
-   * @param userDto The new information to associate with the user.
+   * @param id
+   *     The ID of the user to modify.
+   * @param userDto
+   *     The new information to associate with the user.
+   *
    * @return The updated information of the user.
-   * @throws EntityNotFoundException if no
-   *                                 user corresponding to the ID is found.
+   *
+   * @throws EntityNotFoundException
+   *     if no
+   *     user corresponding to the ID is found.
    */
   @Override
   public Userdto modifyAccount(final int id, final Userdto userDto) {
@@ -111,9 +124,12 @@ public class UserServiceImpl implements Iuserservice {
   /**
    * Deletes the user account corresponding to the given ID.
    *
-   * @param id The ID of the user to delete.
-   * @throws EntityNotFoundException if no
-   *                                 user corresponding to the ID is found.
+   * @param id
+   *     The ID of the user to delete.
+   *
+   * @throws EntityNotFoundException
+   *     if no
+   *     user corresponding to the ID is found.
    */
   @Override
   public void deleteAccount(final int id) {
@@ -128,12 +144,17 @@ public class UserServiceImpl implements Iuserservice {
   /**
    * Retrieves information about a user based on its ID.
    *
-   * @param userId The ID of the user.
+   * @param userId
+   *     The ID of the user.
+   *
    * @return Information about the user corresponding to the given ID.
-   * @throws EntityNotFoundException if no user corresponding to the ID is found.
+   *
+   * @throws EntityNotFoundException
+   *     if no user corresponding to
+   *     the ID is found.
    */
   @Override
-  public Userdto getById(int userId) {
+  public Userdto getById(final int userId) {
     Optional<User> optionalUser = userrepository.findById(userId);
     if (optionalUser.isPresent()) {
       User user = optionalUser.get();

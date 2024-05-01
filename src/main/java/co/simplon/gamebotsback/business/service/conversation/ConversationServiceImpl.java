@@ -29,7 +29,8 @@ public class ConversationServiceImpl implements Iconversationservice {
    * operation cannot be performed due to the absence
    * of the corresponding conversation.
    */
-  public static final String ERRORMESSAGE = "The conversation with the specified ID does not exist:";
+  public static final String ERRORMESSAGE = "The conversation with the "
+      + "specified ID does not exist:";
 
   /**
    * The repository used to access conversation data.
@@ -39,8 +40,9 @@ public class ConversationServiceImpl implements Iconversationservice {
   /**
    * Constructor for <code>ConversationServiceImpl</code>.
    *
-   * @param repositoryConversation The repository used to access conversation
-   *                               data.
+   * @param repositoryConversation
+   *     The repository used to access conversation
+   *     data.
    */
   @Autowired
   public ConversationServiceImpl(
@@ -51,7 +53,8 @@ public class ConversationServiceImpl implements Iconversationservice {
   /**
    * Adds a new conversation.
    *
-   * @param conversationDto The information of the new conversation to add.
+   * @param conversationDto
+   *     The information of the new conversation to add.
    */
   @Override
   public void addNewConversation(final Conversationdto conversationDto) {
@@ -63,10 +66,14 @@ public class ConversationServiceImpl implements Iconversationservice {
   /**
    * Retrieves information about a conversation based on its ID.
    *
-   * @param id The ID of the conversation.
+   * @param id
+   *     The ID of the conversation.
+   *
    * @return The information of the conversation corresponding to the given ID.
-   * @throws EntityNotFoundException if the conversation with the specified ID
-   *                                 does not exist.
+   *
+   * @throws EntityNotFoundException
+   *     if the conversation with the specified ID
+   *     does not exist.
    */
   @Override
   public Conversationdto getById(final int id) {
@@ -82,17 +89,23 @@ public class ConversationServiceImpl implements Iconversationservice {
   /**
    * Modifies information of an existing conversation.
    *
-   * @param id              The ID of the conversation to modify.
-   * @param conversationDto The new information to associate with the
-   *                        conversation.
+   * @param id
+   *     The ID of the conversation to modify.
+   * @param conversationDto
+   *     The new information to associate with the
+   *     conversation.
+   *
    * @return The updated information of the conversation.
-   * @throws EntityNotFoundException if the conversation with the specified ID
-   *                                 does not exist.
+   *
+   * @throws EntityNotFoundException
+   *     if the conversation with the specified ID
+   *     does not exist.
    */
   @Override
   public Conversationdto modifyConversation(
       final int id, final Conversationdto conversationDto) {
-    Optional<Conversation> optionalConversation = conversationRepository.findById(id);
+    Optional<Conversation> optionalConversation =
+        conversationRepository.findById(id);
     if (optionalConversation.isPresent()) {
       Conversation existingConversation = optionalConversation.get();
 
@@ -106,7 +119,8 @@ public class ConversationServiceImpl implements Iconversationservice {
       existingConversation.setModificationDate(
           new Date());
 
-      Conversation updatedConversation = conversationRepository.save(existingConversation);
+      Conversation updatedConversation =
+          conversationRepository.save(existingConversation);
 
       return ConversationConvert.getInstance().convertEntityToDto(
           updatedConversation);
@@ -118,13 +132,17 @@ public class ConversationServiceImpl implements Iconversationservice {
   /**
    * Deletes an existing conversation.
    *
-   * @param id The ID of the conversation to delete.
-   * @throws EntityNotFoundException if the conversation with the specified ID
-   *                                 does not exist.
+   * @param id
+   *     The ID of the conversation to delete.
+   *
+   * @throws EntityNotFoundException
+   *     if the conversation with the specified ID
+   *     does not exist.
    */
   @Override
   public void deleteConversation(final int id) {
-    Optional<Conversation> optionalConversation = conversationRepository.findById(id);
+    Optional<Conversation> optionalConversation =
+        conversationRepository.findById(id);
     if (optionalConversation.isPresent()) {
       conversationRepository.deleteById(id);
     } else {
@@ -135,13 +153,16 @@ public class ConversationServiceImpl implements Iconversationservice {
   /**
    * Retrieves all conversations of a specific user.
    *
-   * @param idUser The ID of the user.
+   * @param idUser
+   *     The ID of the user.
+   *
    * @return A list of conversations of the specified user.
    */
   @Override
   public List<Conversationdto> getAllUserConversation(
       final int idUser) {
-    final List<Conversation> result = conversationRepository.getAllUserConversation(idUser);
+    final List<Conversation> result =
+        conversationRepository.getAllUserConversation(idUser);
     return ConversationConvert.getInstance().convertListEntityToListDto(result);
   }
 
@@ -149,15 +170,20 @@ public class ConversationServiceImpl implements Iconversationservice {
    * Retrieves all conversations associated with
    * a specific user and a specific game.
    *
-   * @param idUser The ID of the user.
-   * @param idGame The ID of the game.
+   * @param idUser
+   *     The ID of the user.
+   * @param idGame
+   *     The ID of the game.
+   *
    * @return A list of conversations associated with
-   *         the specified user and game.
+   *     the specified user and game.
    */
   @Override
-  public List<Conversationdto> getAllUserConversationByGameId(
+  public List<Conversationdto>
+  getAllUserConversationByGameId(
       final int idUser, final int idGame) {
-    final List<Conversation> result = conversationRepository.getAllUserConversationByGameId(idUser, idGame);
+    final List<Conversation> result =
+        conversationRepository.getAllUserConversationByGameId(idUser, idGame);
     return ConversationConvert.getInstance().convertListEntityToListDto(result);
   }
 
