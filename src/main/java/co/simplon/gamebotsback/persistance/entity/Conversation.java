@@ -81,7 +81,8 @@ public class Conversation {
   /**
    * Sets the ID of the conversation.
    *
-   * @param conversationId The ID of the conversation to set.
+   * @param conversationId
+   *     The ID of the conversation to set.
    */
   public void setIdConversation(final int conversationId) {
     this.idConversation = conversationId;
@@ -99,7 +100,8 @@ public class Conversation {
   /**
    * Sets the name of the conversation.
    *
-   * @param conversationName The name of the conversation to set.
+   * @param conversationName
+   *     The name of the conversation to set.
    */
   public void setName(final String conversationName) {
     this.name = conversationName;
@@ -117,8 +119,9 @@ public class Conversation {
   /**
    * Sets the creation date of the conversation.
    *
-   * @param conversationCreationDate The creation date of
-   *                                 the conversation to set.
+   * @param conversationCreationDate
+   *     The creation date of
+   *     the conversation to set.
    */
   public void setCreationDate(final Date conversationCreationDate) {
     this.creationDate = conversationCreationDate;
@@ -136,8 +139,9 @@ public class Conversation {
   /**
    * Sets the modification date of the conversation.
    *
-   * @param conversationModificationDate The modification date of
-   *                                     the conversation to set.
+   * @param conversationModificationDate
+   *     The modification date of
+   *     the conversation to set.
    */
   public void setModificationDate(final Date conversationModificationDate) {
     this.modificationDate = conversationModificationDate;
@@ -155,7 +159,8 @@ public class Conversation {
   /**
    * Sets the user associated with the conversation.
    *
-   * @param conversationUser The user associated with the conversation to set.
+   * @param conversationUser
+   *     The user associated with the conversation to set.
    */
   public void setUser(final User conversationUser) {
     this.user = conversationUser;
@@ -173,7 +178,8 @@ public class Conversation {
   /**
    * Sets the game associated with the conversation.
    *
-   * @param conversationGame The game associated with the conversation to set.
+   * @param conversationGame
+   *     The game associated with the conversation to set.
    */
   public void setGame(final Game conversationGame) {
     this.game = conversationGame;

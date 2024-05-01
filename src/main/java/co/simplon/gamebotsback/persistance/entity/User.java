@@ -106,7 +106,8 @@ public class User {
   /**
    * Sets the user's ID.
    *
-   * @param userId The user's ID to set.
+   * @param userId
+   *     The user's ID to set.
    */
   public void setIdUser(final int userId) {
     this.idUser = userId;
@@ -124,7 +125,8 @@ public class User {
   /**
    * Sets the username of the user.
    *
-   * @param userUsername The username to set.
+   * @param userUsername
+   *     The username to set.
    */
   public void setUsername(final String userUsername) {
     this.username = userUsername;
@@ -142,7 +144,8 @@ public class User {
   /**
    * Sets the phone number of the user.
    *
-   * @param userPhone The phone number to set.
+   * @param userPhone
+   *     The phone number to set.
    */
   public void setPhone(final String userPhone) {
     this.phone = userPhone;
@@ -160,7 +163,8 @@ public class User {
   /**
    * Sets the email of the user.
    *
-   * @param userEmail The email to set.
+   * @param userEmail
+   *     The email to set.
    */
   public void setEmail(final String userEmail) {
     this.email = userEmail;
@@ -178,7 +182,8 @@ public class User {
   /**
    * Sets the password of the user.
    *
-   * @param userPassword The password to set.
+   * @param userPassword
+   *     The password to set.
    */
   public void setPassword(final String userPassword) {
     this.password = userPassword;
@@ -196,7 +201,8 @@ public class User {
   /**
    * Sets the creation date of the user.
    *
-   * @param userCreationDate The creation date to set.
+   * @param userCreationDate
+   *     The creation date to set.
    */
   public void setCreationDate(final Date userCreationDate) {
     this.creationDate = userCreationDate;
@@ -214,7 +220,8 @@ public class User {
   /**
    * Sets the modification date of the user.
    *
-   * @param userModificationDate The modification date to set.
+   * @param userModificationDate
+   *     The modification date to set.
    */
   public void setModificationDate(final Date userModificationDate) {
     this.modificationDate = userModificationDate;
@@ -232,7 +239,8 @@ public class User {
   /**
    * Sets the image associated with the user.
    *
-   * @param userImage The image to set.
+   * @param userImage
+   *     The image to set.
    */
   public void setImage(final Image userImage) {
     this.image = userImage;

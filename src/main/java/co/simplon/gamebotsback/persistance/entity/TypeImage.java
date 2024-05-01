@@ -66,7 +66,8 @@ public class TypeImage {
   /**
    * Sets the ID of the TypeImage.
    *
-   * @param typeImageId The ID of the TypeImage to set.
+   * @param typeImageId
+   *     The ID of the TypeImage to set.
    */
   public void setIdTypeImage(final int typeImageId) {
     this.idTypeImage = typeImageId;
@@ -84,7 +85,8 @@ public class TypeImage {
   /**
    * Sets the typeImageName of the TypeImage.
    *
-   * @param typeImageName The typeImageName of the TypeImage to set.
+   * @param typeImageName
+   *     The typeImageName of the TypeImage to set.
    */
   public void setName(final String typeImageName) {
     this.name = typeImageName;
@@ -102,7 +104,8 @@ public class TypeImage {
   /**
    * Sets the creation date of the TypeImage.
    *
-   * @param typeImageCreationDate The creation date of the TypeImage to set.
+   * @param typeImageCreationDate
+   *     The creation date of the TypeImage to set.
    */
   public void setCreationDate(final Date typeImageCreationDate) {
     this.creationDate = typeImageCreationDate;
@@ -120,8 +123,9 @@ public class TypeImage {
   /**
    * Sets the modification date of the TypeImage.
    *
-   * @param typeImageModificationDate The modification date of
-   *                                  the TypeImage to set.
+   * @param typeImageModificationDate
+   *     The modification date of
+   *     the TypeImage to set.
    */
   public void setModificationDate(final Date typeImageModificationDate) {
     this.modificationDate = typeImageModificationDate;

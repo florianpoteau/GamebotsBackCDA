@@ -70,7 +70,8 @@ public class Message {
   /**
    * Sets the ID of the Message.
    *
-   * @param messageId The ID of the Message to set.
+   * @param messageId
+   *     The ID of the Message to set.
    */
   public void setIdMessage(final int messageId) {
     this.idMessage = messageId;
@@ -88,7 +89,8 @@ public class Message {
   /**
    * Sets the content of the Message.
    *
-   * @param messageContent The content of the Message to set.
+   * @param messageContent
+   *     The content of the Message to set.
    */
   public void setContent(final String messageContent) {
     this.content = messageContent;
@@ -106,7 +108,8 @@ public class Message {
   /**
    * Sets the creation date of the Message.
    *
-   * @param messageCreationDate The creation date of the Message to set.
+   * @param messageCreationDate
+   *     The creation date of the Message to set.
    */
   public void setCreationDate(final Date messageCreationDate) {
     this.creationDate = messageCreationDate;
@@ -124,7 +127,8 @@ public class Message {
   /**
    * Sets the modification date of the Message.
    *
-   * @param messageModificationDate The modification date of the Message to set.
+   * @param messageModificationDate
+   *     The modification date of the Message to set.
    */
   public void setModificationDate(final Date messageModificationDate) {
     this.modificationDate = messageModificationDate;
@@ -142,7 +146,8 @@ public class Message {
   /**
    * Sets the conversation associated with the Message.
    *
-   * @param messageConversation The conversation to set.
+   * @param messageConversation
+   *     The conversation to set.
    */
   public void setConversation(final Conversation messageConversation) {
     this.conversation = messageConversation;

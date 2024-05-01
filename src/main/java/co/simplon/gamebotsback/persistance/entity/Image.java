@@ -89,7 +89,8 @@ public class Image {
   /**
    * Sets the ID of the Image.
    *
-   * @param imageId The ID of the Image to set.
+   * @param imageId
+   *     The ID of the Image to set.
    */
   public void setIdImage(final int imageId) {
     this.idImage = imageId;
@@ -107,7 +108,8 @@ public class Image {
   /**
    * Sets the name of the Image.
    *
-   * @param imageName The name of the Image to set.
+   * @param imageName
+   *     The name of the Image to set.
    */
   public void setName(final String imageName) {
     this.name = imageName;
@@ -125,7 +127,8 @@ public class Image {
   /**
    * Sets the source of the Image.
    *
-   * @param imageSource The source of the Image to set.
+   * @param imageSource
+   *     The source of the Image to set.
    */
   public void setSource(final String imageSource) {
     this.source = imageSource;
@@ -143,7 +146,8 @@ public class Image {
   /**
    * Sets the creation date of the Image.
    *
-   * @param imageCreationDate The creation date of the Image to set.
+   * @param imageCreationDate
+   *     The creation date of the Image to set.
    */
   public void setCreationDate(final Date imageCreationDate) {
     this.creationDate = imageCreationDate;
@@ -161,7 +165,8 @@ public class Image {
   /**
    * Sets the modification date of the Image.
    *
-   * @param imageModificationDate The modification date of the Image to set.
+   * @param imageModificationDate
+   *     The modification date of the Image to set.
    */
   public void setModificationDate(final Date imageModificationDate) {
     this.modificationDate = imageModificationDate;
@@ -179,7 +184,8 @@ public class Image {
   /**
    * Sets the game associated with the Image.
    *
-   * @param imageGame The game to set.
+   * @param imageGame
+   *     The game to set.
    */
   public void setGame(final Game imageGame) {
     this.game = imageGame;
@@ -197,7 +203,8 @@ public class Image {
   /**
    * Sets the type of image associated with the Image.
    *
-   * @param imageTypeImage The type of image to set.
+   * @param imageTypeImage
+   *     The type of image to set.
    */
   public void setTypeImage(final TypeImage imageTypeImage) {
     this.typeImage = imageTypeImage;
