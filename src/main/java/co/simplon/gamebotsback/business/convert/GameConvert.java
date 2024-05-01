@@ -68,7 +68,7 @@ public final class GameConvert {
    */
   public Game convertDtoToEntity(final Gamedto dto) {
     final Game entity = new Game();
-    dto.setIdGame(entity.getIdGame());
+    entity.setIdGame(dto.getIdGame());
     entity.setTitle(dto.getTitle());
     entity.setStory(dto.getStory());
     entity.setNumberPlayers(dto.getNumberPlayers());
