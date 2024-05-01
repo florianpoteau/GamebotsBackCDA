@@ -55,7 +55,7 @@ class ImageServiceTest {
   }
 
   @Test
-  @DisplayName("Test de récupération de toutes les images par ID de jeu et type d'image")
+  @DisplayName("Test de récupération de toutes les images par ID d'un jeu et d'un type d'image")
   void testGetAllImagesByGameIdAndImageType() {
 
     int gameId = 1;
