@@ -29,6 +29,8 @@ class UserServiceTest {
 
   int userId = 1;
 
+  String username = "Je suis un Username";
+
   Userdto modifiedUserdto = new Userdto();
 
   @Mock
@@ -52,7 +54,7 @@ class UserServiceTest {
   }
 
   @Test
-  @DisplayName("Test de récupération d'un jeu par son id")
+  @DisplayName("Test de récupération d'un utilisateur par son id")
   void testGetById() {
 
     existingUser.setIdUser(userId);
@@ -66,14 +68,39 @@ class UserServiceTest {
   }
 
   @Test
-  @DisplayName("Test de récupération d'un jeu par son id - jeu non trouvé")
+  @DisplayName("Test de récupération d'un utilisateur par son id - utilisateur non trouvé")
   void testGetByIdWhenUserDoesNotExist() {
 
     when(iUserRepository.findById(userId)).thenReturn(Optional.empty());
     EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> userService.getById(userId));
 
-    assertEquals(ERRORMESSAGE + userId, exception.getMessage(), "Le message d'erreur doit être correct");
+    assertEquals(ERRORMESSAGE + userId, exception.getMessage(), "User does not exist: ");
     verify(iUserRepository, times(1)).findById(userId);
+  }
+
+  @Test
+  @DisplayName("Test de récupération d'un id d'utilisateur par son username")
+  void testGetIdByUsername() {
+
+    existingUser.setUsername(username);
+    existingUser.setIdUser(userId);
+
+    when(iUserRepository.findByUsername(username)).thenReturn(Optional.of(existingUser));
+    int idUser = userService.getIdByUsername(username);
+
+    verify(iUserRepository, times(1)).findByUsername(username);
+    assertEquals(userId, idUser, "id non égaux");
+  }
+
+  @Test
+  @DisplayName("Test de récupération d'un id d'utilisateur par son username - utilisateur non trouvé")
+  void testGetIdByUsernameWhenUserDoesNotExist() {
+
+    when(iUserRepository.findByUsername(username)).thenReturn(Optional.empty());
+    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> userService.getIdByUsername(username));
+
+    assertEquals(ERRORMESSAGE + username, exception.getMessage(), "User does not exist: ");
+    verify(iUserRepository, times(1)).findByUsername(username);
   }
 
   @Test
