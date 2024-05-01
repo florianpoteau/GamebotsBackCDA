@@ -3,6 +3,7 @@ package co.simplon.gamebotsback.unit.business.convert;
 import co.simplon.gamebotsback.business.convert.TypeImageConvert;
 import co.simplon.gamebotsback.business.dto.TypeImagedto;
 import co.simplon.gamebotsback.persistance.entity.TypeImage;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
@@ -65,6 +66,7 @@ class TypeImageConvertTest {
   }
 
   @Test
+  @DisplayName("Test de récupération de l'instance de TypeImageConvert")
   void testGetInstanceReturnsInstanceOfTypeImageConvert() {
 
     TypeImageConvert typeImageConvert = TypeImageConvert.getInstance();
@@ -74,6 +76,7 @@ class TypeImageConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversion de TypeImage à TypeImageDto")
   void testConvertTypeImageToTypeImageDTO() {
 
     TypeImage typeImage = createSampleTypeImage();
@@ -86,6 +89,7 @@ class TypeImageConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversion de TypeImage à TypeImageDto quand TypeImage est null")
   void testConvertTypeImageToTypeImageDTOWithNull() {
 
     TypeImage typeImage = createSampleTypeImageWithNull();
@@ -98,6 +102,7 @@ class TypeImageConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversion de TypeImageDto à TypeImage")
   void testConvertTypeImageDTOToTypeImage() {
 
     TypeImagedto typeImageDTO = createSampleTypeImageDTO();
@@ -110,6 +115,7 @@ class TypeImageConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversion de TypeImageDto à TypeImage quand TypeImageDto est null")
   void testConvertTypeImageDTOToTypeImageWithNull() {
 
     TypeImagedto typeImageDTO = createSampleTypeImageDTOWithNull();
@@ -122,6 +128,7 @@ class TypeImageConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversation d'une liste de TypeImage à une liste de TypeImageDto")
   void testConvertListTypeImageToListTypeImageDTO() {
 
     List<TypeImage> typeImageList = List.of(createSampleTypeImage(), createSampleTypeImage());
@@ -138,6 +145,7 @@ class TypeImageConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversation d'une liste de TypeImage à une liste de TypeImageDto quand la liste de TypeImage est null")
   void testConvertListTypeImageToListTypeImageDTOWithNull() {
 
     List<TypeImage> typeImageList = List.of(createSampleTypeImageWithNull(), createSampleTypeImageWithNull());
@@ -154,6 +162,7 @@ class TypeImageConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversation d'une liste de TypeImageDto à une liste de TypeImage")
   void testConvertListTypeImageDTOToListTypeImage() {
 
     List<TypeImagedto> typeImagedtoList = List.of(createSampleTypeImageDTO(), createSampleTypeImageDTO());
@@ -170,6 +179,7 @@ class TypeImageConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversation d'une liste de TypeImageDto à une liste de TypeImage quand la liste de TypeImageDto est null")
   void testConvertListTypeImageDTOToListTypeImageWithNull() {
 
     List<TypeImagedto> typeImagedtoList = List.of(createSampleTypeImageDTOWithNull(), createSampleTypeImageDTOWithNull());

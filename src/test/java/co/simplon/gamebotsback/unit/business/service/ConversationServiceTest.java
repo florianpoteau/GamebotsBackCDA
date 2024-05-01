@@ -29,6 +29,7 @@ class ConversationServiceTest {
   int conversationId = 1;
   Conversation existingConversation = new Conversation();
   Conversationdto modifiedConversationdto = new Conversationdto();
+
   @InjectMocks
   private ConversationServiceImpl conversationService;
   @Mock
@@ -101,7 +102,6 @@ class ConversationServiceTest {
 
     modifiedConversationdto.setIdConversation(conversationId);
     modifiedConversationdto.setName("Modified Conversation");
-    modifiedConversationdto.setCreationDate(new Date());
     modifiedConversationdto.setModificationDate(new Date());
     modifiedConversationdto.setUser(new User());
     modifiedConversationdto.setGame(new Game());

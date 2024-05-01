@@ -5,6 +5,7 @@ import co.simplon.gamebotsback.business.dto.Conversationdto;
 import co.simplon.gamebotsback.persistance.entity.Conversation;
 import co.simplon.gamebotsback.persistance.entity.Game;
 import co.simplon.gamebotsback.persistance.entity.User;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
@@ -75,6 +76,7 @@ class ConversationConvertTest {
   }
 
   @Test
+  @DisplayName("Test de récupération de l'instance de ConversationConvert")
   void testGetInstanceReturnsInstanceOfConversationConvert() {
 
     ConversationConvert conversationConvert = ConversationConvert.getInstance();
@@ -84,7 +86,8 @@ class ConversationConvertTest {
   }
 
   @Test
-  void testConvertConversationToConversationDTO() {
+  @DisplayName("Test de conversion de Conversation à ConversationDto")
+  void testConvertConversationToConversationDto() {
 
     Conversation conversation = createSampleConversation();
     Conversationdto conversationDTO = conversationConvert.convertEntityToDto(conversation);
@@ -98,7 +101,8 @@ class ConversationConvertTest {
   }
 
   @Test
-  void testConvertConversationToConversationDTOWithNull() {
+  @DisplayName("Test de conversion de Conversation à ConversationDto quand Conversation est null")
+  void testConvertConversationToConversationDtoWithNull() {
 
     Conversation conversation = createSampleConversationWithNull();
     Conversationdto conversationDTO = conversationConvert.convertEntityToDto(conversation);
@@ -112,7 +116,8 @@ class ConversationConvertTest {
   }
 
   @Test
-  void testConvertConversationDTOToConversation() {
+  @DisplayName("Test de conversion de ConversationDto à Conversation")
+  void testConvertConversationDtoToConversation() {
 
     Conversationdto conversationDTO = createSampleConversationDTO();
     Conversation conversation = conversationConvert.convertDtoToEntity(conversationDTO);
@@ -126,7 +131,8 @@ class ConversationConvertTest {
   }
 
   @Test
-  void testConvertConversationDTOToConversationWithNull() {
+  @DisplayName("Test de conversion de ConversationDto à Conversation quand ConversationDto est null")
+  void testConvertConversationDtoToConversationWithNull() {
 
     Conversationdto conversationDTO = createSampleConversationDTOWithNull();
     Conversation conversation = conversationConvert.convertDtoToEntity(conversationDTO);
@@ -140,7 +146,8 @@ class ConversationConvertTest {
   }
 
   @Test
-  void testConvertListConversationToListConversationDTO() {
+  @DisplayName("Test de conversation d'une liste de Conversation à une liste de ConversationDto")
+  void testConvertListConversationToListConversationDto() {
 
     List<Conversation> conversationList = List.of(createSampleConversation(), createSampleConversation());
     List<Conversationdto> conversationdtoList = conversationConvert.convertListEntityToListDto(conversationList);
@@ -161,7 +168,8 @@ class ConversationConvertTest {
   }
 
   @Test
-  void testConvertListConversationToListConversationDTOWithNull() {
+  @DisplayName("Test de conversation d'une liste de Conversation à une liste de ConversationDto quand la liste de Conversation est null")
+  void testConvertListConversationToListConversationDtoWithNull() {
 
     List<Conversation> conversationList = List.of(createSampleConversationWithNull(), createSampleConversationWithNull());
     List<Conversationdto> conversationdtoList = conversationConvert.convertListEntityToListDto(conversationList);
@@ -182,7 +190,8 @@ class ConversationConvertTest {
   }
 
   @Test
-  void testConvertListConversationDTOToListConversation() {
+  @DisplayName("Test de conversation d'une liste de ConversationDto à une liste de Conversation")
+  void testConvertListConversationDtoToListConversation() {
 
     List<Conversationdto> conversationdtoList = List.of(createSampleConversationDTO(), createSampleConversationDTO());
 
@@ -204,7 +213,8 @@ class ConversationConvertTest {
   }
 
   @Test
-  void testConvertListConversationDTOToListConversationWithNull() {
+  @DisplayName("Test de conversation d'une liste de ConversationDto à une liste de Conversation quand la liste de ConversationDto est null")
+  void testConvertListConversationDtoToListConversationWithNull() {
 
     List<Conversationdto> conversationdtoList = List.of(createSampleConversationDTOWithNull(), createSampleConversationDTOWithNull());
     List<Conversation> conversationList = conversationConvert.convertListDtoToListEntity(conversationdtoList);

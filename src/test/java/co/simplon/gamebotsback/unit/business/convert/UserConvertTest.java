@@ -4,6 +4,7 @@ import co.simplon.gamebotsback.business.convert.UserConvert;
 import co.simplon.gamebotsback.business.dto.Userdto;
 import co.simplon.gamebotsback.persistance.entity.Image;
 import co.simplon.gamebotsback.persistance.entity.User;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
@@ -85,6 +86,7 @@ class UserConvertTest {
   }
 
   @Test
+  @DisplayName("Test de récupération de l'instance de UserConvert")
   void testGetInstanceReturnsInstanceOfUserConvert() {
 
     UserConvert userConvert = UserConvert.getInstance();
@@ -94,6 +96,7 @@ class UserConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversion de User à UserDto")
   void testConvertUserToUserDTO() {
 
     User user = createSampleUser();
@@ -110,6 +113,7 @@ class UserConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversion de User à UserDto quand User est null")
   void testConvertUserToUserDTOWithNull() {
 
     User user = createSampleUserWithNull();
@@ -126,6 +130,7 @@ class UserConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversion de UserDto à User")
   void testConvertUserDTOToUser() {
 
     Userdto userDTO = createSampleUserDTO();
@@ -142,6 +147,7 @@ class UserConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversion de UserDto à User quand UserDto est null")
   void testConvertUserDTOToUserWithNull() {
 
     Userdto userDTO = createSampleUserDTOWithNull();
@@ -158,6 +164,7 @@ class UserConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversation d'une liste de User à une liste de UserDto")
   void testConvertListUserToListUserDTO() {
 
     List<User> userList = List.of(createSampleUser(), createSampleUser());
@@ -182,6 +189,7 @@ class UserConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversation d'une liste de User à une liste de UserDto quand la liste de User est null")
   void testConvertListUserToListUserDTOWithNull() {
 
     List<User> userList = List.of(createSampleUserWithNull(), createSampleUserWithNull());
@@ -206,6 +214,7 @@ class UserConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversation d'une liste de UserDto à une liste de User")
   void testConvertListUserDTOToListUser() {
 
     List<Userdto> userdtoList = List.of(createSampleUserDTO(), createSampleUserDTO());
@@ -230,6 +239,7 @@ class UserConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversation d'une liste de UserDto à une liste de User quand la liste de UserDto est null")
   void testConvertListUserDTOToListUserWithNull() {
 
     List<Userdto> userdtoList = List.of(createSampleUserDTOWithNull(), createSampleUserDTOWithNull());

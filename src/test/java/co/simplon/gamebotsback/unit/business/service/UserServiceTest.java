@@ -12,7 +12,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Date;
 import java.util.Optional;
@@ -26,14 +25,16 @@ import static org.mockito.Mockito.*;
 class UserServiceTest {
 
   User existingUser = new User();
+
   int userId = 1;
+
   Userdto modifiedUserdto = new Userdto();
+
   @InjectMocks
   private UserServiceImpl userService;
+
   @Mock
   private Iuserrepository iUserRepository;
-  @Mock
-  PasswordEncoder passwordEncoder;
 
   @Test
   @DisplayName("Test d'ajout d'un nouvel utilisateur")
@@ -110,7 +111,6 @@ class UserServiceTest {
     modifiedUserdto.setPhone("1234567890");
     modifiedUserdto.setEmail("leGamerzzz@gmail.com");
     modifiedUserdto.setPassword("*****");
-    modifiedUserdto.setCreationDate(new Date());
     modifiedUserdto.setModificationDate(new Date());
     modifiedUserdto.setImage(new Image());
 

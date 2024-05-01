@@ -4,6 +4,7 @@ import co.simplon.gamebotsback.business.convert.MessageConvert;
 import co.simplon.gamebotsback.business.dto.Messagedto;
 import co.simplon.gamebotsback.persistance.entity.Conversation;
 import co.simplon.gamebotsback.persistance.entity.Message;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
@@ -71,6 +72,7 @@ class MessageConvertTest {
   }
 
   @Test
+  @DisplayName("Test de récupération de l'instance de MessageConvert")
   void testGetInstanceReturnsInstanceOfMessageConvert() {
 
     MessageConvert messageConvert = MessageConvert.getInstance();
@@ -80,6 +82,7 @@ class MessageConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversion de Message à MessageDto")
   void testConvertMessageToMessageDTO() {
 
     Message message = createSampleMessage();
@@ -93,6 +96,7 @@ class MessageConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversion de Message à MessageDto quand Message est null")
   void testConvertMessageToMessageDTOWithNull() {
 
     Message message = createSampleMessageWithNull();
@@ -106,6 +110,7 @@ class MessageConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversion de MessageDto à Message")
   void testConvertMessageDTOToMessage() {
 
     Messagedto messageDTO = createSampleMessageDTO();
@@ -119,6 +124,7 @@ class MessageConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversion de MessageDto à Message quand MessageDto est null")
   void testConvertMessageDTOToMessageWithNull() {
 
     Messagedto messageDTO = createSampleMessageDTOWithNull();
@@ -132,6 +138,7 @@ class MessageConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversation d'une liste de Message à une liste de MessageDto")
   void testConvertListMessageToListMessageDTO() {
 
     List<Message> messageList = List.of(createSampleMessage(), createSampleMessage());
@@ -150,6 +157,7 @@ class MessageConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversation d'une liste de Message à une liste de MessageDto quand Message est null")
   void testConvertListMessageToListMessageDTOWithNull() {
 
     List<Message> messageList = List.of(createSampleMessageWithNull(), createSampleMessageWithNull());
@@ -168,6 +176,7 @@ class MessageConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversation d'une liste de MessageDto à une liste de Message")
   void testConvertListMessageDTOToListMessage() {
 
     List<Messagedto> messagedtoList = List.of(createSampleMessageDTO(), createSampleMessageDTO());
@@ -186,6 +195,7 @@ class MessageConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversation d'une liste de MessageDto à une liste de Message quand MessageDto est null")
   void testConvertListMessageDTOToListMessageWithNull() {
 
     List<Messagedto> messagedtoList = List.of(createSampleMessageDTOWithNull(), createSampleMessageDTOWithNull());

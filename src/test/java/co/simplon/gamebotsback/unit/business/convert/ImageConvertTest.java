@@ -5,6 +5,7 @@ import co.simplon.gamebotsback.business.dto.Imagedto;
 import co.simplon.gamebotsback.persistance.entity.Game;
 import co.simplon.gamebotsback.persistance.entity.Image;
 import co.simplon.gamebotsback.persistance.entity.TypeImage;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
@@ -80,6 +81,7 @@ class ImageConvertTest {
   }
 
   @Test
+  @DisplayName("Test de récupération de l'instance de ImageConvert")
   void testGetInstanceReturnsInstanceOfImageConvert() {
 
     ImageConvert imageConvert = ImageConvert.getInstance();
@@ -89,6 +91,7 @@ class ImageConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversion de Image à ImageDto")
   void testConvertImageToImageDTO() {
 
     Image image = createSampleImage();
@@ -104,6 +107,7 @@ class ImageConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversion de Image à ImageDto quand Image est null")
   void testConvertImageToImageDTOWithNull() {
 
     Image image = createSampleImageWithNull();
@@ -119,6 +123,7 @@ class ImageConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversion de ImageDto à Image")
   void testConvertImageDTOToImage() {
 
     Imagedto imageDTO = createSampleImageDTO();
@@ -134,6 +139,7 @@ class ImageConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversion de ImageDto à Image quand ImageDto est null")
   void testConvertImageDTOToImageWithNull() {
 
     Imagedto imageDTO = createSampleImageDTOWithNull();
@@ -149,6 +155,7 @@ class ImageConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversation d'une liste de Image à une liste de ImageDto")
   void testConvertListImageToListImageDTO() {
 
     List<Image> imageList = List.of(createSampleImage(), createSampleImage());
@@ -171,6 +178,7 @@ class ImageConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversation d'une liste de Image à une liste de ImageDto quand la liste de Image est null")
   void testConvertListImageToListImageDTOWithNull() {
 
     List<Image> imageList = List.of(createSampleImageWithNull(), createSampleImageWithNull());
@@ -194,6 +202,7 @@ class ImageConvertTest {
 
 
   @Test
+  @DisplayName("Test de conversation d'une liste de ImageDto à une liste de Image")
   void testConvertListImageDTOToListImage() {
 
     List<Imagedto> imagedtoList = List.of(createSampleImageDTO(), createSampleImageDTO());
@@ -216,6 +225,7 @@ class ImageConvertTest {
   }
 
   @Test
+  @DisplayName("Test de conversation d'une liste de ImageDto à une liste de Image quand la liste de ImageDto est null")
   void testConvertListImageDTOToListImageWithNull() {
 
     List<Imagedto> imagedtoList = List.of(createSampleImageDTOWithNull(), createSampleImageDTOWithNull());

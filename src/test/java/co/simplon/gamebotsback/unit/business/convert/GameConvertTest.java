@@ -3,6 +3,7 @@ package co.simplon.gamebotsback.unit.business.convert;
 import co.simplon.gamebotsback.business.convert.GameConvert;
 import co.simplon.gamebotsback.business.dto.Gamedto;
 import co.simplon.gamebotsback.persistance.entity.Game;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
@@ -92,6 +93,7 @@ class GameConvertTest {
   }
 
   @Test
+  @DisplayName("Test de récupération de l'instance de GameConvert")
   void testGetInstanceReturnsInstanceOfGameConvert() {
 
     GameConvert gameConvert = GameConvert.getInstance();
@@ -101,7 +103,8 @@ class GameConvertTest {
   }
 
   @Test
-  void testConvertGameToGameDTO() {
+  @DisplayName("Test de conversion de Game à GameDto")
+  void testConvertGameToGameDto() {
 
     Game game = createSampleGame();
     Gamedto gameDTO = gameConvert.convertEntityToDto(game);
@@ -119,7 +122,8 @@ class GameConvertTest {
   }
 
   @Test
-  void testConvertGameToGameDTOWithNull() {
+  @DisplayName("Test de conversion de Game à Game quand GameDto est null")
+  void testConvertGameToGameDtoWithNull() {
 
     Game game = createSampleGameWithNull();
     Gamedto gameDTO = gameConvert.convertEntityToDto(game);
@@ -137,7 +141,8 @@ class GameConvertTest {
   }
 
   @Test
-  void testConvertGameDTOToGame() {
+  @DisplayName("Test de conversation de GameDTO à Game")
+  void testConvertGameDtoToGame() {
 
     Gamedto gameDTO = createSampleGameDTO();
     Game game = gameConvert.convertDtoToEntity(gameDTO);
@@ -155,7 +160,8 @@ class GameConvertTest {
   }
 
   @Test
-  void testConvertGameDTOToGameWithNull() {
+  @DisplayName("Test de conversation de GameDTO à Game quand GameDto est null")
+  void testConvertGameDtoToGameWithNull() {
 
     Gamedto gameDTO = createSampleGameDTOWithNull();
     Game game = gameConvert.convertDtoToEntity(gameDTO);
@@ -173,7 +179,8 @@ class GameConvertTest {
   }
 
   @Test
-  void testConvertListGameToListGameDTO() {
+  @DisplayName("Test de conversation d'une liste de Game à une liste de GameDto")
+  void testConvertListGameToListGameDto() {
 
     List<Game> gameList = List.of(createSampleGame(), createSampleGame());
     List<Gamedto> gamedtoList = gameConvert.convertListEntityToListDto(gameList);
@@ -201,7 +208,8 @@ class GameConvertTest {
   }
 
   @Test
-  void testConvertListGameToListGameDTOWithNull() {
+  @DisplayName("Test de conversation d'une liste de Game à une liste de GameDto quand la liste de Game est null")
+  void testConvertListGameToListGameDtoWithNull() {
 
     List<Game> gameList = List.of(createSampleGameWithNull(), createSampleGameWithNull());
     List<Gamedto> gamedtoList = gameConvert.convertListEntityToListDto(gameList);
@@ -229,7 +237,8 @@ class GameConvertTest {
   }
 
   @Test
-  void testConvertListGameDTOToListGame() {
+  @DisplayName("Test de conversation d'une liste de GameDto à une liste de Game")
+  void testConvertListGameDtoToListGame() {
 
     List<Gamedto> gamedtoList = List.of(createSampleGameDTO(), createSampleGameDTO());
     List<Game> gameList = gameConvert.convertListDtoToListEntity(gamedtoList);
@@ -257,7 +266,8 @@ class GameConvertTest {
   }
 
   @Test
-  void testConvertListGameDTOToListGameWithNull() {
+  @DisplayName("Test de conversation d'une liste de GameDto à une liste de Game quand la liste de GameDto est null")
+  void testConvertListGameDtoToListGameWithNull() {
 
     List<Gamedto> gamedtoList = List.of(createSampleGameDTOWithNull(), createSampleGameDTOWithNull());
     List<Game> gameList = gameConvert.convertListDtoToListEntity(gamedtoList);
