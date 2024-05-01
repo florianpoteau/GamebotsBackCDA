@@ -1,6 +1,8 @@
 /**
- * Controller class responsible for handling HTTP requests related to modifying user accounts.
- * This controller receives a PUT request with the user ID and updated user data in JSON format,
+ * Controller class responsible for handling
+ * HTTP requests related to modifying user accounts.
+ * This controller receives a PUT request with the user
+ * ID and updated user data in JSON format,
  * and delegates the modification of the user account to the UserService.
  */
 package co.simplon.gamebotsback.presentation.controller.user;
@@ -21,21 +23,26 @@ public class ModifyUserAccountController {
   /**
    * Constructor for the ModifyUserAccountController.
    *
-   * @param userService The UserService used to modify user accounts.
+   * @param serviceUser
+   *     The UserService used to modify user accounts.
    */
   @Autowired
-  public ModifyUserAccountController(Iuserservice userService) {
-    this.userService = userService;
+  public ModifyUserAccountController(
+      final Iuserservice serviceUser) {
+    this.userService = serviceUser;
   }
 
   /**
    * Handles a PUT request to modify a user account.
    *
-   * @param id      The ID of the user account to be modified.
-   * @param userDTO The UserDTO object containing the updated user data.
+   * @param id
+   *     The ID of the user account to be modified.
+   * @param userDto
+   *     The UserDTO object containing the updated user data.
    */
   @PutMapping("/users/{id}")
-  public void modifyUserAccount(@PathVariable int id, @RequestBody Userdto userDTO) {
-    userService.modifyAccount(id, userDTO);
+  public void modifyUserAccount(
+      @PathVariable final int id, @RequestBody final Userdto userDto) {
+    userService.modifyAccount(id, userDto);
   }
 }
