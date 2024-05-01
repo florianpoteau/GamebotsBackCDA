@@ -1,7 +1,7 @@
-/**
- * Controller class responsible for handling HTTP requests related to retrieving all games.
- */
 package co.simplon.gamebotsback.presentation.controller.game;
+
+import co.simplon.gamebotsback.business.dto.Gamedto;
+import co.simplon.gamebotsback.business.service.game.Igameservice;
 
 import java.util.List;
 
@@ -9,9 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.simplon.gamebotsback.business.dto.Gamedto;
-import co.simplon.gamebotsback.business.service.game.Igameservice;
-
+/**
+ * Controller class responsible for handling HTTP requests
+ * related to retrieving all games.
+ */
 @RestController
 public class GetAllGameController {
 
@@ -20,11 +21,13 @@ public class GetAllGameController {
   /**
    * Constructor for the GetAllGameController.
    *
-   * @param gameService The service responsible for retrieving game information.
+   * @param serviceGame
+   *     The service responsible for retrieving game information.
    */
   @Autowired
-  public GetAllGameController(Igameservice gameService) {
-    this.gameService = gameService;
+  public GetAllGameController(
+      final Igameservice serviceGame) {
+    this.gameService = serviceGame;
   }
 
   /**
