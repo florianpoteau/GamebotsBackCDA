@@ -2,7 +2,6 @@ package co.simplon.gamebotsback.business.convert;
 
 import co.simplon.gamebotsback.business.dto.Messagedto;
 import co.simplon.gamebotsback.persistance.entity.Message;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +37,9 @@ public final class MessageConvert {
   /**
    * Converts a Message entity to a MessageDTO.
    *
-   * @param entity the Message entity to convert
+   * @param entity
+   *     the Message entity to convert
+   *
    * @return the converted MessageDTO
    */
   public Messagedto convertEntityToDto(final Message entity) {
@@ -55,7 +56,9 @@ public final class MessageConvert {
   /**
    * Converts a MessageDTO to a Message entity.
    *
-   * @param dto the MessageDTO to convert
+   * @param dto
+   *     the MessageDTO to convert
+   *
    * @return the converted Message entity
    */
   public Message convertDtoToEntity(final Messagedto dto) {
@@ -70,25 +73,11 @@ public final class MessageConvert {
   }
 
   /**
-   * Converts a list of MessageDTO objects to a list of Message entities.
-   *
-   * @param dtoList the list of MessageDTO objects to convert
-   * @return the list of converted Message entities
-   */
-  public List<Message> convertListDtoToListEntity(
-      final List<Messagedto> dtoList) {
-    final List<Message> entityList = new ArrayList<>();
-    for (Messagedto dto : dtoList) {
-      entityList.add(convertDtoToEntity(dto));
-    }
-
-    return entityList;
-  }
-
-  /**
    * Converts a list of Message entities to a list of MessageDTO objects.
    *
-   * @param entityList the list of Message entities to convert
+   * @param entityList
+   *     the list of Message entities to convert
+   *
    * @return the list of converted MessageDTO objects
    */
   public List<Messagedto> convertListEntityToListDto(
@@ -99,5 +88,23 @@ public final class MessageConvert {
     }
 
     return dtoList;
+  }
+
+  /**
+   * Converts a list of MessageDTO objects to a list of Message entities.
+   *
+   * @param dtoList
+   *     the list of MessageDTO objects to convert
+   *
+   * @return the list of converted Message entities
+   */
+  public List<Message> convertListDtoToListEntity(
+      final List<Messagedto> dtoList) {
+    final List<Message> entityList = new ArrayList<>();
+    for (Messagedto dto : dtoList) {
+      entityList.add(convertDtoToEntity(dto));
+    }
+
+    return entityList;
   }
 }

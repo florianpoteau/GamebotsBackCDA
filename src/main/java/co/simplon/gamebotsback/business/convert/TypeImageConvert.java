@@ -2,7 +2,6 @@ package co.simplon.gamebotsback.business.convert;
 
 import co.simplon.gamebotsback.business.dto.TypeImagedto;
 import co.simplon.gamebotsback.persistance.entity.TypeImage;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +37,9 @@ public final class TypeImageConvert {
   /**
    * Converts a TypeImage entity to a TypeImageDTO.
    *
-   * @param entity the TypeImage entity to convert
+   * @param entity
+   *     the TypeImage entity to convert
+   *
    * @return the converted TypeImageDTO
    */
   public TypeImagedto convertEntityToDto(final TypeImage entity) {
@@ -54,7 +55,9 @@ public final class TypeImageConvert {
   /**
    * Converts a TypeImageDTO to a TypeImage entity.
    *
-   * @param dto the TypeImageDTO to convert
+   * @param dto
+   *     the TypeImageDTO to convert
+   *
    * @return the converted TypeImage entity
    */
   public TypeImage convertDtoToEntity(final TypeImagedto dto) {
@@ -70,7 +73,9 @@ public final class TypeImageConvert {
   /**
    * Converts a list of TypeImageDTO objects to a list of TypeImage entities.
    *
-   * @param dtoList the list of TypeImageDTO objects to convert
+   * @param dtoList
+   *     the list of TypeImageDTO objects to convert
+   *
    * @return the list of converted TypeImage entities
    */
   public List<TypeImage> convertListDtoToListEntity(
@@ -86,7 +91,9 @@ public final class TypeImageConvert {
   /**
    * Converts a list of TypeImage entities to a list of TypeImageDTO objects.
    *
-   * @param entityList the list of TypeImage entities to convert
+   * @param entityList
+   *     the list of TypeImage entities to convert
+   *
    * @return the list of converted TypeImageDTO objects
    */
   public List<TypeImagedto> convertListEntityToListDto(

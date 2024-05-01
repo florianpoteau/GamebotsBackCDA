@@ -2,7 +2,6 @@ package co.simplon.gamebotsback.business.convert;
 
 import co.simplon.gamebotsback.business.dto.Imagedto;
 import co.simplon.gamebotsback.persistance.entity.Image;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +38,9 @@ public final class ImageConvert {
   /**
    * Converts an Image entity to an Imagedto.
    *
-   * @param entity the Image entity to convert
+   * @param entity
+   *     the Image entity to convert
+   *
    * @return the converted Imagedto
    */
   public Imagedto convertEntityToDto(final Image entity) {
@@ -58,7 +59,9 @@ public final class ImageConvert {
   /**
    * Converts an Imagedto to an Image entity.
    *
-   * @param dto the Imagedto to convert
+   * @param dto
+   *     the Imagedto to convert
+   *
    * @return the converted Image entity
    */
   public Image convertDtoToEntity(final Imagedto dto) {
@@ -75,24 +78,11 @@ public final class ImageConvert {
   }
 
   /**
-   * Converts a list of Imagedto objects to a list of Image entities.
-   *
-   * @param dtoList the list of Imagedto objects to convert
-   * @return the list of converted Image entities
-   */
-  public List<Image> convertListDtoToListEntity(final List<Imagedto> dtoList) {
-    final List<Image> entityList = new ArrayList<>();
-    for (Imagedto dto : dtoList) {
-      entityList.add(convertDtoToEntity(dto));
-    }
-
-    return entityList;
-  }
-
-  /**
    * Converts a list of Image entities to a list of Imagedto objects.
    *
-   * @param entityList the list of Image entities to convert
+   * @param entityList
+   *     the list of Image entities to convert
+   *
    * @return the list of converted Imagedto objects
    */
   public List<Imagedto> convertListEntityToListDto(
@@ -105,4 +95,20 @@ public final class ImageConvert {
     return dtoList;
   }
 
+  /**
+   * Converts a list of Imagedto objects to a list of Image entities.
+   *
+   * @param dtoList
+   *     the list of Imagedto objects to convert
+   *
+   * @return the list of converted Image entities
+   */
+  public List<Image> convertListDtoToListEntity(final List<Imagedto> dtoList) {
+    final List<Image> entityList = new ArrayList<>();
+    for (Imagedto dto : dtoList) {
+      entityList.add(convertDtoToEntity(dto));
+    }
+
+    return entityList;
+  }
 }

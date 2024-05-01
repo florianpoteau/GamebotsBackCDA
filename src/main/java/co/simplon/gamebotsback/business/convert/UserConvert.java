@@ -2,7 +2,6 @@ package co.simplon.gamebotsback.business.convert;
 
 import co.simplon.gamebotsback.business.dto.Userdto;
 import co.simplon.gamebotsback.persistance.entity.User;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +36,9 @@ public final class UserConvert {
   /**
    * Converts a User entity to a UserDTO.
    *
-   * @param entity the User entity to convert
+   * @param entity
+   *     the User entity to convert
+   *
    * @return the converted UserDTO
    */
   public Userdto convertEntityToDto(final User entity) {
@@ -57,7 +58,9 @@ public final class UserConvert {
   /**
    * Converts a UserDTO to a User entity.
    *
-   * @param dto the UserDTO to convert
+   * @param dto
+   *     the UserDTO to convert
+   *
    * @return the converted User entity
    */
   public User convertDtoToEntity(final Userdto dto) {
@@ -75,25 +78,11 @@ public final class UserConvert {
   }
 
   /**
-   * Converts a list of UserDTO objects to a list of User entities.
-   *
-   * @param dtoList the list of UserDTO objects to convert
-   * @return the list of converted User entities
-   */
-  public List<User> convertListDtoToListEntity(
-      final List<Userdto> dtoList) {
-    final List<User> entityList = new ArrayList<>();
-    for (Userdto dto : dtoList) {
-      entityList.add(convertDtoToEntity(dto));
-    }
-
-    return entityList;
-  }
-
-  /**
    * Converts a list of User entities to a list of UserDTO objects.
    *
-   * @param entityList the list of User entities to convert
+   * @param entityList
+   *     the list of User entities to convert
+   *
    * @return the list of converted UserDTO objects
    */
   public List<Userdto> convertListEntityToListDto(
@@ -104,5 +93,23 @@ public final class UserConvert {
     }
 
     return dtoList;
+  }
+
+  /**
+   * Converts a list of UserDTO objects to a list of User entities.
+   *
+   * @param dtoList
+   *     the list of UserDTO objects to convert
+   *
+   * @return the list of converted User entities
+   */
+  public List<User> convertListDtoToListEntity(
+      final List<Userdto> dtoList) {
+    final List<User> entityList = new ArrayList<>();
+    for (Userdto dto : dtoList) {
+      entityList.add(convertDtoToEntity(dto));
+    }
+
+    return entityList;
   }
 }
