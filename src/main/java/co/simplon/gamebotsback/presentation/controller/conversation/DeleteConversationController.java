@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DeleteConversationController {
 
+  /**
+   * The service responsible for managing conversations.
+   */
   private final Iconversationservice conversationService;
 
   /**

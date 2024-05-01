@@ -1,37 +1,41 @@
-/**
- * Controller class for retrieving all images in the presentation layer.
- * This controller handles HTTP GET requests to fetch all images and return them as a list of ImageDTO objects.
- */
 package co.simplon.gamebotsback.presentation.controller.image;
 
+import co.simplon.gamebotsback.business.dto.Imagedto;
+import co.simplon.gamebotsback.business.service.image.Iimageservice;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.simplon.gamebotsback.business.dto.Imagedto;
-import co.simplon.gamebotsback.business.service.image.Iimageservice;
-
+/**
+ * Controller class responsible for handling
+ * HTTP requests related to retrieving all images.
+ * This controller handles HTTP GET requests
+ * to fetch all images from the system.
+ */
 @RestController
 public class GetAllImagesController {
 
+  /**
+   * The image service used to retrieve all images.
+   */
   private final Iimageservice imageService;
 
   /**
    * Constructs a new GetAllImagesController with the specified image service.
    *
-   * @param imageService The image service used to retrieve all images.
+   * @param serviceImage
+   *     The image service used to retrieve all images.
    */
   @Autowired
-  public GetAllImagesController(Iimageservice imageService) {
-    this.imageService = imageService;
+  public GetAllImagesController(final Iimageservice serviceImage) {
+    this.imageService = serviceImage;
   }
 
   /**
    * Handles HTTP GET requests to fetch all images.
    *
-   * @return A list of ImageDTO objects representing all images.
+   * @return A list of Imagedto objects representing all images.
    */
   @GetMapping("/images")
   public List<Imagedto> findAllImages() {

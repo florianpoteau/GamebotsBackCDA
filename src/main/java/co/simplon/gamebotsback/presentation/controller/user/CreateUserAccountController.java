@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CreateUserAccountController {
 
+  /**
+   * The UserService used to create user accounts.
+   */
   private final Iuserservice userService;
 
   /**

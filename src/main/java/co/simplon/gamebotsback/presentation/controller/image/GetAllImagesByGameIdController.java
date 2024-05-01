@@ -2,9 +2,7 @@ package co.simplon.gamebotsback.presentation.controller.image;
 
 import co.simplon.gamebotsback.business.dto.Imagedto;
 import co.simplon.gamebotsback.business.service.image.Iimageservice;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GetAllImagesByGameIdController {
 
+  /**
+   * The image service used for image-related operations.
+   */
   private final Iimageservice imageService;
 
   /**

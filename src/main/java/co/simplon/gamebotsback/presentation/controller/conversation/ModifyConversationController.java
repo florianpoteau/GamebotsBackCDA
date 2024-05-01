@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ModifyConversationController {
 
+  /**
+   * The conversation service used for conversation-related operations.
+   */
   private final Iconversationservice conversationService;
 
   /**

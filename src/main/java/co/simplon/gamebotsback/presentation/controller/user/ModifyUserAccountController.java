@@ -1,10 +1,3 @@
-/**
- * Controller class responsible for handling
- * HTTP requests related to modifying user accounts.
- * This controller receives a PUT request with the user
- * ID and updated user data in JSON format,
- * and delegates the modification of the user account to the UserService.
- */
 package co.simplon.gamebotsback.presentation.controller.user;
 
 import co.simplon.gamebotsback.business.dto.Userdto;
@@ -15,9 +8,19 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Controller class responsible for handling
+ * HTTP requests related to user account modification.
+ * This controller receives a PUT request
+ * with a user ID in the path and user data in the request body,
+ * and delegates the modification of the user account to the UserService.
+ */
 @RestController
 public class ModifyUserAccountController {
 
+  /**
+   * The UserService used to modify user accounts.
+   */
   private final Iuserservice userService;
 
   /**
@@ -27,8 +30,7 @@ public class ModifyUserAccountController {
    *     The UserService used to modify user accounts.
    */
   @Autowired
-  public ModifyUserAccountController(
-      final Iuserservice serviceUser) {
+  public ModifyUserAccountController(final Iuserservice serviceUser) {
     this.userService = serviceUser;
   }
 

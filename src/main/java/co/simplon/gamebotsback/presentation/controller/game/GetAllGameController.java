@@ -2,9 +2,7 @@ package co.simplon.gamebotsback.presentation.controller.game;
 
 import co.simplon.gamebotsback.business.dto.Gamedto;
 import co.simplon.gamebotsback.business.service.game.Igameservice;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GetAllGameController {
 
+  /**
+   * The game service used for game-related operations.
+   */
   private final Igameservice gameService;
 
   /**

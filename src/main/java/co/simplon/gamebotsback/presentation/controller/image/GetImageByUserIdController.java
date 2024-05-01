@@ -1,42 +1,48 @@
-/**
- * Controller class for retrieving an image by user ID in the presentation layer.
- * This controller handles HTTP GET requests to fetch an image associated with a specific user ID and returns it as an ImageDTO object.
- */
 package co.simplon.gamebotsback.presentation.controller.image;
 
+import co.simplon.gamebotsback.business.dto.Imagedto;
+import co.simplon.gamebotsback.business.service.image.Iimageservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.simplon.gamebotsback.business.dto.Imagedto;
-import co.simplon.gamebotsback.business.service.image.Iimageservice;
-
+/**
+ * Controller class responsible for handling HTTP
+ * requests to retrieve images by user ID.
+ */
 @RestController
 public class GetImageByUserIdController {
 
+  /**
+   * The image service used to retrieve an image by user ID.
+   */
   private final Iimageservice imageService;
 
   /**
-   * Constructs a new GetImageByUserIdController with the specified image service.
+   * Constructs a new GetImageByUserIdController
+   * with the specified image service.
    *
-   * @param imageService The image service used to retrieve an image by user ID.
+   * @param serviceImage
+   *     The image service used to retrieve an image by user ID.
    */
   @Autowired
-  public GetImageByUserIdController(Iimageservice imageService) {
-    this.imageService = imageService;
+  public GetImageByUserIdController(final Iimageservice serviceImage) {
+    this.imageService = serviceImage;
   }
 
   /**
    * Handles HTTP GET requests to fetch an image associated with a specific user
    * ID.
    *
-   * @param id The ID of the user.
+   * @param id
+   *     The ID of the user.
+   *
    * @return An ImageDTO object representing the image associated with the
-   * specified user ID.
+   *     specified user ID.
    */
   @GetMapping("/users/{id}/images")
-  Imagedto findImageByUserId(@PathVariable int id) {
+  Imagedto findImageByUserId(@PathVariable final int id) {
     return imageService.getImageByUserIdAndImageType(id);
   }
 

@@ -14,19 +14,32 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AuthController {
 
+  /**
+   * The service responsible for generating JWT tokens.
+   */
   private final TokenService tokenService;
-  private final Iuserservice iuserservice;
 
   /**
-   * Constructs a new AuthController with the specified TokenService.
+   * The service responsible for user-related operations.
+   */
+  private final Iuserservice iuserservice;
+
+
+  /**
+   * Constructs a new AuthController with the
+   * specified TokenService and IUserService.
    *
    * @param serviceToken
    *     the TokenService used for generating JWT tokens
+   * @param userserviceinterface
+   *     the IUserService
+   *     used for user-related operations
    */
   public AuthController(
-      final TokenService serviceToken, final Iuserservice iuserservice) {
+      final TokenService serviceToken,
+      final Iuserservice userserviceinterface) {
     this.tokenService = serviceToken;
-    this.iuserservice = iuserservice;
+    this.iuserservice = userserviceinterface;
   }
 
   /**

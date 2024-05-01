@@ -8,9 +8,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
+/**
+ * Controller responsible for creating
+ * new conversations via HTTP POST requests.
+ */
 @RestController
 public class CreateConversationController {
 
+  /**
+   * The service responsible for managing conversations.
+   */
   private final Iconversationservice conversationService;
 
   /**

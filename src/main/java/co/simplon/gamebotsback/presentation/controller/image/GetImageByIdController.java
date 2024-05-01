@@ -1,40 +1,46 @@
-/**
- * Controller class for retrieving an image by its ID in the presentation layer.
- * This controller handles HTTP GET requests to fetch an image by its ID and returns it as an ImageDTO object.
- */
 package co.simplon.gamebotsback.presentation.controller.image;
 
+import co.simplon.gamebotsback.business.dto.Imagedto;
+import co.simplon.gamebotsback.business.service.image.Iimageservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.simplon.gamebotsback.business.dto.Imagedto;
-import co.simplon.gamebotsback.business.service.image.Iimageservice;
-
+/**
+ * Controller class responsible for handling HTTP
+ * requests related to fetching an image by its ID.
+ * This controller handles HTTP GET requests to retrieve an image by its ID.
+ */
 @RestController
 public class GetImageByIdController {
 
+  /**
+   * The image service used to retrieve an image by its ID.
+   */
   private final Iimageservice imageService;
 
   /**
    * Constructs a new GetImageByIdController with the specified image service.
    *
-   * @param imageService The image service used to retrieve an image by its ID.
+   * @param serviceImage
+   *     The image service used to retrieve an image by its ID.
    */
   @Autowired
-  public GetImageByIdController(Iimageservice imageService) {
-    this.imageService = imageService;
+  public GetImageByIdController(final Iimageservice serviceImage) {
+    this.imageService = serviceImage;
   }
 
   /**
    * Handles HTTP GET requests to fetch an image by its ID.
    *
-   * @param id The ID of the image.
+   * @param id
+   *     The ID of the image.
+   *
    * @return An ImageDTO object representing the image with the specified ID.
    */
   @GetMapping("/images/{id}")
-  Imagedto findImageById(@PathVariable int id) {
+  Imagedto findImageById(@PathVariable final int id) {
     return imageService.getById(id);
   }
 
