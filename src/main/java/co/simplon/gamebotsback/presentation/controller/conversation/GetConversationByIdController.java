@@ -45,7 +45,7 @@ public class GetConversationByIdController {
    *     the conversation with the specified ID.
    */
   @GetMapping("/conversations/{id}")
-  Conversationdto findConversationById(
+  public Conversationdto findConversationById(
       @PathVariable final int id) {
     return conversationService.getById(id);
   }
