@@ -15,7 +15,7 @@ import static org.mockito.Mockito.verify;
 
 
 @ExtendWith(MockitoExtension.class)
-public class CreateMessageControllerTest {
+class CreateMessageControllerTest {
 
   @InjectMocks
   private CreateMessageController controller;

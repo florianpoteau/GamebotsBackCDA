@@ -14,7 +14,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class CreateUserAccountControllerTest {
+class CreateUserAccountControllerTest {
 
   @InjectMocks
   CreateUserAccountController controller;
@@ -23,7 +23,7 @@ public class CreateUserAccountControllerTest {
   private Iuserservice userService;
 
   @Test
-  public void createUserAccount() {
+  void createUserAccount() {
     doNothing().when(userService).createAccount(any(Userdto.class));
     controller.createAccount(new Userdto());
     verify(userService, times(1)).createAccount(any(Userdto.class));

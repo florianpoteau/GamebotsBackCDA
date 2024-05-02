@@ -15,7 +15,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class GetUserAccountByIdControllerTest {
+class GetUserAccountByIdControllerTest {
 
   @InjectMocks
   GetUserAccountByIdController controller;
@@ -24,7 +24,7 @@ public class GetUserAccountByIdControllerTest {
   private Iuserservice userService;
 
   @Test
-  public void getUserAccountById() {
+  void getUserAccountById() {
     when(userService.getById(anyInt())).thenReturn(new Userdto());
     Userdto userdto = controller.findUserById(anyInt());
     verify(userService, times(1)).getById(anyInt());

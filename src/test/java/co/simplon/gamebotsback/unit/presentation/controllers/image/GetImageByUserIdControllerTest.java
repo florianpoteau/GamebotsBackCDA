@@ -15,7 +15,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class GetImageByUserIdControllerTest {
+class GetImageByUserIdControllerTest {
 
   @InjectMocks
   private GetImageByUserIdController controller;

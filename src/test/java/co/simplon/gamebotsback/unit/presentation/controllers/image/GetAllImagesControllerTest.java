@@ -14,7 +14,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class GetAllImagesControllerTest {
+class GetAllImagesControllerTest {
 
   @InjectMocks
   private GetAllImagesController controller;

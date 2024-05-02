@@ -15,7 +15,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class GetAllMessageByIdConversationControllerTest {
+class GetAllMessageByIdConversationControllerTest {
 
   @InjectMocks
   private GetAllMessageByIdConversationController controller;
