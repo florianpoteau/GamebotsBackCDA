@@ -18,7 +18,7 @@ import static org.mockito.Mockito.verify;
 public class CreateMessageControllerTest {
 
   @InjectMocks
-  private CreateMessageController createMessageController;
+  private CreateMessageController controller;
 
   @Mock
   private Imessageservice messageService;
@@ -26,7 +26,7 @@ public class CreateMessageControllerTest {
   @Test
   void CreateMessage() {
     doNothing().when(messageService).addNewMessage(any(Messagedto.class));
-    createMessageController.createMessage(new Messagedto());
+    controller.createMessage(new Messagedto());
     verify(messageService, times(1)).addNewMessage(any(Messagedto.class));
   }
 }
