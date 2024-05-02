@@ -40,7 +40,7 @@ public class GetImageByIdController {
    * @return An ImageDTO object representing the image with the specified ID.
    */
   @GetMapping("/images/{id}")
-  Imagedto findImageById(@PathVariable final int id) {
+  public Imagedto findImageById(@PathVariable final int id) {
     return imageService.getById(id);
   }
 

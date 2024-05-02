@@ -42,7 +42,7 @@ public class GetImageByUserIdController {
    *     specified user ID.
    */
   @GetMapping("/users/{id}/images")
-  Imagedto findImageByUserId(@PathVariable final int id) {
+  public Imagedto findImageByUserId(@PathVariable final int id) {
     return imageService.getImageByUserIdAndImageType(id);
   }
 
