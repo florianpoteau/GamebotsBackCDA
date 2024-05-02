@@ -45,7 +45,7 @@ public class GetAllMessageByIdConversationController {
    *     messages associated with the specified conversation ID.
    */
   @GetMapping("/conversations/{id}/messages")
-  List<Messagedto> findAllMessagesByIdConversation(@PathVariable final int id) {
+  public List<Messagedto> findAllMessagesByIdConversation(@PathVariable final int id) {
     return messageService.getAllMessageConversation(id);
   }
 
