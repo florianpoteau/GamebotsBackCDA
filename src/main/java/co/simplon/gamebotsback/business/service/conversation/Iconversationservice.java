@@ -40,10 +40,8 @@ public interface Iconversationservice {
    *     The ID of the conversation to modify.
    * @param conversationDto
    *     The modified conversation DTO object.
-   *
-   * @return The modified conversation DTO object.
    */
-  Conversationdto modifyConversation(int id, Conversationdto conversationDto);
+  void modifyConversation(int id, Conversationdto conversationDto);
 
   /**
    * Deletes a conversation by its ID.

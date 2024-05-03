@@ -93,14 +93,12 @@ public class ConversationServiceImpl implements Iconversationservice {
    *     The new information to associate with the
    *     conversation.
    *
-   * @return The updated information of the conversation.
-   *
    * @throws EntityNotFoundException
    *     if the conversation with the specified ID
    *     does not exist.
    */
   @Override
-  public Conversationdto modifyConversation(
+  public void modifyConversation(
       final int id, final Conversationdto conversationDto) {
     Optional<Conversation> optionalConversation =
         conversationRepository.findById(id);
@@ -117,11 +115,7 @@ public class ConversationServiceImpl implements Iconversationservice {
       existingConversation.setModificationDate(
           new Date());
 
-      Conversation updatedConversation =
-          conversationRepository.save(existingConversation);
-
-      return ConversationConvert.getInstance().convertEntityToDto(
-          updatedConversation);
+      conversationRepository.save(existingConversation);
     } else {
       throw new EntityNotFoundException(ERRORMESSAGE + id);
     }
