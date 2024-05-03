@@ -33,10 +33,8 @@ public interface Iuserservice {
    *     The ID of the user to modify.
    * @param user
    *     The new information to associate with the user.
-   *
-   * @return The updated information of the user.
    */
-  Userdto modifyAccount(int id, Userdto user);
+  void modifyAccount(int id, Userdto user);
 
   /**
    * Deletes the user account corresponding to the given ID.

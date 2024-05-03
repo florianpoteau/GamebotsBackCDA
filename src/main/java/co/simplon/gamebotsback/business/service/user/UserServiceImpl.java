@@ -95,13 +95,11 @@ public class UserServiceImpl implements Iuserservice {
    * @param userDto
    *     The new information to associate with the user.
    *
-   * @return The updated information of the user.
-   *
    * @throws EntityNotFoundException
    *     if no user corresponding to the ID is found.
    */
   @Override
-  public Userdto modifyAccount(final int id, final Userdto userDto) {
+  public void modifyAccount(final int id, final Userdto userDto) {
     Optional<User> optionalUser = userrepository.findById(id);
     if (optionalUser.isPresent()) {
       User existingUser = optionalUser.get();
@@ -112,9 +110,8 @@ public class UserServiceImpl implements Iuserservice {
       existingUser.setPhone(userDto.getPhone());
       existingUser.setModificationDate(new Date());
 
-      User updatedUser = userrepository.save(existingUser);
+      userrepository.save(existingUser);
 
-      return UserConvert.getInstance().convertEntityToDto(updatedUser);
     } else {
       throw new EntityNotFoundException(ERRORMESSAGE + id);
     }

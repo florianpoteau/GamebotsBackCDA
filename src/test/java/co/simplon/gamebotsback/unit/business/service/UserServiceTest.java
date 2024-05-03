@@ -99,8 +99,8 @@ class UserServiceTest {
     when(iUserRepository.findByUsername(username)).thenReturn(Optional.empty());
     EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> userService.getIdByUsername(username));
 
-    assertEquals(ERRORMESSAGE + username, exception.getMessage(), "User does not exist: ");
     verify(iUserRepository, times(1)).findByUsername(username);
+    assertEquals(ERRORMESSAGE + username, exception.getMessage(), "User does not exist: ");
   }
 
   @Test
@@ -117,20 +117,10 @@ class UserServiceTest {
     modifiedUserdto.setImage(new Image());
 
     when(iUserRepository.findById(userId)).thenReturn(Optional.of(existingUser));
-    when(iUserRepository.save(any(User.class))).thenReturn(existingUser);
-    Userdto modifiedUser = userService.modifyAccount(userId, modifiedUserdto);
+    userService.modifyAccount(userId, modifiedUserdto);
 
     verify(iUserRepository, times(1)).findById(userId);
     verify(iUserRepository, times(1)).save(any(User.class));
-    assertNotNull(modifiedUser, "L'utilisateur modifié ne doit pas être null");
-    assertEquals(modifiedUserdto.getIdUser(), modifiedUser.getIdUser());
-    assertEquals(modifiedUserdto.getUsername(), modifiedUser.getUsername());
-    assertEquals(modifiedUserdto.getPhone(), modifiedUser.getPhone());
-    assertEquals(modifiedUserdto.getEmail(), modifiedUser.getEmail());
-    assertEquals(modifiedUserdto.getPassword(), modifiedUser.getPassword());
-
-    assertEquals(modifiedUserdto.getModificationDate().getTime(), modifiedUser.getModificationDate().getTime(), 1000);
-    assertEquals(modifiedUserdto.getImage(), modifiedUser.getImage());
   }
 
   @Test
