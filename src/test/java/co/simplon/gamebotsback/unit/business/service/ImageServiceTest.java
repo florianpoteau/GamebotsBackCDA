@@ -59,15 +59,31 @@ class ImageServiceTest {
   void testGetAllImagesByGameIdAndImageType() {
 
     int gameId = 1;
-    String typeImage = "Avatar";
+    String typeImage = "images_game";
 
     when(iImageRepository.getAllImagesByGameId(typeImage, gameId)).thenReturn(List.of(existingImage));
-    List<Imagedto> images = imageService.getAllImagesByGameIdAndImageType(typeImage, gameId);
+    List<Imagedto> imagesDTO = imageService.getAllImagesByGameIdAndImageType(typeImage, gameId);
 
     verify(iImageRepository, times(1)).getAllImagesByGameId(typeImage, gameId);
-    assertNotNull(images, "L'objet images ne doit pas être nul");
-    assertEquals(imageId, images.size(), "Une seule image attendue dans la liste");
-    assertEquals(Imagedto.class, images.get(0).getClass(), "ImageDTO attendu dans la liste");
+    assertNotNull(imagesDTO, "L'objet images ne doit pas être nul");
+    assertEquals(imageId, imagesDTO.size(), "ImageDTO attendu dans la liste");
+    assertEquals(Imagedto.class, imagesDTO.get(0).getClass(), "ImageDTO attendu dans la liste");
+
   }
 
+  @Test
+  @DisplayName("Test de récupération de l'avatar de l'utilisateur")
+  void testGetImageByUserIdAndImageType() {
+
+    int userId = 1;
+    existingImage.setIdImage(imageId);
+
+    when(iImageRepository.getImageByUserIdAndImageType(userId)).thenReturn(existingImage);
+    Imagedto imageDTO = imageService.getImageByUserIdAndImageType(userId);
+    verify(iImageRepository, times(1)).getImageByUserIdAndImageType(userId);
+    assertNotNull(imageDTO, "L'objet image ne dois pas être null");
+    assertEquals(imageId, imageDTO.getIdImage(), "ImageDTO attendu dans la liste");
+    assertEquals(Imagedto.class, imageDTO.getClass(), "ImageDTO attendu dans la liste");
+
+  }
 }
