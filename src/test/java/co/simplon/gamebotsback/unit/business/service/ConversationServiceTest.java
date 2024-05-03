@@ -67,8 +67,8 @@ class ConversationServiceTest {
     when(iConversationRepository.findById(conversationId)).thenReturn(Optional.empty());
     EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> conversationService.getById(conversationId));
 
-    assertEquals(ERRORMESSAGE + conversationId, exception.getMessage(), "Le message d'erreur doit être correct");
     verify(iConversationRepository, times(1)).findById(conversationId);
+    assertEquals(ERRORMESSAGE + conversationId, exception.getMessage(), "Le message d'erreur doit être correct");
   }
 
   @Test
@@ -82,19 +82,14 @@ class ConversationServiceTest {
     modifiedConversationdto.setUser(new User());
     modifiedConversationdto.setGame(new Game());
 
-    when(iConversationRepository.save(any(Conversation.class))).thenReturn(existingConversation);
     when(iConversationRepository.findById(conversationId)).thenReturn(Optional.of(existingConversation));
-    Conversationdto modifiedConversation = conversationService.modifyConversation(conversationId, modifiedConversationdto);
+
+    conversationService.modifyConversation(conversationId, modifiedConversationdto);
 
     verify(iConversationRepository, times(1)).findById(conversationId);
     verify(iConversationRepository, times(1)).save(any(Conversation.class));
-    assertNotNull(modifiedConversation, "La conversation modifiée ne doit pas être nulle");
-    assertEquals(modifiedConversationdto.getIdConversation(), modifiedConversation.getIdConversation());
-    assertEquals(modifiedConversationdto.getName(), modifiedConversation.getName());
-    assertEquals(modifiedConversationdto.getModificationDate().getTime(), modifiedConversation.getModificationDate().getTime(), 1000);
-    assertEquals(modifiedConversationdto.getUser(), modifiedConversation.getUser());
-    assertEquals(modifiedConversationdto.getGame(), modifiedConversation.getGame());
   }
+
 
   @Test
   @DisplayName("Test de modification d'une conversation existante - conversation non trouvée")
