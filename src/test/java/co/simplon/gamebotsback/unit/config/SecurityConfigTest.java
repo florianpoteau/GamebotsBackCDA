@@ -8,11 +8,15 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.jwt.JwtEncoder;
 
 public class SecurityConfigTest {
 
     @Mock
     PasswordEncoder passwordEncoder;
+
+    @Mock
+    JwtEncoder jwtEncoder;
 
     @BeforeEach
     public void setUp() {
@@ -31,4 +35,18 @@ public class SecurityConfigTest {
 
         assertTrue(!encodedPassword.equals(password));
     }
+
+    @Test
+    public void testPasswordDecoder() {
+        String plainPassword = "password";
+
+        String encodedPassword = "$2a$123";
+
+        when(passwordEncoder.matches(plainPassword, encodedPassword)).thenReturn(true);
+
+        boolean matches = passwordEncoder.matches(plainPassword, encodedPassword);
+
+        assertTrue(matches);
+    }
+
 }
