@@ -8,15 +8,11 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.jwt.JwtEncoder;
 
 public class SecurityConfigTest {
 
     @Mock
     PasswordEncoder passwordEncoder;
-
-    @Mock
-    JwtEncoder jwtEncoder;
 
     @BeforeEach
     public void setUp() {
