@@ -80,4 +80,13 @@ public class CustomUserDetailsServiceTest {
 
     }
 
+    @Test
+    void testLoadUserByUsernameWithError() throws SQLException {
+        when(dataSource.getConnection()).thenThrow(new UsernameNotFoundException("Error loading user by username"));
+
+        assertThrows(UsernameNotFoundException.class, () -> {
+            customUserDetailsService.loadUserByUsername(username);
+        });
+    }
+
 }
