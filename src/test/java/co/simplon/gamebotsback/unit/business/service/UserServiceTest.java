@@ -34,7 +34,7 @@ class UserServiceTest {
   Userdto modifiedUserdto = new Userdto();
 
   @Mock
-  PasswordEncoder passwordEncoder;
+  private PasswordEncoder passwordEncoder;
 
   @InjectMocks
   private UserServiceImpl userService;
@@ -97,7 +97,8 @@ class UserServiceTest {
   void testGetIdByUsernameWhenUserDoesNotExist() {
 
     when(iUserRepository.findByUsername(username)).thenReturn(Optional.empty());
-    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> userService.getIdByUsername(username));
+    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class,
+        () -> userService.getIdByUsername(username));
 
     verify(iUserRepository, times(1)).findByUsername(username);
     assertEquals(ERRORMESSAGE + username, exception.getMessage(), "User does not exist: ");
