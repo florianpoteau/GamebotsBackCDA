@@ -1,7 +1,9 @@
 package co.simplon.gamebotsback.unit.business.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -17,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import co.simplon.gamebotsback.business.service.token.CustomUserDetailsService;
 
@@ -60,6 +63,20 @@ public class CustomUserDetailsServiceTest {
         assertEquals(password, userDetails.getPassword());
         verify(connection).prepareStatement(any());
         verify(preparedStatement).setString(1, username);
+
+    }
+
+    @Test
+    void testLoadUserByUsernameWithUserNotFound() throws SQLException {
+
+        when(resultSet.next()).thenReturn(false);
+        when(preparedStatement.executeQuery()).thenReturn(resultSet);
+        when(dataSource.getConnection()).thenReturn(connection);
+        when(dataSource.getConnection().prepareStatement(any())).thenReturn(preparedStatement);
+
+        assertThrows(UsernameNotFoundException.class, () -> {
+            customUserDetailsService.loadUserByUsername(username);
+        });
 
     }
 
