@@ -1,7 +1,9 @@
 package co.simplon.gamebotsback.unit.business.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -65,6 +67,16 @@ public class TokenServiceTest {
         verify(userDetailsService).loadUserByUsername(username);
         verify(passwordEncoder).matches(password, hashedPassword);
         verify(encoder).encode(any());
+    }
+
+    @Test
+    void generateToken_InvalidCredentials_ThrowsException() {
+
+        when(passwordEncoder.matches(password, hashedPassword)).thenReturn(false);
+
+        assertThrows(RuntimeException.class, () -> {
+            tokenService.generateToken(username, password, userId);
+        });
     }
 
 }
