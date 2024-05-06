@@ -21,6 +21,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import co.simplon.gamebotsback.business.service.token.CustomUserDetailsService;
+import co.simplon.gamebotsback.business.service.token.CustomUserDetailsService.DatabaseException;
 
 class CustomUserDetailsServiceTest {
 
@@ -71,7 +72,7 @@ class CustomUserDetailsServiceTest {
     when(resultSet.next()).thenReturn(false);
     when(preparedStatement.executeQuery()).thenReturn(resultSet);
     when(dataSource.getConnection()).thenReturn(connection);
-    when(dataSource.getConnection().prepareStatement(any())).thenReturn(preparedStatement);
+    when(connection.prepareStatement(any())).thenReturn(preparedStatement);
 
     assertThrows(UsernameNotFoundException.class, () -> customUserDetailsService.loadUserByUsername(username));
 
@@ -79,10 +80,9 @@ class CustomUserDetailsServiceTest {
 
   @Test
   void testLoadUserByUsernameWithError() throws SQLException {
-    when(dataSource.getConnection()).thenThrow(new UsernameNotFoundException("Error loading user by username"));
+    when(dataSource.getConnection()).thenThrow(new SQLException("Error loading user by username"));
 
-    assertThrows(UsernameNotFoundException.class, () ->
-        customUserDetailsService.loadUserByUsername(username));
+    assertThrows(DatabaseException.class, () -> customUserDetailsService.loadUserByUsername(username));
   }
 
 }
