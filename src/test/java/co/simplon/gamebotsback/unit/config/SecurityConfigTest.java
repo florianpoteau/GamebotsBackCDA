@@ -1,19 +1,31 @@
 package co.simplon.gamebotsback.unit.config;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import co.simplon.gamebotsback.config.RsaKeyProperties;
+import co.simplon.gamebotsback.config.SecurityConfig;
 
 class SecurityConfigTest {
 
   @Mock
   PasswordEncoder passwordEncoder;
+
+  @Mock
+  RsaKeyProperties rsaKeyProperties;
+
+  @InjectMocks
+  SecurityConfig securityConfig;
 
   @BeforeEach
   void setUp() {
@@ -22,15 +34,13 @@ class SecurityConfigTest {
 
   @Test
   void testPasswordEncoder() {
-    String password = "password";
+    SecurityConfig securityConfig = new SecurityConfig(rsaKeyProperties);
 
-    when(passwordEncoder.encode(password)).thenReturn("passwordEncoded");
+    PasswordEncoder encoder = securityConfig.passwordEncoder();
 
-    String encodedPassword = passwordEncoder.encode(password);
+    assertNotNull(encoder);
 
-    assertTrue(encodedPassword != null && !encodedPassword.isEmpty());
-
-    assertNotEquals(encodedPassword, password);
+    assertTrue(encoder instanceof BCryptPasswordEncoder);
   }
 
   @Test
@@ -44,6 +54,14 @@ class SecurityConfigTest {
     boolean matches = passwordEncoder.matches(plainPassword, encodedPassword);
 
     assertTrue(matches);
+  }
+
+  @Test
+  void testAutowiredRsaKeyProperties() {
+    SecurityConfig securityConfig = new SecurityConfig(rsaKeyProperties);
+
+    assertNotNull(securityConfig);
+
   }
 
 }
