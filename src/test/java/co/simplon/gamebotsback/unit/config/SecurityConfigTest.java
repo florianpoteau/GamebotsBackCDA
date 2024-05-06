@@ -1,6 +1,5 @@
 package co.simplon.gamebotsback.unit.config;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
@@ -17,12 +16,12 @@ class SecurityConfigTest {
   PasswordEncoder passwordEncoder;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     MockitoAnnotations.openMocks(this);
   }
 
   @Test
-  public void testPasswordEncoder() {
+  void testPasswordEncoder() {
     String password = "password";
 
     when(passwordEncoder.encode(password)).thenReturn("passwordEncoded");
