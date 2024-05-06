@@ -50,7 +50,7 @@ public class AuthControllerTest {
     }
 
     @Test
-    void testLoginFailure() {
+    void testLoginFailureWithNullUser() {
 
         Userdto userDto = new Userdto();
         userDto.setUsername(null);
@@ -65,4 +65,20 @@ public class AuthControllerTest {
         verify(tokenService, never()).generateToken(anyString(), anyString(), anyInt());
 
     }
+
+    @Test
+    void testLoginFailureWithNullUsername() {
+        Userdto userdto = new Userdto();
+        userdto.setUsername(null);
+        userdto.setPassword("password");
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> authController.login(userdto));
+
+        assertEquals("Authentication object is null or does not contain a name", exception.getMessage());
+
+        verify(userService, never()).getIdByUsername(anyString());
+        verify(tokenService, never()).generateToken(anyString(), anyString(), anyInt());
+    }
+
 }
