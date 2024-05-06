@@ -24,16 +24,15 @@ public class AuthController {
    */
   private final Iuserservice iuserservice;
 
-
   /**
    * Constructs a new AuthController with the
    * specified TokenService and IUserService.
    *
    * @param serviceToken
-   *     the TokenService used for generating JWT tokens
+   *                             the TokenService used for generating JWT tokens
    * @param userserviceinterface
-   *     the IUserService
-   *     used for user-related operations
+   *                             the IUserService
+   *                             used for user-related operations
    */
   public AuthController(
       final TokenService serviceToken,
@@ -47,13 +46,13 @@ public class AuthController {
    * credentials.
    *
    * @param userDto
-   *     the user credentials provided in the login request
+   *                the user credentials provided in the login request
    *
    * @return the generated JWT token
    *
    * @throws IllegalArgumentException
-   *     if the user credentials are null or
-   *     incomplete
+   *                                  if the user credentials are null or
+   *                                  incomplete
    */
   @PostMapping("/login")
   public String login(@RequestBody final Userdto userDto) {
@@ -63,9 +62,8 @@ public class AuthController {
 
       int userId = iuserservice.getIdByUsername(userDto.getUsername());
       // Générer le token JWT en utilisant l'objet Authentication
-      String token = tokenService.generateToken(
+      return tokenService.generateToken(
           userDto.getUsername(), userDto.getPassword(), userId);
-      return token;
     } else {
       throw new IllegalArgumentException("Authentication object is "
           + "null or does not contain a name");
