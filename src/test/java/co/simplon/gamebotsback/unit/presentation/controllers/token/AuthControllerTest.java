@@ -16,69 +16,69 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AuthControllerTest {
+class AuthControllerTest {
 
-    @Mock
-    private TokenService tokenService;
+  @Mock
+  private TokenService tokenService;
 
-    @Mock
-    private Iuserservice userService;
+  @Mock
+  private Iuserservice userService;
 
-    @InjectMocks
-    private AuthController authController;
+  @InjectMocks
+  private AuthController authController;
 
-    @BeforeEach
-    public void setup() {
-        MockitoAnnotations.openMocks(this);
-    }
+  @BeforeEach
+  public void setup() {
+    MockitoAnnotations.openMocks(this);
+  }
 
-    @Test
-    public void testLoginSuccess() {
-        Userdto userDto = new Userdto();
-        userDto.setUsername("username");
-        userDto.setPassword("password");
+  @Test
+  void testLoginSuccess() {
+    Userdto userDto = new Userdto();
+    userDto.setUsername("username");
+    userDto.setPassword("password");
 
-        when(userService.getIdByUsername(userDto.getUsername())).thenReturn(1);
-        when(tokenService.generateToken(userDto.getUsername(), userDto.getPassword(), 1)).thenReturn("generatedToken");
+    when(userService.getIdByUsername(userDto.getUsername())).thenReturn(1);
+    when(tokenService.generateToken(userDto.getUsername(), userDto.getPassword(), 1)).thenReturn("generatedToken");
 
-        String token = authController.login(userDto);
+    String token = authController.login(userDto);
 
-        assertNotNull(token);
+    assertNotNull(token);
 
-        verify(userService, times(1)).getIdByUsername(userDto.getUsername());
-        verify(tokenService, times(1)).generateToken(userDto.getUsername(), userDto.getPassword(), 1);
-    }
+    verify(userService, times(1)).getIdByUsername(userDto.getUsername());
+    verify(tokenService, times(1)).generateToken(userDto.getUsername(), userDto.getPassword(), 1);
+  }
 
-    @Test
-    void testLoginFailureWithNullUser() {
+  @Test
+  void testLoginFailureWithNullUser() {
 
-        Userdto userDto = new Userdto();
-        userDto.setUsername(null);
-        userDto.setPassword(null);
+    Userdto userDto = new Userdto();
+    userDto.setUsername(null);
+    userDto.setPassword(null);
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> authController.login(userDto));
+    IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+        () -> authController.login(userDto));
 
-        assertEquals("Authentication object is null or does not contain a name", exception.getMessage());
+    assertEquals("Authentication object is null or does not contain a name", exception.getMessage());
 
-        verify(userService, never()).getIdByUsername(anyString());
-        verify(tokenService, never()).generateToken(anyString(), anyString(), anyInt());
+    verify(userService, never()).getIdByUsername(anyString());
+    verify(tokenService, never()).generateToken(anyString(), anyString(), anyInt());
 
-    }
+  }
 
-    @Test
-    void testLoginFailureWithNullUsername() {
-        Userdto userdto = new Userdto();
-        userdto.setUsername(null);
-        userdto.setPassword("password");
+  @Test
+  void testLoginFailureWithNullUsername() {
+    Userdto userdto = new Userdto();
+    userdto.setUsername(null);
+    userdto.setPassword("password");
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> authController.login(userdto));
+    IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+        () -> authController.login(userdto));
 
-        assertEquals("Authentication object is null or does not contain a name", exception.getMessage());
+    assertEquals("Authentication object is null or does not contain a name", exception.getMessage());
 
-        verify(userService, never()).getIdByUsername(anyString());
-        verify(tokenService, never()).generateToken(anyString(), anyString(), anyInt());
-    }
+    verify(userService, never()).getIdByUsername(anyString());
+    verify(tokenService, never()).generateToken(anyString(), anyString(), anyInt());
+  }
 
 }
