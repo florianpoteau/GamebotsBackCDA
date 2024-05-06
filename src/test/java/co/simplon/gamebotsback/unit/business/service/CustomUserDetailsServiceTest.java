@@ -73,9 +73,7 @@ class CustomUserDetailsServiceTest {
     when(dataSource.getConnection()).thenReturn(connection);
     when(dataSource.getConnection().prepareStatement(any())).thenReturn(preparedStatement);
 
-    assertThrows(UsernameNotFoundException.class, () -> {
-      customUserDetailsService.loadUserByUsername(username);
-    });
+    assertThrows(UsernameNotFoundException.class, () -> customUserDetailsService.loadUserByUsername(username));
 
   }
 
@@ -83,9 +81,8 @@ class CustomUserDetailsServiceTest {
   void testLoadUserByUsernameWithError() throws SQLException {
     when(dataSource.getConnection()).thenThrow(new UsernameNotFoundException("Error loading user by username"));
 
-    assertThrows(UsernameNotFoundException.class, () -> {
-      customUserDetailsService.loadUserByUsername(username);
-    });
+    assertThrows(UsernameNotFoundException.class, () ->
+        customUserDetailsService.loadUserByUsername(username));
   }
 
 }

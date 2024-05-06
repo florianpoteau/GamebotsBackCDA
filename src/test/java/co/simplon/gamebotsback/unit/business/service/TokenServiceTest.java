@@ -41,15 +41,13 @@ class TokenServiceTest {
   @Mock
   private PasswordEncoder passwordEncoder;
 
-  private UserDetails userDetails;
-
   private TokenService tokenService;
 
   @BeforeEach
   void setUp() {
     MockitoAnnotations.openMocks(this);
     tokenService = new TokenService(encoder, userDetailsService, passwordEncoder);
-    userDetails = User.withUsername(username)
+    UserDetails userDetails = User.withUsername(username)
         .password(hashedPassword)
         .build();
 
@@ -76,8 +74,6 @@ class TokenServiceTest {
 
     when(passwordEncoder.matches(password, hashedPassword)).thenReturn(false);
 
-    assertThrows(RuntimeException.class, () -> {
-      tokenService.generateToken(username, password, userId);
-    });
+    assertThrows(RuntimeException.class, () -> tokenService.generateToken(username, password, userId));
   }
 }
