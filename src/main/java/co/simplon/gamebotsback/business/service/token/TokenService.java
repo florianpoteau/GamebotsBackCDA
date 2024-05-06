@@ -84,7 +84,7 @@ public class TokenService {
       return this.encoder.encode(
           JwtEncoderParameters.from(claims)).getTokenValue();
     } else {
-      throw new RuntimeException("Invalid credentials");
+      throw new InvalidCredentialsException("Invalid credentials");
     }
   }
 
@@ -101,5 +101,14 @@ public class TokenService {
   private boolean passwordMatches(final String encodedPassword,
                                   final String rawPassword) {
     return passwordEncoder.matches(rawPassword, encodedPassword);
+  }
+
+  /**
+   * Custom exception to handle invalid credentials during token generation.
+   */
+  public static class InvalidCredentialsException extends RuntimeException {
+    public InvalidCredentialsException(String message) {
+      super(message);
+    }
   }
 }

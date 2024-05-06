@@ -65,7 +65,14 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
       }
     } catch (SQLException e) {
-      throw new RuntimeException("Error loading user by username", e);
+      throw new DatabaseException("Error loading user by username", e);
+    }
+  }
+
+  // Define a custom exception class for database-related errors
+  public static class DatabaseException extends RuntimeException {
+    public DatabaseException(String message, Throwable cause) {
+      super(message, cause);
     }
   }
 }
