@@ -22,70 +22,70 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import co.simplon.gamebotsback.business.service.token.CustomUserDetailsService;
 
-public class CustomUserDetailsServiceTest {
+class CustomUserDetailsServiceTest {
 
-    @Mock
-    private DataSource dataSource;
+  String username = "username";
+  String password = "password";
 
-    @Mock
-    private ResultSet resultSet;
+  @Mock
+  private DataSource dataSource;
 
-    @Mock
-    private PreparedStatement preparedStatement;
+  @Mock
+  private ResultSet resultSet;
 
-    @Mock
-    private Connection connection;
+  @Mock
+  private PreparedStatement preparedStatement;
 
-    private CustomUserDetailsService customUserDetailsService;
+  @Mock
+  private Connection connection;
 
-    String username = "username";
-    String password = "password";
+  private CustomUserDetailsService customUserDetailsService;
 
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-        customUserDetailsService = new CustomUserDetailsService(dataSource);
-    }
+  @BeforeEach
+  void setUp() {
+    MockitoAnnotations.openMocks(this);
+    customUserDetailsService = new CustomUserDetailsService(dataSource);
+  }
 
-    @Test
-    void testLoadUserByUsername() throws SQLException {
+  @Test
+  void testLoadUserByUsername() throws SQLException {
 
-        when(resultSet.next()).thenReturn(true);
-        when(resultSet.getString("password")).thenReturn(password);
-        when(preparedStatement.executeQuery()).thenReturn(resultSet);
-        when(connection.prepareStatement(any())).thenReturn(preparedStatement);
-        when(dataSource.getConnection()).thenReturn(connection);
+    when(resultSet.next()).thenReturn(true);
+    when(resultSet.getString("password")).thenReturn(password);
+    when(preparedStatement.executeQuery()).thenReturn(resultSet);
+    when(connection.prepareStatement(any())).thenReturn(preparedStatement);
+    when(dataSource.getConnection()).thenReturn(connection);
 
-        UserDetails userDetails = customUserDetailsService.loadUserByUsername(username);
+    UserDetails userDetails = customUserDetailsService.loadUserByUsername(username);
 
-        assertEquals(username, userDetails.getUsername());
-        assertEquals(password, userDetails.getPassword());
-        verify(connection).prepareStatement(any());
-        verify(preparedStatement).setString(1, username);
+    assertEquals(username, userDetails.getUsername());
+    assertEquals(password, userDetails.getPassword());
+    verify(connection).prepareStatement(any());
+    verify(preparedStatement).setString(1, username);
 
-    }
+  }
 
-    @Test
-    void testLoadUserByUsernameWithUserNotFound() throws SQLException {
+  @Test
+  void testLoadUserByUsernameWithUserNotFound() throws SQLException {
 
-        when(resultSet.next()).thenReturn(false);
-        when(preparedStatement.executeQuery()).thenReturn(resultSet);
-        when(dataSource.getConnection()).thenReturn(connection);
-        when(dataSource.getConnection().prepareStatement(any())).thenReturn(preparedStatement);
+    when(resultSet.next()).thenReturn(false);
+    when(preparedStatement.executeQuery()).thenReturn(resultSet);
+    when(dataSource.getConnection()).thenReturn(connection);
+    when(dataSource.getConnection().prepareStatement(any())).thenReturn(preparedStatement);
 
-        assertThrows(UsernameNotFoundException.class, () -> {
-            customUserDetailsService.loadUserByUsername(username);
-        });
+    assertThrows(UsernameNotFoundException.class, () -> {
+      customUserDetailsService.loadUserByUsername(username);
+    });
 
-    }
+  }
 
-    @Test
-    void testLoadUserByUsernameWithError() throws SQLException {
-        when(dataSource.getConnection()).thenThrow(new UsernameNotFoundException("Error loading user by username"));
+  @Test
+  void testLoadUserByUsernameWithError() throws SQLException {
+    when(dataSource.getConnection()).thenThrow(new UsernameNotFoundException("Error loading user by username"));
 
-        assertThrows(UsernameNotFoundException.class, () -> {
-            customUserDetailsService.loadUserByUsername(username);
-        });
-    }
+    assertThrows(UsernameNotFoundException.class, () -> {
+      customUserDetailsService.loadUserByUsername(username);
+    });
+  }
 
 }

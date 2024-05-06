@@ -1,5 +1,7 @@
 package co.simplon.gamebotsback.unit.config;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
@@ -9,40 +11,40 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-public class SecurityConfigTest {
+class SecurityConfigTest {
 
-    @Mock
-    PasswordEncoder passwordEncoder;
+  @Mock
+  PasswordEncoder passwordEncoder;
 
-    @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
-    }
+  @BeforeEach
+  public void setUp() {
+    MockitoAnnotations.openMocks(this);
+  }
 
-    @Test
-    public void testPasswordEncoder() {
-        String password = "password";
+  @Test
+  public void testPasswordEncoder() {
+    String password = "password";
 
-        when(passwordEncoder.encode(password)).thenReturn("passwordEncoded");
+    when(passwordEncoder.encode(password)).thenReturn("passwordEncoded");
 
-        String encodedPassword = passwordEncoder.encode(password);
+    String encodedPassword = passwordEncoder.encode(password);
 
-        assertTrue(encodedPassword != null && !encodedPassword.isEmpty());
+    assertTrue(encodedPassword != null && !encodedPassword.isEmpty());
 
-        assertTrue(!encodedPassword.equals(password));
-    }
+    assertNotEquals(encodedPassword, password);
+  }
 
-    @Test
-    public void testPasswordDecoder() {
-        String plainPassword = "password";
+  @Test
+  void testPasswordDecoder() {
+    String plainPassword = "password";
 
-        String encodedPassword = "$2a$123";
+    String encodedPassword = "$2a$123";
 
-        when(passwordEncoder.matches(plainPassword, encodedPassword)).thenReturn(true);
+    when(passwordEncoder.matches(plainPassword, encodedPassword)).thenReturn(true);
 
-        boolean matches = passwordEncoder.matches(plainPassword, encodedPassword);
+    boolean matches = passwordEncoder.matches(plainPassword, encodedPassword);
 
-        assertTrue(matches);
-    }
+    assertTrue(matches);
+  }
 
 }

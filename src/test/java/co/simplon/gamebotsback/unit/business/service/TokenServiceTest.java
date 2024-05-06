@@ -19,62 +19,65 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import co.simplon.gamebotsback.business.service.token.CustomUserDetailsService;
 import co.simplon.gamebotsback.business.service.token.TokenService;
 
-public class TokenServiceTest {
+class TokenServiceTest {
 
-    @Mock
-    private CustomUserDetailsService userDetailsService;
+  @Mock
+  Jwt jwt;
 
-    @Mock
-    private JwtEncoder encoder;
+  String username = "username";
 
-    @Mock
-    private PasswordEncoder passwordEncoder;
+  String password = "password";
 
-    @Mock
-    Jwt jwt;
+  int userId = 1;
 
-    private UserDetails userDetails;
+  String hashedPassword = "hashedPassword";
 
-    private TokenService tokenService;
+  @Mock
+  private CustomUserDetailsService userDetailsService;
 
-    String username = "username";
-    String password = "password";
-    int userId = 1;
-    String hashedPassword = "hashedPassword";
+  @Mock
+  private JwtEncoder encoder;
 
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-        tokenService = new TokenService(encoder, userDetailsService, passwordEncoder);
-        userDetails = User.withUsername(username)
-                .password(hashedPassword)
-                .build();
+  @Mock
+  private PasswordEncoder passwordEncoder;
 
-        when(userDetailsService.loadUserByUsername(username)).thenReturn(userDetails);
-        when(encoder.encode(any())).thenReturn(jwt);
-        when(jwt.getTokenValue()).thenReturn("encodedToken");
-    }
+  private UserDetails userDetails;
 
-    @Test
-    void generateToken_ValidCredentials_ReturnsToken() {
-        when(passwordEncoder.matches(password, hashedPassword)).thenReturn(true);
+  private TokenService tokenService;
 
-        String token = tokenService.generateToken(username, password, userId);
+  @BeforeEach
+  void setUp() {
+    MockitoAnnotations.openMocks(this);
+    tokenService = new TokenService(encoder, userDetailsService, passwordEncoder);
+    userDetails = User.withUsername(username)
+        .password(hashedPassword)
+        .build();
 
-        assertEquals("encodedToken", token);
+    when(userDetailsService.loadUserByUsername(username)).thenReturn(userDetails);
+    when(encoder.encode(any())).thenReturn(jwt);
+    when(jwt.getTokenValue()).thenReturn("encodedToken");
+  }
 
-        verify(userDetailsService).loadUserByUsername(username);
-        verify(passwordEncoder).matches(password, hashedPassword);
-        verify(encoder).encode(any());
-    }
+  @Test
+  void generateToken_ValidCredentials_ReturnsToken() {
+    when(passwordEncoder.matches(password, hashedPassword)).thenReturn(true);
 
-    @Test
-    void generateToken_InvalidCredentials_ThrowsException() {
+    String token = tokenService.generateToken(username, password, userId);
 
-        when(passwordEncoder.matches(password, hashedPassword)).thenReturn(false);
+    assertEquals("encodedToken", token);
 
-        assertThrows(RuntimeException.class, () -> {
-            tokenService.generateToken(username, password, userId);
-        });
-    }
+    verify(userDetailsService).loadUserByUsername(username);
+    verify(passwordEncoder).matches(password, hashedPassword);
+    verify(encoder).encode(any());
+  }
+
+  @Test
+  void generateToken_InvalidCredentials_ThrowsException() {
+
+    when(passwordEncoder.matches(password, hashedPassword)).thenReturn(false);
+
+    assertThrows(RuntimeException.class, () -> {
+      tokenService.generateToken(username, password, userId);
+    });
+  }
 }
