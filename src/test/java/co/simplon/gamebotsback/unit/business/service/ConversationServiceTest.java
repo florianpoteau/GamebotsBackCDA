@@ -32,6 +32,7 @@ class ConversationServiceTest {
 
   @InjectMocks
   private ConversationServiceImpl conversationService;
+
   @Mock
   private Iconversationrepository iConversationRepository;
 

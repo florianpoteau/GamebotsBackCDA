@@ -22,9 +22,12 @@ import static org.mockito.Mockito.*;
 class ImageServiceTest {
 
   Image existingImage = new Image();
+
   int imageId = 1;
+
   @InjectMocks
   private ImageServiceImpl imageService;
+
   @Mock
   private Iimagerepository iImageRepository;
 

@@ -21,9 +21,12 @@ import static org.mockito.Mockito.*;
 class GameServiceTest {
 
   Game existingGame = new Game();
+  
   int gameId = 1;
+
   @InjectMocks
   private GameServiceImpl gameService;
+
   @Mock
   private Igamerepository iGameRepository;
 
