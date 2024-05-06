@@ -10,7 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * properties.
  *
  * @param publicKey
- *     The RSA public key usedfor token encryption and decryption.
+ *     The RSA public key used for token encryption and decryption.
  * @param privateKey
  *     The RSA private key used for token encryption and decryption.
  */
