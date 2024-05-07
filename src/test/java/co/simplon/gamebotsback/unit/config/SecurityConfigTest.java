@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.math.BigInteger;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 
@@ -17,6 +18,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 
 import co.simplon.gamebotsback.config.RsaKeyProperties;
@@ -94,6 +96,52 @@ class SecurityConfigTest {
 
     assertNotNull(decoder);
     assertTrue(decoder instanceof NimbusJwtDecoder);
+  }
+
+  @Test
+  void testJwtEncoder() throws NoSuchMethodException, IllegalAccessException,
+      InvocationTargetException {
+
+    // Configuration de la clef Privée simulée
+    when(rsaPrivateKey.getEncoded()).thenReturn(new byte[] {});
+
+    when(rsaPrivateKey.getAlgorithm()).thenReturn("rsa");
+
+    when(rsaPrivateKey.getFormat()).thenReturn("PKCS#8");
+
+    when(rsaPrivateKey.getModulus())
+        .thenReturn(new BigInteger(
+            "1234567890123456789012345678901234567890123456789012345678901234567890123456789048647632746736247676746277486287364665657675682736472637567824657672367562456724756762452765675656476726652876479612"));
+
+    when(rsaPrivateKey.getPrivateExponent())
+        .thenReturn(new BigInteger(
+            "1234567890123456789012345678901234567890123456789012345678901234567890123456789084837248237574275624658782309786479267657357865767246756274576275676876576273862767676726767467856786575676587626587"));
+
+    // Configuration de la clef Public simulée
+    when(rsaPublicKey.getEncoded()).thenReturn(new byte[] {});
+
+    when(rsaPublicKey.getAlgorithm()).thenReturn("rsa");
+
+    when(rsaPublicKey.getFormat()).thenReturn("PKCS#8");
+
+    when(rsaPublicKey.getModulus())
+        .thenReturn(new BigInteger(
+            "1234567890123456789012345678901234567890123456789012345678901234567890123456789048647632746736247676746277486287364665657675682736472637567824657672367562456724756762452765675656476726652876479612"));
+
+    when(rsaPublicKey.getPublicExponent())
+        .thenReturn(new BigInteger(
+            "1234567890123456789012345678901234567890123456789012345678901234567890123456789084837248237574275624658782309786479267657357865767246756274576275676876576273862767676726767467856786575676587626587"));
+
+    SecurityConfig securityConfig = new SecurityConfig(rsaKeyProperties);
+
+    Method method = SecurityConfig.class.getDeclaredMethod("jwtEncoder");
+
+    method.setAccessible(true);
+
+    JwtEncoder encoder = (JwtEncoder) method.invoke(securityConfig);
+
+    assertNotNull(encoder);
+    assertTrue(encoder instanceof JwtEncoder);
   }
 
 }
