@@ -6,7 +6,7 @@ RUN mvn dependency:go-offline
 COPY src /app/src
 RUN mvn clean install
 
-FROM openjdk:17
+FROM openjdk:22
 LABEL app="Gamebots"
 LABEL version=0.0.1
 LABEL description="Gamebots est une plateforme où les participants peuvent interagir avec une IA pour lui parler de jeux vidéos."
