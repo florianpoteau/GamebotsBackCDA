@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+
 /**
  * Custom implementation of Spring Security's UserDetailsService interface.
  * This service is responsible for loading user details
@@ -69,9 +70,20 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
   }
 
-  // Define a custom exception class for database-related errors
+  /**
+   * Custom exception to handle database errors during user retrieval.
+   */
   public static class DatabaseException extends RuntimeException {
-    public DatabaseException(String message, Throwable cause) {
+    /**
+     * Constructs a new DatabaseException with
+     * the specified error message and cause.
+     *
+     * @param message
+     *     the error message
+     * @param cause
+     *     the cause of the exception
+     */
+    public DatabaseException(final String message, final Throwable cause) {
       super(message, cause);
     }
   }

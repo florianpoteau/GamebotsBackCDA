@@ -107,7 +107,14 @@ public class TokenService {
    * Custom exception to handle invalid credentials during token generation.
    */
   public static class InvalidCredentialsException extends RuntimeException {
-    public InvalidCredentialsException(String message) {
+    /**
+     * Constructs a new InvalidCredentialsException with
+     * the specified error message.
+     *
+     * @param message
+     *     the error message
+     */
+    public InvalidCredentialsException(final String message) {
       super(message);
     }
   }

@@ -44,7 +44,7 @@ public class GetImageBannerByGameIdController {
    *     banner image associated with the specified game ID.
    */
   @GetMapping("/games/{id}/banner")
-  List<Imagedto> findImageBannerByGameId(@PathVariable final int id) {
+  public List<Imagedto> findImageBannerByGameId(@PathVariable final int id) {
     return imageService.getAllImagesByGameIdAndImageType("banner", id);
   }
 }
