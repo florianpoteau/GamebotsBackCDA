@@ -6,10 +6,8 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
-
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
-
 import org.hibernate.internal.util.config.ConfigurationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -49,8 +47,8 @@ public class SecurityConfig {
    * with the specified RSA key properties.
    *
    * @param keysRsa
-   *                the RSA key properties containing
-   *                the public and private keys
+   *     the RSA key properties containing
+   *     the public and private keys
    */
   @Autowired
   public SecurityConfig(
@@ -72,14 +70,14 @@ public class SecurityConfig {
    * Configures security filters for HTTP requests.
    *
    * @param http
-   *             the HttpSecurity object to configure
+   *     the HttpSecurity object to configure
    *
    * @return a SecurityFilterChain instance
    *
    * @throws Exception
-   *                   if an error occurs while configuring security
+   *     if an error occurs while configuring security
    */
-  @SuppressWarnings({ "deprecation", "removal" })
+  @SuppressWarnings({"deprecation", "removal"})
   @Bean
   public SecurityFilterChain securityFilterChain(
       final HttpSecurity http) throws ConfigurationException {
@@ -127,7 +125,9 @@ public class SecurityConfig {
   /**
    * Extracts the token from the request cookies or headers.
    *
-   * @param request the HttpServletRequest object
+   * @param request
+   *     the HttpServletRequest object
+   *
    * @return the extracted token string, or null if not found
    */
   public String cookieTokenExtractor(final HttpServletRequest request) {
