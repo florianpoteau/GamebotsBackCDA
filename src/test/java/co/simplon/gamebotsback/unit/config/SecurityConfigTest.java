@@ -1,5 +1,6 @@
 package co.simplon.gamebotsback.unit.config;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
@@ -23,6 +24,8 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 
 import co.simplon.gamebotsback.config.RsaKeyProperties;
 import co.simplon.gamebotsback.config.SecurityConfig;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 
 class SecurityConfigTest {
 
@@ -37,6 +40,9 @@ class SecurityConfigTest {
 
   @Mock
   private RSAPrivateKey rsaPrivateKey;
+
+  @Mock
+  private HttpServletRequest request;
 
   @InjectMocks
   private SecurityConfig securityConfig;
@@ -142,6 +148,18 @@ class SecurityConfigTest {
 
     assertNotNull(encoder);
     assertTrue(encoder instanceof JwtEncoder);
+  }
+
+  @Test
+  void testCookieTokenExtractorWithAuthorizationHeader() {
+
+    when(request.getHeader("Authorization")).thenReturn("Bearer mockAccessToken");
+
+    SecurityConfig securityConfig = new SecurityConfig(null);
+
+    String token = securityConfig.cookieTokenExtractor(request);
+
+    assertEquals("mockAccessToken", token);
   }
 
 }
