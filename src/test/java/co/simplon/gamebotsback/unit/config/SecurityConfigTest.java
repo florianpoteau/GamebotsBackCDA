@@ -178,4 +178,18 @@ class SecurityConfigTest {
     assertEquals("mockAccessToken", token);
   }
 
+  @Test
+  void testCookieTokenExtractorWithNoToken() {
+
+    when(request.getHeader("Authorization")).thenReturn(null);
+
+    when(request.getCookies()).thenReturn(null);
+
+    SecurityConfig securityConfig = new SecurityConfig(null);
+
+    String token = securityConfig.cookieTokenExtractor(request);
+
+    assertEquals(null, token);
+  }
+
 }
