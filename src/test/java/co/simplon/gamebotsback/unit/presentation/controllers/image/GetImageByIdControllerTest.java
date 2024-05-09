@@ -3,6 +3,7 @@ package co.simplon.gamebotsback.unit.presentation.controllers.image;
 import co.simplon.gamebotsback.business.dto.Imagedto;
 import co.simplon.gamebotsback.business.service.image.Iimageservice;
 import co.simplon.gamebotsback.presentation.controller.image.GetImageByIdController;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -24,6 +25,7 @@ class GetImageByIdControllerTest {
   private Iimageservice imageService;
 
   @Test
+  @DisplayName("Test de recuperation d'une image par son id depuis le controller")
   void getImageById() {
     when(imageService.getById(anyInt())).thenReturn(new Imagedto());
     Imagedto imagedto = controller.findImageById(anyInt());

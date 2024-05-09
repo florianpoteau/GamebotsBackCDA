@@ -3,6 +3,7 @@ package co.simplon.gamebotsback.unit.presentation.controllers.message;
 import co.simplon.gamebotsback.business.dto.Messagedto;
 import co.simplon.gamebotsback.business.service.message.Imessageservice;
 import co.simplon.gamebotsback.presentation.controller.message.GetAllMessageByIdConversationController;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -24,6 +25,7 @@ class GetAllMessageByIdConversationControllerTest {
   private Imessageservice messageService;
 
   @Test
+  @DisplayName("Test de recuperation de tous les messages par l'id d'une conversation depuis le controller")
   void getAllMessageByIdConversation() {
     when(messageService.getAllMessageConversation(anyInt())).thenReturn(List.of(new Messagedto()));
     controller.findAllMessagesByIdConversation(anyInt());

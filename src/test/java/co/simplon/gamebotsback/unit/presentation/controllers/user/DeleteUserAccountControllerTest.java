@@ -2,6 +2,7 @@ package co.simplon.gamebotsback.unit.presentation.controllers.user;
 
 import co.simplon.gamebotsback.business.service.user.Iuserservice;
 import co.simplon.gamebotsback.presentation.controller.user.DeleteUserAccountController;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -22,6 +23,7 @@ class DeleteUserAccountControllerTest {
   private Iuserservice userService;
 
   @Test
+  @DisplayName("Test de suppression d'un utilisateur depuis le controller")
   void deleteUserAccount() {
     doNothing().when(userService).deleteAccount(anyInt());
     controller.deleteuseraccountbyid(anyInt());

@@ -3,6 +3,7 @@ package co.simplon.gamebotsback.unit.presentation.controllers.user;
 import co.simplon.gamebotsback.business.dto.Userdto;
 import co.simplon.gamebotsback.business.service.user.Iuserservice;
 import co.simplon.gamebotsback.presentation.controller.user.ModifyUserAccountController;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -24,6 +25,7 @@ class ModifyUserAccountControllerTest {
   private Iuserservice userService;
 
   @Test
+  @DisplayName("Test de modification d'un utilisateur depuis le controller")
   void modifyConversation() {
     doNothing().when(userService).modifyAccount(anyInt(), any(Userdto.class));
     controller.modifyUserAccount(1, new Userdto());

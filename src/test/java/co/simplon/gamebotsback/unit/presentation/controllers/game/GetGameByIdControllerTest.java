@@ -3,6 +3,7 @@ package co.simplon.gamebotsback.unit.presentation.controllers.game;
 import co.simplon.gamebotsback.business.dto.Gamedto;
 import co.simplon.gamebotsback.business.service.game.Igameservice;
 import co.simplon.gamebotsback.presentation.controller.game.GetGameByIdController;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -24,6 +25,7 @@ class GetGameByIdControllerTest {
   private Igameservice gameService;
 
   @Test
+  @DisplayName("Test de recuperation d'un jeu par son id depuis le controller")
   void getGameById() {
     when(gameService.getById(anyInt())).thenReturn(new Gamedto());
     Gamedto gamedto = controller.findGameById(anyInt());

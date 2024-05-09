@@ -2,6 +2,7 @@ package co.simplon.gamebotsback.unit.presentation.controllers.conversation;
 
 import co.simplon.gamebotsback.business.service.conversation.Iconversationservice;
 import co.simplon.gamebotsback.presentation.controller.conversation.DeleteConversationController;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -22,6 +23,7 @@ class DeleteConversationControllerTest {
   private Iconversationservice conversationService;
 
   @Test
+  @DisplayName("Test de suppression d'une conversation depuis le controller")
   void deleteConversation() {
     doNothing().when(conversationService).deleteConversation(anyInt());
     controller.deleteConversationbyid(anyInt());

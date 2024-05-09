@@ -3,6 +3,7 @@ package co.simplon.gamebotsback.unit.presentation.controllers.user;
 import co.simplon.gamebotsback.business.dto.Userdto;
 import co.simplon.gamebotsback.business.service.user.Iuserservice;
 import co.simplon.gamebotsback.presentation.controller.user.CreateUserAccountController;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -23,6 +24,7 @@ class CreateUserAccountControllerTest {
   private Iuserservice userService;
 
   @Test
+  @DisplayName("Test de création d'un utilisateur depuis le controller")
   void createUserAccount() {
     doNothing().when(userService).createAccount(any(Userdto.class));
     controller.createAccount(new Userdto());

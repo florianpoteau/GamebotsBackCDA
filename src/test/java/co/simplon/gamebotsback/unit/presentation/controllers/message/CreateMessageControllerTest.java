@@ -3,6 +3,7 @@ package co.simplon.gamebotsback.unit.presentation.controllers.message;
 import co.simplon.gamebotsback.business.dto.Messagedto;
 import co.simplon.gamebotsback.business.service.message.Imessageservice;
 import co.simplon.gamebotsback.presentation.controller.message.CreateMessageController;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -24,6 +25,7 @@ class CreateMessageControllerTest {
   private Imessageservice messageService;
 
   @Test
+  @DisplayName("Test de création d'un message depuis le controller")
   void CreateMessage() {
     doNothing().when(messageService).addNewMessage(any(Messagedto.class));
     controller.createMessage(new Messagedto());
