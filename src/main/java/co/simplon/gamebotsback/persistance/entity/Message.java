@@ -12,17 +12,25 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Represents a Message entity in the persistence layer.
  * This class is mapped to the "messages" table in the database.
  */
+@Getter
+@Setter
 @Entity
 @Table(name = "messages")
 public class Message {
 
   /**
    * The unique identifier of the message.
+   * -- GETTER --
+   * Retrieves the ID of the Message.
+   * -- SETTER --
+   * Sets the ID of the Message.
    */
   @Id
   @Column(name = "id_message")
@@ -31,6 +39,10 @@ public class Message {
 
   /**
    * The content of the message.
+   * -- GETTER --
+   * Retrieves the content of the Message.
+   * -- SETTER --
+   * Sets the content of the Message.
    */
   @Basic
   @Column(name = "content")
@@ -38,6 +50,10 @@ public class Message {
 
   /**
    * The creation date of the message.
+   * -- GETTER --
+   * Retrieves the creation date of the Message.
+   * -- SETTER --
+   * Sets the creation date of the Message.
    */
   @Temporal(TemporalType.DATE)
   @Column(name = "creation_date")
@@ -45,6 +61,10 @@ public class Message {
 
   /**
    * The last modification date of the message.
+   * -- GETTER --
+   * Retrieves the modification date of the Message.
+   * -- SETTER --
+   * Sets the modification date of the Message.
    */
   @Temporal(TemporalType.DATE)
   @Column(name = "modification_date")
@@ -52,103 +72,12 @@ public class Message {
 
   /**
    * The conversation associated with the message.
+   * -- GETTER --
+   * Retrieves the conversation associated with the Message.
+   * -- SETTER --
+   * Sets the conversation associated with the Message.
    */
   @ManyToOne
   @JoinColumn(name = "id_conversation")
   private Conversation conversation;
-
-  /**
-   * Retrieves the ID of the Message.
-   *
-   * @return The ID of the Message.
-   */
-  public int getIdMessage() {
-    return idMessage;
-  }
-
-  /**
-   * Sets the ID of the Message.
-   *
-   * @param messageId
-   *     The ID of the Message to set.
-   */
-  public void setIdMessage(final int messageId) {
-    this.idMessage = messageId;
-  }
-
-  /**
-   * Retrieves the content of the Message.
-   *
-   * @return The content of the Message.
-   */
-  public String getContent() {
-    return content;
-  }
-
-  /**
-   * Sets the content of the Message.
-   *
-   * @param messageContent
-   *     The content of the Message to set.
-   */
-  public void setContent(final String messageContent) {
-    this.content = messageContent;
-  }
-
-  /**
-   * Retrieves the creation date of the Message.
-   *
-   * @return The creation date of the Message.
-   */
-  public Date getCreationDate() {
-    return creationDate;
-  }
-
-  /**
-   * Sets the creation date of the Message.
-   *
-   * @param messageCreationDate
-   *     The creation date of the Message to set.
-   */
-  public void setCreationDate(final Date messageCreationDate) {
-    this.creationDate = messageCreationDate;
-  }
-
-  /**
-   * Retrieves the modification date of the Message.
-   *
-   * @return The modification date of the Message.
-   */
-  public Date getModificationDate() {
-    return modificationDate;
-  }
-
-  /**
-   * Sets the modification date of the Message.
-   *
-   * @param messageModificationDate
-   *     The modification date of the Message to set.
-   */
-  public void setModificationDate(final Date messageModificationDate) {
-    this.modificationDate = messageModificationDate;
-  }
-
-  /**
-   * Retrieves the conversation associated with the Message.
-   *
-   * @return The conversation associated with the Message.
-   */
-  public Conversation getConversation() {
-    return conversation;
-  }
-
-  /**
-   * Sets the conversation associated with the Message.
-   *
-   * @param messageConversation
-   *     The conversation to set.
-   */
-  public void setConversation(final Conversation messageConversation) {
-    this.conversation = messageConversation;
-  }
 }

@@ -12,11 +12,15 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Represents an Image entity in the persistence layer.
  * This class is mapped to the "images" table in the database.
  */
+@Getter
+@Setter
 @Entity
 @Table(name = "images")
 public class Image {
@@ -28,6 +32,10 @@ public class Image {
 
   /**
    * The unique identifier of the image.
+   * -- GETTER --
+   * Retrieves the ID of the Image.
+   * -- SETTER --
+   * Sets the ID of the Image.
    */
   @Id
   @Column(name = "id_image")
@@ -36,6 +44,10 @@ public class Image {
 
   /**
    * The name of the image.
+   * -- GETTER --
+   * Retrieves the name of the Image.
+   * -- SETTER --
+   * Sets the name of the Image.
    */
   @Basic
   @Column(name = "name", length = LENGTH)
@@ -43,6 +55,10 @@ public class Image {
 
   /**
    * The source URL or path of the image.
+   * -- GETTER --
+   * Retrieves the source of the Image.
+   * -- SETTER --
+   * Sets the source of the Image.
    */
   @Basic
   @Column(name = "source")
@@ -50,6 +66,10 @@ public class Image {
 
   /**
    * The creation date of the image.
+   * -- GETTER --
+   * Retrieves the creation date of the Image.
+   * -- SETTER --
+   * Sets the creation date of the Image.
    */
   @Temporal(TemporalType.DATE)
   @Column(name = "creation_date")
@@ -57,6 +77,10 @@ public class Image {
 
   /**
    * The last modification date of the image.
+   * -- GETTER --
+   * Retrieves the modification date of the Image.
+   * -- SETTER --
+   * Sets the modification date of the Image.
    */
   @Temporal(TemporalType.DATE)
   @Column(name = "modification_date")
@@ -64,6 +88,10 @@ public class Image {
 
   /**
    * The game associated with the image.
+   * -- GETTER --
+   * Retrieves the game associated with the Image.
+   * -- SETTER --
+   * Sets the game associated with the Image.
    */
   @ManyToOne
   @JoinColumn(name = "id_game")
@@ -71,141 +99,12 @@ public class Image {
 
   /**
    * The type of image associated with the image.
+   * -- GETTER --
+   * Retrieves the type of image associated with the Image.
+   * -- SETTER --
+   * Sets the type of image associated with the Image.
    */
   @ManyToOne
   @JoinColumn(name = "id_type_image")
   private TypeImage typeImage;
-
-  /**
-   * Retrieves the ID of the Image.
-   *
-   * @return The ID of the Image.
-   */
-  public int getIdImage() {
-    return idImage;
-  }
-
-  /**
-   * Sets the ID of the Image.
-   *
-   * @param imageId
-   *     The ID of the Image to set.
-   */
-  public void setIdImage(final int imageId) {
-    this.idImage = imageId;
-  }
-
-  /**
-   * Retrieves the name of the Image.
-   *
-   * @return The name of the Image.
-   */
-  public String getName() {
-    return name;
-  }
-
-  /**
-   * Sets the name of the Image.
-   *
-   * @param imageName
-   *     The name of the Image to set.
-   */
-  public void setName(final String imageName) {
-    this.name = imageName;
-  }
-
-  /**
-   * Retrieves the source of the Image.
-   *
-   * @return The source of the Image.
-   */
-  public String getSource() {
-    return source;
-  }
-
-  /**
-   * Sets the source of the Image.
-   *
-   * @param imageSource
-   *     The source of the Image to set.
-   */
-  public void setSource(final String imageSource) {
-    this.source = imageSource;
-  }
-
-  /**
-   * Retrieves the creation date of the Image.
-   *
-   * @return The creation date of the Image.
-   */
-  public Date getCreationDate() {
-    return creationDate;
-  }
-
-  /**
-   * Sets the creation date of the Image.
-   *
-   * @param imageCreationDate
-   *     The creation date of the Image to set.
-   */
-  public void setCreationDate(final Date imageCreationDate) {
-    this.creationDate = imageCreationDate;
-  }
-
-  /**
-   * Retrieves the modification date of the Image.
-   *
-   * @return The modification date of the Image.
-   */
-  public Date getModificationDate() {
-    return modificationDate;
-  }
-
-  /**
-   * Sets the modification date of the Image.
-   *
-   * @param imageModificationDate
-   *     The modification date of the Image to set.
-   */
-  public void setModificationDate(final Date imageModificationDate) {
-    this.modificationDate = imageModificationDate;
-  }
-
-  /**
-   * Retrieves the game associated with the Image.
-   *
-   * @return The game associated with the Image.
-   */
-  public Game getGame() {
-    return game;
-  }
-
-  /**
-   * Sets the game associated with the Image.
-   *
-   * @param imageGame
-   *     The game to set.
-   */
-  public void setGame(final Game imageGame) {
-    this.game = imageGame;
-  }
-
-  /**
-   * Retrieves the type of image associated with the Image.
-   *
-   * @return The type of image associated with the Image.
-   */
-  public TypeImage getTypeImage() {
-    return typeImage;
-  }
-
-  /**
-   * Sets the type of image associated with the Image.
-   *
-   * @param imageTypeImage
-   *     The type of image to set.
-   */
-  public void setTypeImage(final TypeImage imageTypeImage) {
-    this.typeImage = imageTypeImage;
-  }
 }

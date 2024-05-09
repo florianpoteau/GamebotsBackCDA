@@ -10,11 +10,15 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Represents a Game entity in the persistence layer.
  * This class is mapped to the "games" table in the database.
  */
+@Getter
+@Setter
 @Entity
 @Table(name = "games")
 public class Game {
@@ -26,6 +30,10 @@ public class Game {
 
   /**
    * The unique identifier of the game.
+   * -- GETTER --
+   * Retrieves the ID of the Game.
+   * -- SETTER --
+   * Sets the ID of the Game.
    */
   @Id
   @Column(name = "id_game")
@@ -34,6 +42,10 @@ public class Game {
 
   /**
    * The title of the game.
+   * -- GETTER --
+   * Retrieves the title of the Game.
+   * -- SETTER --
+   * Sets the title of the Game.
    */
   @Basic
   @Column(name = "title", length = LENGTH)
@@ -41,6 +53,10 @@ public class Game {
 
   /**
    * The studio that developed the game.
+   * -- GETTER --
+   * Retrieves the studio of the Game.
+   * -- SETTER --
+   * Sets the studio of the Game.
    */
   @Basic
   @Column(name = "studio", length = LENGTH)
@@ -48,6 +64,10 @@ public class Game {
 
   /**
    * The release date of the game.
+   * -- GETTER --
+   * Retrieves the release date of the Game.
+   * -- SETTER --
+   * Sets the release date of the Game.
    */
   @Temporal(TemporalType.DATE)
   @Column(name = "release_date")
@@ -55,6 +75,10 @@ public class Game {
 
   /**
    * The platform(s) the game is available on.
+   * -- GETTER --
+   * Retrieves the story of the Game.
+   * -- SETTER --
+   * Sets the story of the Game.
    */
   @Basic
   @Column(name = "platform", length = LENGTH)
@@ -62,6 +86,10 @@ public class Game {
 
   /**
    * The story or plot of the game.
+   * -- GETTER --
+   * Retrieves the platform of the Game.
+   * -- SETTER --
+   * Sets the platform of the Game.
    */
   @Basic
   @Column(name = "story", length = LENGTH)
@@ -69,18 +97,30 @@ public class Game {
 
   /**
    * Indicates whether the game has online features.
+   * -- GETTER --
+   * Retrieves whether the Game is online.
+   * -- SETTER --
+   * Sets whether the Game is online.
    */
   @Column(name = "is_online")
   private boolean isOnline;
 
   /**
    * The maximum number of players supported by the game.
+   * -- GETTER --
+   * Retrieves the number of players for the Game.
+   * -- SETTER --
+   * Sets the number of players for the Game.
    */
   @Column(name = "number_players")
   private int numberPlayers;
 
   /**
    * The creation date of the game entity.
+   * -- GETTER --
+   * Retrieves the creation date of the Game.
+   * -- SETTER --
+   * Sets the creation date of the Game.
    */
   @Temporal(TemporalType.DATE)
   @Column(name = "creation_date")
@@ -88,198 +128,12 @@ public class Game {
 
   /**
    * The last modification date of the game entity.
+   * -- GETTER --
+   * Retrieves the modification date of the Game.
+   * -- SETTER --
+   * Sets the modification date of the Game.
    */
   @Temporal(TemporalType.DATE)
   @Column(name = "modification_date")
   private Date modificationDate;
-
-  /**
-   * Retrieves the ID of the Game.
-   *
-   * @return The ID of the Game.
-   */
-  public int getIdGame() {
-    return idGame;
-  }
-
-  /**
-   * Sets the ID of the Game.
-   *
-   * @param gameId
-   *     The ID of the Game to set.
-   */
-  public void setIdGame(final int gameId) {
-    this.idGame = gameId;
-  }
-
-  /**
-   * Retrieves the title of the Game.
-   *
-   * @return The title of the Game.
-   */
-  public String getTitle() {
-    return title;
-  }
-
-  /**
-   * Sets the title of the Game.
-   *
-   * @param gameTitle
-   *     The title of the Game to set.
-   */
-  public void setTitle(final String gameTitle) {
-    this.title = gameTitle;
-  }
-
-  /**
-   * Retrieves the studio of the Game.
-   *
-   * @return The studio of the Game.
-   */
-  public String getStudio() {
-    return studio;
-  }
-
-  /**
-   * Sets the studio of the Game.
-   *
-   * @param gameStudio
-   *     The studio of the Game to set.
-   */
-  public void setStudio(final String gameStudio) {
-    this.studio = gameStudio;
-  }
-
-  /**
-   * Retrieves the release date of the Game.
-   *
-   * @return The release date of the Game.
-   */
-  public Date getReleaseDate() {
-    return releaseDate;
-  }
-
-  /**
-   * Sets the release date of the Game.
-   *
-   * @param gameReleaseDate
-   *     The release date of the Game to set.
-   */
-  public void setReleaseDate(final Date gameReleaseDate) {
-    this.releaseDate = gameReleaseDate;
-  }
-
-  /**
-   * Retrieves the platform of the Game.
-   *
-   * @return The platform of the Game.
-   */
-  public String getPlatform() {
-    return platform;
-  }
-
-  /**
-   * Sets the platform of the Game.
-   *
-   * @param gamePlatform
-   *     The platform of the Game to set.
-   */
-  public void setPlatform(final String gamePlatform) {
-    this.platform = gamePlatform;
-  }
-
-  /**
-   * Retrieves the story of the Game.
-   *
-   * @return The story of the Game.
-   */
-  public String getStory() {
-    return story;
-  }
-
-  /**
-   * Sets the story of the Game.
-   *
-   * @param gameStory
-   *     The story of the Game to set.
-   */
-  public void setStory(final String gameStory) {
-    this.story = gameStory;
-  }
-
-  /**
-   * Retrieves whether the Game is online.
-   *
-   * @return True if the Game is online, otherwise false.
-   */
-  public boolean isOnline() {
-    return isOnline;
-  }
-
-  /**
-   * Sets whether the Game is online.
-   *
-   * @param gameIsOnline
-   *     True if the Game is online, otherwise false.
-   */
-  public void setOnline(final boolean gameIsOnline) {
-    isOnline = gameIsOnline;
-  }
-
-  /**
-   * Retrieves the number of players for the Game.
-   *
-   * @return The number of players for the Game.
-   */
-  public int getNumberPlayers() {
-    return numberPlayers;
-  }
-
-  /**
-   * Sets the number of players for the Game.
-   *
-   * @param gameNumberPlayers
-   *     The number of players for the Game to set.
-   */
-  public void setNumberPlayers(final int gameNumberPlayers) {
-    this.numberPlayers = gameNumberPlayers;
-  }
-
-  /**
-   * Retrieves the creation date of the Game.
-   *
-   * @return The creation date of the Game.
-   */
-  public Date getCreationDate() {
-    return creationDate;
-  }
-
-  /**
-   * Sets the creation date of the Game.
-   *
-   * @param gameCreationDate
-   *     The creation date of the Game to set.
-   */
-  public void setCreationDate(final Date gameCreationDate) {
-    this.creationDate = gameCreationDate;
-  }
-
-  /**
-   * Retrieves the modification date of the Game.
-   *
-   * @return The modification date of the Game.
-   */
-  public Date getModificationDate() {
-    return modificationDate;
-  }
-
-  /**
-   * Sets the modification date of the Game.
-   *
-   * @param gameModificationDate
-   *     The modification date of the Game to set.
-   */
-  public void setModificationDate(final Date gameModificationDate) {
-    this.modificationDate = gameModificationDate;
-  }
 }

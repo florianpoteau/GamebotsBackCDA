@@ -10,11 +10,15 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Represents a TypeImage entity in the persistence layer.
  * This class is mapped to the "type_images" table in the database.
  */
+@Getter
+@Setter
 @Entity
 @Table(name = "type_images")
 public class TypeImage {
@@ -26,6 +30,10 @@ public class TypeImage {
 
   /**
    * The unique identifier of the type of image.
+   * -- GETTER --
+   * Retrieves the ID of the TypeImage.
+   * -- SETTER --
+   * Sets the ID of the TypeImage.
    */
   @Id
   @Column(name = "id_type_image")
@@ -34,6 +42,10 @@ public class TypeImage {
 
   /**
    * The name of the type of image.
+   * -- GETTER --
+   * Retrieves the name of the TypeImage.
+   * -- SETTER --
+   * Sets the typeImageName of the TypeImage.
    */
   @Basic
   @Column(name = "name", length = LENGTH)
@@ -41,6 +53,10 @@ public class TypeImage {
 
   /**
    * The creation date of the type of image.
+   * -- GETTER --
+   * Retrieves the creation date of the TypeImage.
+   * -- SETTER --
+   * Sets the creation date of the TypeImage.
    */
   @Temporal(TemporalType.DATE)
   @Column(name = "creation_date")
@@ -48,85 +64,12 @@ public class TypeImage {
 
   /**
    * The last modification date of the type of image.
+   * -- GETTER --
+   * Retrieves the modification date of the TypeImage.
+   * -- SETTER --
+   * Sets the modification date of the TypeImage.
    */
   @Temporal(TemporalType.DATE)
   @Column(name = "modification_date")
   private Date modificationDate;
-
-  /**
-   * Retrieves the ID of the TypeImage.
-   *
-   * @return The ID of the TypeImage.
-   */
-  public int getIdTypeImage() {
-    return idTypeImage;
-  }
-
-  /**
-   * Sets the ID of the TypeImage.
-   *
-   * @param typeImageId
-   *     The ID of the TypeImage to set.
-   */
-  public void setIdTypeImage(final int typeImageId) {
-    this.idTypeImage = typeImageId;
-  }
-
-  /**
-   * Retrieves the name of the TypeImage.
-   *
-   * @return The name of the TypeImage.
-   */
-  public String getName() {
-    return name;
-  }
-
-  /**
-   * Sets the typeImageName of the TypeImage.
-   *
-   * @param typeImageName
-   *     The typeImageName of the TypeImage to set.
-   */
-  public void setName(final String typeImageName) {
-    this.name = typeImageName;
-  }
-
-  /**
-   * Retrieves the creation date of the TypeImage.
-   *
-   * @return The creation date of the TypeImage.
-   */
-  public Date getCreationDate() {
-    return creationDate;
-  }
-
-  /**
-   * Sets the creation date of the TypeImage.
-   *
-   * @param typeImageCreationDate
-   *     The creation date of the TypeImage to set.
-   */
-  public void setCreationDate(final Date typeImageCreationDate) {
-    this.creationDate = typeImageCreationDate;
-  }
-
-  /**
-   * Retrieves the modification date of the TypeImage.
-   *
-   * @return The modification date of the TypeImage.
-   */
-  public Date getModificationDate() {
-    return modificationDate;
-  }
-
-  /**
-   * Sets the modification date of the TypeImage.
-   *
-   * @param typeImageModificationDate
-   *     The modification date of
-   *     the TypeImage to set.
-   */
-  public void setModificationDate(final Date typeImageModificationDate) {
-    this.modificationDate = typeImageModificationDate;
-  }
 }
