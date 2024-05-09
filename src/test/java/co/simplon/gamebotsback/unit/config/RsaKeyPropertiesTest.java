@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import co.simplon.gamebotsback.config.RsaKeyProperties;
@@ -15,6 +16,7 @@ import co.simplon.gamebotsback.config.RsaKeyProperties;
 class RsaKeyPropertiesTest {
 
   @Test
+  @DisplayName("Test RsaKeyProperties constructor")
   void testRsaKeyProperties() {
     RSAPublicKey mockPublicKey = mock(RSAPublicKey.class);
     RSAPrivateKey mockPrivateKey = mock(RSAPrivateKey.class);
@@ -26,6 +28,7 @@ class RsaKeyPropertiesTest {
   }
 
   @Test
+  @DisplayName("Test equality of public keys")
   void testEqualityPublicKey() {
     RSAPublicKey mockPublicKey = mock(RSAPublicKey.class);
     RSAPrivateKey mockPrivateKey = mock(RSAPrivateKey.class);
@@ -43,6 +46,7 @@ class RsaKeyPropertiesTest {
   }
 
   @Test
+  @DisplayName("Test equality of private keys")
   void testEqualityPrivateKey() {
     RSAPublicKey mockPublicKey = mock(RSAPublicKey.class);
     RSAPrivateKey mockPrivateKey = mock(RSAPrivateKey.class);

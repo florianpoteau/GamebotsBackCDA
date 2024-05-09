@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -25,6 +26,7 @@ class CsrfControllerTest {
     }
 
     @Test
+    @DisplayName("Test Get Csrf Token")
     void getCsrf() {
 
         String expectedToken = "ExpectedToken";

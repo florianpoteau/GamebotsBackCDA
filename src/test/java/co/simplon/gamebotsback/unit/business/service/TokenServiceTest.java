@@ -7,6 +7,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -57,6 +58,7 @@ class TokenServiceTest {
   }
 
   @Test
+  @DisplayName("Generate Token with Valid Credentials Should Return Token")
   void generateToken_ValidCredentials_ReturnsToken() {
     when(passwordEncoder.matches(password, hashedPassword)).thenReturn(true);
 
@@ -70,6 +72,7 @@ class TokenServiceTest {
   }
 
   @Test
+  @DisplayName("Generate Token with Invalid Credentials Should Throw Exception")
   void generateToken_InvalidCredentials_ThrowsException() {
 
     when(passwordEncoder.matches(password, hashedPassword)).thenReturn(false);

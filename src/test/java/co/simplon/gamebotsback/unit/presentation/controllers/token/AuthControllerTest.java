@@ -6,6 +6,7 @@ import co.simplon.gamebotsback.business.service.user.Iuserservice;
 import co.simplon.gamebotsback.presentation.controller.token.AuthController;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -33,6 +34,7 @@ class AuthControllerTest {
   }
 
   @Test
+  @DisplayName("Test Login Success")
   void testLoginSuccess() {
     Userdto userDto = new Userdto();
     userDto.setUsername("username");
@@ -50,6 +52,7 @@ class AuthControllerTest {
   }
 
   @Test
+  @DisplayName("Test Login Failure with Null UserDto")
   void testLoginFailureWithNullUserDto() {
     Userdto userDto = null;
 
@@ -63,6 +66,7 @@ class AuthControllerTest {
   }
 
   @Test
+  @DisplayName("Test Login Failure with Null Username")
   void testLoginFailureWithNullUsername() {
     Userdto userDto = new Userdto();
     userDto.setUsername(null);

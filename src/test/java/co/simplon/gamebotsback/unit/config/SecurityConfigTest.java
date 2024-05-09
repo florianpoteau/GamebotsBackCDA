@@ -12,6 +12,7 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -55,6 +56,7 @@ class SecurityConfigTest {
   }
 
   @Test
+  @DisplayName("Test Password Encoder Configuration")
   void testPasswordEncoder() {
 
     SecurityConfig securityConfig = new SecurityConfig(rsaKeyProperties);
@@ -67,6 +69,7 @@ class SecurityConfigTest {
   }
 
   @Test
+  @DisplayName("Test Password Decoder Configuration")
   void testPasswordDecoder() {
 
     String plainPassword = "password";
@@ -81,6 +84,7 @@ class SecurityConfigTest {
   }
 
   @Test
+  @DisplayName("Test Autowired RSA Key Properties")
   void testAutowiredRsaKeyProperties() {
 
     SecurityConfig securityConfig = new SecurityConfig(rsaKeyProperties);
@@ -90,6 +94,7 @@ class SecurityConfigTest {
   }
 
   @Test
+  @DisplayName("Test JWT Decoder Configuration")
   void testJwtDecoder() throws NoSuchMethodException, SecurityException, IllegalAccessException,
       IllegalArgumentException, InvocationTargetException {
 
@@ -105,6 +110,7 @@ class SecurityConfigTest {
   }
 
   @Test
+  @DisplayName("Test JWT Encoder Configuration")
   void testJwtEncoder() throws NoSuchMethodException, IllegalAccessException,
       InvocationTargetException {
 
@@ -151,6 +157,7 @@ class SecurityConfigTest {
   }
 
   @Test
+  @DisplayName("Test Cookie Token Extraction with Authorization Header")
   void testCookieTokenExtractorWithAuthorizationHeader() {
 
     when(request.getHeader("Authorization")).thenReturn("Bearer mockAccessToken");
@@ -163,6 +170,7 @@ class SecurityConfigTest {
   }
 
   @Test
+  @DisplayName("Test Cookie Token Extraction with Cookie")
   void testCookieTokenExtractorWithCookie() {
 
     Cookie cookie = new Cookie("access_token", "mockAccessToken");
@@ -179,6 +187,7 @@ class SecurityConfigTest {
   }
 
   @Test
+  @DisplayName("Test Cookie Token Extraction with No Token")
   void testCookieTokenExtractorWithNoToken() {
 
     when(request.getHeader("Authorization")).thenReturn(null);
