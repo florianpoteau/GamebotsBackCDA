@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * retrieve a user account by its ID.
  */
 @RestController
-public class GetUserAccountByIdController {
+public class GetUserAccountByUserIdController {
 
   /**
    * The UserService used to retrieve user accounts.
@@ -28,7 +28,7 @@ public class GetUserAccountByIdController {
    *     The UserService used to retrieve user accounts.
    */
   @Autowired
-  public GetUserAccountByIdController(final Iuserservice serviceUser) {
+  public GetUserAccountByUserIdController(final Iuserservice serviceUser) {
     this.userService = serviceUser;
   }
 
@@ -41,8 +41,8 @@ public class GetUserAccountByIdController {
    * @return The UserDTO object representing the user account.
    */
   @GetMapping("/users/{userId}")
-  public Userdto findUserById(@PathVariable final int userId) {
-    return userService.getById(userId);
+  public Userdto findUserAccountByUserId(@PathVariable final int userId) {
+    return userService.getUserAccountByUserId(userId);
   }
 
 }

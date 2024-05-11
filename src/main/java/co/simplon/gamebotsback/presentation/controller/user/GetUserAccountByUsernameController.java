@@ -39,6 +39,6 @@ public class GetUserAccountByUsernameController {
    */
   @GetMapping("/users/username/{username}")
   public int findUserIdByUsername(@PathVariable final String username) {
-    return userService.getIdByUsername(username);
+    return userService.getUserIdByUsername(username);
   }
 }

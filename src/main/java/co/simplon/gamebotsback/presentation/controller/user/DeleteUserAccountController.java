@@ -37,7 +37,7 @@ public class DeleteUserAccountController {
    *     The ID of the user account to be deleted.
    */
   @DeleteMapping("/users/{userId}")
-  public void deleteUserAccountById(@PathVariable final int userId) {
-    userService.deleteAccount(userId);
+  public void deleteUserAccountByUserId(@PathVariable final int userId) {
+    userService.deleteUserAccount(userId);
   }
 }

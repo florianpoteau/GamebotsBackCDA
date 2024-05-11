@@ -14,7 +14,7 @@ public interface Iuserservice {
    * @param userDto
    *     The information of the new userDto to create.
    */
-  void createAccount(Userdto userDto);
+  void createUserAccount(Userdto userDto);
 
   /**
    * Retrieves the ID of a user based on their username.
@@ -24,7 +24,7 @@ public interface Iuserservice {
    *
    * @return The ID of the user corresponding to the given username.
    */
-  int getIdByUsername(String username);
+  int getUserIdByUsername(String username);
 
   /**
    * Modifies information of an existing userDto account.
@@ -34,7 +34,7 @@ public interface Iuserservice {
    * @param userDto
    *     The new information to associate with the userDto.
    */
-  void modifyAccount(int userId, Userdto userDto);
+  void modifyUserAccount(int userId, Userdto userDto);
 
   /**
    * Deletes the user account corresponding to the given ID.
@@ -42,7 +42,7 @@ public interface Iuserservice {
    * @param userId
    *     The ID of the user to delete.
    */
-  void deleteAccount(int userId);
+  void deleteUserAccount(int userId);
 
   /**
    * Retrieves information about a user based on their ID.
@@ -52,6 +52,6 @@ public interface Iuserservice {
    *
    * @return Information about the user corresponding to the given ID.
    */
-  Userdto getById(int userId);
+  Userdto getUserAccountByUserId(int userId);
 
 }

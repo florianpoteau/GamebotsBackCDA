@@ -40,14 +40,14 @@ class AuthControllerTest {
     userDto.setUsername("username");
     userDto.setPassword("password");
 
-    when(userService.getIdByUsername(userDto.getUsername())).thenReturn(1);
+    when(userService.getUserIdByUsername(userDto.getUsername())).thenReturn(1);
     when(tokenService.generateToken(userDto.getUsername(), userDto.getPassword(), 1)).thenReturn("generatedToken");
 
     String token = authController.login(userDto);
 
     assertNotNull(token);
 
-    verify(userService, times(1)).getIdByUsername(userDto.getUsername());
+    verify(userService, times(1)).getUserIdByUsername(userDto.getUsername());
     verify(tokenService, times(1)).generateToken(userDto.getUsername(), userDto.getPassword(), 1);
   }
 
@@ -61,7 +61,7 @@ class AuthControllerTest {
 
     assertEquals("Authentication object is null or does not contain a name", exception.getMessage());
 
-    verify(userService, never()).getIdByUsername(anyString());
+    verify(userService, never()).getUserIdByUsername(anyString());
     verify(tokenService, never()).generateToken(anyString(), anyString(), anyInt());
   }
 
@@ -77,7 +77,7 @@ class AuthControllerTest {
 
     assertEquals("Authentication object is null or does not contain a name", exception.getMessage());
 
-    verify(userService, never()).getIdByUsername(anyString());
+    verify(userService, never()).getUserIdByUsername(anyString());
     verify(tokenService, never()).generateToken(anyString(), anyString(), anyInt());
   }
 

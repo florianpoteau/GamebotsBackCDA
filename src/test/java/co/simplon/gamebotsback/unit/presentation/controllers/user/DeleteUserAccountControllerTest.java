@@ -25,8 +25,8 @@ class DeleteUserAccountControllerTest {
   @Test
   @DisplayName("Test de suppression d'un utilisateur depuis le controller")
   void deleteUserAccount() {
-    doNothing().when(userService).deleteAccount(anyInt());
-    controller.deleteUserAccountById(anyInt());
-    verify(userService, times(1)).deleteAccount(anyInt());
+    doNothing().when(userService).deleteUserAccount(anyInt());
+    controller.deleteUserAccountByUserId(anyInt());
+    verify(userService, times(1)).deleteUserAccount(anyInt());
   }
 }

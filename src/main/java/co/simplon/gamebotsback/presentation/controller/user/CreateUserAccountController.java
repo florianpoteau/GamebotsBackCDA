@@ -44,6 +44,6 @@ public class CreateUserAccountController {
   @PostMapping("/users")
   public void createAccount(
       @RequestBody final Userdto userDto) {
-    userService.createAccount(userDto);
+    userService.createUserAccount(userDto);
   }
 }

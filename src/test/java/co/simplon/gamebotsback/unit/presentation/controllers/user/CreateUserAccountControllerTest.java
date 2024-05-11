@@ -26,8 +26,8 @@ class CreateUserAccountControllerTest {
   @Test
   @DisplayName("Test de création d'un utilisateur depuis le controller")
   void createUserAccount() {
-    doNothing().when(userService).createAccount(any(Userdto.class));
+    doNothing().when(userService).createUserAccount(any(Userdto.class));
     controller.createAccount(new Userdto());
-    verify(userService, times(1)).createAccount(any(Userdto.class));
+    verify(userService, times(1)).createUserAccount(any(Userdto.class));
   }
 }

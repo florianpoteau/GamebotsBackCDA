@@ -57,7 +57,7 @@ public class UserServiceImpl implements Iuserservice {
    *     The information of the new user to create.
    */
   @Override
-  public void createAccount(final Userdto userDto) {
+  public void createUserAccount(final Userdto userDto) {
     String encodePassword = passwordEncoder.encode(userDto.getPassword());
     userDto.setPassword(encodePassword);
     userDto.setCreationDate(new Date());
@@ -76,7 +76,7 @@ public class UserServiceImpl implements Iuserservice {
    *     if no user corresponding to the ID is found.
    */
   @Override
-  public int getIdByUsername(final String username) {
+  public int getUserIdByUsername(final String username) {
     Optional<User> optionalUser = userRepository.findByUsername(username);
     if (optionalUser.isPresent()) {
       User user = optionalUser.get();
@@ -99,7 +99,7 @@ public class UserServiceImpl implements Iuserservice {
    *     if no user corresponding to the ID is found.
    */
   @Override
-  public void modifyAccount(final int userId, final Userdto userDto) {
+  public void modifyUserAccount(final int userId, final Userdto userDto) {
     Optional<User> optionalUser = userRepository.findById(userId);
     if (optionalUser.isPresent()) {
       User existingUser = optionalUser.get();
@@ -127,7 +127,7 @@ public class UserServiceImpl implements Iuserservice {
    *     if no user corresponding to the ID is found.
    */
   @Override
-  public void deleteAccount(final int userId) {
+  public void deleteUserAccount(final int userId) {
     Optional<User> optionalUser = userRepository.findById(userId);
     if (optionalUser.isPresent()) {
       userRepository.deleteById(userId);
@@ -148,7 +148,7 @@ public class UserServiceImpl implements Iuserservice {
    *     if no user corresponding to the ID is found.
    */
   @Override
-  public Userdto getById(final int userId) {
+  public Userdto getUserAccountByUserId(final int userId) {
     Optional<User> optionalUser = userRepository.findById(userId);
     if (optionalUser.isPresent()) {
       User user = optionalUser.get();

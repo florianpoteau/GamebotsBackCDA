@@ -27,9 +27,9 @@ class GetUserAccountByUsernameControllerTest {
   @Test
   @DisplayName("Test de recuperation d'un utilisateur par son username depuis le controller")
   void getUserAccountByUsername() {
-    when(userService.getIdByUsername(anyString())).thenReturn(new Userdto().getIdUser());
+    when(userService.getUserIdByUsername(anyString())).thenReturn(new Userdto().getIdUser());
     int id = controller.findUserIdByUsername(anyString());
-    verify(userService, times(1)).getIdByUsername(anyString());
-    assertEquals(id, userService.getIdByUsername(anyString()));
+    verify(userService, times(1)).getUserIdByUsername(anyString());
+    assertEquals(id, userService.getUserIdByUsername(anyString()));
   }
 }

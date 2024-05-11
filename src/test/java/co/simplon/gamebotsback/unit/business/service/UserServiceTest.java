@@ -48,7 +48,7 @@ class UserServiceTest {
 
     when(iUserRepository.save(any(User.class))).thenReturn(null);
 
-    userService.createAccount(new Userdto());
+    userService.createUserAccount(new Userdto());
 
     verify(iUserRepository, times(1)).save(any(User.class));
   }
@@ -60,7 +60,7 @@ class UserServiceTest {
     existingUser.setIdUser(userId);
 
     when(iUserRepository.findById(userId)).thenReturn(Optional.of(existingUser));
-    Userdto userDTO = userService.getById(userId);
+    Userdto userDTO = userService.getUserAccountByUserId(userId);
 
     verify(iUserRepository, times(1)).findById(userId);
     assertNotNull(userDTO, "UserDTO attendu dans la liste");
@@ -72,7 +72,7 @@ class UserServiceTest {
   void testGetByIdWhenUserDoesNotExist() {
 
     when(iUserRepository.findById(userId)).thenReturn(Optional.empty());
-    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> userService.getById(userId));
+    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> userService.getUserAccountByUserId(userId));
 
     assertEquals(ERROR_MESSAGE + userId, exception.getMessage(), "User does not exist: ");
     verify(iUserRepository, times(1)).findById(userId);
@@ -86,7 +86,7 @@ class UserServiceTest {
     existingUser.setIdUser(userId);
 
     when(iUserRepository.findByUsername(username)).thenReturn(Optional.of(existingUser));
-    int idUser = userService.getIdByUsername(username);
+    int idUser = userService.getUserIdByUsername(username);
 
     verify(iUserRepository, times(1)).findByUsername(username);
     assertEquals(userId, idUser, "id non égaux");
@@ -98,7 +98,7 @@ class UserServiceTest {
 
     when(iUserRepository.findByUsername(username)).thenReturn(Optional.empty());
     EntityNotFoundException exception = assertThrows(EntityNotFoundException.class,
-        () -> userService.getIdByUsername(username));
+        () -> userService.getUserIdByUsername(username));
 
     verify(iUserRepository, times(1)).findByUsername(username);
     assertEquals(ERROR_MESSAGE + username, exception.getMessage(), "User does not exist: ");
@@ -118,7 +118,7 @@ class UserServiceTest {
     modifiedUserdto.setImage(new Image());
 
     when(iUserRepository.findById(userId)).thenReturn(Optional.of(existingUser));
-    userService.modifyAccount(userId, modifiedUserdto);
+    userService.modifyUserAccount(userId, modifiedUserdto);
 
     verify(iUserRepository, times(1)).findById(userId);
     verify(iUserRepository, times(1)).save(any(User.class));
@@ -138,7 +138,7 @@ class UserServiceTest {
 
     when(iUserRepository.findById(userId)).thenReturn(Optional.empty());
     EntityNotFoundException exception = assertThrows(EntityNotFoundException.class,
-        () -> userService.modifyAccount(userId, modifiedUserdto));
+        () -> userService.modifyUserAccount(userId, modifiedUserdto));
 
     assertEquals(UserServiceImpl.ERROR_MESSAGE + userId, exception.getMessage(),
         "Le message d'erreur doit être correct");
@@ -153,7 +153,7 @@ class UserServiceTest {
     existingUser.setIdUser(userId);
 
     when(iUserRepository.findById(userId)).thenReturn(Optional.of(existingUser));
-    userService.deleteAccount(userId);
+    userService.deleteUserAccount(userId);
 
     verify(iUserRepository, times(1)).findById(userId);
     verify(iUserRepository, times(1)).deleteById(any(Integer.class));
@@ -165,7 +165,7 @@ class UserServiceTest {
 
     when(iUserRepository.findById(userId)).thenReturn(Optional.empty());
     EntityNotFoundException exception = assertThrows(EntityNotFoundException.class,
-        () -> userService.deleteAccount(userId));
+        () -> userService.deleteUserAccount(userId));
 
     assertEquals(UserServiceImpl.ERROR_MESSAGE + userId, exception.getMessage(),
         "Le message d'erreur doit être correct");

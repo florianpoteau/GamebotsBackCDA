@@ -27,8 +27,8 @@ class ModifyUserAccountControllerTest {
   @Test
   @DisplayName("Test de modification d'un utilisateur depuis le controller")
   void modifyConversation() {
-    doNothing().when(userService).modifyAccount(anyInt(), any(Userdto.class));
+    doNothing().when(userService).modifyUserAccount(anyInt(), any(Userdto.class));
     controller.modifyUserAccount(1, new Userdto());
-    verify(userService, times(1)).modifyAccount(anyInt(), any(Userdto.class));
+    verify(userService, times(1)).modifyUserAccount(anyInt(), any(Userdto.class));
   }
 }

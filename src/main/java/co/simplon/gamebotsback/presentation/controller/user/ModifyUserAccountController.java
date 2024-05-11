@@ -45,6 +45,6 @@ public class ModifyUserAccountController {
   @PutMapping("/users/{userId}")
   public void modifyUserAccount(
       @PathVariable final int userId, @RequestBody final Userdto userDto) {
-    userService.modifyAccount(userId, userDto);
+    userService.modifyUserAccount(userId, userDto);
   }
 }

@@ -2,7 +2,7 @@ package co.simplon.gamebotsback.unit.presentation.controllers.user;
 
 import co.simplon.gamebotsback.business.dto.Userdto;
 import co.simplon.gamebotsback.business.service.user.Iuserservice;
-import co.simplon.gamebotsback.presentation.controller.user.GetUserAccountByIdController;
+import co.simplon.gamebotsback.presentation.controller.user.GetUserAccountByUserIdController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
 class GetUserAccountByIdControllerTest {
 
   @InjectMocks
-  GetUserAccountByIdController controller;
+  GetUserAccountByUserIdController controller;
 
   @Mock
   private Iuserservice userService;
@@ -27,9 +27,9 @@ class GetUserAccountByIdControllerTest {
   @Test
   @DisplayName("Test de recuperation d'un utilisateur par son id depuis le controller")
   void getUserAccountById() {
-    when(userService.getById(anyInt())).thenReturn(new Userdto());
-    Userdto userdto = controller.findUserById(anyInt());
-    verify(userService, times(1)).getById(anyInt());
+    when(userService.getUserAccountByUserId(anyInt())).thenReturn(new Userdto());
+    Userdto userdto = controller.findUserAccountByUserId(anyInt());
+    verify(userService, times(1)).getUserAccountByUserId(anyInt());
     assertEquals(Userdto.class, userdto.getClass());
   }
 }
