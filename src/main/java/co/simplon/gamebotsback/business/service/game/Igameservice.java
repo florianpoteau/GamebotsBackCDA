@@ -14,16 +14,15 @@ public interface Igameservice {
    *
    * @return A list of available games.
    */
-  List<Gamedto> getAll();
+  List<Gamedto> getAllGames();
 
   /**
    * Retrieves information about a game based on its ID.
    *
-   * @param id
+   * @param gameId
    *     The ID of the game.
    *
    * @return Information about the game corresponding to the given ID.
    */
-  Gamedto getById(int id);
-
+  Gamedto getGameByGameId(int gameId);
 }

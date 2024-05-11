@@ -39,7 +39,7 @@ public class GameServiceImpl implements Igameservice {
    * @return A list of available games.
    */
   @Override
-  public List<Gamedto> getAll() {
+  public List<Gamedto> getAllGames() {
     final List<Game> result = gameRepository.findAll();
     return GameConvert.getInstance().convertListEntityToListDto(result);
   }
@@ -47,7 +47,7 @@ public class GameServiceImpl implements Igameservice {
   /**
    * Retrieves information about a game based on its ID.
    *
-   * @param id
+   * @param gameId
    *     The ID of the game.
    *
    * @return Information about the game corresponding to the given ID.
@@ -57,14 +57,14 @@ public class GameServiceImpl implements Igameservice {
    *     the specified ID does not exist.
    */
   @Override
-  public Gamedto getById(final int id) {
-    Optional<Game> optionalGame = gameRepository.findById(id);
+  public Gamedto getGameByGameId(final int gameId) {
+    Optional<Game> optionalGame = gameRepository.findById(gameId);
     if (optionalGame.isPresent()) {
       Game game = optionalGame.get();
       return GameConvert.getInstance().convertEntityToDto(game);
     } else {
       throw new IllegalArgumentException(
-          "The game with the specified ID does not exist: " + id);
+          "The game with the specified ID does not exist: " + gameId);
     }
   }
 

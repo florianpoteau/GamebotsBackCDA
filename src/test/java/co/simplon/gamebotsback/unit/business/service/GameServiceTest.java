@@ -21,7 +21,7 @@ import static org.mockito.Mockito.*;
 class GameServiceTest {
 
   Game existingGame = new Game();
-  
+
   int gameId = 1;
 
   @InjectMocks
@@ -35,7 +35,7 @@ class GameServiceTest {
   void testGetAll() {
 
     when(iGameRepository.findAll()).thenReturn(List.of(new Game()));
-    List<Gamedto> games = gameService.getAll();
+    List<Gamedto> games = gameService.getAllGames();
 
     verify(iGameRepository, times(1)).findAll();
     assertEquals(Gamedto.class, games.get(0).getClass(), "GameDTO attendu dans la liste");
@@ -48,7 +48,7 @@ class GameServiceTest {
     existingGame.setIdGame(gameId);
 
     when(iGameRepository.findById(gameId)).thenReturn(Optional.of(existingGame));
-    Gamedto gameDTO = gameService.getById(gameId);
+    Gamedto gameDTO = gameService.getGameByGameId(gameId);
 
     verify(iGameRepository, times(1)).findById(gameId);
     assertNotNull(gameDTO, "ImageDTO attendu dans la liste");
@@ -60,7 +60,7 @@ class GameServiceTest {
   void testGetByIdWhenGameDoesNotExist() {
 
     when(iGameRepository.findById(gameId)).thenReturn(Optional.empty());
-    IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> gameService.getById(gameId));
+    IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> gameService.getGameByGameId(gameId));
 
     assertEquals("The game with the specified ID does not exist: " + gameId, exception.getMessage(), "Expected exception message to match");
   }

@@ -2,7 +2,7 @@ package co.simplon.gamebotsback.unit.presentation.controllers.game;
 
 import co.simplon.gamebotsback.business.dto.Gamedto;
 import co.simplon.gamebotsback.business.service.game.Igameservice;
-import co.simplon.gamebotsback.presentation.controller.game.GetGameByIdController;
+import co.simplon.gamebotsback.presentation.controller.game.GetGameByGameIdController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
 class GetGameByIdControllerTest {
 
   @InjectMocks
-  private GetGameByIdController controller;
+  private GetGameByGameIdController controller;
 
   @Mock
   private Igameservice gameService;
@@ -27,9 +27,9 @@ class GetGameByIdControllerTest {
   @Test
   @DisplayName("Test de recuperation d'un jeu par son id depuis le controller")
   void getGameById() {
-    when(gameService.getById(anyInt())).thenReturn(new Gamedto());
-    Gamedto gamedto = controller.findGameById(anyInt());
-    verify(gameService, times(1)).getById(anyInt());
+    when(gameService.getGameByGameId(anyInt())).thenReturn(new Gamedto());
+    Gamedto gamedto = controller.findGameByGameId(anyInt());
+    verify(gameService, times(1)).getGameByGameId(anyInt());
     assertEquals(Gamedto.class, gamedto.getClass());
   }
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * related to retrieving all games.
  */
 @RestController
-public class GetAllGameController {
+public class GetAllGamesController {
 
   /**
    * The game service used for game-related operations.
@@ -26,7 +26,7 @@ public class GetAllGameController {
    *     The service responsible for retrieving game information.
    */
   @Autowired
-  public GetAllGameController(
+  public GetAllGamesController(
       final Igameservice serviceGame) {
     this.gameService = serviceGame;
   }
@@ -38,7 +38,7 @@ public class GetAllGameController {
    */
   @GetMapping("/games")
   public List<Gamedto> findAllGames() {
-    return gameService.getAll();
+    return gameService.getAllGames();
   }
 
 }

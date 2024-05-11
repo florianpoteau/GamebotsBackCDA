@@ -2,7 +2,7 @@ package co.simplon.gamebotsback.unit.presentation.controllers.game;
 
 import co.simplon.gamebotsback.business.dto.Gamedto;
 import co.simplon.gamebotsback.business.service.game.Igameservice;
-import co.simplon.gamebotsback.presentation.controller.game.GetAllGameController;
+import co.simplon.gamebotsback.presentation.controller.game.GetAllGamesController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,7 +18,7 @@ import static org.mockito.Mockito.when;
 class GetAllGameControllerTest {
 
   @InjectMocks
-  private GetAllGameController controller;
+  private GetAllGamesController controller;
 
   @Mock
   private Igameservice gameService;
@@ -26,8 +26,8 @@ class GetAllGameControllerTest {
   @Test
   @DisplayName("Test de recuperation de tous les jeux depuis le controller")
   void getAllGames() {
-    when(gameService.getAll()).thenReturn(List.of(new Gamedto()));
+    when(gameService.getAllGames()).thenReturn(List.of(new Gamedto()));
     controller.findAllGames();
-    verify(gameService, times(1)).getAll();
+    verify(gameService, times(1)).getAllGames();
   }
 }

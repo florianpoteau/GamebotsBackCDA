@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * This controller handles HTTP GET requests to retrieve a game by its ID.
  */
 @RestController
-public class GetGameByIdController {
+public class GetGameByGameIdController {
 
   /**
    * The service responsible for retrieving game information.
@@ -27,21 +27,21 @@ public class GetGameByIdController {
    *     The service responsible for retrieving game information.
    */
   @Autowired
-  public GetGameByIdController(final Igameservice serviceGame) {
+  public GetGameByGameIdController(final Igameservice serviceGame) {
     this.gameService = serviceGame;
   }
 
   /**
    * Handles HTTP GET requests to retrieve a game by its ID.
    *
-   * @param id
+   * @param gameId
    *     The ID of the game to retrieve.
    *
    * @return The DTO representing the game with the specified ID.
    */
-  @GetMapping("/games/{id}")
-  public Gamedto findGameById(@PathVariable final int id) {
-    return gameService.getById(id);
+  @GetMapping("/games/{gameId}")
+  public Gamedto findGameByGameId(@PathVariable final int gameId) {
+    return gameService.getGameByGameId(gameId);
   }
 
 }
