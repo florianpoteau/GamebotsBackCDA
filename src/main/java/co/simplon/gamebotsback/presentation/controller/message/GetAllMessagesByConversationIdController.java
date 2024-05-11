@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * fetch all messages associated with a specific conversation ID.
  */
 @RestController
-public class GetAllMessageByIdConversationController {
+public class GetAllMessagesByConversationIdController {
 
   /**
    * The message service used to retrieve all messages by conversation ID.
@@ -23,14 +23,14 @@ public class GetAllMessageByIdConversationController {
   private final Imessageservice messageService;
 
   /**
-   * Constructs a new GetAllMessageByIdConversationController
+   * Constructs a new GetAllMessageByConversationIdController
    * with the specified message service.
    *
    * @param serviceMessage
    *     The message service used to retrieve all messages by conversation ID.
    */
   @Autowired
-  public GetAllMessageByIdConversationController(
+  public GetAllMessagesByConversationIdController(
       final Imessageservice serviceMessage) {
     this.messageService = serviceMessage;
   }
@@ -45,9 +45,9 @@ public class GetAllMessageByIdConversationController {
    *     messages associated with the specified conversation ID.
    */
   @GetMapping("/conversations/{id}/messages")
-  public List<Messagedto> findAllMessagesByIdConversation(
+  public List<Messagedto> findAllMessagesByConversationId(
       @PathVariable final int id) {
-    return messageService.getAllMessageConversation(id);
+    return messageService.getAllMessagesConversation(id);
   }
 
 }

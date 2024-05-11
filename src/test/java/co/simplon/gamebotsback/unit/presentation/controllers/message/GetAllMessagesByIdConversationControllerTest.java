@@ -2,7 +2,7 @@ package co.simplon.gamebotsback.unit.presentation.controllers.message;
 
 import co.simplon.gamebotsback.business.dto.Messagedto;
 import co.simplon.gamebotsback.business.service.message.Imessageservice;
-import co.simplon.gamebotsback.presentation.controller.message.GetAllMessageByIdConversationController;
+import co.simplon.gamebotsback.presentation.controller.message.GetAllMessagesByConversationIdController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,19 +16,19 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class GetAllMessageByIdConversationControllerTest {
+class GetAllMessagesByIdConversationControllerTest {
 
   @InjectMocks
-  private GetAllMessageByIdConversationController controller;
+  private GetAllMessagesByConversationIdController controller;
 
   @Mock
   private Imessageservice messageService;
 
   @Test
   @DisplayName("Test de recuperation de tous les messages par l'id d'une conversation depuis le controller")
-  void getAllMessageByIdConversation() {
-    when(messageService.getAllMessageConversation(anyInt())).thenReturn(List.of(new Messagedto()));
-    controller.findAllMessagesByIdConversation(anyInt());
-    verify(messageService, times(1)).getAllMessageConversation(anyInt());
+  void getAllMessagesByConversationId() {
+    when(messageService.getAllMessagesConversation(anyInt())).thenReturn(List.of(new Messagedto()));
+    controller.findAllMessagesByConversationId(anyInt());
+    verify(messageService, times(1)).getAllMessagesConversation(anyInt());
   }
 }

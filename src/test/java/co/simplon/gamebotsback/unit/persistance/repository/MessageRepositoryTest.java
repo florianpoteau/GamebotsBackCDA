@@ -2,6 +2,7 @@
  * This class represents a unit test for the MessageRepository class.
  * It tests the functionality of finding messages by conversation ID.
  */
+
 package co.simplon.gamebotsback.unit.persistance.repository;
 
 import co.simplon.gamebotsback.persistance.entity.Message;
@@ -30,11 +31,11 @@ class MessageRepositoryTest {
   @DisplayName("Test Find Message By Conversation")
   void testFindMessageByConversation() {
 
-    when(messageRepository.getMessageByConversationId(1)).thenReturn(List.of(new Message()));
+    when(messageRepository.getMessagesByConversationId(1)).thenReturn(List.of(new Message()));
 
-    List<Message> messages = messageRepository.getMessageByConversationId(1);
+    List<Message> messages = messageRepository.getMessagesByConversationId(1);
 
-    verify(messageRepository, times(1)).getMessageByConversationId(1);
+    verify(messageRepository, times(1)).getMessagesByConversationId(1);
 
     assert messages.size() == 1;
     assert messages.get(0) != null;
@@ -62,10 +63,10 @@ class MessageRepositoryTest {
   }
 
   @Test
-  @DisplayName("Test that FIND_MESSAGE_BY_CONVERSATION query is defined")
+  @DisplayName("Test that FIND_MESSAGES_BY_CONVERSATION query is defined")
   void testFindMessageByConversationQuery() {
 
-    assertNotNull(MessageQueries.FIND_MESSAGE_BY_CONVERSATION, "Expected FIND_MESSAGE_BY_CONVERSATION query to be defined");
-    assertEquals("SELECT m FROM Message m JOIN m.conversation c WHERE c.idConversation = :conversationId", MessageQueries.FIND_MESSAGE_BY_CONVERSATION, "Expected FIND_MESSAGE_BY_CONVERSATION query to match");
+    assertNotNull(MessageQueries.FIND_MESSAGES_BY_CONVERSATION, "Expected FIND_MESSAGES_BY_CONVERSATION query to be defined");
+    assertEquals("SELECT m FROM Message m JOIN m.conversation c WHERE c.idConversation = :conversationId", MessageQueries.FIND_MESSAGES_BY_CONVERSATION, "Expected FIND_MESSAGES_BY_CONVERSATION query to match");
   }
 }

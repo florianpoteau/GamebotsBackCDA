@@ -26,7 +26,7 @@ class CreateMessageControllerTest {
 
   @Test
   @DisplayName("Test de création d'un message depuis le controller")
-  void CreateMessage() {
+  void createMessage() {
     doNothing().when(messageService).addNewMessage(any(Messagedto.class));
     controller.createMessage(new Messagedto());
     verify(messageService, times(1)).addNewMessage(any(Messagedto.class));

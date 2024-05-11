@@ -21,7 +21,7 @@ public interface Imessagerepository extends JpaRepository<Message, Integer> {
    *
    * @return A list of messages associated with the specified conversation ID.
    */
-  @Query(MessageQueries.FIND_MESSAGE_BY_CONVERSATION)
-  List<Message> getMessageByConversationId(int conversationId);
+  @Query(MessageQueries.FIND_MESSAGES_BY_CONVERSATION)
+  List<Message> getMessagesByConversationId(int conversationId);
 
 }

@@ -29,10 +29,10 @@ class MessageServiceTest {
   @DisplayName("Test de récupération de tous les messages d'une conversation")
   void testGetAllMessageConversation() {
 
-    when(iMessageRepository.getMessageByConversationId(any(Integer.class))).thenReturn(List.of(new Message()));
-    List<Messagedto> messages = messageService.getAllMessageConversation(any(Integer.class));
+    when(iMessageRepository.getMessagesByConversationId(any(Integer.class))).thenReturn(List.of(new Message()));
+    List<Messagedto> messages = messageService.getAllMessagesConversation(any(Integer.class));
 
-    verify(iMessageRepository, times(1)).getMessageByConversationId(any(Integer.class));
+    verify(iMessageRepository, times(1)).getMessagesByConversationId(any(Integer.class));
     assertEquals(Messagedto.class, messages.get(0).getClass(), "MessageDTO attendu dans la liste");
   }
 

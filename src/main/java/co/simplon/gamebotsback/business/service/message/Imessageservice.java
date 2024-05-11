@@ -17,7 +17,7 @@ public interface Imessageservice {
    *
    * @return A list of messages of the specified conversation.
    */
-  List<Messagedto> getAllMessageConversation(int idConversation);
+  List<Messagedto> getAllMessagesConversation(int idConversation);
 
   /**
    * Adds a new message to a conversation.
