@@ -39,7 +39,7 @@ public class GetAllImagesController {
    */
   @GetMapping("/images")
   public List<Imagedto> findAllImages() {
-    return imageService.getAll();
+    return imageService.getAllImages();
   }
 
 }

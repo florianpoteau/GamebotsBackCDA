@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * This controller handles HTTP GET requests to retrieve an image by its ID.
  */
 @RestController
-public class GetImageByIdController {
+public class GetImageByImageIdController {
 
   /**
    * The image service used to retrieve an image by its ID.
@@ -27,21 +27,21 @@ public class GetImageByIdController {
    *     The image service used to retrieve an image by its ID.
    */
   @Autowired
-  public GetImageByIdController(final Iimageservice serviceImage) {
+  public GetImageByImageIdController(final Iimageservice serviceImage) {
     this.imageService = serviceImage;
   }
 
   /**
    * Handles HTTP GET requests to fetch an image by its ID.
    *
-   * @param id
+   * @param imageId
    *     The ID of the image.
    *
    * @return An ImageDTO object representing the image with the specified ID.
    */
-  @GetMapping("/images/{id}")
-  public Imagedto findImageById(@PathVariable final int id) {
-    return imageService.getById(id);
+  @GetMapping("/images/{imageId}")
+  public Imagedto findImageByImageId(@PathVariable final int imageId) {
+    return imageService.getImageByImageId(imageId);
   }
 
 }

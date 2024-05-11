@@ -43,7 +43,7 @@ public class ImageServiceImpl implements Iimageservice {
    * @return A list of all images.
    */
   @Override
-  public List<Imagedto> getAll() {
+  public List<Imagedto> getAllImages() {
     final List<Image> result = imageRepository.findAll();
     return ImageConvert.getInstance().convertListEntityToListDto(result);
   }
@@ -51,17 +51,17 @@ public class ImageServiceImpl implements Iimageservice {
   /**
    * Retrieves information about an image based on its ID.
    *
-   * @param id
+   * @param imageId
    *     The ID of the image.
    *
    * @return Information about the image corresponding to the given ID.
    */
   @Override
-  public Imagedto getById(final int id) {
-    Optional<Image> optionalImage = imageRepository.findById(id);
+  public Imagedto getImageByImageId(final int imageId) {
+    Optional<Image> optionalImage = imageRepository.findById(imageId);
     Image image = optionalImage
         .orElseThrow(() -> new NoSuchElementException(
-            "Aucune image trouvée avec l'identifiant " + id));
+            "Aucune image trouvée avec l'identifiant " + imageId));
     return ImageConvert.getInstance().convertEntityToDto(image);
   }
 

@@ -35,15 +35,15 @@ public class GetImageByUserIdController {
    * Handles HTTP GET requests to fetch an image associated with a specific user
    * ID.
    *
-   * @param id
+   * @param userId
    *     The ID of the user.
    *
    * @return An ImageDTO object representing the image associated with the
    *     specified user ID.
    */
-  @GetMapping("/users/{id}/images")
-  public Imagedto findImageByUserId(@PathVariable final int id) {
-    return imageService.getImageByUserIdAndImageType(id);
+  @GetMapping("/users/{userId}/images")
+  public Imagedto findImageByUserId(@PathVariable final int userId) {
+    return imageService.getImageByUserIdAndImageType(userId);
   }
 
 }

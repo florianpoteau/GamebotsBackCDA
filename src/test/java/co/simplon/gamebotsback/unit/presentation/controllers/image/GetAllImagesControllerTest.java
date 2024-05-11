@@ -26,8 +26,8 @@ class GetAllImagesControllerTest {
   @Test
   @DisplayName("Test de recuperation de toutes les images depuis le controller")
   void getAllImages() {
-    when(imageService.getAll()).thenReturn(List.of(new Imagedto()));
+    when(imageService.getAllImages()).thenReturn(List.of(new Imagedto()));
     controller.findAllImages();
-    verify(imageService, times(1)).getAll();
+    verify(imageService, times(1)).getAllImages();
   }
 }

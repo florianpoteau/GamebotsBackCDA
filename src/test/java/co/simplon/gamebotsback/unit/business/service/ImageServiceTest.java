@@ -36,7 +36,7 @@ class ImageServiceTest {
   void testGetAll() {
 
     when(iImageRepository.findAll()).thenReturn(List.of(existingImage));
-    List<Imagedto> images = imageService.getAll();
+    List<Imagedto> images = imageService.getAllImages();
 
     verify(iImageRepository, times(1)).findAll();
     assertEquals(1, images.size(), "Une seule image attendue dans la liste");
@@ -50,7 +50,7 @@ class ImageServiceTest {
     existingImage.setIdImage(imageId);
 
     when(iImageRepository.findById(imageId)).thenReturn(Optional.of(existingImage));
-    Imagedto imageDTO = imageService.getById(imageId);
+    Imagedto imageDTO = imageService.getImageByImageId(imageId);
 
     verify(iImageRepository, times(1)).findById(imageId);
     assertNotNull(imageDTO, "ImageDTO attendu dans la liste");

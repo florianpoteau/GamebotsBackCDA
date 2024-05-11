@@ -41,16 +41,16 @@ public class GetAllImagesByGameIdController {
   /**
    * Handles HTTP GET requests to fetch all images by game ID.
    *
-   * @param id
+   * @param gameId
    *     The ID of the game.
    *
    * @return A list of ImageDTO objects representing all images associated with
    *     the specified game ID.
    */
-  @GetMapping("/games/{id}/images")
+  @GetMapping("/games/{gameId}/images")
   public List<Imagedto> findAllImagesByGameId(
-      @PathVariable final int id) {
-    return imageService.getAllImagesByGameIdAndImageType("image_jeu", id);
+      @PathVariable final int gameId) {
+    return imageService.getAllImagesByGameIdAndImageType("image_jeu", gameId);
   }
 
 }

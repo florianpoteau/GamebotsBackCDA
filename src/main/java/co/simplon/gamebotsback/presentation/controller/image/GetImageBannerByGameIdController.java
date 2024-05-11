@@ -37,14 +37,15 @@ public class GetImageBannerByGameIdController {
   /**
    * Handles HTTP GET requests to fetch the banner image by game ID.
    *
-   * @param id
+   * @param gameId
    *     The ID of the game.
    *
    * @return A list of ImageDTO objects representing the
    *     banner image associated with the specified game ID.
    */
-  @GetMapping("/games/{id}/banner")
-  public List<Imagedto> findImageBannerByGameId(@PathVariable final int id) {
-    return imageService.getAllImagesByGameIdAndImageType("banner", id);
+  @GetMapping("/games/{gameId}/banner")
+  public List<Imagedto> findImageBannerByGameId(
+      @PathVariable final int gameId) {
+    return imageService.getAllImagesByGameIdAndImageType("banner", gameId);
   }
 }

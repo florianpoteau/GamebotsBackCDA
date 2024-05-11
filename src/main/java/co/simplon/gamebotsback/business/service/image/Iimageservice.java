@@ -15,17 +15,17 @@ public interface Iimageservice {
    *
    * @return A list of all images.
    */
-  List<Imagedto> getAll();
+  List<Imagedto> getAllImages();
 
   /**
    * Retrieves information about an image based on its ID.
    *
-   * @param id
+   * @param imageId
    *     The ID of the image.
    *
    * @return Information about the image corresponding to the given ID.
    */
-  Imagedto getById(int id);
+  Imagedto getImageByImageId(int imageId);
 
   /**
    * Retrieves the image associated with a user by user ID and image type.
