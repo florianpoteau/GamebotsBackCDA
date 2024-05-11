@@ -23,21 +23,21 @@ public class DeleteUserAccountController {
   /**
    * Constructor for the DeleteUserAccountController.
    *
-   * @param service
+   * @param serviceUser
    *     The UserService used to delete user accounts.
    */
-  public DeleteUserAccountController(final Iuserservice service) {
-    this.userService = service;
+  public DeleteUserAccountController(final Iuserservice serviceUser) {
+    this.userService = serviceUser;
   }
 
   /**
    * Handles a DELETE request to delete a user account by ID.
    *
-   * @param id
+   * @param userId
    *     The ID of the user account to be deleted.
    */
-  @DeleteMapping("/users/{id}")
-  public void deleteuseraccountbyid(@PathVariable final int id) {
-    userService.deleteAccount(id);
+  @DeleteMapping("/users/{userId}")
+  public void deleteUserAccountById(@PathVariable final int userId) {
+    userService.deleteAccount(userId);
   }
 }

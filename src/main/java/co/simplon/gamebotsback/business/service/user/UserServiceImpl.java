@@ -21,7 +21,7 @@ public class UserServiceImpl implements Iuserservice {
   /**
    * Error message indicating that a user with the specified ID does not exist.
    */
-  public static final String ERRORMESSAGE = "User does not exist: ";
+  public static final String ERROR_MESSAGE = "User does not exist: ";
 
   /**
    * The className used to encodepassword.
@@ -31,7 +31,7 @@ public class UserServiceImpl implements Iuserservice {
   /**
    * The repository used to access user data.
    */
-  private final Iuserrepository userrepository;
+  private final Iuserrepository userRepository;
 
   /**
    * Constructor for <code>UserServiceImpl</code>.
@@ -45,7 +45,7 @@ public class UserServiceImpl implements Iuserservice {
   public UserServiceImpl(
       final Iuserrepository repositoryUser,
       final PasswordEncoder encoderPassword) {
-    this.userrepository = repositoryUser;
+    this.userRepository = repositoryUser;
     this.passwordEncoder = encoderPassword;
   }
 
@@ -61,7 +61,7 @@ public class UserServiceImpl implements Iuserservice {
     String encodePassword = passwordEncoder.encode(userDto.getPassword());
     userDto.setPassword(encodePassword);
     userDto.setCreationDate(new Date());
-    userrepository.save(UserConvert.getInstance().convertDtoToEntity(userDto));
+    userRepository.save(UserConvert.getInstance().convertDtoToEntity(userDto));
   }
 
   /**
@@ -77,20 +77,20 @@ public class UserServiceImpl implements Iuserservice {
    */
   @Override
   public int getIdByUsername(final String username) {
-    Optional<User> optionalUser = userrepository.findByUsername(username);
+    Optional<User> optionalUser = userRepository.findByUsername(username);
     if (optionalUser.isPresent()) {
       User user = optionalUser.get();
       UserConvert.getInstance().convertEntityToDto(user);
       return user.getIdUser();
     } else {
-      throw new EntityNotFoundException(ERRORMESSAGE + username);
+      throw new EntityNotFoundException(ERROR_MESSAGE + username);
     }
   }
 
   /**
    * Modifies information of an existing user account.
    *
-   * @param id
+   * @param userId
    *     The ID of the user to modify.
    * @param userDto
    *     The new information to associate with the user.
@@ -99,8 +99,8 @@ public class UserServiceImpl implements Iuserservice {
    *     if no user corresponding to the ID is found.
    */
   @Override
-  public void modifyAccount(final int id, final Userdto userDto) {
-    Optional<User> optionalUser = userrepository.findById(id);
+  public void modifyAccount(final int userId, final Userdto userDto) {
+    Optional<User> optionalUser = userRepository.findById(userId);
     if (optionalUser.isPresent()) {
       User existingUser = optionalUser.get();
       existingUser.setUsername(userDto.getUsername());
@@ -110,29 +110,29 @@ public class UserServiceImpl implements Iuserservice {
       existingUser.setPhone(userDto.getPhone());
       existingUser.setModificationDate(new Date());
 
-      userrepository.save(existingUser);
+      userRepository.save(existingUser);
 
     } else {
-      throw new EntityNotFoundException(ERRORMESSAGE + id);
+      throw new EntityNotFoundException(ERROR_MESSAGE + userId);
     }
   }
 
   /**
    * Deletes the user account corresponding to the given ID.
    *
-   * @param id
+   * @param userId
    *     The ID of the user to delete.
    *
    * @throws EntityNotFoundException
    *     if no user corresponding to the ID is found.
    */
   @Override
-  public void deleteAccount(final int id) {
-    Optional<User> optionalUser = userrepository.findById(id);
+  public void deleteAccount(final int userId) {
+    Optional<User> optionalUser = userRepository.findById(userId);
     if (optionalUser.isPresent()) {
-      userrepository.deleteById(id);
+      userRepository.deleteById(userId);
     } else {
-      throw new EntityNotFoundException(ERRORMESSAGE + id);
+      throw new EntityNotFoundException(ERROR_MESSAGE + userId);
     }
   }
 
@@ -149,12 +149,12 @@ public class UserServiceImpl implements Iuserservice {
    */
   @Override
   public Userdto getById(final int userId) {
-    Optional<User> optionalUser = userrepository.findById(userId);
+    Optional<User> optionalUser = userRepository.findById(userId);
     if (optionalUser.isPresent()) {
       User user = optionalUser.get();
       return UserConvert.getInstance().convertEntityToDto(user);
     } else {
-      throw new EntityNotFoundException(ERRORMESSAGE + userId);
+      throw new EntityNotFoundException(ERROR_MESSAGE + userId);
     }
   }
 

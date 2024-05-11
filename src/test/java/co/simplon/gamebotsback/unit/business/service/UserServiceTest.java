@@ -17,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.Date;
 import java.util.Optional;
 
-import static co.simplon.gamebotsback.business.service.user.UserServiceImpl.ERRORMESSAGE;
+import static co.simplon.gamebotsback.business.service.user.UserServiceImpl.ERROR_MESSAGE;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -74,7 +74,7 @@ class UserServiceTest {
     when(iUserRepository.findById(userId)).thenReturn(Optional.empty());
     EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> userService.getById(userId));
 
-    assertEquals(ERRORMESSAGE + userId, exception.getMessage(), "User does not exist: ");
+    assertEquals(ERROR_MESSAGE + userId, exception.getMessage(), "User does not exist: ");
     verify(iUserRepository, times(1)).findById(userId);
   }
 
@@ -101,7 +101,7 @@ class UserServiceTest {
         () -> userService.getIdByUsername(username));
 
     verify(iUserRepository, times(1)).findByUsername(username);
-    assertEquals(ERRORMESSAGE + username, exception.getMessage(), "User does not exist: ");
+    assertEquals(ERROR_MESSAGE + username, exception.getMessage(), "User does not exist: ");
   }
 
   @Test
@@ -140,7 +140,7 @@ class UserServiceTest {
     EntityNotFoundException exception = assertThrows(EntityNotFoundException.class,
         () -> userService.modifyAccount(userId, modifiedUserdto));
 
-    assertEquals(UserServiceImpl.ERRORMESSAGE + userId, exception.getMessage(),
+    assertEquals(UserServiceImpl.ERROR_MESSAGE + userId, exception.getMessage(),
         "Le message d'erreur doit être correct");
     verify(iUserRepository, times(1)).findById(userId);
     verify(iUserRepository, never()).save(any(User.class));
@@ -167,7 +167,7 @@ class UserServiceTest {
     EntityNotFoundException exception = assertThrows(EntityNotFoundException.class,
         () -> userService.deleteAccount(userId));
 
-    assertEquals(UserServiceImpl.ERRORMESSAGE + userId, exception.getMessage(),
+    assertEquals(UserServiceImpl.ERROR_MESSAGE + userId, exception.getMessage(),
         "Le message d'erreur doit être correct");
     verify(iUserRepository, times(1)).findById(userId);
     verify(iUserRepository, never()).deleteById(any(Integer.class));

@@ -35,14 +35,14 @@ public class GetUserAccountByIdController {
   /**
    * Handles a GET request to retrieve a user account by username.
    *
-   * @param id
+   * @param userId
    *     The ID of the user account to retrieve.
    *
    * @return The UserDTO object representing the user account.
    */
-  @GetMapping("/users/{id}")
-  public Userdto findUserById(@PathVariable final int id) {
-    return userService.getById(id);
+  @GetMapping("/users/{userId}")
+  public Userdto findUserById(@PathVariable final int userId) {
+    return userService.getById(userId);
   }
 
 }

@@ -37,14 +37,14 @@ public class ModifyUserAccountController {
   /**
    * Handles a PUT request to modify a user account.
    *
-   * @param id
+   * @param userId
    *     The ID of the user account to be modified.
    * @param userDto
    *     The UserDTO object containing the updated user data.
    */
-  @PutMapping("/users/{id}")
+  @PutMapping("/users/{userId}")
   public void modifyUserAccount(
-      @PathVariable final int id, @RequestBody final Userdto userDto) {
-    userService.modifyAccount(id, userDto);
+      @PathVariable final int userId, @RequestBody final Userdto userDto) {
+    userService.modifyAccount(userId, userDto);
   }
 }

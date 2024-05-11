@@ -3,18 +3,18 @@ package co.simplon.gamebotsback.business.service.user;
 import co.simplon.gamebotsback.business.dto.Userdto;
 
 /**
- * The IUserService interface defines operations
+ * The Iuserservice interface defines operations
  * available for managing user accounts.
  */
 public interface Iuserservice {
 
   /**
-   * Creates a new user account.
+   * Creates a new userDto account.
    *
-   * @param user
-   *     The information of the new user to create.
+   * @param userDto
+   *     The information of the new userDto to create.
    */
-  void createAccount(Userdto user);
+  void createAccount(Userdto userDto);
 
   /**
    * Retrieves the ID of a user based on their username.
@@ -27,22 +27,22 @@ public interface Iuserservice {
   int getIdByUsername(String username);
 
   /**
-   * Modifies information of an existing user account.
+   * Modifies information of an existing userDto account.
    *
-   * @param id
-   *     The ID of the user to modify.
-   * @param user
-   *     The new information to associate with the user.
+   * @param userId
+   *     The ID of the userDto to modify.
+   * @param userDto
+   *     The new information to associate with the userDto.
    */
-  void modifyAccount(int id, Userdto user);
+  void modifyAccount(int userId, Userdto userDto);
 
   /**
    * Deletes the user account corresponding to the given ID.
    *
-   * @param id
+   * @param userId
    *     The ID of the user to delete.
    */
-  void deleteAccount(int id);
+  void deleteAccount(int userId);
 
   /**
    * Retrieves information about a user based on their ID.
