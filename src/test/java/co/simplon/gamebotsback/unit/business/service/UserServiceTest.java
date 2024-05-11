@@ -85,10 +85,10 @@ class UserServiceTest {
     existingUser.setUsername(username);
     existingUser.setIdUser(userId);
 
-    when(iUserRepository.findByUsername(username)).thenReturn(Optional.of(existingUser));
+    when(iUserRepository.findUserAccountByUsername(username)).thenReturn(Optional.of(existingUser));
     int idUser = userService.getUserIdByUsername(username);
 
-    verify(iUserRepository, times(1)).findByUsername(username);
+    verify(iUserRepository, times(1)).findUserAccountByUsername(username);
     assertEquals(userId, idUser, "id non égaux");
   }
 
@@ -96,11 +96,11 @@ class UserServiceTest {
   @DisplayName("Test de récupération d'un id d'utilisateur par son username - utilisateur non trouvé")
   void testGetIdByUsernameWhenUserDoesNotExist() {
 
-    when(iUserRepository.findByUsername(username)).thenReturn(Optional.empty());
+    when(iUserRepository.findUserAccountByUsername(username)).thenReturn(Optional.empty());
     EntityNotFoundException exception = assertThrows(EntityNotFoundException.class,
         () -> userService.getUserIdByUsername(username));
 
-    verify(iUserRepository, times(1)).findByUsername(username);
+    verify(iUserRepository, times(1)).findUserAccountByUsername(username);
     assertEquals(ERROR_MESSAGE + username, exception.getMessage(), "User does not exist: ");
   }
 

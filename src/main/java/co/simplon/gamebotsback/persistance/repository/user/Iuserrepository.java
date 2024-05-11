@@ -25,7 +25,7 @@ public interface Iuserrepository
    * @return An optional containing the user
    *     with the specified username, or empty if not found.
    */
-  @Query(UserQueries.FIND_BY_USERNAME)
-  Optional<User> findByUsername(String username);
+  @Query(UserQueries.FIND_USER_ACCOUNT_BY_USERNAME)
+  Optional<User> findUserAccountByUsername(String username);
 
 }

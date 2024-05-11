@@ -8,7 +8,7 @@ public final class UserQueries {
   /**
    * Named query to find a user by username.
    */
-  public static final String FIND_BY_USERNAME =
+  public static final String FIND_USER_ACCOUNT_BY_USERNAME =
       "SELECT u FROM User u WHERE u.username = :username";
 
   /**

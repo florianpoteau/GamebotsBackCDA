@@ -2,6 +2,7 @@
  * This class represents a unit test for the UserRepository class.
  * It tests the functionality of finding a user by username.
  */
+
 package co.simplon.gamebotsback.unit.persistance.repository;
 
 import co.simplon.gamebotsback.persistance.entity.User;
@@ -30,11 +31,11 @@ class UserRepositoryTest {
   @DisplayName("Test Find By Username")
   void testFindByUsername() {
 
-    when(userRepository.findByUsername("Ylorklan")).thenReturn(Optional.of(new User()));
+    when(userRepository.findUserAccountByUsername("Ylorklan")).thenReturn(Optional.of(new User()));
 
-    Optional<User> user = userRepository.findByUsername("Ylorklan");
+    Optional<User> user = userRepository.findUserAccountByUsername("Ylorklan");
 
-    verify(userRepository, times(1)).findByUsername("Ylorklan");
+    verify(userRepository, times(1)).findUserAccountByUsername("Ylorklan");
 
     assert user.isPresent();
   }
@@ -61,10 +62,10 @@ class UserRepositoryTest {
   }
 
   @Test
-  @DisplayName("Test that FIND_BY_USERNAME query is defined")
+  @DisplayName("Test that FIND_USER_ACCOUNT_BY_USERNAME query is defined")
   void testFindByUsernameQuery() {
 
-    assertNotNull(UserQueries.FIND_BY_USERNAME, "Expected FIND_BY_USERNAME query to be defined");
-    assertEquals("SELECT u FROM User u WHERE u.username = :username", UserQueries.FIND_BY_USERNAME, "Expected FIND_BY_USERNAME query to match");
+    assertNotNull(UserQueries.FIND_USER_ACCOUNT_BY_USERNAME, "Expected FIND_USER_ACCOUNT_BY_USERNAME query to be defined");
+    assertEquals("SELECT u FROM User u WHERE u.username = :username", UserQueries.FIND_USER_ACCOUNT_BY_USERNAME, "Expected FIND_USER_ACCOUNT_BY_USERNAME query to match");
   }
 }

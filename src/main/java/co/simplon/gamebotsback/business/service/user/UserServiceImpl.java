@@ -77,7 +77,7 @@ public class UserServiceImpl implements Iuserservice {
    */
   @Override
   public int getUserIdByUsername(final String username) {
-    Optional<User> optionalUser = userRepository.findByUsername(username);
+    Optional<User> optionalUser = userRepository.findUserAccountByUsername(username);
     if (optionalUser.isPresent()) {
       User user = optionalUser.get();
       UserConvert.getInstance().convertEntityToDto(user);
