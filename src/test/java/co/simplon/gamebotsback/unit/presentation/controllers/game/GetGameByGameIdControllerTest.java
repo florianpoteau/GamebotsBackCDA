@@ -16,7 +16,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class GetGameByIdControllerTest {
+class GetGameByGameIdControllerTest {
 
   @InjectMocks
   private GetGameByGameIdController controller;
@@ -26,7 +26,7 @@ class GetGameByIdControllerTest {
 
   @Test
   @DisplayName("Test de recuperation d'un jeu par son id depuis le controller")
-  void getGameById() {
+  void getGameByGameId() {
     when(gameService.getGameByGameId(anyInt())).thenReturn(new Gamedto());
     Gamedto gamedto = controller.findGameByGameId(anyInt());
     verify(gameService, times(1)).getGameByGameId(anyInt());
