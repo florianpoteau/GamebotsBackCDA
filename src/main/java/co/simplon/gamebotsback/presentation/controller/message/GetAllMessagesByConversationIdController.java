@@ -38,16 +38,16 @@ public class GetAllMessagesByConversationIdController {
   /**
    * Handles HTTP GET requests to fetch all messages by conversation ID.
    *
-   * @param id
+   * @param conversationId
    *     The ID of the conversation for which messages are to be retrieved.
    *
    * @return A list of Messagedto objects representing all
    *     messages associated with the specified conversation ID.
    */
-  @GetMapping("/conversations/{id}/messages")
+  @GetMapping("/conversations/{conversationId}/messages")
   public List<Messagedto> findAllMessagesByConversationId(
-      @PathVariable final int id) {
-    return messageService.getAllMessagesConversation(id);
+      @PathVariable final int conversationId) {
+    return messageService.getAllMessagesConversation(conversationId);
   }
 
 }
