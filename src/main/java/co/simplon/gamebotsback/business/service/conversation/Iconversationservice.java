@@ -24,54 +24,54 @@ public interface Iconversationservice {
   /**
    * Retrieves a conversation by its ID.
    *
-   * @param id
+   * @param conversationId
    *     The ID of the conversation to retrieve.
    *
    * @return The conversation DTO object corresponding to the provided ID,
    *     or null
    *     if not found.
    */
-  Conversationdto getById(int id);
+  Conversationdto getConversationByConversationId(int conversationId);
 
   /**
    * Modifies an existing conversation.
    *
-   * @param id
+   * @param conversationId
    *     The ID of the conversation to modify.
    * @param conversationDto
    *     The modified conversation DTO object.
    */
-  void modifyConversation(int id, Conversationdto conversationDto);
+  void modifyConversation(int conversationId, Conversationdto conversationDto);
 
   /**
    * Deletes a conversation by its ID.
    *
-   * @param id
+   * @param conversationId
    *     The ID of the conversation to delete.
    */
-  void deleteConversation(int id);
+  void deleteConversation(int conversationId);
 
   /**
    * Retrieves all conversations associated with a specific user.
    *
-   * @param idUser
+   * @param userId
    *     The ID of the user whose conversations are to be retrieved.
    *
    * @return A list of conversation DTO objects associated with the specified
    *     user.
    */
-  List<Conversationdto> getAllUserConversation(int idUser);
+  List<Conversationdto> getAllUserConversations(int userId);
 
   /**
    * Retrieves all conversations associated with a specific user and game.
    *
-   * @param idUser
+   * @param userId
    *     The ID of the user whose conversations are to be retrieved.
-   * @param idGame
+   * @param gameId
    *     The ID of the game associated with the conversations.
    *
    * @return A list of conversation DTO objects associated with the specified
    *     user and game.
    */
-  List<Conversationdto> getAllUserConversationByGameId(int idUser, int idGame);
+  List<Conversationdto> getAllUserConversationsByGameId(int userId, int gameId);
 }

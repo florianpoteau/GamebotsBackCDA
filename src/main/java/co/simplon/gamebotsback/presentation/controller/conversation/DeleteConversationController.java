@@ -36,13 +36,13 @@ public class DeleteConversationController {
   /**
    * Handles HTTP DELETE requests to delete a conversation by its ID.
    *
-   * @param id
+   * @param conversationId
    *     The ID of the conversation to be deleted.
    */
-  @DeleteMapping("/conversations/{id}")
-  public void deleteConversationbyid(
-      @PathVariable final int id) {
-    conversationService.deleteConversation(id);
+  @DeleteMapping("/conversations/{conversationId}")
+  public void deleteConversationByConversationId(
+      @PathVariable final int conversationId) {
+    conversationService.deleteConversation(conversationId);
   }
 
 }

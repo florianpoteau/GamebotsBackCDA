@@ -54,7 +54,7 @@ class ConversationServiceTest {
     existingConversation.setIdConversation(conversationId);
 
     when(iConversationRepository.findById(conversationId)).thenReturn(Optional.of(existingConversation));
-    Conversationdto conversationDTO = conversationService.getById(conversationId);
+    Conversationdto conversationDTO = conversationService.getConversationByConversationId(conversationId);
 
     verify(iConversationRepository, times(1)).findById(conversationId);
     assertNotNull(conversationDTO, "La conversation retournée ne doit pas être nulle");
@@ -66,7 +66,7 @@ class ConversationServiceTest {
   void testGetConversationByIdNotFound() {
 
     when(iConversationRepository.findById(conversationId)).thenReturn(Optional.empty());
-    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> conversationService.getById(conversationId));
+    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> conversationService.getConversationByConversationId(conversationId));
 
     verify(iConversationRepository, times(1)).findById(conversationId);
     assertEquals(ERRORMESSAGE + conversationId, exception.getMessage(), "Le message d'erreur doit être correct");
@@ -140,7 +140,7 @@ class ConversationServiceTest {
   void testGetAllUserConversation() {
 
     when(iConversationRepository.getAllUserConversation(conversationId)).thenReturn(List.of(new Conversation()));
-    List<Conversationdto> conversations = conversationService.getAllUserConversation(1);
+    List<Conversationdto> conversations = conversationService.getAllUserConversations(1);
 
     verify(iConversationRepository, times(1)).getAllUserConversation(1);
     assertEquals(Conversationdto.class, conversations.get(0).getClass(), "La classe de l'objet de conversation ne correspond pas à la classe attendue");
@@ -151,7 +151,7 @@ class ConversationServiceTest {
   void testGetAllUserConversationByGameId() {
 
     when(iConversationRepository.getAllUserConversationByGameId(1, 1)).thenReturn(List.of(new Conversation()));
-    List<Conversationdto> conversations = conversationService.getAllUserConversationByGameId(1, 1);
+    List<Conversationdto> conversations = conversationService.getAllUserConversationsByGameId(1, 1);
 
     verify(iConversationRepository, times(1)).getAllUserConversationByGameId(1, 1);
     assertEquals(Conversationdto.class, conversations.get(0).getClass(), "La classe de l'objet de conversation ne correspond pas à la classe attendue");

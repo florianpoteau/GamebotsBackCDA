@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * conversations associated with a specific user ID and game ID.
  */
 @RestController
-public class GetAllConversationByUserIdAndGameIdController {
+public class GetAllConversationsByUserIdAndGameIdController {
 
   /**
    * The conversation service used to retrieve conversations.
@@ -30,7 +30,7 @@ public class GetAllConversationByUserIdAndGameIdController {
    *     The conversation service to be used for retrieving conversations.
    */
   @Autowired
-  public GetAllConversationByUserIdAndGameIdController(
+  public GetAllConversationsByUserIdAndGameIdController(
       final Iconversationservice serviceConversation) {
     this.conversationService = serviceConversation;
   }
@@ -39,17 +39,17 @@ public class GetAllConversationByUserIdAndGameIdController {
    * Handles HTTP GET requests to fetch all conversations
    * associated with a specific user ID and game ID.
    *
-   * @param userid
+   * @param userId
    *     The ID of the user whose conversations are to be retrieved.
-   * @param gameid
+   * @param gameId
    *     The ID of the game associated with the conversations.
    *
    * @return A list of Conversationdto objects
    *     representing the retrieved conversations.
    */
-  @GetMapping("/users/{userid}/games/{gameid}/conversations")
+  @GetMapping("/users/{userId}/games/{gameId}/conversations")
   public List<Conversationdto> findAllConversationsByUserIdAndGameId(
-      @PathVariable final int userid, @PathVariable final int gameid) {
-    return conversationService.getAllUserConversationByGameId(userid, gameid);
+      @PathVariable final int userId, @PathVariable final int gameId) {
+    return conversationService.getAllUserConversationsByGameId(userId, gameId);
   }
 }

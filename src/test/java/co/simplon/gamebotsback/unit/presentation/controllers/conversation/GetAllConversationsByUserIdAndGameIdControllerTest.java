@@ -2,7 +2,7 @@ package co.simplon.gamebotsback.unit.presentation.controllers.conversation;
 
 import co.simplon.gamebotsback.business.dto.Conversationdto;
 import co.simplon.gamebotsback.business.service.conversation.Iconversationservice;
-import co.simplon.gamebotsback.presentation.controller.conversation.GetAllConversationByUserIdAndGameIdController;
+import co.simplon.gamebotsback.presentation.controller.conversation.GetAllConversationsByUserIdAndGameIdController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,10 +16,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class GetAllConversationByUserIdAndGameIdControllerTest {
+class GetAllConversationsByUserIdAndGameIdControllerTest {
 
   @InjectMocks
-  private GetAllConversationByUserIdAndGameIdController controller;
+  private GetAllConversationsByUserIdAndGameIdController controller;
 
   @Mock
   private Iconversationservice conversationService;
@@ -27,8 +27,8 @@ class GetAllConversationByUserIdAndGameIdControllerTest {
   @Test
   @DisplayName("Test de recuperation de toutes les conversations par l'id de l'utilisateur et l'id du jeu depuis le controller")
   void getAllConversationByUserIdAndGameId() {
-    when(conversationService.getAllUserConversationByGameId(anyInt(), anyInt())).thenReturn(List.of(new Conversationdto()));
+    when(conversationService.getAllUserConversationsByGameId(anyInt(), anyInt())).thenReturn(List.of(new Conversationdto()));
     controller.findAllConversationsByUserIdAndGameId(anyInt(), anyInt());
-    verify(conversationService, times(1)).getAllUserConversationByGameId(anyInt(), anyInt());
+    verify(conversationService, times(1)).getAllUserConversationsByGameId(anyInt(), anyInt());
   }
 }

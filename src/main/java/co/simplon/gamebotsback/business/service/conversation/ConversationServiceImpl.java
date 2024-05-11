@@ -64,7 +64,7 @@ public class ConversationServiceImpl implements Iconversationservice {
   /**
    * Retrieves information about a conversation based on its ID.
    *
-   * @param id
+   * @param conversationId
    *     The ID of the conversation.
    *
    * @return The information of the conversation corresponding to the given ID.
@@ -74,20 +74,22 @@ public class ConversationServiceImpl implements Iconversationservice {
    *     does not exist.
    */
   @Override
-  public Conversationdto getById(final int id) {
-    Optional<Conversation> optionalGame = conversationRepository.findById(id);
+  public Conversationdto getConversationByConversationId(
+      final int conversationId) {
+    Optional<Conversation> optionalGame = conversationRepository.findById(
+        conversationId);
     if (optionalGame.isPresent()) {
       Conversation conversation = optionalGame.get();
       return ConversationConvert.getInstance().convertEntityToDto(conversation);
     } else {
-      throw new EntityNotFoundException(ERRORMESSAGE + id);
+      throw new EntityNotFoundException(ERRORMESSAGE + conversationId);
     }
   }
 
   /**
    * Modifies information of an existing conversation.
    *
-   * @param id
+   * @param conversationId
    *     The ID of the conversation to modify.
    * @param conversationDto
    *     The new information to associate with the
@@ -99,9 +101,9 @@ public class ConversationServiceImpl implements Iconversationservice {
    */
   @Override
   public void modifyConversation(
-      final int id, final Conversationdto conversationDto) {
+      final int conversationId, final Conversationdto conversationDto) {
     Optional<Conversation> optionalConversation =
-        conversationRepository.findById(id);
+        conversationRepository.findById(conversationId);
     if (optionalConversation.isPresent()) {
       Conversation existingConversation = optionalConversation.get();
 
@@ -117,14 +119,14 @@ public class ConversationServiceImpl implements Iconversationservice {
 
       conversationRepository.save(existingConversation);
     } else {
-      throw new EntityNotFoundException(ERRORMESSAGE + id);
+      throw new EntityNotFoundException(ERRORMESSAGE + conversationId);
     }
   }
 
   /**
    * Deletes an existing conversation.
    *
-   * @param id
+   * @param conversationId
    *     The ID of the conversation to delete.
    *
    * @throws EntityNotFoundException
@@ -132,29 +134,29 @@ public class ConversationServiceImpl implements Iconversationservice {
    *     does not exist.
    */
   @Override
-  public void deleteConversation(final int id) {
+  public void deleteConversation(final int conversationId) {
     Optional<Conversation> optionalConversation =
-        conversationRepository.findById(id);
+        conversationRepository.findById(conversationId);
     if (optionalConversation.isPresent()) {
-      conversationRepository.deleteById(id);
+      conversationRepository.deleteById(conversationId);
     } else {
-      throw new EntityNotFoundException(ERRORMESSAGE + id);
+      throw new EntityNotFoundException(ERRORMESSAGE + conversationId);
     }
   }
 
   /**
    * Retrieves all conversations of a specific user.
    *
-   * @param idUser
+   * @param userId
    *     The ID of the user.
    *
    * @return A list of conversations of the specified user.
    */
   @Override
-  public List<Conversationdto> getAllUserConversation(
-      final int idUser) {
+  public List<Conversationdto> getAllUserConversations(
+      final int userId) {
     final List<Conversation> result =
-        conversationRepository.getAllUserConversation(idUser);
+        conversationRepository.getAllUserConversation(userId);
     return ConversationConvert.getInstance().convertListEntityToListDto(result);
   }
 
@@ -162,19 +164,19 @@ public class ConversationServiceImpl implements Iconversationservice {
    * Retrieves all conversations associated with
    * a specific user and a specific game.
    *
-   * @param idUser
+   * @param userId
    *     The ID of the user.
-   * @param idGame
+   * @param gameId
    *     The ID of the game.
    *
    * @return A list of conversations associated with
    *     the specified user and game.
    */
   @Override
-  public List<Conversationdto> getAllUserConversationByGameId(
-      final int idUser, final int idGame) {
+  public List<Conversationdto> getAllUserConversationsByGameId(
+      final int userId, final int gameId) {
     final List<Conversation> result =
-        conversationRepository.getAllUserConversationByGameId(idUser, idGame);
+        conversationRepository.getAllUserConversationByGameId(userId, gameId);
     return ConversationConvert.getInstance().convertListEntityToListDto(result);
   }
 

@@ -40,17 +40,17 @@ public class ModifyConversationController {
   /**
    * Handles HTTP PUT requests to update an existing conversation.
    *
-   * @param id
+   * @param conversationId
    *     The ID of the conversation to be modified.
    * @param conversationDto
    *     The updated ConversationDTO object containing the
    *     modified conversation data.
    */
-  @PutMapping("/conversations/{id}")
+  @PutMapping("/conversations/{conversationId}")
   public void modifyConversation(
-      @PathVariable final int id,
+      @PathVariable final int conversationId,
       @RequestBody final Conversationdto conversationDto) {
-    conversationService.modifyConversation(id, conversationDto);
+    conversationService.modifyConversation(conversationId, conversationDto);
   }
 
 }

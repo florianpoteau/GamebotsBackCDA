@@ -2,7 +2,7 @@ package co.simplon.gamebotsback.unit.presentation.controllers.conversation;
 
 import co.simplon.gamebotsback.business.dto.Conversationdto;
 import co.simplon.gamebotsback.business.service.conversation.Iconversationservice;
-import co.simplon.gamebotsback.presentation.controller.conversation.GetConversationByIdController;
+import co.simplon.gamebotsback.presentation.controller.conversation.GetConversationByConversationIdController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
 class GetConversationByIdControllerTest {
 
   @InjectMocks
-  private GetConversationByIdController controller;
+  private GetConversationByConversationIdController controller;
 
   @Mock
   private Iconversationservice conversationService;
@@ -27,9 +27,9 @@ class GetConversationByIdControllerTest {
   @Test
   @DisplayName("Test de recuperation d'une conversation par son id depuis le controller")
   void getConversationById() {
-    when(conversationService.getById(anyInt())).thenReturn(new Conversationdto());
-    Conversationdto conversationdto = controller.findConversationById(anyInt());
-    verify(conversationService, times(1)).getById(anyInt());
+    when(conversationService.getConversationByConversationId(anyInt())).thenReturn(new Conversationdto());
+    Conversationdto conversationdto = controller.findConversationByConversationId(anyInt());
+    verify(conversationService, times(1)).getConversationByConversationId(anyInt());
     assertEquals(Conversationdto.class, conversationdto.getClass());
   }
 }

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * requests to retrieve a conversation by its ID.
  */
 @RestController
-public class GetConversationByIdController {
+public class GetConversationByConversationIdController {
 
   /**
    * The conversation service used for conversation-related operations.
@@ -30,7 +30,7 @@ public class GetConversationByIdController {
    *     the conversation by ID.
    */
   @Autowired
-  public GetConversationByIdController(
+  public GetConversationByConversationIdController(
       final Iconversationservice serviceConversation) {
     this.conversationService = serviceConversation;
   }
@@ -38,16 +38,16 @@ public class GetConversationByIdController {
   /**
    * Handles HTTP GET requests to fetch a conversation by its ID.
    *
-   * @param id
+   * @param conversationId
    *     The ID of the conversation to retrieve.
    *
    * @return A ConversationDTO object representing
    *     the conversation with the specified ID.
    */
-  @GetMapping("/conversations/{id}")
-  public Conversationdto findConversationById(
-      @PathVariable final int id) {
-    return conversationService.getById(id);
+  @GetMapping("/conversations/{conversationId}")
+  public Conversationdto findConversationByConversationId(
+      @PathVariable final int conversationId) {
+    return conversationService.getConversationByConversationId(conversationId);
   }
 
 }

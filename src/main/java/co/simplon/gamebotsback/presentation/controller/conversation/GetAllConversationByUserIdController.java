@@ -50,7 +50,7 @@ public class GetAllConversationByUserIdController {
   @GetMapping("/users/{id}/conversations")
   public List<Conversationdto> findAllConversationsByUserId(
       @PathVariable final int id) {
-    return conversationService.getAllUserConversation(id);
+    return conversationService.getAllUserConversations(id);
   }
 
 }

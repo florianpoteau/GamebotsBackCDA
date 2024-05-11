@@ -27,8 +27,8 @@ class GetAllConversationByUserIdControllerTest {
   @Test
   @DisplayName("Test de recuperation de toutes les conversations par l'id de l'utilisateur depuis le controller")
   void getAllConversationByUserId() {
-    when(conversationService.getAllUserConversation(anyInt())).thenReturn(List.of(new Conversationdto()));
+    when(conversationService.getAllUserConversations(anyInt())).thenReturn(List.of(new Conversationdto()));
     controller.findAllConversationsByUserId(anyInt());
-    verify(conversationService, times(1)).getAllUserConversation(anyInt());
+    verify(conversationService, times(1)).getAllUserConversations(anyInt());
   }
 }
