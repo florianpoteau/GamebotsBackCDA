@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * to fetch all conversations associated with a specific user ID.
  */
 @RestController
-public class GetAllConversationByUserIdController {
+public class GetAllConversationsByUserIdController {
 
   /**
    * The conversation service used to retrieve conversations.
@@ -32,7 +32,7 @@ public class GetAllConversationByUserIdController {
    *     used for retrieving conversations.
    */
   @Autowired
-  public GetAllConversationByUserIdController(
+  public GetAllConversationsByUserIdController(
       final Iconversationservice serviceConversation) {
     this.conversationService = serviceConversation;
   }

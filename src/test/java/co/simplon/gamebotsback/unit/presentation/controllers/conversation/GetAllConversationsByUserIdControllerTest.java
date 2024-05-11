@@ -2,7 +2,7 @@ package co.simplon.gamebotsback.unit.presentation.controllers.conversation;
 
 import co.simplon.gamebotsback.business.dto.Conversationdto;
 import co.simplon.gamebotsback.business.service.conversation.Iconversationservice;
-import co.simplon.gamebotsback.presentation.controller.conversation.GetAllConversationByUserIdController;
+import co.simplon.gamebotsback.presentation.controller.conversation.GetAllConversationsByUserIdController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
 class GetAllConversationsByUserIdControllerTest {
 
   @InjectMocks
-  private GetAllConversationByUserIdController controller;
+  private GetAllConversationsByUserIdController controller;
 
   @Mock
   private Iconversationservice conversationService;
