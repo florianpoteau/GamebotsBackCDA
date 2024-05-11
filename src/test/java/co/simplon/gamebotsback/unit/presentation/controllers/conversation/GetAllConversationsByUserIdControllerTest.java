@@ -16,7 +16,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class GetAllConversationByUserIdControllerTest {
+class GetAllConversationsByUserIdControllerTest {
 
   @InjectMocks
   private GetAllConversationByUserIdController controller;
@@ -26,7 +26,7 @@ class GetAllConversationByUserIdControllerTest {
 
   @Test
   @DisplayName("Test de recuperation de toutes les conversations par l'id de l'utilisateur depuis le controller")
-  void getAllConversationByUserId() {
+  void getAllConversationsByUserId() {
     when(conversationService.getAllUserConversations(anyInt())).thenReturn(List.of(new Conversationdto()));
     controller.findAllConversationsByUserId(anyInt());
     verify(conversationService, times(1)).getAllUserConversations(anyInt());

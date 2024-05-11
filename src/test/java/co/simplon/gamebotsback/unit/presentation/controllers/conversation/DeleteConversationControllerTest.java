@@ -26,7 +26,7 @@ class DeleteConversationControllerTest {
   @DisplayName("Test de suppression d'une conversation depuis le controller")
   void deleteConversation() {
     doNothing().when(conversationService).deleteConversation(anyInt());
-    controller.deleteConversationbyid(anyInt());
+    controller.deleteConversationByConversationId(anyInt());
     verify(conversationService, times(1)).deleteConversation(anyInt());
   }
 }
