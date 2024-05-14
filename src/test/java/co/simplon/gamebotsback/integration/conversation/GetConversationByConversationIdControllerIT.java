@@ -31,10 +31,10 @@ class GetConversationByConversationIdControllerIT {
   @BeforeEach
   void setUp() {
 
-    Conversationdto conversation = new Conversationdto();
-    conversation.setIdConversation(1);
+    Conversationdto conversationDto = new Conversationdto();
+    conversationDto.setIdConversation(1);
 
-    conversationService.addNewConversation(conversation);
+    conversationService.addNewConversation(conversationDto);
   }
 
   @Test
