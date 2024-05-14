@@ -27,44 +27,43 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @TestPropertySource("classpath:application-tests.properties")
 class GetAllConversationsByUserIdAndGameIdControllerIT {
 
-    @Autowired
-    private MockMvc mockMvc;
+  @Autowired
+  private MockMvc mockMvc;
 
-    @Autowired
-    private Iconversationservice conversationService;
+  @Autowired
+  private Iconversationservice conversationService;
 
-    @Autowired
-    private Iuserservice userservice;
+  @Autowired
+  private Iuserservice userService;
 
-    @Autowired
-    private Igamerepository gamerepository;
+  @Autowired
+  private Igamerepository gameRepository;
 
-    @BeforeEach
-    void setUp() {
+  @BeforeEach
+  void setUp() {
 
-        Conversationdto conversation = new Conversationdto();
-        conversation.setIdConversation(1);
+    Conversationdto conversation = new Conversationdto();
+    conversation.setIdConversation(1);
 
-        Userdto user = new Userdto();
-        user.setIdUser(1);
-        user.setPassword("password");
+    Userdto userDto = new Userdto();
+    userDto.setIdUser(1);
+    userDto.setPassword("password");
 
-        Game game = new Game();
-        game.setIdGame(1);
+    Game game = new Game();
+    game.setIdGame(1);
 
-        conversationService.addNewConversation(conversation);
-        gamerepository.save(game);
-        userservice.createUserAccount(user);
-    }
+    conversationService.addNewConversation(conversation);
+    gameRepository.save(game);
+    userService.createUserAccount(userDto);
+  }
 
-    @Test
-    @DisplayName("Test d'intégration de récupération d'une conversation par son jeu et son utilisateur depuis le controller")
-    void createConversationIntegrationTest() throws Exception {
+  @Test
+  @DisplayName("Test d'intégration de récupération d'une conversation par son jeu et son utilisateur depuis le controller")
+  void createConversationIntegrationTest() throws Exception {
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/users/1/games/1/conversations")
-                .contentType(MediaType.APPLICATION_JSON)
-                .with(SecurityMockMvcRequestPostProcessors.jwt()))
-                .andExpect(status().isOk());
-    }
-
+    mockMvc.perform(MockMvcRequestBuilders.get("/users/1/games/1/conversations")
+            .contentType(MediaType.APPLICATION_JSON)
+            .with(SecurityMockMvcRequestPostProcessors.jwt()))
+        .andExpect(status().isOk());
+  }
 }

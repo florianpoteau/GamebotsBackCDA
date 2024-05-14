@@ -22,30 +22,28 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @TestPropertySource("classpath:application-tests.properties")
 class GetConversationByConversationIdControllerIT {
 
-    @Autowired
-    private MockMvc mockMvc;
+  @Autowired
+  private MockMvc mockMvc;
 
-    @Autowired
-    private Iconversationservice conversationService;
+  @Autowired
+  private Iconversationservice conversationService;
 
-    @BeforeEach
-    void setUp() {
+  @BeforeEach
+  void setUp() {
 
-        Conversationdto conversation = new Conversationdto();
-        conversation.setIdConversation(1);
+    Conversationdto conversation = new Conversationdto();
+    conversation.setIdConversation(1);
 
-        conversationService.addNewConversation(conversation);
+    conversationService.addNewConversation(conversation);
+  }
 
-    }
+  @Test
+  @DisplayName("Test d'intégration de récupération d'une conversation par son id depuis le controller")
+  void getConversationByConversationIdIntegrationTest() throws Exception {
 
-    @Test
-    @DisplayName("Test d'intégration de récupération d'une conversation par son id depuis le controller")
-    void getConversationByConversationIdIntegrationTest() throws Exception {
-
-        mockMvc.perform(MockMvcRequestBuilders.get("/conversations/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .with(SecurityMockMvcRequestPostProcessors.jwt()))
-                .andExpect(status().isOk());
-    }
-
+    mockMvc.perform(MockMvcRequestBuilders.get("/conversations/1")
+            .contentType(MediaType.APPLICATION_JSON)
+            .with(SecurityMockMvcRequestPostProcessors.jwt()))
+        .andExpect(status().isOk());
+  }
 }

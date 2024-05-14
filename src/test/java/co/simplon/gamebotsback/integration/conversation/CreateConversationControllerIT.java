@@ -32,10 +32,10 @@ class CreateConversationControllerIT {
     @DisplayName("Test d'intégration de création d'une conversation depuis le controller")
     void createConversationIntegrationTest() throws Exception {
 
-        Conversationdto conversationdto = new Conversationdto();
-        conversationdto.setName("Comment tuer un zombie");
+        Conversationdto conversationDto = new Conversationdto();
+        conversationDto.setName("Comment tuer un zombie");
 
-        String conversationJson = objectMapper.writeValueAsString(conversationdto);
+        String conversationJson = objectMapper.writeValueAsString(conversationDto);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/conversations")
                 .contentType(MediaType.APPLICATION_JSON)
