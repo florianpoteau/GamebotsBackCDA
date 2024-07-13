@@ -92,7 +92,7 @@ public class Game {
    * Sets the platform of the Game.
    */
   @Basic
-  @Column(name = "story", length = LENGTH)
+  @Column(name = "story", columnDefinition = "TEXT")
   private String story;
 
   /**
