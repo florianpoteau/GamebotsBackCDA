@@ -8,6 +8,7 @@ import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import java.util.List;
 import org.hibernate.internal.util.config.ConfigurationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -28,6 +29,9 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.util.WebUtils;
 
 /**
@@ -73,9 +77,6 @@ public class SecurityConfig {
    *     the HttpSecurity object to configure
    *
    * @return a SecurityFilterChain instance
-   *
-   * @throws Exception
-   *     if an error occurs while configuring security
    */
   @SuppressWarnings({"deprecation", "removal"})
   @Bean
@@ -99,7 +100,7 @@ public class SecurityConfig {
                   CsrfFilter csrfFilter = (CsrfFilter) object;
                   csrfFilter.setRequireCsrfProtectionMatcher(request -> {
                     // Vérifie si la demande est de type GET
-                    // ou est adressée à /csrf
+                    // où est adressée à /csrf
                     if (request.getMethod().equalsIgnoreCase(
                         HttpMethod.GET.name())
                         || request.getRequestURI().equals("/csrf")) {
@@ -115,6 +116,8 @@ public class SecurityConfig {
                   return object;
                 }
               }))
+          .cors() // Active CORS
+          .and()
           .build();
     } catch (Exception e) {
       throw new ConfigurationException(
@@ -160,5 +163,25 @@ public class SecurityConfig {
         rsaKeys.publicKey()).privateKey(rsaKeys.privateKey()).build();
     JWKSource<SecurityContext> jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
     return new NimbusJwtEncoder(jwks);
+  }
+
+  /**
+   * Creates a CorsFilter bean to handle CORS configuration.
+   *
+   * @return a CorsFilter instance
+   */
+  @SuppressWarnings("checkstyle:VariableDeclarationUsageDistance")
+  @Bean
+  public CorsFilter corsFilter() {
+    UrlBasedCorsConfigurationSource source = new
+        UrlBasedCorsConfigurationSource();
+    CorsConfiguration config = new CorsConfiguration();
+    config.setAllowCredentials(true);
+    config.setAllowedOrigins(List.of("http://localhost:5173"));
+    config.setAllowedMethods(List.of(
+        "GET", "POST", "PUT", "DELETE", "OPTIONS"));
+    config.setAllowedHeaders(List.of("*"));
+    source.registerCorsConfiguration("/**", config);
+    return new CorsFilter(source);
   }
 }
