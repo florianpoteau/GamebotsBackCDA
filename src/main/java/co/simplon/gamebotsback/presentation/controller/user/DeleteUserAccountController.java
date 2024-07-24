@@ -1,6 +1,7 @@
 package co.simplon.gamebotsback.presentation.controller.user;
 
 import co.simplon.gamebotsback.business.service.user.Iuserservice;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,7 @@ public class DeleteUserAccountController {
    * @param serviceUser
    *     The UserService used to delete user accounts.
    */
+  @Autowired
   public DeleteUserAccountController(final Iuserservice serviceUser) {
     this.userService = serviceUser;
   }
