@@ -19,7 +19,7 @@ public class GetUserAccountByUsernameController {
   private final Iuserservice userService;
 
   /**
-   * Constructor for the GetUserAccountByIdController.
+   * Constructor for the GetUserAccountByUsernameController.
    *
    * @param serviceUser
    *     The UserService used to retrieve user accounts.

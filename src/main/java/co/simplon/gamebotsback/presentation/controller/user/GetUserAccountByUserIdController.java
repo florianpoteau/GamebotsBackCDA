@@ -33,7 +33,7 @@ public class GetUserAccountByUserIdController {
   }
 
   /**
-   * Handles a GET request to retrieve a user account by username.
+   * Handles a GET request to retrieve a user account by ID.
    *
    * @param userId
    *     The ID of the user account to retrieve.
@@ -44,5 +44,4 @@ public class GetUserAccountByUserIdController {
   public Userdto findUserAccountByUserId(@PathVariable final int userId) {
     return userService.getUserAccountByUserId(userId);
   }
-
 }
