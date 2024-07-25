@@ -49,7 +49,6 @@ public class UserServiceImpl implements Iuserservice {
     this.passwordEncoder = encoderPassword;
   }
 
-
   /**
    * Creates a new user account.
    *
@@ -65,15 +64,15 @@ public class UserServiceImpl implements Iuserservice {
   }
 
   /**
-   * Retrieves information about a user based on its ID.
+   * Retrieves information about a user based on their username.
    *
    * @param username
    *     The username of the user.
    *
-   * @return Information about the user corresponding to the given ID.
+   * @return Information about the user corresponding to the given username.
    *
    * @throws EntityNotFoundException
-   *     if no user corresponding to the ID is found.
+   *     if no user corresponding to the username is found.
    */
   @Override
   public int getUserIdByUsername(final String username) {
@@ -106,13 +105,14 @@ public class UserServiceImpl implements Iuserservice {
       User existingUser = optionalUser.get();
       existingUser.setUsername(userDto.getUsername());
       existingUser.setEmail(userDto.getEmail());
-      existingUser.setPassword(userDto.getPassword());
-      existingUser.setImage(userDto.getImage());
+      if (!passwordEncoder.matches(
+          userDto.getPassword(), existingUser.getPassword())) {
+        existingUser.setPassword(passwordEncoder.encode(userDto.getPassword()));
+      }
       existingUser.setPhone(userDto.getPhone());
+      existingUser.setImage(userDto.getImage());
       existingUser.setModificationDate(new Date());
-
       userRepository.save(existingUser);
-
     } else {
       throw new EntityNotFoundException(ERROR_MESSAGE + userId);
     }
@@ -138,7 +138,7 @@ public class UserServiceImpl implements Iuserservice {
   }
 
   /**
-   * Retrieves information about a user based on its ID.
+   * Retrieves information about a user based on their ID.
    *
    * @param userId
    *     The ID of the user.
@@ -158,5 +158,4 @@ public class UserServiceImpl implements Iuserservice {
       throw new EntityNotFoundException(ERROR_MESSAGE + userId);
     }
   }
-
 }
