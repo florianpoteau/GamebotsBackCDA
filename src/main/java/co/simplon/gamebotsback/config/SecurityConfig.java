@@ -14,21 +14,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -77,6 +74,9 @@ public class SecurityConfig {
    *     the HttpSecurity object to configure
    *
    * @return a SecurityFilterChain instance
+   *
+   * @throws ConfigurationException
+   *     if an error occurs during configuration
    */
   @SuppressWarnings({"deprecation", "removal"})
   @Bean
@@ -85,38 +85,15 @@ public class SecurityConfig {
 
     try {
       return http
+          .csrf(AbstractHttpConfigurer::disable)
           .authorizeRequests(authorize -> authorize
-              .requestMatchers("/users", "/login", "/csrf")
-              .permitAll().anyRequest()
-              .authenticated())
+              .requestMatchers(
+                  "/users", "/login", "/register", "/csrf").permitAll()
+              .anyRequest().authenticated())
           .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
-          .sessionManagement(session -> session
-              .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-          .logout().disable()
-          .csrf(csrf -> csrf
-              .withObjectPostProcessor(new ObjectPostProcessor<>() {
-                @Override
-                public <O> O postProcess(final O object) {
-                  CsrfFilter csrfFilter = (CsrfFilter) object;
-                  csrfFilter.setRequireCsrfProtectionMatcher(request -> {
-                    // Vérifie si la demande est de type GET
-                    // où est adressée à /csrf
-                    if (request.getMethod().equalsIgnoreCase(
-                        HttpMethod.GET.name())
-                        || request.getRequestURI().equals("/csrf")) {
-                      return false;
-                    }
-
-                    try {
-                      return cookieTokenExtractor(request) != null;
-                    } catch (OAuth2AuthenticationException ex) {
-                      return false;
-                    }
-                  });
-                  return object;
-                }
-              }))
-          .cors() // Active CORS
+          .sessionManagement(session -> session.sessionCreationPolicy(
+              SessionCreationPolicy.STATELESS))
+          .cors()
           .and()
           .build();
     } catch (Exception e) {
@@ -159,8 +136,8 @@ public class SecurityConfig {
    */
   @Bean
   JwtEncoder jwtEncoder() {
-    JWK jwk = new RSAKey.Builder(
-        rsaKeys.publicKey()).privateKey(rsaKeys.privateKey()).build();
+    JWK jwk = new RSAKey.Builder(rsaKeys.publicKey()).privateKey(
+        rsaKeys.privateKey()).build();
     JWKSource<SecurityContext> jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
     return new NimbusJwtEncoder(jwks);
   }
@@ -170,11 +147,12 @@ public class SecurityConfig {
    *
    * @return a CorsFilter instance
    */
-  @SuppressWarnings("checkstyle:VariableDeclarationUsageDistance")
+  @SuppressWarnings({
+      "checkstyle:LineLength", "checkstyle:VariableDeclarationUsageDistance"})
   @Bean
   public CorsFilter corsFilter() {
-    UrlBasedCorsConfigurationSource source = new
-        UrlBasedCorsConfigurationSource();
+    UrlBasedCorsConfigurationSource source =
+        new UrlBasedCorsConfigurationSource();
     CorsConfiguration config = new CorsConfiguration();
     config.setAllowCredentials(true);
     config.setAllowedOrigins(List.of("http://localhost:5173"));
