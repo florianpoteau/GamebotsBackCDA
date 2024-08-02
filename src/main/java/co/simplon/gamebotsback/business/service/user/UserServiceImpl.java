@@ -105,8 +105,8 @@ public class UserServiceImpl implements Iuserservice {
       User existingUser = optionalUser.get();
       existingUser.setUsername(userDto.getUsername());
       existingUser.setEmail(userDto.getEmail());
-      if (!passwordEncoder.matches(
-          userDto.getPassword(), existingUser.getPassword())) {
+
+      if (userDto.getPassword() != null && !userDto.getPassword().isEmpty()) {
         existingUser.setPassword(passwordEncoder.encode(userDto.getPassword()));
       }
       existingUser.setPhone(userDto.getPhone());
