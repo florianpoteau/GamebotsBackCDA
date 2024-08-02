@@ -52,4 +52,10 @@ public interface Iimageservice {
   List<Imagedto> getAllImagesByGameIdAndImageType(
       String typeImage, int gameId);
 
+  /**
+   * Retrieves all images of type Avatar.
+   *
+   * @return A list of ImageDTO objects representing all Avatar images.
+   */
+  List<Imagedto> getImagesByAvatarType();
 }

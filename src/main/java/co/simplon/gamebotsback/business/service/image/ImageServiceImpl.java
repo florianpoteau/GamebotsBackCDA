@@ -97,4 +97,18 @@ public class ImageServiceImpl implements Iimageservice {
     return ImageConvert.getInstance().convertListEntityToListDto(image);
   }
 
+  /**
+   * Retrieves all images of type Avatar.
+   * This method fetches the images from the repository,
+   * converts them to ImageDTO objects,
+   * and returns the list of ImageDTOs.
+   *
+   * @return A list of ImageDTO objects representing all Avatar images.
+   */
+  @Override
+  public List<Imagedto> getImagesByAvatarType() {
+    List<Image> images = imageRepository.findImagesByAvatarType();
+    return ImageConvert.getInstance().convertListEntityToListDto(images);
+  }
+
 }

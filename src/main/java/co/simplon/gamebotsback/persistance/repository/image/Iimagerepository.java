@@ -37,4 +37,14 @@ public interface Iimagerepository extends JpaRepository<Image, Integer> {
   @Query(ImageQueries.FIND_ALL_IMAGES_BY_GAMEID)
   List<Image> getAllImagesByGameId(String typeImage, int gameId);
 
+  /**
+   * Retrieves all images of type Avatar.
+   * This method uses a custom JPQL query to select
+   * images where the typeImage name is 'Avatar'.
+   *
+   * @return A list of Image entities representing all Avatar images.
+   */
+  @Query("SELECT i FROM Image i WHERE i.typeImage.name = 'Avatar'")
+  List<Image> findImagesByAvatarType();
+
 }
