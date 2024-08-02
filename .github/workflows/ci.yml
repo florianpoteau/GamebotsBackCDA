@@ -30,7 +30,7 @@ jobs:
         run: mvn -B package --file pom.xml
 
       - name: Run Checkstyle
-        run: mvn checkstyle:check
+        run: mvn checkstyle:checkstyle
 
       - name: Run unit tests
         run: mvn test
