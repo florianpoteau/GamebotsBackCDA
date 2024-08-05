@@ -5,7 +5,6 @@ COPY src /app/
 COPY pom.xml /app/
 COPY .idea /app/
 COPY .mvn /app/
-COPY GamebotsBack.iml /app/
 COPY mvnw /app/
 COPY mvnw.cmd /app/
 
