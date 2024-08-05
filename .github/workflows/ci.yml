@@ -5,11 +5,9 @@ run-name: ${{ github.actor }} has pushed code
 on:
   push:
     branches:
-      - docker
       - develop
   pull_request:
     branches:
-      - docker
       - develop
 
 jobs:
@@ -42,7 +40,9 @@ jobs:
         run: mvn test
 
       - name: Build Docker image
-        run: docker build -t gamebotsbackimage:0.0.1 .
+        run: |
+          docker buildx create --use
+          docker buildx build --platform linux/arm64 -t gamebotsbackimage:0.0.1 .
 
       - name: Login to Docker Hub
         uses: docker/login-action@v2
