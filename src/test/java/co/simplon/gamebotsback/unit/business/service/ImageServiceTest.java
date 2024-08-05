@@ -89,4 +89,17 @@ class ImageServiceTest {
     assertEquals(Imagedto.class, imageDTO.getClass(), "ImageDTO attendu dans la liste");
 
   }
+
+  @Test
+  @DisplayName("Test de récupération de l'avatar de l'utilisateur")
+  void testGetImagesByAvatarType() {
+
+    when(iImageRepository.findImagesByAvatarType()).thenReturn(List.of(existingImage));
+    List<Imagedto> images = imageService.getImagesByAvatarType();
+
+    verify(iImageRepository, times(1)).findImagesByAvatarType();
+    assertNotNull(images, "L'objet image ne dois pas être null");
+    assertEquals(1, images.size(), "ImageDTO attendu dans la liste");
+    assertEquals(Imagedto.class, images.get(0).getClass(), "ImageDTO attendu dans la liste");
+  }
 }

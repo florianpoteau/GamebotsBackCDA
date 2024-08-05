@@ -147,6 +147,46 @@ class UserServiceTest {
   }
 
   @Test
+  @DisplayName("Test de modification d'un utilisateur existant avec un password null")
+  void testModifyAccountWithPasswordIsNull() {
+
+    existingUser.setIdUser(userId);
+    modifiedUserdto.setIdUser(userId);
+    modifiedUserdto.setUsername("leGamerzzz");
+    modifiedUserdto.setPhone("1234567890");
+    modifiedUserdto.setEmail("leGamerzzz@gmail.com");
+    modifiedUserdto.setPassword(null);
+    modifiedUserdto.setModificationDate(new Date());
+    modifiedUserdto.setImage(new Image());
+
+    when(iUserRepository.findById(userId)).thenReturn(Optional.of(existingUser));
+    userService.modifyUserAccount(userId, modifiedUserdto);
+
+    verify(iUserRepository, times(1)).findById(userId);
+    verify(iUserRepository, times(1)).save(any(User.class));
+  }
+
+  @Test
+  @DisplayName("Test de modification d'un utilisateur existant avec un password null")
+  void testModifyAccountWithPasswordIsEmpty() {
+
+    existingUser.setIdUser(userId);
+    modifiedUserdto.setIdUser(userId);
+    modifiedUserdto.setUsername("leGamerzzz");
+    modifiedUserdto.setPhone("1234567890");
+    modifiedUserdto.setEmail("leGamerzzz@gmail.com");
+    modifiedUserdto.setPassword("");
+    modifiedUserdto.setModificationDate(new Date());
+    modifiedUserdto.setImage(new Image());
+
+    when(iUserRepository.findById(userId)).thenReturn(Optional.of(existingUser));
+    userService.modifyUserAccount(userId, modifiedUserdto);
+
+    verify(iUserRepository, times(1)).findById(userId);
+    verify(iUserRepository, times(1)).save(any(User.class));
+  }
+
+  @Test
   @DisplayName("Test de suppression d'un utilisateur par son ID")
   void testDeleteAccount() {
 
