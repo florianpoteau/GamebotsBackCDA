@@ -6,6 +6,7 @@ COPY pom.xml /app/
 COPY .mvn /app/
 COPY mvnw /app/
 COPY mvnw.cmd /app/
+COPY src/main/resources/certs /app/certs
 
 
 RUN mvn dependency:go-offline
