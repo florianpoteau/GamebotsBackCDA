@@ -1,11 +1,11 @@
 services:
 
   back:
-    build: ..
+    image: ylorklan/gamebotsbackimage:0.0.1
     container_name: backend_container
     restart: always
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/db
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/db
       - SPRING_DATASOURCE_USERNAME=dbuser
       - SPRING_DATASOURCE_PASSWORD=dbpass
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
