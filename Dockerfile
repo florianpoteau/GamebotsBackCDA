@@ -3,7 +3,6 @@ FROM maven:3.8.4-openjdk-17 AS build
 WORKDIR /app
 COPY src /app/
 COPY pom.xml /app/
-COPY .idea /app/
 COPY .mvn /app/
 COPY mvnw /app/
 COPY mvnw.cmd /app/
