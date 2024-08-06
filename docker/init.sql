@@ -121,17 +121,17 @@ VALUES ('The Last of Us', 'Naughty Dog', '2013-06-14', 'PlayStation',
         true, 60, '2023-01-13', '2023-01-13');
 
 INSERT INTO images (name, source, creation_date, modification_date, id_game, id_type_image)
-VALUES ('avatar_pathlinder',
-        'https://media.contentapi.ea.com/content/dam/eacom/anthem/common/anthem-square-spacer-768.png', '2023-01-01',
+VALUES ('avatar_pathfinder',
+        '/images/avatars/AvatarPath.png', '2023-01-01',
         '2023-01-01', 12, 1),
        ('avatar_lifeline',
-        'https://media.contentapi.ea.com/content/dam/eacom/anthem/common/anthem-square-spacer-768.png', '2023-01-02',
+        '/images/avatars/AvatarLifeline.png', '2023-01-02',
         '2023-01-02', 12, 1),
        ('avatar_bangalore',
-        'https://media.contentapi.ea.com/content/dam/eacom/anthem/common/anthem-square-spacer-768.png',
+        '/images/avatars/AvatarBang.png',
         '2023-01-03', '2023-01-03', 12, 1),
        ('avatar_bloodhunt',
-        'https://media.contentapi.ea.com/content/dam/eacom/anthem/common/anthem-square-spacer-768.png', '2023-01-04',
+        '/images/avatars/AvatarBlood.png', '2023-01-04',
         '2023-01-04', 12, 1);
 
 INSERT INTO images (name, source, creation_date, modification_date, id_game, id_type_image)
