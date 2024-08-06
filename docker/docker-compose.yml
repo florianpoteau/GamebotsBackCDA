@@ -1,7 +1,7 @@
 services:
 
   back:
-    image: ylorklan/gamebotsbackimage:latest
+    image: ylorklan/gamebotsbackimage:0.0.1
     container_name: backend_container
     restart: always
     environment:
@@ -15,11 +15,13 @@ services:
       - db
 
   front:
-    image: ylorklan/gamebotsfrontimage:4636a841920992ff87aac5570444d4be1361f518
+    image: ylorklan/gamebotsfrontimage:0.0.1
     container_name: frontend_container
     restart: always
     ports:
       - "5173:5173"
+    depends_on:
+      - back
 
   db:
     image: postgres:16.3
