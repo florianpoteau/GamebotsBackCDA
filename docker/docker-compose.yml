@@ -1,26 +1,28 @@
 services:
 
   back:
-    image: ylorklan/gamebotsbackimage:0.0.1
+    image: ylorklan/gamebotsbackimage:latest
     container_name: backend_container
     restart: always
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/db
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/db
       - SPRING_DATASOURCE_USERNAME=dbuser
       - SPRING_DATASOURCE_PASSWORD=dbpass
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     ports:
       - "8080:8080"
+    depends_on:
+      - db
 
   front:
-    image: ylorklan/gamebotsfrontimage:0.0.1
+    image: ylorklan/gamebotsfrontimage:4636a841920992ff87aac5570444d4be1361f518
     container_name: frontend_container
     restart: always
     ports:
       - "5173:5173"
 
   db:
-    image: postgres:16.2
+    image: postgres:16.3
     container_name: postgres_container
     restart: always
     environment:
@@ -28,7 +30,7 @@ services:
       - POSTGRES_PASSWORD=dbpass
       - POSTGRES_DB=db
     ports:
-      - "9254:5432"
+      - "5432:5432"
     volumes:
       - pg_data:/var/lib/postgres/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
