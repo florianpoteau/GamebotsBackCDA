@@ -79,7 +79,7 @@ VALUES ('Avatar', '2023-01-01', '2023-01-01'),
        ('banner', '2023-01-02', '2023-01-02'),
        ('logo_gamebots', '2023-01-03', '2023-01-03'),
        ('icons_games', '2023-01-04', '2023-01-04'),
-       ('images_games', '2023-01-05', '2023-01-05');
+       ('image_jeu', '2023-01-05', '2023-01-05');
 
 INSERT INTO games (title, studio, release_date, platform, story, is_online, number_players, creation_date,
                    modification_date)
@@ -132,7 +132,10 @@ VALUES ('avatar_pathfinder',
         '2023-01-03', '2023-01-03', 12, 1),
        ('avatar_bloodhunt',
         '/images/avatars/AvatarBlood.png', '2023-01-04',
-        '2023-01-04', 12, 1);
+        '2023-01-04', 12, 1),
+       ('avatar_ellie',
+        '/images/avatars/AvatarBlood.png', '2023-01-04',
+        '2023-01-04', 1, 1);
 
 INSERT INTO images (name, source, creation_date, modification_date, id_game, id_type_image)
 VALUES ('img_1_the_last_of_us',
