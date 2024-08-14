@@ -8,9 +8,7 @@ public final class MessageQueries {
   /**
    * Named query to find messages by conversation ID.
    */
-  public static final String FIND_MESSAGES_BY_CONVERSATION =
-      "SELECT m FROM Message m JOIN m.conversation c WHERE c.idConversation ="
-          + " :conversationId";
+  public static final String FIND_MESSAGES_BY_CONVERSATION_AND_BY_USERID = "SELECT m FROM Message m JOIN m.conversation c JOIN c.user u WHERE c.idConversation = :conversationId AND u.idUser = :userId";
 
   /**
    * Private constructor to prevent instantiation of this utility class.
