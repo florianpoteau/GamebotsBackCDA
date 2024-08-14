@@ -40,9 +40,18 @@ class ConversationServiceTest {
   @DisplayName("Test d'ajout d'une nouvelle conversation")
   void testAddNewConversation() {
 
-    when(iConversationRepository.save(any(Conversation.class))).thenReturn(null);
+    Conversation savedConversation = new Conversation();
+    savedConversation.setIdConversation(conversationId);
 
-    conversationService.addNewConversation(new Conversationdto());
+    when(iConversationRepository.save(any(Conversation.class))).thenReturn(savedConversation);
+
+    Conversationdto conversationDto = new Conversationdto();
+    conversationDto.setCreationDate(new Date());
+
+    Conversationdto savedDto = conversationService.addNewConversation(conversationDto);
+
+    assertNotNull(savedDto);
+    assertNotNull(savedDto.getIdConversation());
 
     verify(iConversationRepository, times(1)).save(any(Conversation.class));
   }
@@ -58,7 +67,8 @@ class ConversationServiceTest {
 
     verify(iConversationRepository, times(1)).findById(conversationId);
     assertNotNull(conversationDTO, "La conversation retournée ne doit pas être nulle");
-    assertEquals(conversationId, conversationDTO.getIdConversation(), "L'ID de la conversation retournée doit être celui attendu");
+    assertEquals(conversationId, conversationDTO.getIdConversation(),
+        "L'ID de la conversation retournée doit être celui attendu");
   }
 
   @Test
@@ -66,7 +76,8 @@ class ConversationServiceTest {
   void testGetConversationByIdNotFound() {
 
     when(iConversationRepository.findById(conversationId)).thenReturn(Optional.empty());
-    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> conversationService.getConversationByConversationId(conversationId));
+    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class,
+        () -> conversationService.getConversationByConversationId(conversationId));
 
     verify(iConversationRepository, times(1)).findById(conversationId);
     assertEquals(ERRORMESSAGE + conversationId, exception.getMessage(), "Le message d'erreur doit être correct");
@@ -91,7 +102,6 @@ class ConversationServiceTest {
     verify(iConversationRepository, times(1)).save(any(Conversation.class));
   }
 
-
   @Test
   @DisplayName("Test de modification d'une conversation existante - conversation non trouvée")
   void testModifyConversationNotFound() {
@@ -103,7 +113,8 @@ class ConversationServiceTest {
     modifiedConversationdto.setGame(new Game());
 
     when(iConversationRepository.findById(conversationId)).thenReturn(Optional.empty());
-    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> conversationService.modifyConversation(conversationId, modifiedConversationdto));
+    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class,
+        () -> conversationService.modifyConversation(conversationId, modifiedConversationdto));
 
     assertEquals(ERRORMESSAGE + conversationId, exception.getMessage(), "Le message d'erreur doit être correct");
     verify(iConversationRepository, times(1)).findById(conversationId);
@@ -128,7 +139,8 @@ class ConversationServiceTest {
   void testDeleteConversationNotFound() {
 
     when(iConversationRepository.findById(conversationId)).thenReturn(Optional.empty());
-    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> conversationService.deleteConversation(conversationId));
+    EntityNotFoundException exception = assertThrows(EntityNotFoundException.class,
+        () -> conversationService.deleteConversation(conversationId));
 
     assertEquals(ERRORMESSAGE + conversationId, exception.getMessage(), "Le message d'erreur doit être correct");
     verify(iConversationRepository, times(1)).findById(conversationId);
@@ -143,7 +155,8 @@ class ConversationServiceTest {
     List<Conversationdto> conversations = conversationService.getAllUserConversations(1);
 
     verify(iConversationRepository, times(1)).getAllUserConversation(1);
-    assertEquals(Conversationdto.class, conversations.get(0).getClass(), "La classe de l'objet de conversation ne correspond pas à la classe attendue");
+    assertEquals(Conversationdto.class, conversations.get(0).getClass(),
+        "La classe de l'objet de conversation ne correspond pas à la classe attendue");
   }
 
   @Test
@@ -154,6 +167,7 @@ class ConversationServiceTest {
     List<Conversationdto> conversations = conversationService.getAllUserConversationsByGameId(1, 1);
 
     verify(iConversationRepository, times(1)).getAllUserConversationByGameId(1, 1);
-    assertEquals(Conversationdto.class, conversations.get(0).getClass(), "La classe de l'objet de conversation ne correspond pas à la classe attendue");
+    assertEquals(Conversationdto.class, conversations.get(0).getClass(),
+        "La classe de l'objet de conversation ne correspond pas à la classe attendue");
   }
 }
