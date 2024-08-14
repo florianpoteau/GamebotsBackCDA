@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * fetch all messages associated with a specific conversation ID.
  */
 @RestController
-public class GetAllMessagesByConversationIdController {
+public class GetAllMessagesByConversationIdAndUserIdController {
 
   /**
    * The message service used to retrieve all messages by conversation ID.
@@ -27,10 +27,11 @@ public class GetAllMessagesByConversationIdController {
    * with the specified message service.
    *
    * @param serviceMessage
-   *     The message service used to retrieve all messages by conversation ID.
+   *                       The message service used to retrieve all messages by
+   *                       conversation ID.
    */
   @Autowired
-  public GetAllMessagesByConversationIdController(
+  public GetAllMessagesByConversationIdAndUserIdController(
       final Imessageservice serviceMessage) {
     this.messageService = serviceMessage;
   }
@@ -39,15 +40,16 @@ public class GetAllMessagesByConversationIdController {
    * Handles HTTP GET requests to fetch all messages by conversation ID.
    *
    * @param conversationId
-   *     The ID of the conversation for which messages are to be retrieved.
+   *                       The ID of the conversation for which messages are to be
+   *                       retrieved.
    *
    * @return A list of Messagedto objects representing all
-   *     messages associated with the specified conversation ID.
+   *         messages associated with the specified conversation ID.
    */
-  @GetMapping("/conversations/{conversationId}/messages")
+  @GetMapping("/conversations/{conversationId}/users/{userId}/messages")
   public List<Messagedto> findAllMessagesByConversationId(
-      @PathVariable final int conversationId) {
-    return messageService.getAllMessagesConversation(conversationId);
+      @PathVariable final int conversationId, @PathVariable final int userId) {
+    return messageService.getAllMessagesConversation(conversationId, userId);
   }
 
 }

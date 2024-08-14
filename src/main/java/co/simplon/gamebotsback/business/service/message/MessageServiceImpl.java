@@ -41,9 +41,9 @@ public class MessageServiceImpl implements Imessageservice {
    * @return A list of messages of the specified conversation.
    */
   @Override
-  public List<Messagedto> getAllMessagesConversation(final int idConversation) {
-    final List<Message> result =
-        messageRepository.getMessagesByConversationId(idConversation);
+  public List<Messagedto> getAllMessagesConversation(final int idConversation, final int idUser) {
+    final List<Message> result = messageRepository.getMessagesByConversationIdAndUserId(idConversation, idUser);
+    
     return MessageConvert.getInstance().convertListEntityToListDto(result);
   }
 

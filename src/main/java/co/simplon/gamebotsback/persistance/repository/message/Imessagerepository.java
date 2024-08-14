@@ -17,11 +17,11 @@ public interface Imessagerepository extends JpaRepository<Message, Integer> {
    * Retrieves all messages associated with a specific conversation ID.
    *
    * @param conversationId
-   *     The ID of the conversation.
+   *                       The ID of the conversation.
    *
    * @return A list of messages associated with the specified conversation ID.
    */
-  @Query(MessageQueries.FIND_MESSAGES_BY_CONVERSATION)
-  List<Message> getMessagesByConversationId(int conversationId);
+  @Query(MessageQueries.FIND_MESSAGES_BY_CONVERSATION_AND_BY_USERID)
+  List<Message> getMessagesByConversationIdAndUserId(int conversationId, int userId);
 
 }
