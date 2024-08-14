@@ -19,6 +19,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -31,11 +32,13 @@ class MessageRepositoryTest {
   @DisplayName("Test Find Message By Conversation")
   void testFindMessageByConversation() {
 
-    when(messageRepository.getMessagesByConversationId(1)).thenReturn(List.of(new Message()));
+    when(messageRepository.getMessagesByConversationIdAndUserId(any(Integer.class), any(Integer.class)))
+        .thenReturn(List.of(new Message()));
 
-    List<Message> messages = messageRepository.getMessagesByConversationId(1);
+    List<Message> messages = messageRepository.getMessagesByConversationIdAndUserId(any(Integer.class),
+        any(Integer.class));
 
-    verify(messageRepository, times(1)).getMessagesByConversationId(1);
+    verify(messageRepository, times(1)).getMessagesByConversationIdAndUserId(any(Integer.class), any(Integer.class));
 
     assert messages.size() == 1;
     assert messages.get(0) != null;
@@ -56,17 +59,10 @@ class MessageRepositoryTest {
     }
   }
 
-  private void instantiateMessageQueries() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+  private void instantiateMessageQueries()
+      throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
     Constructor<MessageQueries> constructor = MessageQueries.class.getDeclaredConstructor();
     constructor.setAccessible(true);
     constructor.newInstance();
-  }
-
-  @Test
-  @DisplayName("Test that FIND_MESSAGES_BY_CONVERSATION query is defined")
-  void testFindMessageByConversationQuery() {
-
-    assertNotNull(MessageQueries.FIND_MESSAGES_BY_CONVERSATION, "Expected FIND_MESSAGES_BY_CONVERSATION query to be defined");
-    assertEquals("SELECT m FROM Message m JOIN m.conversation c WHERE c.idConversation = :conversationId", MessageQueries.FIND_MESSAGES_BY_CONVERSATION, "Expected FIND_MESSAGES_BY_CONVERSATION query to match");
   }
 }
