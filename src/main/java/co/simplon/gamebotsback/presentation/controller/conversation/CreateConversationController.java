@@ -3,6 +3,7 @@ package co.simplon.gamebotsback.presentation.controller.conversation;
 import co.simplon.gamebotsback.business.dto.Conversationdto;
 import co.simplon.gamebotsback.business.service.conversation.Iconversationservice;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * new conversations via HTTP POST requests.
  */
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class CreateConversationController {
 
   /**
@@ -43,9 +45,10 @@ public class CreateConversationController {
    *     the conversation to be created.
    */
   @PostMapping("/conversations")
-  public void createConversation(
+  public Conversationdto createConversation(
       @RequestBody final Conversationdto conversationDto) {
     conversationService.addNewConversation(conversationDto);
+    return conversationDto;
   }
 
 }

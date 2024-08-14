@@ -19,7 +19,7 @@ public interface Iconversationservice {
    *     The conversation DTO object containing information
    *     about the conversation.
    */
-  void addNewConversation(Conversationdto conversationDto);
+  Conversationdto addNewConversation(Conversationdto conversationDto);
 
   /**
    * Retrieves a conversation by its ID.

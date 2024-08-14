@@ -55,10 +55,13 @@ public class ConversationServiceImpl implements Iconversationservice {
    *     The information of the new conversation to add.
    */
   @Override
-  public void addNewConversation(final Conversationdto conversationDto) {
+  public Conversationdto addNewConversation(final Conversationdto conversationDto) {
     conversationDto.setCreationDate(new Date());
-    conversationRepository.save(
+    Conversation savedConversationEntity = conversationRepository.save(
         ConversationConvert.getInstance().convertDtoToEntity(conversationDto));
+
+    conversationDto.setIdConversation(savedConversationEntity.getIdConversation());
+    return conversationDto;
   }
 
   /**
