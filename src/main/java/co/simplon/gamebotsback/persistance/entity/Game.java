@@ -27,6 +27,7 @@ public class Game {
    * The maximum length for string fields in the Game entity.
    */
   private static final int LENGTH = 50;
+  private static final int LENGTHSTORY = 500;
 
   /**
    * The unique identifier of the game.
@@ -92,7 +93,7 @@ public class Game {
    * Sets the platform of the Game.
    */
   @Basic
-  @Column(name = "story", length = LENGTH)
+  @Column(name = "story", length = LENGTHSTORY)
   private String story;
 
   /**
@@ -104,6 +105,9 @@ public class Game {
    */
   @Column(name = "is_online")
   private boolean isOnline;
+
+  @Column(name = "is_new")
+  private boolean isNew;
 
   /**
    * The maximum number of players supported by the game.

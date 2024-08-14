@@ -74,6 +74,8 @@ public class Gamedto {
    */
   private boolean isOnline;
 
+  private boolean isNew;
+
   /**
    * The maximum number of players supported by the game.
    * -- GETTER --

@@ -54,6 +54,7 @@ public final class GameConvert {
     dto.setStudio(entity.getStudio());
     dto.setCreationDate(entity.getCreationDate());
     dto.setModificationDate(entity.getModificationDate());
+    dto.setNew(entity.isNew());
 
     return dto;
   }
@@ -78,6 +79,7 @@ public final class GameConvert {
     entity.setStudio(dto.getStudio());
     entity.setCreationDate(dto.getCreationDate());
     entity.setModificationDate(dto.getModificationDate());
+    entity.setNew(dto.isNew());
 
     return entity;
   }
