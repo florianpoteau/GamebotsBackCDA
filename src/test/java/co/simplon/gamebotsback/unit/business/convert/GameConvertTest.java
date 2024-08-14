@@ -237,32 +237,34 @@ class GameConvertTest {
   }
 
   @Test
-  @DisplayName("Test de conversation d'une liste de GameDto à une liste de Game")
+  @DisplayName("Test de conversion d'une liste de GameDto à une liste de Game")
   void testConvertListGameDtoToListGame() {
-
-    List<Gamedto> gamedtoList = List.of(createSampleGameDTO(), createSampleGameDTO());
-    List<Game> gameList = gameConvert.convertListDtoToListEntity(gamedtoList);
-
-    assertEquals(1, gameList.get(0).getIdGame());
-    assertEquals(1, gameList.get(1).getIdGame());
-    assertEquals(title, gameList.get(0).getTitle());
-    assertEquals(title, gameList.get(1).getTitle());
-    assertEquals(story, gameList.get(0).getStory());
-    assertEquals(story, gameList.get(1).getStory());
-    assertEquals(1, gameList.get(0).getNumberPlayers());
-    assertEquals(1, gameList.get(1).getNumberPlayers());
-    assertFalse(gameList.get(0).isOnline());
-    assertFalse(gameList.get(1).isOnline());
-    assertEquals(platform, gameList.get(0).getPlatform());
-    assertEquals(platform, gameList.get(1).getPlatform());
-    assertEquals(gamedtoList.get(0).getReleaseDate(), gameList.get(0).getReleaseDate());
-    assertEquals(gamedtoList.get(0).getReleaseDate(), gameList.get(1).getReleaseDate());
-    assertEquals(studio, gameList.get(0).getStudio());
-    assertEquals(studio, gameList.get(1).getStudio());
-    assertEquals(gamedtoList.get(0).getCreationDate(), gameList.get(0).getCreationDate());
-    assertEquals(gamedtoList.get(0).getCreationDate(), gameList.get(1).getCreationDate());
-    assertEquals(gamedtoList.get(0).getModificationDate(), gameList.get(0).getModificationDate());
-    assertEquals(gamedtoList.get(0).getModificationDate(), gameList.get(1).getModificationDate());
+  
+      List<Gamedto> gamedtoList = List.of(createSampleGameDTO(), createSampleGameDTO());
+      List<Game> gameList = gameConvert.convertListDtoToListEntity(gamedtoList);
+  
+      assertEquals(1, gameList.get(0).getIdGame());
+      assertEquals(1, gameList.get(1).getIdGame());
+      assertEquals(title, gameList.get(0).getTitle());
+      assertEquals(title, gameList.get(1).getTitle());
+      assertEquals(story, gameList.get(0).getStory());
+      assertEquals(story, gameList.get(1).getStory());
+      assertEquals(1, gameList.get(0).getNumberPlayers());
+      assertEquals(1, gameList.get(1).getNumberPlayers());
+      assertFalse(gameList.get(0).isOnline());
+      assertFalse(gameList.get(1).isOnline());
+      assertEquals(platform, gameList.get(0).getPlatform());
+      assertEquals(platform, gameList.get(1).getPlatform());
+  
+      assertEquals(gamedtoList.get(0).getReleaseDate().getTime(), gameList.get(0).getReleaseDate().getTime());
+      assertEquals(gamedtoList.get(0).getReleaseDate().getTime(), gameList.get(1).getReleaseDate().getTime());
+      assertEquals(gamedtoList.get(0).getCreationDate().getTime(), gameList.get(0).getCreationDate().getTime());
+      assertEquals(gamedtoList.get(0).getCreationDate().getTime(), gameList.get(1).getCreationDate().getTime());
+      assertEquals(gamedtoList.get(0).getModificationDate().getTime(), gameList.get(0).getModificationDate().getTime());
+      assertEquals(gamedtoList.get(0).getModificationDate().getTime(), gameList.get(1).getModificationDate().getTime());
+  
+      assertEquals(studio, gameList.get(0).getStudio());
+      assertEquals(studio, gameList.get(1).getStudio());
   }
 
   @Test
