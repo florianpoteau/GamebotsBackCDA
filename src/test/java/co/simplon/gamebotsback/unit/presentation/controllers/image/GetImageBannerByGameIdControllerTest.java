@@ -9,7 +9,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import java.util.List;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -26,8 +25,8 @@ class GetImageBannerByGameIdControllerTest {
   @Test
   @DisplayName("Test de recuperation d'une image 'banner' par l'id d'un jeu depuis le controller")
   void getImageBannerByGameId() {
-    when(imageService.getAllImagesByGameIdAndImageType("banner", 1)).thenReturn(List.of(new Imagedto()));
+    when(imageService.getImagesByGameIdAndImageTypeBanner("banner", 1)).thenReturn(new Imagedto());
     controller.findImageBannerByGameId(1);
-    verify(imageService, times(1)).getAllImagesByGameIdAndImageType("banner", 1);
+    verify(imageService, times(1)).getImagesByGameIdAndImageTypeBanner("banner", 1);
   }
 }
