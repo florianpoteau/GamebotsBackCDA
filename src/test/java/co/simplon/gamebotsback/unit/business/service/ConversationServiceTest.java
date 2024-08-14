@@ -50,8 +50,9 @@ class ConversationServiceTest {
 
     Conversationdto savedDto = conversationService.addNewConversation(conversationDto);
 
-    assertNotNull(savedDto);
-    assertNotNull(savedDto.getIdConversation());
+    assertNotNull(savedDto, "The saved conversation DTO should not be null");
+
+    assertEquals(conversationId, savedDto.getIdConversation(), "The ID of the saved conversation DTO should match the expected ID");
 
     verify(iConversationRepository, times(1)).save(any(Conversation.class));
   }

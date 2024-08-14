@@ -110,11 +110,8 @@ public class UserServiceImpl implements Iuserservice {
       existingUser.setPhone(userDto.getPhone());
       existingUser.setModificationDate(new Date());
 
-      // Check if password is provided and encode it
-      if (userDto.getPassword() != null && !userDto.getPassword().isEmpty()) {
         String encodePassword = passwordEncoder.encode(userDto.getPassword());
         existingUser.setPassword(encodePassword);
-      }
 
       userRepository.save(existingUser);
 

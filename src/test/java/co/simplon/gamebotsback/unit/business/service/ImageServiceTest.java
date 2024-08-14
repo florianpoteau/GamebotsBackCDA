@@ -89,4 +89,32 @@ class ImageServiceTest {
     assertEquals(Imagedto.class, imageDTO.getClass(), "ImageDTO attendu dans la liste");
 
   }
+  
+  @Test
+  @DisplayName("Test de récupération de toutes les images de type bannière")
+  void testGetAllImagesBanner() {
+    when(iImageRepository.getAllImagesBanner("banner")).thenReturn(List.of(existingImage));
+    List<Imagedto> imagesDTO = imageService.getAllImagesBanner("banner");
+
+    verify(iImageRepository, times(1)).getAllImagesBanner("banner");
+    assertNotNull(imagesDTO, "L'objet images ne doit pas être nul");
+    assertEquals(imageId, imagesDTO.size(), "ImageDTO attendu dans la liste");
+    assertEquals(Imagedto.class, imagesDTO.get(0).getClass(), "ImageDTO attendu dans la liste");
+  }
+
+  @Test
+  @DisplayName("Test de récupération de l'image de type bannière d'un jeu")
+  void testGetImagesByGameIdAndImageTypeBanner() {
+    int gameId = 1;
+    int userId = 1;
+    existingImage.setIdImage(imageId);
+
+    when(iImageRepository.getImageBannerByGameIdAndImageType("banner", gameId)).thenReturn(existingImage);
+    Imagedto imagedto = imageService.getImagesByGameIdAndImageTypeBanner("banner", userId);
+    verify(iImageRepository, times(1)).getImageBannerByGameIdAndImageType("banner", gameId);
+    assertNotNull(imagedto, "L'objet image ne doit pas être null");
+    assertEquals(imageId, imagedto.getIdImage(), "ImageDTO attendu dans la liste");
+    assertEquals(Imagedto.class, imagedto.getClass(), "imageDTO attendu dans la liste");
+
+  }
 }
