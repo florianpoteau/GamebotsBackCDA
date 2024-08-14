@@ -78,7 +78,7 @@ public class TokenService {
           .issuedAt(now)
           .expiresAt(now.plus(1, ChronoUnit.HOURS))
           .subject(username)
-          .claim(username, username)
+          .claim("username", username)
           .claim("userId", userId)
           .build();
       return this.encoder.encode(
