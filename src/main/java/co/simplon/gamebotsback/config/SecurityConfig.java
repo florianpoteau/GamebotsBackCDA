@@ -77,7 +77,7 @@ public class SecurityConfig {
    * @throws Exception
    *     if an error occurs while configuring security
    */
-  @SuppressWarnings({"deprecation", "removal"})
+ @SuppressWarnings({ "deprecation", "removal" })
   @Bean
   public SecurityFilterChain securityFilterChain(
       final HttpSecurity http) throws ConfigurationException {
