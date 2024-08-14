@@ -10,9 +10,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class CreateConversationControllerTest {
@@ -26,8 +26,13 @@ class CreateConversationControllerTest {
   @Test
   @DisplayName("Test de création d'une conversation depuis le controller")
   void createConversation() {
-    doNothing().when(conversationService).addNewConversation(any(Conversationdto.class));
-    controller.createConversation(new Conversationdto());
+    Conversationdto inputDto = new Conversationdto();
+    Conversationdto returnedDto = new Conversationdto();
+
+    when(conversationService.addNewConversation(any(Conversationdto.class))).thenReturn(returnedDto);
+
+    controller.createConversation(inputDto);
+
     verify(conversationService, times(1)).addNewConversation(any(Conversationdto.class));
   }
 }
