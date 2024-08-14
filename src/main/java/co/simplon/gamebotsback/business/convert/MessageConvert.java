@@ -46,6 +46,7 @@ public final class MessageConvert {
     final Messagedto dto = new Messagedto();
     dto.setIdMessage(entity.getIdMessage());
     dto.setContent(entity.getContent());
+    dto.setContentBot(entity.getContentBot());
     dto.setCreationDate(entity.getCreationDate());
     dto.setModificationDate(entity.getModificationDate());
     dto.setConversation(entity.getConversation());
@@ -65,6 +66,7 @@ public final class MessageConvert {
     final Message entity = new Message();
     entity.setIdMessage(dto.getIdMessage());
     entity.setContent(dto.getContent());
+    entity.setContentBot(dto.getContentBot());
     entity.setCreationDate(dto.getCreationDate());
     entity.setModificationDate(dto.getModificationDate());
     entity.setConversation(dto.getConversation());

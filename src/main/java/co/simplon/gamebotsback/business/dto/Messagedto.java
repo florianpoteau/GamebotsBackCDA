@@ -30,6 +30,8 @@ public class Messagedto {
    */
   private String content;
 
+  private String contentBot;
+
   /**
    * The creation date of the message.
    * -- GETTER --

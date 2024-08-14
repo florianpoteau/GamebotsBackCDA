@@ -25,6 +25,8 @@ import lombok.Setter;
 @Table(name = "messages")
 public class Message {
 
+  private static final int LENGTH = 100000;
+
   /**
    * The unique identifier of the message.
    * -- GETTER --
@@ -47,6 +49,10 @@ public class Message {
   @Basic
   @Column(name = "content")
   private String content;
+
+  @Basic
+  @Column(name = "content_bot", length = LENGTH)
+  private String contentBot;
 
   /**
    * The creation date of the message.
