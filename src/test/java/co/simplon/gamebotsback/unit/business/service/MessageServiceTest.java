@@ -14,6 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -28,11 +29,11 @@ class MessageServiceTest {
   @Test
   @DisplayName("Test de récupération de tous les messages d'une conversation")
   void testGetAllMessageConversation() {
+    when(iMessageRepository.getMessagesByConversationIdAndUserId(any(Integer.class), any(Integer.class)))
+        .thenReturn(List.of(new Message()));
+    List<Messagedto> messages = messageService.getAllMessagesConversation(any(Integer.class), any(Integer.class));
 
-    when(iMessageRepository.getMessagesByConversationId(any(Integer.class))).thenReturn(List.of(new Message()));
-    List<Messagedto> messages = messageService.getAllMessagesConversation(any(Integer.class));
-
-    verify(iMessageRepository, times(1)).getMessagesByConversationId(any(Integer.class));
+    verify(iMessageRepository, times(1)).getMessagesByConversationIdAndUserId(any(Integer.class), any(Integer.class));
     assertEquals(Messagedto.class, messages.get(0).getClass(), "MessageDTO attendu dans la liste");
   }
 
