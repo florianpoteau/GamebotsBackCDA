@@ -37,4 +37,13 @@ public interface Iimagerepository extends JpaRepository<Image, Integer> {
   @Query(ImageQueries.FIND_ALL_IMAGES_BY_GAMEID)
   List<Image> getAllImagesByGameId(String typeImage, int gameId);
 
+  @Query(ImageQueries.FIND_ALL_IMAGES_GAMES)
+  List<Image> getAllImagesGames(String typeImage);
+
+  @Query(ImageQueries.FIND_ALL_IMAGES_BANNER)
+  List<Image> getAllImagesBanner(String typeImage);
+
+  @Query(ImageQueries.FIND_ALL_IMAGES_BY_GAMEID)
+  Image getImageBannerByGameIdAndImageType(String typeImage, int gameId);
+
 }

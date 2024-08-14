@@ -97,4 +97,16 @@ public class ImageServiceImpl implements Iimageservice {
     return ImageConvert.getInstance().convertListEntityToListDto(image);
   }
 
+  @Override
+  public List<Imagedto> getAllImagesBanner(String typeImage) {
+    List<Image> images = imageRepository.getAllImagesBanner(typeImage);
+    return ImageConvert.getInstance().convertListEntityToListDto(images);
+  }
+
+  @Override
+  public Imagedto getImagesByGameIdAndImageTypeBanner(String typeImage, int gameId) {
+    Image image = imageRepository.getImageBannerByGameIdAndImageType(typeImage, gameId);
+    return ImageConvert.getInstance().convertEntityToDto(image);
+  }
+
 }

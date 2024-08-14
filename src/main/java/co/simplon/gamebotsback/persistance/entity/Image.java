@@ -29,6 +29,7 @@ public class Image {
    * The maximum length for string fields in the Image entity.
    */
   private static final int LENGTH = 50;
+  private static final int LENGTHSRC = 800;
 
   /**
    * The unique identifier of the image.
@@ -61,7 +62,7 @@ public class Image {
    * Sets the source of the Image.
    */
   @Basic
-  @Column(name = "source")
+  @Column(name = "source", length = LENGTHSRC)
   private String source;
 
   /**

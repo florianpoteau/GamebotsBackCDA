@@ -52,4 +52,9 @@ public interface Iimageservice {
   List<Imagedto> getAllImagesByGameIdAndImageType(
       String typeImage, int gameId);
 
+        List<Imagedto> getAllImagesBanner(
+                        String typeImage);
+
+        Imagedto getImagesByGameIdAndImageTypeBanner(String typeImage, int gameId);
+
 }
