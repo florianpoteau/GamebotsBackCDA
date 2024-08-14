@@ -106,10 +106,15 @@ public class UserServiceImpl implements Iuserservice {
       User existingUser = optionalUser.get();
       existingUser.setUsername(userDto.getUsername());
       existingUser.setEmail(userDto.getEmail());
-      existingUser.setPassword(userDto.getPassword());
       existingUser.setImage(userDto.getImage());
       existingUser.setPhone(userDto.getPhone());
       existingUser.setModificationDate(new Date());
+
+      // Check if password is provided and encode it
+      if (userDto.getPassword() != null && !userDto.getPassword().isEmpty()) {
+        String encodePassword = passwordEncoder.encode(userDto.getPassword());
+        existingUser.setPassword(encodePassword);
+      }
 
       userRepository.save(existingUser);
 

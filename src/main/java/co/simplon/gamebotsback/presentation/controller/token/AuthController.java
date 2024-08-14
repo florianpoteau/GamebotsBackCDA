@@ -3,6 +3,7 @@ package co.simplon.gamebotsback.presentation.controller.token;
 import co.simplon.gamebotsback.business.dto.Userdto;
 import co.simplon.gamebotsback.business.service.token.TokenService;
 import co.simplon.gamebotsback.business.service.user.Iuserservice;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * This controller handles HTTP POST requests to login user.
  */
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class AuthController {
 
   /**
