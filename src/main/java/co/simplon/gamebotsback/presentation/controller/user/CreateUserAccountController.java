@@ -3,6 +3,7 @@ package co.simplon.gamebotsback.presentation.controller.user;
 import co.simplon.gamebotsback.business.dto.Userdto;
 import co.simplon.gamebotsback.business.service.user.Iuserservice;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * user account to the UserService.
  */
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class CreateUserAccountController {
 
   /**

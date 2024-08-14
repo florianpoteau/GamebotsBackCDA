@@ -2,7 +2,8 @@ package co.simplon.gamebotsback.presentation.controller.image;
 
 import co.simplon.gamebotsback.business.dto.Imagedto;
 import co.simplon.gamebotsback.business.service.image.Iimageservice;
-import java.util.List;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * the banner image associated with a specific game ID.
  */
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class GetImageBannerByGameIdController {
 
   /**
@@ -44,8 +46,8 @@ public class GetImageBannerByGameIdController {
    *     banner image associated with the specified game ID.
    */
   @GetMapping("/games/{gameId}/banner")
-  public List<Imagedto> findImageBannerByGameId(
+  public Imagedto findImageBannerByGameId(
       @PathVariable final int gameId) {
-    return imageService.getAllImagesByGameIdAndImageType("banner", gameId);
+    return imageService.getImagesByGameIdAndImageTypeBanner("banner", gameId);
   }
 }

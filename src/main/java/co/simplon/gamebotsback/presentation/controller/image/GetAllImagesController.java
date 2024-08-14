@@ -4,6 +4,7 @@ import co.simplon.gamebotsback.business.dto.Imagedto;
 import co.simplon.gamebotsback.business.service.image.Iimageservice;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * to fetch all images from the system.
  */
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class GetAllImagesController {
 
   /**
