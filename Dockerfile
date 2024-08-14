@@ -13,4 +13,4 @@ LABEL description="Gamebots est une plateforme où les participants peuvent inte
 WORKDIR /app
 COPY --from=build /app/target/GamebotsBack-0.0.1-SNAPSHOT.jar /app/GamebotsBack-0.0.1-SNAPSHOT.jar
 EXPOSE 8080
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "GamebotsBack-0.0.1-SNAPSHOT.jar"]
