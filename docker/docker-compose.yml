@@ -3,7 +3,7 @@ version: "3.9"
 services:
 
   back:
-    build: ..
+    image: florianpoteau/gamebotsbackimage:0.0.1
     container_name: backend_container
     restart: always
     environment:
@@ -11,7 +11,17 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+
+  front:
+    image: florianpoteau/gamebotsfrontimage:0.0.1
+    container_name: frontend_container
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - back
 
   db:
     image: postgres:16.2
@@ -25,6 +35,13 @@ services:
       - "9254:5432"
     volumes:
       - pg_data:/var/lib/postgres/data
+      - ./:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "dbuser", "-d", "db"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 5s
 
   pg-admin:
     image: dpage/pgadmin4:8.6
