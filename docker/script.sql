@@ -680,11 +680,11 @@ INSERT INTO public.games(
 
 INSERT INTO public.images(
 	id_image, creation_date, name, source, id_game, id_type_image)
-	VALUES (5, '2024-06-07', 'Ghost of tsushima', 'https://imgs.search.brave.com/xPGyI95K4I2rcdanS0oYHVkWzjijcKKx-cEKXv3QQZ8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZS5qZXV4dmlkZW8u/Y29tL21lZGlhcy1z/bS8xNTk0OTEvMTU5/NDkxMjQwNC03MDE4/LWphcXVldHRlLWF2/YW50LmpwZw', 4, 3);
+	VALUES (5, '2024-06-07', 'Ghost of tsushima', 'https://imgs.search.brave.com/2hfDSO24v2j9bHVMIFijyEx7VFfiMX7MRVLP5vlxkls/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMuYWN0dWdhbWlu/Zy5uZXQvbWVkaWEv/MjAyMC8xMS9naG9z/dC1vZi10c3VzaGlt/YS1jb3V2ZXJ0dXJl/LTg4OXg1MDAuanBn', 4, 3);
 
 INSERT INTO public.games(
 	id_game, creation_date, is_new, is_online, number_players, platform, release_date, story, studio, title)
-	VALUES (5, '2024-06-07', false, false, 1, 'PC', '2015-06-07', 'Geralt de Riv, un sorceleur légendaire connu pour ses compétences inégalées en chasse aux monstres et ses cheveux blancs distinctifs, est en quête de sa fille adoptive, Ciri. Ciri, dotée de pouvoirs anciens et d une lignée mystérieuse, est pourchassée par la Chasse Sauvage, une armée spectrale menée par le roi Eredin, déterminée à utiliser ses pouvoirs pour leurs sombres desseins.', 'CD Projekt Red', 'the withcher 3 : Wild hunt');
+	VALUES (5, '2024-06-07', false, false, 1, 'PC', '2015-06-07', 'Geralt de Riv, un sorceleur légendaire connu pour ses compétences inégalées en chasse aux monstres et ses cheveux blancs distinctifs, est en quête de sa fille adoptive, Ciri. Ciri, dotée de pouvoirs anciens et d une lignée mystérieuse, est pourchassée par la Chasse Sauvage, une armée spectrale menée par le roi Eredin, déterminée à utiliser ses pouvoirs pour leurs sombres desseins.', 'CD Projekt Red', 'the witcher 3 : Wild hunt');
 
 
 INSERT INTO public.images(
