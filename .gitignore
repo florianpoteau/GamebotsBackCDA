@@ -35,3 +35,6 @@ build/
 src/main/resources/certs/private.pem
 src/test/resources/certs/private.pem
 src/test/resources/certs/public.pem
+
+### .env ###
+docker/.env
