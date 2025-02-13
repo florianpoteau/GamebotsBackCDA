@@ -1,0 +1,78 @@
+version: "3.9"
+
+services:
+  back:
+    image: florianpoteau/gamebotsbackimage:0.0.1
+    container_name: backend_container
+    restart: always
+    environment:
+      - SPRING_DATASOURCE_URL=${SPRING_DATASOURCE_URL}
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  front:
+    image: florianpoteau/gamebotsfrontimage:0.0.1
+    container_name: frontend_container
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - back
+
+  db:
+    image: postgres:16.2
+    container_name: postgres_container
+    restart: always
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    ports:
+      - "9254:5432"
+    volumes:
+      - pg_data:/var/lib/postgres/data
+      - ./:/docker-entrypoint-initdb.d
+    healthcheck:
+      test:
+        ["CMD", "pg_isready", "-U", "${POSTGRES_USER}", "-d", "${POSTGRES_DB}"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 5s
+
+  pg-admin:
+    image: dpage/pgadmin4:8.6
+    container_name: pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+      - PGADMIN_LISTEN_PORT=5050
+    ports:
+      - "5050:5050"
+
+  sonarqube:
+    container_name: sonarqube
+    image: sonarqube
+    environment:
+      - SONARQUBE_JDBC_USERNAME=${SONARQUBE_JDBC_USERNAME}
+      - SONARQUBE_JDBC_PASSWORD=${SONARQUBE_JDBC_PASSWORD}
+      - SONARQUBE_JDBC_URL=${SONARQUBE_JDBC_URL}
+    volumes:
+      - sonarqube_conf:/opt/sonarqube/conf
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_bundled-plugins:/opt/sonarqube/lib/bundled-plugins
+    ports:
+      - "9000:9000"
+
+volumes:
+  pg_data:
+  sonarqube_database_data:
+  sonarqube_bundled-plugins:
+  sonarqube_conf:
+  sonarqube_data:
+  sonarqube_database:
+  sonarqube_extensions:
