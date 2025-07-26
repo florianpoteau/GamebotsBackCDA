@@ -16,9 +16,9 @@ public class CorsConfig {
 
         // Autoriser localhost 3000
         config.addAllowedOrigin("http://localhost:3000");
-        config.addAllowedHeader("*"); // Autoriser tous les en-têtes
-        config.addAllowedMethod("*"); // Autoriser toutes les méthodes (GET, POST, etc.)
-        config.setAllowCredentials(true); // Autoriser les cookies avec les requêtes CORS
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
+        config.setAllowCredentials(true);
 
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
